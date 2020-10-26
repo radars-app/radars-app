@@ -10,6 +10,7 @@ import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { ContainerComponent } from './container/container.component';
 import { ContainerModule } from './container/container.module';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
 	declarations: [
@@ -22,7 +23,8 @@ import { ContainerModule } from './container/container.module';
 		ContainerModule,
 		StoreModule.forRoot({}),
 		EffectsModule.forRoot([]),
-		StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
+		StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+		ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
 	],
 	providers: [],
 	bootstrap: [AppComponent]
