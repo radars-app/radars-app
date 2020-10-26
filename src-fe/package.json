@@ -26,6 +26,7 @@
     "@ngrx/effects": "^10.0.1",
     "@ngrx/store": "^10.0.1",
     "@ngrx/store-devtools": "^10.0.1",
+    "@angular/service-worker": "~10.1.6",
     "express": "^4.17.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
