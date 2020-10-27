@@ -7,17 +7,6 @@ import { LoadSamplesFailure, LoadSamplesSuccess, SampleActionTypes, SampleAction
 @Injectable()
 export class SampleEffects {
 
-	@Effect()
-	public loadSamples$: Observable<LoadSamplesSuccess | LoadSamplesFailure> = this.actions$.pipe(
-		ofType(SampleActionTypes.LoadSamples),
-		concatMap(() =>
-			/** An EMPTY observable only emits completion. Replace with your own observable API request */
-			EMPTY.pipe(
-				map((data: unknown) => new LoadSamplesSuccess({ data })),
-				catchError((error: Error) => of(new LoadSamplesFailure({ error }))))
-		)
-	);
-
 	constructor(private actions$: Actions<SampleActions>) { }
 
 }
