@@ -29,6 +29,9 @@ jobs:
         npm ci
         npm run lint
         npm run build
+        cd ../src-be
+        npm ci
+        npm run lint
     # Runs a set of commands using the runners shell
     - name: Test
       run: |
