@@ -1,7 +1,7 @@
 import { app } from './app';
 import process from 'process';
 
-const defaultPort: string = '4200';
+const defaultPort: string = '8080';
 
 // tslint:disable-next-line: strict-boolean-expressions
 const port: string = process.env.PORT || defaultPort;
