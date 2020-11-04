@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import {
   Component,
   OnInit,
@@ -15,27 +14,23 @@ import {
   LogLevel,
 } from 'msal';
 
-import creds from '../../auth-config.json';
-
+/* istanbul ignore next */
 @Component({
 	selector: 'app-root',
 	templateUrl: './app.component.html',
 	styleUrls: ['./app.component.scss']
 })
+
 export class AppComponent implements OnInit {
   public title: string = 'radars-app';
-  public isIframe: boolean = false;
   public loggedIn: boolean = false;
 
   constructor(
 	private broadcastService: BroadcastService,
 	private authService: MsalService,
-	private httpClient: HttpClient,
   ) { }
 
   ngOnInit(): void {
-	this.isIframe = window !== window.parent && !window.opener;
-
 	this.checkAccount();
 
 	this.broadcastService.subscribe('msal:loginSuccess', () => {
