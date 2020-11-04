@@ -1,7 +1,7 @@
 {
     "scripts": {
-      "heroku-prebuild": "cd src-fe && npm install && npm run build",
-      "start": "cd src-fe && npm start"
+      "heroku-prebuild": "cd ci && node update-auth-json.js && cd ../src-fe && npm ci && npm run build",
+      "start": "cd src-be && npm ci && npm run build && npm run start"
     },
     "engines": {
           "node": "12.18.2",

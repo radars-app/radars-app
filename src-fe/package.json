@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "node ./node_modules/@angular/cli/bin/ng",
-    "build": "ng build",
+    "build": "ng build --output-path dist",
     "build:watch": "ng build --output-path dist --watch",
     "test": "ng test",
     "test-ci": "ng test --code-coverage --watch=false",
