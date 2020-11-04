@@ -1,37 +1,44 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatListModule } from '@angular/material/list';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { BroadcastService, MsalService, MsalAngularConfiguration } from '@azure/msal-angular';
+import { MSAL_CONFIG, MSAL_CONFIG_ANGULAR } from '@azure/msal-angular';
+import { Configuration } from 'msal';
+
+import creds from '../../auth-config.json';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('AppComponent', () => {
-	let fixture: ComponentFixture<AppComponent>;
-	let component: AppComponent;
 
-	beforeEach(async () => {
-		await TestBed.configureTestingModule({
-			imports: [
-				RouterTestingModule
-			],
-			declarations: [
-				AppComponent
-			],
-		}).compileComponents();
+  beforeEach(async(() => {
+	TestBed.configureTestingModule({
+		imports: [
+			RouterTestingModule,
+			HttpClientModule,
+		],
+		declarations: [
+			AppComponent
+		],
+		providers: [
+	{
+		provide: MsalService,
+		useValue: {},
+	},
+	{
+		provide: BroadcastService,
+		useValue: {},
+	},
+		]
+	}).compileComponents();
+  }));
 
-		fixture = TestBed.createComponent(AppComponent);
-		component = fixture.componentInstance;
-	});
+  it('should create the app', () => {
+	const fixture: ComponentFixture<AppComponent> = TestBed.createComponent(AppComponent);
+	const app: AppComponent = fixture.debugElement.componentInstance;
+	expect(app).toBeTruthy();
+  });
 
-	it('should create the app', () => {
-		expect(component).toBeTruthy();
-	});
-
-	it(`should have as title 'radars-app'`, () => {
-		expect(component.title).toEqual('radars-app');
-	});
-
-/*   it('should render title', () => {
-		const fixture = TestBed.createComponent(AppComponent);
-		fixture.detectChanges();
-		const compiled = fixture.nativeElement;
-		expect(compiled.querySelector('.content span').textContent).toContain('radars-app app is running!');
-	}); */
 });

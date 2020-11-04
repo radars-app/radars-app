@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/radars-app",
+            "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -127,6 +127,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "radars-app"
+    }
+  },
+  "defaultProject": "radars-app",
+  "cli": {
+    "analytics": false
+  }
 }

@@ -1,0 +1,13 @@
+{
+    "clientId": "clientId",
+    "authority": "authority",
+    "redirectUri": "redirectUri",
+    "protectedResourceMap": [
+        [
+            "https://graph.microsoft.com/v1.0/me",
+            [
+                "user.read"
+            ]
+        ]
+    ]
+}
