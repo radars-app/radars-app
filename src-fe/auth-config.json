@@ -1,7 +1,8 @@
+
 {
-    "clientId": "clientId",
-    "authority": "authority",
-    "redirectUri": "redirectUri",
+    "clientId": "b7ac35fa-aedd-4e19-a2eb-51eeaff7251d",
+    "authority": "https://login.microsoftonline.com/common",
+    "redirectUri": "http://localhost:8080",
     "protectedResourceMap": [
         [
             "https://graph.microsoft.com/v1.0/me",
