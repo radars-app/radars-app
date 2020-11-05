@@ -1,8 +1,8 @@
 {
 	"credentials": {
-		"tenantID": "tenantId",
-		"clientID": "clientId",
-		"audience": "clientId"
+		"tenantID": "b41b72d0-4e9f-4c26-8a69-f949f367c91d",
+		"clientID": "b7ac35fa-aedd-4e19-a2eb-51eeaff7251d",
+		"audience": "b7ac35fa-aedd-4e19-a2eb-51eeaff7251d"
 	},
 	"resource": {},
 	"metadata": {
