@@ -7,9 +7,7 @@ import { StoreModule } from '@ngrx/store';
 @NgModule({
 	imports: [
 		EffectsModule.forFeature([SampleEffects]),
-		StoreModule.forFeature(sampleFeatureKey, {
-			sample: reducer
-		}),
+		StoreModule.forFeature(sampleFeatureKey, reducer),
 	]
 })
 export class ContainerStoreModule { }

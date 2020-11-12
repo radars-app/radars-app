@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import {
   Component,
   OnInit,
@@ -13,6 +14,7 @@ import {
   AuthResponse,
   LogLevel,
 } from 'msal';
+import { ContainerFacadeService } from './container/store/sample/container.facade';
 
 /* istanbul ignore next */
 @Component({
@@ -27,7 +29,9 @@ export class AppComponent implements OnInit {
 
   constructor(
 	private broadcastService: BroadcastService,
-	private authService: MsalService,
+  private authService: MsalService,
+  private http: HttpClient,
+  private containerFacadeService: ContainerFacadeService,
   ) { }
 
   ngOnInit(): void {
@@ -51,7 +55,9 @@ export class AppComponent implements OnInit {
 	}, {
 		correlationId: CryptoUtils.createNewGuid(),
 		piiLoggingEnabled: false
-	}));
+  }));
+
+  this.containerFacadeService.loadUserPhoto();
   }
 
   checkAccount(): void {

@@ -1,0 +1,19 @@
+<div
+>{{ profile.displayName}}</div>
+
+<div
+>E-mail: {{ profile.mail}}</div>
+
+<mat-divider></mat-divider>
+
+<div>
+    <mat-slide-toggle
+    [labelPosition]="'before'"
+    (change)="toggleTheme($event)">Dark mode</mat-slide-toggle>
+</div>
+
+<button
+class="profile-popup__logout-button"
+mat-flat-button
+color="primary"
+(click)="login()">Log Out</button>

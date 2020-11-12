@@ -1,0 +1,17 @@
+<div class="global-header__logo">
+    <img
+    src="../../../../assets/logo.svg"
+    alt="logo"/>
+
+    <span>{{ appName }}</span>
+</div>
+
+<img
+class="global-header__photo"
+[src]="userPhotoURL"
+alt="user photo"
+(click)="toggleProfilePopup()"/>
+
+<app-radars-profile-popup
+*ngIf="showProfilePopup"
+></app-radars-profile-popup>

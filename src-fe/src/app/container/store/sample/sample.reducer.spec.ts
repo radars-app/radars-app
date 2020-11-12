@@ -1,7 +1,7 @@
 import {
 	reducer,
 	initialState,
-	State,
+	ContainerState,
 } from './sample.reducer';
 import {
 	SampleActionTypes,
@@ -30,7 +30,7 @@ describe('Sample Reducer', () => {
 				type: SampleActionTypes.LoadSamples,
 			} as LoadSamples;
 
-			const result: State = reducer(initialState, action);
+			const result: ContainerState = reducer(initialState, action);
 
 			expect(result).toBe(initialState);
 		});
@@ -43,7 +43,7 @@ describe('Sample Reducer', () => {
 				type: SampleActionTypes.LoadSamplesFailure,
 			} as LoadSamplesFailure;
 
-			const result: State = reducer(initialState, action);
+			const result: ContainerState = reducer(initialState, action);
 
 			expect(result).toBe(initialState);
 		});
@@ -56,7 +56,7 @@ describe('Sample Reducer', () => {
 				type: SampleActionTypes.LoadSamplesSuccess,
 			} as LoadSamplesSuccess;
 
-			const result: State = reducer(initialState, action);
+			const result: ContainerState = reducer(initialState, action);
 
 			expect(result).toBe(initialState);
 		});

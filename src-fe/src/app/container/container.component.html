@@ -1,5 +1,9 @@
 <main class="container">
+	<div class="radars-app__global-header-container">
+		<app-radars-global-header
+		[userPhotoURL]="userPhotoURL$ | async"></app-radars-global-header>
+	</div>
 	<div class="container__title">
-		container works!
+		<router-outlet></router-outlet>
 	</div>
 </main>

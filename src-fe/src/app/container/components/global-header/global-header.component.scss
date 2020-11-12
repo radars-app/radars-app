@@ -1,0 +1,20 @@
+:host {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  margin: 0 20px;
+}
+
+.global-header {
+  &__logo {
+    display: flex;
+    align-items: center;
+  }
+
+  &__photo {
+    height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+}

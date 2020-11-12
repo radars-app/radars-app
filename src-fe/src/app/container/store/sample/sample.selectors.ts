@@ -1,6 +1,11 @@
-import { createFeatureSelector, createSelector, MemoizedSelector } from '@ngrx/store';
+import { createFeatureSelector, createSelector, MemoizedSelector, DefaultProjectorFn } from '@ngrx/store';
 import * as fromSample from './sample.reducer';
 
-export const selectSampleState: MemoizedSelector<{}, fromSample.State> = createFeatureSelector<fromSample.State>(
+export const selectSampleState: MemoizedSelector<{}, fromSample.ContainerState> = createFeatureSelector<fromSample.ContainerState>(
 	fromSample.sampleFeatureKey
+);
+
+export const selectUserPhotoURL: MemoizedSelector<fromSample.ContainerState, string> = createSelector(
+	selectSampleState,
+	(state: fromSample.ContainerState) => state.userPhoto,
 );

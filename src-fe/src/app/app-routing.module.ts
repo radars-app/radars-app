@@ -5,7 +5,7 @@ import { ContainerComponent } from './container/container.component';
 
 const routes: Routes = [
   {
-	path: '',
+	path: 'example',
 	component: ContainerComponent,
 	canActivate: [
 		MsalGuard

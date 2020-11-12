@@ -3,7 +3,7 @@ import { selectSampleState } from './sample.selectors';
 
 describe('Sample Selectors', () => {
 	it('should select the feature state', () => {
-		const result: fromSample.State = selectSampleState({
+		const result: fromSample.ContainerState = selectSampleState({
 			[fromSample.sampleFeatureKey]: {
 				sample: 'sample'
 			}

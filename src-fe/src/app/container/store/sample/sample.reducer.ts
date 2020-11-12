@@ -3,25 +3,31 @@ import { SampleActions, SampleActionTypes } from './sample.actions';
 
 export const sampleFeatureKey: string = 'sample';
 
-export interface State {
-	sample: string;
+export interface ContainerState {
+	theme: string;
+	userPhoto: string;
 }
 
-export const initialState: State = {
-	sample: 'sample'
+export const initialState: ContainerState = {
+	theme: 'light',
+	userPhoto: '../../../../assets/profile.svg',
 };
 
-export function reducer(state: State = initialState, action: SampleActions): State {
+export function reducer(state: ContainerState = initialState, action: SampleActions): ContainerState {
 	switch (action.type) {
 
-		case SampleActionTypes.LoadSamples:
-			return state;
+		case SampleActionTypes.SetTheme:
+			return {
+				...state,
+				theme: action.payload.data,
+			};
 
-		case SampleActionTypes.LoadSamplesSuccess:
-			return state;
-
-		case SampleActionTypes.LoadSamplesFailure:
-			return state;
+		case SampleActionTypes.GetUserPhotoSuccess:
+				return {
+					...state,
+					userPhoto: action.payload.data,
+				};
+		case SampleActionTypes.GetUserInfoSuccess:
 
 		default:
 			return state;
