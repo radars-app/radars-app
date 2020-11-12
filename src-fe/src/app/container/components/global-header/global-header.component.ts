@@ -12,13 +12,21 @@ export class GlobalHeaderComponent implements OnInit {
 
   public showProfilePopup: boolean;
 
-  public appName: string = appConfig.appName;
+  public appNamePrefix: string = appConfig.appName.prefix;
+
+  public appNameMain: string = appConfig.appName.main;
+
+  visible = false;
 
   constructor(
   ) {
   }
 
   ngOnInit(): void {
+  }
+
+  change() {
+    this.visible = true;
   }
 
   toggleProfilePopup(): void {

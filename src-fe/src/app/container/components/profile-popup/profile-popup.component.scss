@@ -3,14 +3,10 @@
 :host {
     position: absolute;
     right: 0;
-    top: $global-header-height;
+    top: $global-header-height + 2px;
 
     height: 190px;
     margin: 0 20px;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
 
     color: #272C39;
     font-family: Roboto;
@@ -19,7 +15,12 @@
     line-height: 20px;
 
     div {
-        padding: 20px;
+        padding: 0 20px;
+    }
+
+    div:first-of-type {
+        padding-top: 22px;
+        font-weight: 500;
     }
 }
 
@@ -36,9 +37,26 @@
   }
 
 .profile-popup {
+    &__wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        box-shadow: 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12), 0 3px 5px -1px rgba(0,0,0,0.2);
+    }
+
+    &__wrapper_dark {
+        background-color: #2D3443;
+        color: white;
+    }
+
+    &__info {
+        display: flex;
+        justify-content: space-between;
+    }
+
     &__logout-button {
         width: 100%;
-        background-color: blue;
         border-top-left-radius: 0;
         border-top-right-radius: 0;
     }
@@ -48,8 +66,13 @@
     .mat-slide-toggle {
         width: 100%;
     }
+
     .mat-slide-toggle-label {
         justify-content: space-between;
+    }
+
+    .mat-card {
+        padding: 0 !important;
     }
 
 /*     .mat-slide-toggle-bar {

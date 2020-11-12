@@ -9,3 +9,13 @@ export const selectUserPhotoURL: MemoizedSelector<fromSample.ContainerState, str
 	selectSampleState,
 	(state: fromSample.ContainerState) => state.userPhoto,
 );
+
+export const selectUserProfile: MemoizedSelector<fromSample.ContainerState, string> = createSelector(
+	selectSampleState,
+	(state: fromSample.ContainerState) => state.userProfile,
+);
+
+export const selectTheme: MemoizedSelector<fromSample.ContainerState, string> = createSelector(
+	selectSampleState,
+	(state: fromSample.ContainerState) => state.theme,
+);

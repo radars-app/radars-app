@@ -9,6 +9,8 @@ import { ContainerStoreModule } from './store/store.module';
 import { ContainerComponent } from './container.component';
 import { GlobalHeaderComponent } from './components/global-header/global-header.component';
 import { ProfilePopupComponent } from './components/profile-popup/profile-popup.component';
+import { NzPopoverModule } from 'ng-zorro-antd/popover';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
 	declarations: [
@@ -23,6 +25,8 @@ import { ProfilePopupComponent } from './components/profile-popup/profile-popup.
 		MatSlideToggleModule,
 		MatButtonModule,
 		MatDividerModule,
+		NzPopoverModule,
+		MatCardModule,
 	],
 	exports: [
 		ContainerComponent,

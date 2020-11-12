@@ -1,4 +1,7 @@
 
 {
-    "appName": "STIC Radars"
+    "appName": {
+        "prefix": "STIC ",
+        "main": "Radars"
+    }
 }

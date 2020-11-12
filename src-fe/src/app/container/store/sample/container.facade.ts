@@ -19,8 +19,20 @@ export class ContainerFacadeService {
 	return this.store.pipe(select(ContainerSelectors.selectUserPhotoURL));
   }
 
+  get selectUserProfile$(): Observable<any> {
+	return this.store.pipe(select(ContainerSelectors.selectUserProfile));
+  }
+
+  get selectAppTheme$(): Observable<string> {
+	return this.store.pipe(select(ContainerSelectors.selectTheme));
+  }
+
   loadUserPhoto(): void {
 	this.store.dispatch(new ContainerActions.GetUserPhoto({ data: '' }));
+  }
+
+  loadUserInfo(): void {
+	this.store.dispatch(new ContainerActions.GetUserInfo({ data: ''}));
   }
 
 }

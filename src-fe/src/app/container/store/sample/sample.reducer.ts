@@ -5,11 +5,13 @@ export const sampleFeatureKey: string = 'sample';
 
 export interface ContainerState {
 	theme: string;
+	userProfile: any;
 	userPhoto: string;
 }
 
 export const initialState: ContainerState = {
 	theme: 'light',
+	userProfile: null,
 	userPhoto: '../../../../assets/profile.svg',
 };
 
@@ -28,7 +30,10 @@ export function reducer(state: ContainerState = initialState, action: SampleActi
 					userPhoto: action.payload.data,
 				};
 		case SampleActionTypes.GetUserInfoSuccess:
-
+			return {
+				...state,
+				userProfile: action.payload.data,
+			};
 		default:
 			return state;
 	}

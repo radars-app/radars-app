@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MsalService } from '@azure/msal-angular';
 import { HttpClient } from '@angular/common/http';
 import { InteractionRequiredAuthError, AuthError } from 'msal';
@@ -6,6 +6,8 @@ import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { Store } from '@ngrx/store';
 import { ContainerState } from '../../store/sample/sample.reducer';
 import { SetTheme, GetUserPhoto } from '../../store/sample/sample.actions';
+import { ContainerFacadeService } from '../../store/sample/container.facade';
+import { Observable } from 'rxjs';
 
 const GRAPH_ENDPOINT = 'https://graph.microsoft.com/v1.0/me';
 
@@ -15,42 +17,20 @@ const GRAPH_ENDPOINT = 'https://graph.microsoft.com/v1.0/me';
   styleUrls: ['./profile-popup.component.scss']
 })
 export class ProfilePopupComponent implements OnInit {
-  public profile;
+  // @Input() public profile;
+  public userProfile$: Observable<any> = this.containerFacadeService.selectUserProfile$;
+
+  public appTheme$: Observable<string> = this.containerFacadeService.selectAppTheme$;
 
   constructor(
 	private http: HttpClient,
 	private authService: MsalService,
 	private store: Store<ContainerState>,
+	private containerFacadeService: ContainerFacadeService,
   ) { }
 
   ngOnInit(): void {
-	this.getProfile();
-  }
-
-  getProfile(): void {
-	this.http.get(GRAPH_ENDPOINT)
-	.subscribe({
-		next: (profile) => {
-	this.profile = profile;
-	console.log('profile', this.profile);
-		},
-		error: (err: AuthError) => {
-		// If there is an interaction required error,
-		// call one of the interactive methods and then make the request again.
-		if (InteractionRequiredAuthError.isInteractionRequiredError(err.errorCode)) {
-			this.authService.acquireTokenPopup({
-			scopes: this.authService.getScopesForEndpoint(GRAPH_ENDPOINT)
-			})
-			.then(() => {
-			this.http.get(GRAPH_ENDPOINT)
-				.toPromise()
-				.then(profile => {
-				this.profile = profile;
-				});
-			});
-		}
-		}
-	});
+	// this.getProfile();
   }
 
   logout(): void {
@@ -62,7 +42,6 @@ export class ProfilePopupComponent implements OnInit {
   }
 
   toggleTheme(event: MatSlideToggleChange): void {
-	  console.log('toggle', event);
 	  if (event.checked) {
 		this.store.dispatch(new SetTheme({ data: 'dark'}));
 	  } else {

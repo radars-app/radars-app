@@ -58,6 +58,9 @@ export class AppComponent implements OnInit {
   }));
 
   this.containerFacadeService.loadUserPhoto();
+  this.containerFacadeService.loadUserInfo();
+
+  this.login();
   }
 
   checkAccount(): void {
@@ -65,7 +68,16 @@ export class AppComponent implements OnInit {
   }
 
   login(): void {
-	  this.authService.loginPopup();
+	if (!this.loggedIn) {
+		this.authService.loginRedirect();
+	}
+
+/* 	this.authService.ssoSilent({ scopes: ['user.read'] }).then(
+    (response) => console.log('responseee', response),
+	).catch(
+		() => this.authService.loginPopup()
+	); */
+
   }
 
   logout(): void {

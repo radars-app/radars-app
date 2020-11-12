@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { ContainerState } from './store/sample/sample.reducer';
-import { selectUserPhotoURL } from '../container/store/sample/sample.selectors';
+import { ContainerFacadeService } from './store/sample/container.facade';
 
 @Component({
 	selector: 'app-container',
@@ -11,12 +9,15 @@ import { selectUserPhotoURL } from '../container/store/sample/sample.selectors';
 	styleUrls: ['./container.component.scss']
 })
 export class ContainerComponent implements OnInit {
-	public userPhotoURL$ = this.store.select(selectUserPhotoURL);
+	public userPhotoURL$: Observable<string> = this.containerFacadeService.selectUserPhotoURL$;
 
-	constructor(private store: Store<ContainerState>) { }
+	public appTheme$: Observable<string> = this.containerFacadeService.selectAppTheme$;
+
+	constructor(
+		private containerFacadeService: ContainerFacadeService,
+		) { }
 
 	ngOnInit(): void {
-		this.userPhotoURL$.subscribe(x => { console.log('==========', x)});
 	}
 
 }
