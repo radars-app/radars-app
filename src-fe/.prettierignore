@@ -1,0 +1,13 @@
+node_modules/
+dist/
+coverage/
+tools/schematics
+tools/.temp
+**/*.component.html
+apps/storybook/**/*.html
+angular.json
+**/*.md
+sonar-project.properties
+**/*.svg
+.prettierignore
+/.*

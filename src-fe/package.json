@@ -8,43 +8,47 @@
     "test": "ng test",
     "test-ci": "ng test --code-coverage --watch=false",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "prettier": "pretty-quick --staged --config ./.prettierrc",
+    "stylelint": "stylelint **/*.scss --fix --cache"
   },
   "private": true,
   "dependencies": {
+    "@angular-devkit/build-angular": "~0.1000.1",
     "@angular/animations": "~10.0.2",
     "@angular/cdk": "^10.0.1",
+    "@angular/cli": "^10.0.1",
     "@angular/common": "~10.0.2",
     "@angular/compiler": "~10.0.2",
+    "@angular/compiler-cli": "^10.0.2",
     "@angular/core": "~10.0.2",
     "@angular/forms": "~10.0.2",
     "@angular/material": "^10.0.1",
     "@angular/platform-browser": "~10.0.2",
     "@angular/platform-browser-dynamic": "~10.0.2",
     "@angular/router": "~10.0.2",
+    "@angular/service-worker": "~10.1.6",
     "@azure/msal-angular": "^1.0.0",
-    "core-js": "^3.6.4",
-    "msal": "^1.3.2",
     "@ngrx/effects": "^10.0.1",
     "@ngrx/store": "^10.0.1",
     "@ngrx/store-devtools": "^10.0.1",
-    "@angular/service-worker": "~10.1.6",
+    "core-js": "^3.6.4",
     "express": "^4.17.1",
+    "msal": "^1.3.2",
     "rxjs": "~6.6.0",
+    "stylelint-config-standard": "^20.0.0",
     "tslib": "^2.0.0",
-    "zone.js": "~0.10.3",
-    "@angular-devkit/build-angular": "~0.1000.1",
-    "@angular/cli": "^10.0.1",
-    "@angular/compiler-cli": "^10.0.2",
-    "typescript": "~3.9.6"
+    "typescript": "~3.9.6",
+    "zone.js": "~0.10.3"
   },
   "devDependencies": {
-    "@angular/localize": "^10.1.6",
     "@angular/language-service": "~10.0.2",
+    "@angular/localize": "^10.1.6",
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.11.1",
     "codelyzer": "^5.1.2",
+    "husky": "^4.3.0",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "~5.0.0",
@@ -52,8 +56,21 @@
     "karma-coverage-istanbul-reporter": "~3.0.2",
     "karma-jasmine": "~3.3.0",
     "karma-jasmine-html-reporter": "^1.5.0",
+    "lint-staged": "^10.5.1",
+    "prettier": "^2.1.2",
+    "pretty-quick": "^3.1.0",
     "protractor": "~7.0.0",
+    "stylelint": "^13.7.2",
     "ts-node": "~7.0.0",
     "tslint": "~6.1.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.scss": "stylelint --fix",
+    "*.{ts,tsx}": "prettier --write"
   }
 }
