@@ -56,7 +56,7 @@
 				"ignore-pattern": "^import |^export {(.*?)}"
 			}
 		],
-		"member-access": false,
+		"member-access": true,
 		"member-ordering": [
 			true,
 			{
