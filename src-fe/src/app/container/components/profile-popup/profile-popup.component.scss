@@ -15,7 +15,7 @@
     line-height: 20px;
 
     div {
-        padding: 0 20px;
+        padding: 10px 20px;
     }
 
     div:first-of-type {
@@ -50,6 +50,22 @@
         color: white;
     }
 
+    &__theme-switcher {
+        height: 60px;
+        border-top: solid 1px;
+        display: flex;
+        align-items: center;
+        padding: 0 20px;
+    }
+
+    &__theme-switcher_light {
+        border-top-color: #C7D0D8;
+    }
+
+    &__theme-switcher_dark {
+        border-top-color: #5E6670;
+    }
+
     &__info {
         display: flex;
         justify-content: space-between;
@@ -68,6 +84,7 @@
     }
 
     .mat-slide-toggle-label {
+        width: 100%;
         justify-content: space-between;
     }
 

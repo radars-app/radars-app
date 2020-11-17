@@ -7,13 +7,18 @@
 		background-color: gray;
 	}
 
-	&__container-header {
+	&__container-header-wrapper {
 		height: $global-header-height;
 		width: 100%;
 		background-color: #39414D;
 
 		&_black {
-			background-color: #39414D;;
+			background-color: #39414D;
+		}
+
+		.container-header {
+			height: 100%;
+			margin: 0 20px;
 		}
     }
 }

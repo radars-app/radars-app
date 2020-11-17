@@ -2,13 +2,13 @@ import {
 	reducer,
 	initialState,
 	ContainerState,
-} from './sample.reducer';
+} from './container.reducer';
 import {
 	SampleActionTypes,
 	LoadSamples,
 	LoadSamplesFailure,
 	LoadSamplesSuccess,
-} from './sample.actions';
+} from './container.actions';
 
 describe('Sample Reducer', () => {
 

@@ -9,19 +9,21 @@ class="profile-popup__wrapper profile-popup__wrapper_{{appTheme$ |async}}">
         <span>{{ (userProfile$ | async)?.mail}}</span>
     </div>
 
-    <mat-divider></mat-divider>
 
-    <div>
-        <mat-slide-toggle
-        [labelPosition]="'before'"
-        color="primary"
-        [checked]="(appTheme$ | async) === 'dark'"
-        (change)="toggleTheme($event)">Dark mode</mat-slide-toggle>
-    </div>
+    <app-slide-toggle
+    class="profile-popup__theme-switcher profile-popup__theme-switcher_{{appTheme$ |async}}"
+    [theme]="(appTheme$ | async)"
+    [labelPosition]="'before'"
+    [title]="themeSliderTitle"
+    [value]="(appTheme$ | async) === 'dark'"
+    (toggled)="toggleTheme($event)"
+    ></app-slide-toggle>
 
-    <button
+
+    <app-button
     class="profile-popup__logout-button"
-    mat-flat-button
-    color="primary"
-    (click)="logout()">Log Out</button>
+    [theme]="(appTheme$ | async)"
+    [type]="logoutButtonType"
+    (click)="logout()"    
+    >Log Out</app-button>
 </mat-card>

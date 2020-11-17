@@ -1,16 +1,17 @@
 
-import { SampleActions, SampleActionTypes } from './sample.actions';
+import { ComponentTheme } from '../../../../shared/component-theme.enum';
+import { SampleActions, SampleActionTypes } from './container.actions';
 
-export const sampleFeatureKey: string = 'sample';
+export const containerFeatureKey: string = 'container';
 
 export interface ContainerState {
-	theme: string;
+	theme: ComponentTheme;
 	userProfile: any;
 	userPhoto: string;
 }
 
 export const initialState: ContainerState = {
-	theme: 'light',
+	theme: ComponentTheme.Light,
 	userProfile: null,
 	userPhoto: '../../../../assets/profile.svg',
 };

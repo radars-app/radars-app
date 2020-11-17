@@ -11,6 +11,7 @@ import { GlobalHeaderComponent } from './components/global-header/global-header.
 import { ProfilePopupComponent } from './components/profile-popup/profile-popup.component';
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
 import { MatCardModule } from '@angular/material/card';
+import { CommonComponentsModule } from './components/common-components/common-components.module';
 
 @NgModule({
 	declarations: [
@@ -27,6 +28,7 @@ import { MatCardModule } from '@angular/material/card';
 		MatDividerModule,
 		NzPopoverModule,
 		MatCardModule,
+		CommonComponentsModule,
 	],
 	exports: [
 		ContainerComponent,

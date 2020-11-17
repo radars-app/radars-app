@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { catchError, map, concatMap, switchMap } from 'rxjs/operators';
 import { EMPTY, of, Observable, from } from 'rxjs';
-import { SampleActionTypes, SampleActions, GetUserPhotoSuccess, GetUserInfoSuccess } from './sample.actions';
-import { HttpClient, HttpBackend } from '@angular/common/http';
+import { SampleActionTypes, SampleActions, GetUserPhotoSuccess, GetUserInfoSuccess } from './container.actions';
+import { HttpClient, HttpBackend, HttpResponse } from '@angular/common/http';
 import { MsalService } from '@azure/msal-angular';
 import { AuthResponse } from 'msal';
 
@@ -19,23 +19,22 @@ export class SampleEffects {
 					console.log(token);
 					return this.http.get('https://graph.microsoft.com/beta/me/photo/$value',
 						{
-							headers: { Authorization: 'Bearer ' + token.accessToken }, observe: "response",
-							responseType: "blob"
+							headers: { Authorization: 'Bearer ' + token.accessToken }, observe: 'response',
+							responseType: 'blob'
 						}).pipe(
-							switchMap((response) => {
+							switchMap((response: HttpResponse<Blob>) => {
 
-								const promise = new Promise(((resolve, reject) => {
-									let base64data;
+								const promise: Promise<string> = new Promise(((resolve: Function, reject: Function) => {
+									let base64data: string;
 									console.log(response);
-									const reader = new FileReader();
+									const reader: FileReader = new FileReader();
 									reader.readAsDataURL(response.body);
 									reader.onloadend = () => {
-										base64data = reader.result;
+										base64data = reader.result as string;
 										resolve(base64data);
 									};
 								}));
 
-								
 								return from(promise);
 							})).pipe(
 								switchMap((base64: string) => {
@@ -55,15 +54,15 @@ export class SampleEffects {
 			return from(this.authService.acquireTokenSilent({ scopes: ['user.read'] })).pipe(
 				switchMap((token: AuthResponse) => {
 					console.log(token);
-					const GRAPH_ENDPOINT = 'https://graph.microsoft.com/v1.0/me';
+					const GRAPH_ENDPOINT: string = 'https://graph.microsoft.com/v1.0/me';
 					return this.http.get(GRAPH_ENDPOINT,
 						{
-							headers: { Authorization: 'Bearer ' + token.accessToken }, observe: "response",
-							//responseType: "json"
+							headers: { Authorization: 'Bearer ' + token.accessToken }, observe: 'response',
+							// responseType: "json"
 						}).pipe(
-							switchMap((profile) => {
+							switchMap((profile: HttpResponse<{}>) => {
 								return of(new GetUserInfoSuccess({ data: profile.body}));
-					
+
 					/* 				error: (err: AuthError) => {
 									// If there is an interaction required error,
 									// call one of the interactive methods and then make the request again.
@@ -92,7 +91,6 @@ export class SampleEffects {
 									};
 								}));
 
-								
 								return from(promise); */
 							));
 				}));

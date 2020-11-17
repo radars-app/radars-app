@@ -1,4 +1,4 @@
-import * as SampleActions from './sample.actions';
+import * as SampleActions from './container.actions';
 
 describe('Sample', () => {
 

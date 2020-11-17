@@ -7,19 +7,19 @@ describe('ProfilePopupComponent', () => {
   let fixture: ComponentFixture<ProfilePopupComponent>;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ ProfilePopupComponent ]
-    })
-    .compileComponents();
+	TestBed.configureTestingModule({
+		declarations: [ ProfilePopupComponent ]
+	})
+	.compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProfilePopupComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+	fixture = TestBed.createComponent(ProfilePopupComponent);
+	component = fixture.componentInstance;
+	fixture.detectChanges();
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+	expect(component).toBeTruthy();
   });
 });

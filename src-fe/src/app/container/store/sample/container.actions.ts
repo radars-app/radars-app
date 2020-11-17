@@ -1,4 +1,5 @@
 import { Action } from '@ngrx/store';
+import { ComponentTheme } from '../../../../shared/component-theme.enum';
 
 export enum SampleActionTypes {
 	SetTheme = '[Theme] Set theme',
@@ -10,7 +11,7 @@ export enum SampleActionTypes {
 
 export class SetTheme implements Action {
 	public readonly type: SampleActionTypes = SampleActionTypes.SetTheme;
-	constructor(public payload: { data: string }) { }
+	constructor(public payload: { data: ComponentTheme }) { }
 }
 
 export class GetUserPhoto implements Action {
@@ -32,7 +33,6 @@ export class GetUserInfoSuccess implements Action {
 	public readonly type: SampleActionTypes = SampleActionTypes.GetUserInfoSuccess;
 	constructor(public payload: { data: any }) { }
 }
-
 
 /* export class LoadSamples implements Action {
 	public readonly type: SampleActionTypes = SampleActionTypes.LoadSamples;

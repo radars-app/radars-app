@@ -16,8 +16,6 @@ export class GlobalHeaderComponent implements OnInit {
 
   public appNameMain: string = appConfig.appName.main;
 
-  visible = false;
-
   constructor(
   ) {
   }
@@ -25,11 +23,7 @@ export class GlobalHeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  change() {
-    this.visible = true;
-  }
-
-  toggleProfilePopup(): void {
+  public toggleProfilePopup(): void {
   this.showProfilePopup = !this.showProfilePopup;
   }
 

@@ -2,6 +2,9 @@
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @import '~@angular/material/theming';
+
+@import 'variables';
+@import 'md-palette';
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -9,31 +12,41 @@
 // Be sure that you only ever include this mixin once!
 @include mat-core();
 
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://material.io/design/color/
-$radars-app-primary: mat-palette($mat-indigo);
-$radars-app-accent: mat-palette($mat-pink, a200, a100, a400);
 
-// The warn palette is optional (defaults to red).
-$radars-app-warn: mat-palette($mat-red);
-
-// Create the theme object. A theme consists of configurations for individual
-// theming systems such as "color" or "typography".
-$radars-app-theme: mat-light-theme(
-	(
-		color: (
-			primary: $radars-app-primary,
-			accent: $radars-app-accent,
-			warn: $radars-app-warn,
-		)
-	)
+$app-theme: mat-light-theme(
+	mat-palette($md-primary-palette),
+	mat-palette($md-yellow-palette),
+	mat-palette($md-error-palette)
 );
 
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
-@include angular-material-theme($radars-app-theme);
+$app-theme-dark: mat-dark-theme(
+	mat-palette($md-primary-palette),
+	mat-palette($md-yellow-palette),
+	mat-palette($md-error-palette)
+);
+
+/* $app-typography: mat-typography-config(
+	$font-family: $font-main-regular,
+	$display-4: mat-typography-level(112px, 112px, normal, $font-main-regular, $letter-spacing: -0.05em),
+	$display-3: mat-typography-level(56px, 56px, normal, $font-main-regular, $letter-spacing: -0.02em),
+	$display-2: mat-typography-level(45px, 48px, normal, $font-main-regular, $letter-spacing: -0.005em),
+	$display-1: mat-typography-level(34px, 40px, normal, $font-main-regular),
+	$headline: mat-typography-level(48px, 56px, bold, $font-main-bold, 0),
+	$title:	mat-typography-level(32px, 40px, bold, $font-main-bold, 0),
+	$subheading-2: mat-typography-level(24px, 28px, bold, $font-main-bold, 0),
+	$subheading-1: mat-typography-level(14px, 17px, 500, $font-main-medium, 1px),
+	$body-2: mat-typography-level(14px, 25px, normal, $font-main-regular, 0),
+	$body-1: mat-typography-level(14px, 25px, normal, $font-main-regular, 0),
+	$caption: mat-typography-level(12px, 17px, normal, $font-main-regular, 0),
+	$button: mat-typography-level(14px, 17px, 500, $font-main-medium, 1px),
+	$input: mat-typography-level(inherit, 1.125, normal, $font-main-regular)
+);
+
+@include mat-core($app-typography); */
+@include angular-material-theme($app-theme);
+
+/* @import "./app/libs/container/components/header/header.theme.scss"; */
+
 
 /* You can add global styles to this file, and also import other style files */
 
