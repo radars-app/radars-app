@@ -9,16 +9,11 @@ import { ContainerStoreModule } from './store/store.module';
 import { ContainerComponent } from './container.component';
 import { GlobalHeaderComponent } from './components/global-header/global-header.component';
 import { ProfilePopupComponent } from './components/profile-popup/profile-popup.component';
-import { NzPopoverModule } from 'ng-zorro-antd/popover';
 import { MatCardModule } from '@angular/material/card';
 import { CommonComponentsModule } from './components/common-components/common-components.module';
 
 @NgModule({
-	declarations: [
-		ContainerComponent,
-		GlobalHeaderComponent,
-		ProfilePopupComponent,
-	],
+	declarations: [ContainerComponent, GlobalHeaderComponent, ProfilePopupComponent],
 	imports: [
 		CommonModule,
 		ContainerStoreModule,
@@ -26,13 +21,9 @@ import { CommonComponentsModule } from './components/common-components/common-co
 		MatSlideToggleModule,
 		MatButtonModule,
 		MatDividerModule,
-		NzPopoverModule,
 		MatCardModule,
 		CommonComponentsModule,
 	],
-	exports: [
-		ContainerComponent,
-		GlobalHeaderComponent,
-	]
+	exports: [ContainerComponent, GlobalHeaderComponent],
 })
-export class ContainerModule { }
+export class ContainerModule {}
