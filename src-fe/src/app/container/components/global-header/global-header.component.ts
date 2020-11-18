@@ -3,28 +3,24 @@ import { Component, OnInit, Input } from '@angular/core';
 import appConfig from '../../../../../app-config.json';
 
 @Component({
-  selector: 'app-radars-global-header',
-  templateUrl: './global-header.component.html',
-  styleUrls: ['./global-header.component.scss']
+	selector: 'app-radars-global-header',
+	templateUrl: './global-header.component.html',
+	styleUrls: ['./global-header.component.scss'],
 })
 export class GlobalHeaderComponent implements OnInit {
-  @Input() public userPhotoURL: string;
+	@Input() public userPhotoURL: string;
 
-  public showProfilePopup: boolean;
+	public showProfilePopup: boolean;
 
-  public appNamePrefix: string = appConfig.appName.prefix;
+	public appNamePrefix: string = appConfig.appName.prefix;
 
-  public appNameMain: string = appConfig.appName.main;
+	public appNameMain: string = appConfig.appName.main;
 
-  constructor(
-  ) {
-  }
+	constructor() {}
 
-  ngOnInit(): void {
-  }
+	public ngOnInit(): void {}
 
-  public toggleProfilePopup(): void {
-  this.showProfilePopup = !this.showProfilePopup;
-  }
-
+	public toggleProfilePopup(): void {
+		this.showProfilePopup = !this.showProfilePopup;
+	}
 }

@@ -1,5 +1,6 @@
 .mat-checkbox-dark {
 	color: $color-white;
+
 	@include mat-checkbox-theme ($app-theme-dark);
 
 	&.mat-checkbox-disabled {

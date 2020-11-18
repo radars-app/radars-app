@@ -34,4 +34,4 @@ $app-theme-dark: mat-dark-theme(
 @include mat-core($app-typography); */
 @include angular-material-theme($app-theme);
 
-@import "./app/libs/container/components/header/header.theme.scss";
+@import './app/libs/container/components/header/header.theme.scss';

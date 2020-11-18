@@ -10,17 +10,15 @@
 	&__container-header-wrapper {
 		height: $global-header-height;
 		width: 100%;
-		background-color: #39414D;
+		background-color: #39414d;
 
 		&_black {
-			background-color: #39414D;
+			background-color: #39414d;
 		}
 
 		.container-header {
 			height: 100%;
 			margin: 0 20px;
 		}
-    }
+	}
 }
-
-

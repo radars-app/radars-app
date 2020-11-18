@@ -9,42 +9,39 @@ import { ComponentTheme } from '../../../../shared/component-theme.enum';
 const GRAPH_ENDPOINT: string = 'https://graph.microsoft.com/v1.0/me';
 
 @Component({
-  selector: 'app-radars-profile-popup',
-  templateUrl: './profile-popup.component.html',
-  styleUrls: ['./profile-popup.component.scss']
+	selector: 'app-radars-profile-popup',
+	templateUrl: './profile-popup.component.html',
+	styleUrls: ['./profile-popup.component.scss'],
 })
 export class ProfilePopupComponent implements OnInit {
-  // @Input() public profile;
-  public userProfile$: Observable<any> = this.containerFacadeService.selectUserProfile$;
+	// @Input() public profile;
+	public userProfile$: Observable<any> = this.containerFacadeService.selectUserProfile$;
 
-  public appTheme$: Observable<string> = this.containerFacadeService.selectAppTheme$;
+	public appTheme$: Observable<string> = this.containerFacadeService.selectAppTheme$;
 
-  public logoutButtonType: ButtonType = ButtonType.Flat;
+	public logoutButtonType: ButtonType = ButtonType.Flat;
 
-  public themeSliderTitle: string = 'Dark mode';
+	public themeSliderTitle: string = 'Dark mode';
 
-  constructor(
-	private containerFacadeService: ContainerFacadeService,
-  ) { }
+	constructor(private containerFacadeService: ContainerFacadeService) {}
 
-  ngOnInit(): void {
-	// this.getProfile();
-  }
+	public ngOnInit(): void {
+		// this.getProfile();
+	}
 
-  logout(): void {
-	this.containerFacadeService.logout();
-  }
+	public logout(): void {
+		this.containerFacadeService.logout();
+	}
 
-  login(): void {
-	this.containerFacadeService.login();
-  }
+	public login(): void {
+		this.containerFacadeService.login();
+	}
 
-  toggleTheme(event: boolean): void {
-	  if (event) {
-		this.containerFacadeService.toggleTheme(ComponentTheme.Dark);
-	  } else {
-		this.containerFacadeService.toggleTheme(ComponentTheme.Light);
-	  }
-  }
-
+	public toggleTheme(event: boolean): void {
+		if (event) {
+			this.containerFacadeService.setTheme(ComponentTheme.Dark);
+		} else {
+			this.containerFacadeService.setTheme(ComponentTheme.Light);
+		}
+	}
 }

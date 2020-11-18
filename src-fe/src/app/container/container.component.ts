@@ -6,18 +6,14 @@ import { ContainerFacadeService } from './store/sample/container.facade';
 @Component({
 	selector: 'app-container',
 	templateUrl: './container.component.html',
-	styleUrls: ['./container.component.scss']
+	styleUrls: ['./container.component.scss'],
 })
 export class ContainerComponent implements OnInit {
 	public userPhotoURL$: Observable<string> = this.containerFacadeService.selectUserPhotoURL$;
 
 	public appTheme$: Observable<string> = this.containerFacadeService.selectAppTheme$;
 
-	constructor(
-		private containerFacadeService: ContainerFacadeService,
-		) { }
+	constructor(private containerFacadeService: ContainerFacadeService) {}
 
-	ngOnInit(): void {
-	}
-
+	public ngOnInit(): void {}
 }

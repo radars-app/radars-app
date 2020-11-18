@@ -1,39 +1,37 @@
 :host {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .container-header {
-  &__logo {
-    display: flex;
-    align-items: center;
-    color: #FFFFFF;
+	&__logo {
+		display: flex;
+		align-items: center;
+		color: #fff;
 
-    .logo {
-        &__prefix {
-            margin-left: 8px;
-          font-family: Roboto;
-          font-size: 14px;
-          letter-spacing: 3.48px;
-          line-height: 24px;
-        }
-  
-        &__main {
-          font-family: Roboto;
-          font-size: 14px;
-          font-weight: 300;
-          letter-spacing: 0.48px;
-          line-height: 24px;
-        }
-  }
+		.logo {
+			&__prefix {
+				margin-left: 8px;
+				font-family: Roboto, sans-serif;
+				font-size: 14px;
+				letter-spacing: 3.48px;
+				line-height: 24px;
+			}
 
+			&__main {
+				font-family: Roboto, sans-serif;
+				font-size: 14px;
+				font-weight: 300;
+				letter-spacing: 0.48px;
+				line-height: 24px;
+			}
+		}
+	}
 
-  }
-
-  &__photo {
-    height: 28px;
-    border-radius: 50%;
-    cursor: pointer;
-  }
+	&__photo {
+		height: 28px;
+		border-radius: 50%;
+		cursor: pointer;
+	}
 }

@@ -4,54 +4,28 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatTabsModule } from '@angular/material/tabs';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatChipsModule } from '@angular/material/chips';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
-import { SlideToggleComponent } from './components/slide-toggle/slide-toggle.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { CheckboxComponent } from './components/checkbox/checkbox.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
-import { ButtonComponent } from './components/button/button.component';
-import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { PopoverComponent } from './components/popover/popover.component';
-import { RadioGroupComponent } from './components/radio-group/radio-group.component';
-import { TabsComponent } from './components/tabs/tabs.component';
-import { TabsPanelComponent } from './components/tabs-panel/tabs-panel.component';
-import { TagListComponent } from './components/tag-list/tag-list.component';
-import { EventCardComponent } from './components/event-card/event-card.component';
-import { EventCardDateComponent } from './components/event-card/components/event-card-date/event-card-date.component';
-import { TableComponent } from './components/table/table.component';
-import { MatTableModule } from '@angular/material/table';
 import { JitCompilerFactory } from '@angular/platform-browser-dynamic';
 import { MatSortModule } from '@angular/material/sort';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDividerModule } from '@angular/material/divider';
+
+import { CheckboxComponent } from './components/checkbox/checkbox.component';
+import { SlideToggleComponent } from './components/slide-toggle/slide-toggle.component';
+import { ButtonComponent } from './components/button/button.component';
+import { PopoverComponent } from './components/popover/popover.component';
 import { InputComponent } from './components/input/input.component';
 
 @NgModule({
-	declarations: [
-		SlideToggleComponent,
-		CheckboxComponent,
-		ButtonComponent,
-		InputComponent,
-		ProgressBarComponent,
-		PopoverComponent,
-		RadioGroupComponent,
-		TabsComponent,
-		TabsPanelComponent,
-		TagListComponent,
-		EventCardComponent,
-		EventCardDateComponent,
-		TableComponent,
-	],
+	declarations: [SlideToggleComponent, CheckboxComponent, ButtonComponent, InputComponent, PopoverComponent],
 	imports: [
 		ReactiveFormsModule,
 		MatInputModule,
@@ -64,13 +38,8 @@ import { InputComponent } from './components/input/input.component';
 		FormsModule,
 		MatCardModule,
 		MatCheckboxModule,
-		MatMenuModule,
-		MatProgressBarModule,
 		MatRadioModule,
-		MatTabsModule,
-		MatChipsModule,
-		MatTableModule,
-		MatSortModule
+		MatSortModule,
 	],
 	exports: [
 		MatInputModule,
@@ -90,23 +59,13 @@ import { InputComponent } from './components/input/input.component';
 		SlideToggleComponent,
 		CheckboxComponent,
 		InputComponent,
-		MatProgressBarModule,
-		ProgressBarComponent,
-		RadioGroupComponent,
 		PopoverComponent,
-		TabsComponent,
-		TabsPanelComponent,
-		TagListComponent,
-		EventCardComponent,
-		TableComponent,
-		MatTableModule,
 		MatSortModule,
 		MatBadgeModule,
 		MatToolbarModule,
 		MatSelectModule,
-		MatMenuModule,
-		MatDividerModule
-		],
+		MatDividerModule,
+	],
 	providers: [
 		{
 			provide: MatDialogRef,
@@ -115,7 +74,8 @@ import { InputComponent } from './components/input/input.component';
 		{
 			provide: CompilerFactory,
 			useClass: JitCompilerFactory,
-			deps: [COMPILER_OPTIONS] },
+			deps: [COMPILER_OPTIONS],
+		},
 	],
 })
-export class CommonComponentsModule { }
+export class CommonComponentsModule {}

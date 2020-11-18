@@ -10,44 +10,40 @@ import { ComponentTheme } from 'src/shared/component-theme.enum';
 import { MsalService } from '@azure/msal-angular';
 
 @Injectable({
-  providedIn: 'root',
+	providedIn: 'root',
 })
 export class ContainerFacadeService {
-  constructor(
-	private store: Store<ContainerState>,
-	private authService: MsalService,
-  ) { }
+	constructor(private store: Store<ContainerState>, private authService: MsalService) {}
 
-  get selectUserPhotoURL$(): Observable<string> {
-	return this.store.pipe(select(ContainerSelectors.selectUserPhotoURL));
-  }
+	get selectUserPhotoURL$(): Observable<string> {
+		return this.store.pipe(select(ContainerSelectors.selectUserPhotoURL));
+	}
 
-  get selectUserProfile$(): Observable<any> {
-	return this.store.pipe(select(ContainerSelectors.selectUserProfile));
-  }
+	get selectUserProfile$(): Observable<any> {
+		return this.store.pipe(select(ContainerSelectors.selectUserProfile));
+	}
 
-  get selectAppTheme$(): Observable<ComponentTheme> {
-	return this.store.pipe(select(ContainerSelectors.selectTheme));
-  }
+	get selectAppTheme$(): Observable<ComponentTheme> {
+		return this.store.pipe(select(ContainerSelectors.selectTheme));
+	}
 
-  loadUserPhoto(): void {
-	this.store.dispatch(new ContainerActions.GetUserPhoto({ data: '' }));
-  }
+	public loadUserPhoto(): void {
+		this.store.dispatch(new ContainerActions.GetUserPhoto({ data: '' }));
+	}
 
-  loadUserInfo(): void {
-	this.store.dispatch(new ContainerActions.GetUserInfo({ data: ''}));
-  }
+	public loadUserInfo(): void {
+		this.store.dispatch(new ContainerActions.GetUserInfo({ data: '' }));
+	}
 
-  toggleTheme(theme: ComponentTheme): void {
-	this.store.dispatch(new ContainerActions.SetTheme({ data: theme }));
-  }
+	public setTheme(theme: ComponentTheme): void {
+		this.store.dispatch(new ContainerActions.SetTheme({ data: theme }));
+	}
 
-  logout(): void {
-	this.authService.logout();
-  }
+	public logout(): void {
+		this.authService.logout();
+	}
 
-  login(): void {
-	this.authService.loginPopup();
-  }
-
+	public login(): void {
+		this.authService.loginPopup();
+	}
 }

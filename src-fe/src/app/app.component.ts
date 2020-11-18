@@ -1,89 +1,80 @@
 import { HttpClient } from '@angular/common/http';
-import {
-  Component,
-  OnInit,
-} from '@angular/core';
-import {
-  BroadcastService,
-  MsalService,
-} from '@azure/msal-angular';
-import {
-  Logger,
-  CryptoUtils,
-  AuthError,
-  AuthResponse,
-  LogLevel,
-} from 'msal';
+import { Component, OnInit } from '@angular/core';
+import { BroadcastService, MsalService } from '@azure/msal-angular';
+import { Logger, CryptoUtils, AuthError, AuthResponse, LogLevel } from 'msal';
 import { ContainerFacadeService } from './container/store/sample/container.facade';
 
 /* istanbul ignore next */
 @Component({
 	selector: 'app-root',
 	templateUrl: './app.component.html',
-	styleUrls: ['./app.component.scss']
+	styleUrls: ['./app.component.scss'],
 })
-
 export class AppComponent implements OnInit {
-  public title: string = 'radars-app';
-  public loggedIn: boolean = false;
+	public title: string = 'radars-app';
+	public loggedIn: boolean = false;
 
-  constructor(
-	private broadcastService: BroadcastService,
-  private authService: MsalService,
-  private http: HttpClient,
-  private containerFacadeService: ContainerFacadeService,
-  ) { }
+	constructor(
+		private broadcastService: BroadcastService,
+		private authService: MsalService,
+		private http: HttpClient,
+		private containerFacadeService: ContainerFacadeService
+	) {}
 
-  ngOnInit(): void {
-	this.checkAccount();
-
-	this.broadcastService.subscribe('msal:loginSuccess', () => {
+	public ngOnInit(): void {
 		this.checkAccount();
-	});
 
-	this.authService.handleRedirectCallback((authError: AuthError, response: AuthResponse) => {
-		if (authError) {
-		console.error('Redirect Error: ', authError.errorMessage);
-		return;
-		}
+		this.broadcastService.subscribe('msal:loginSuccess', () => {
+			this.checkAccount();
+		});
 
-		console.log('Redirect Success: ', response.accessToken);
-	});
+		this.authService.handleRedirectCallback((authError: AuthError, response: AuthResponse) => {
+			if (authError) {
+				console.error('Redirect Error: ', authError.errorMessage);
+				return;
+			}
 
-	this.authService.setLogger(new Logger((logLevel: LogLevel, message: string, piiEnabled: boolean) => {
-		console.log('MSAL Logging: ', message);
-	}, {
-		correlationId: CryptoUtils.createNewGuid(),
-		piiLoggingEnabled: false
-  }));
+			console.log('Redirect Success: ', response.accessToken);
+		});
 
-  this.containerFacadeService.loadUserPhoto();
-  this.containerFacadeService.loadUserInfo();
+		this.authService.setLogger(
+			new Logger(
+				(logLevel: LogLevel, message: string, piiEnabled: boolean) => {
+					console.log('MSAL Logging: ', message);
+				},
+				{
+					correlationId: CryptoUtils.createNewGuid(),
+					piiLoggingEnabled: false,
+				}
+			)
+		);
 
-  this.login();
-  }
+		this.containerFacadeService.loadUserPhoto();
+		this.containerFacadeService.loadUserInfo();
 
-  checkAccount(): void {
-	  this.loggedIn = !!this.authService.getAccount();
-  }
-
-  login(): void {
-	if (!this.loggedIn) {
-		this.authService.loginRedirect();
+		this.login();
 	}
 
-/* 	this.authService.ssoSilent({ scopes: ['user.read'] }).then(
+	private checkAccount(): void {
+		this.loggedIn = !!this.authService.getAccount();
+	}
+
+	private login(): void {
+		if (!this.loggedIn) {
+			this.authService.loginRedirect();
+		}
+
+		/* 	this.authService.ssoSilent({ scopes: ['user.read'] }).then(
     (response) => console.log('responseee', response),
 	).catch(
 		() => this.authService.loginPopup()
 	); */
+	}
 
-  }
+	private logout(): void {
+		this.authService.logout();
 
-  logout(): void {
-	this.authService.logout();
-
-/*     this.authService.acquireTokenPopup({
+		/*     this.authService.acquireTokenPopup({
       authority: 'https://login.microsoftonline.com/common',
       redirectUri: 'http://localhost:8080',
       scopes: ['https://graph.microsoft.com/User.Read']
@@ -91,5 +82,5 @@ export class AppComponent implements OnInit {
       console.log(magic);
       // this.httpClient.get('/sample/testuser228322').subscribe((a) => console.log(a));
     }); */
-  }
+	}
 }
