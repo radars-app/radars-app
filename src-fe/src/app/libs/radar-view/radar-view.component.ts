@@ -23,14 +23,14 @@ export class RadarViewComponent implements OnInit {
 		const editButton: IconButtonModel = {
 			label: 'Edit',
 			callback: () => {},
-			icon: 'edit-1',
+			icon: 'edit_1',
 			iconSize: IconSize.S,
 		};
 
 		const removeButton: IconButtonModel = {
 			label: 'Remove',
 			callback: () => {},
-			icon: 'remove',
+			icon: 'delete',
 			iconSize: IconSize.S,
 		};
 

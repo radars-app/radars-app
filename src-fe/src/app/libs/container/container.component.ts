@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { IconService } from '../common-components/icon/service/icon.service';
 import { ContainerFacadeService } from './service/container-facade.service';
 
 @Component({
@@ -12,9 +13,10 @@ export class ContainerComponent implements OnInit {
 
 	public appTheme$: Observable<string> = this.containerFacadeService.theme$;
 
-	constructor(private containerFacadeService: ContainerFacadeService) {}
+	constructor(private containerFacadeService: ContainerFacadeService, private iconService: IconService) {}
 
 	public ngOnInit(): void {
+		this.iconService.addIcons();
 		this.containerFacadeService.logIn();
 
 		this.containerFacadeService.loadUserPhoto();
