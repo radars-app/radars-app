@@ -30,7 +30,8 @@
               "src/ngsw-worker.js"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/app-theme.scss"
             ],
             "stylePreprocessorOptions": {
               "includePaths": [

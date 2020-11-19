@@ -43,8 +43,4 @@ export class ContainerFacadeService {
 	public logIn(): void {
 		this.store.dispatch(new LogIn());
 	}
-
-	public logIn(): void {
-		this.store.dispatch(new LogOut());
-	}
 }
