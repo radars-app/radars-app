@@ -6,8 +6,7 @@
 			[class.button--dark-theme]="isDarkTheme"
 			[class.button--disable-hover]="disableHover"
 			[disabled]="disabled"
-			[disableRipple]="disableRipple"
-			color="primary">
+			[disableRipple]="disableRipple">
 		<ng-container *ngTemplateOutlet="buttonText"></ng-container>
 	</button>
 	<button
@@ -27,13 +26,13 @@
 			[class.button--dark-theme]="isDarkTheme"
 			[class.button--disable-hover]="disableHover"
 			[disabled]="disabled"
-			[disableRipple]="disableRipple"
-			color="primary">
+			[disableRipple]="disableRipple">
 		<ng-container *ngTemplateOutlet="buttonText"></ng-container>
 	</button>
 </ng-container>
 
 <ng-template #buttonText>
-	<mat-icon *ngIf="icon" class="button__icon">{{icon}}</mat-icon>
-	<ng-content></ng-content>
+	<div class="button__content">
+		<ng-content></ng-content>
+	</div>
 </ng-template>

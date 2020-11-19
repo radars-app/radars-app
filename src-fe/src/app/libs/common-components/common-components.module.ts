@@ -2,15 +2,17 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { ButtonComponent } from './button/button.component';
 import { SlideToggleComponent } from './slide-toggle/slide-toggle.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCard, MatCardModule } from '@angular/material/card';
 import { RadarHeaderComponent } from './radar-header/radar-header.component';
+import { ButtonComponent } from './button/button.component';
+import { IconComponent } from './icon/icon.component';
+import { IconButtonComponent } from './icon-button/icon-button.component';
 
 @NgModule({
-	declarations: [SlideToggleComponent, ButtonComponent, RadarHeaderComponent],
+	declarations: [SlideToggleComponent, ButtonComponent, RadarHeaderComponent, IconComponent, IconButtonComponent],
 	imports: [MatButtonModule, CommonModule, MatSlideToggleModule, MatIconModule, MatCardModule],
-	exports: [ButtonComponent, SlideToggleComponent, MatCard, RadarHeaderComponent],
+	exports: [ButtonComponent, SlideToggleComponent, MatCard, RadarHeaderComponent, IconButtonComponent, IconComponent],
 })
 export class CommonComponentsModule {}

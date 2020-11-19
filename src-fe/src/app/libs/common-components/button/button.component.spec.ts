@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ButtonComponent } from './button.component';
 import { ButtonType } from './models/button-type.enum';
-import { ComponentTheme } from '../../../../../../shared/component-theme.enum';
+import { ComponentTheme } from '../../shared/component-theme.enum';
 
 describe('ButtonComponent', () => {
 	let component: ButtonComponent;
@@ -67,7 +67,7 @@ describe('ButtonComponent', () => {
 			});
 
 			it('should return true', () => {
-				expect(component.isDarkTheme).toBeTruthy();
+				expect(component.isDarkTheme).toBeTrue();
 			});
 		});
 
@@ -78,7 +78,7 @@ describe('ButtonComponent', () => {
 			});
 
 			it('should return false', () => {
-				expect(component.isDarkTheme).toBeFalsy();
+				expect(component.isDarkTheme).toBeFalse();
 			});
 		});
 	});
@@ -155,7 +155,7 @@ describe('ButtonComponent', () => {
 		});
 
 		it('should define disableHover', () => {
-			expect(component.disableHover).toBeTruthy();
+			expect(component.disableHover).toBeTrue();
 		});
 	});
 
@@ -166,7 +166,7 @@ describe('ButtonComponent', () => {
 		});
 
 		it('should define disableRipple', () => {
-			expect(component.disableRipple).toBeTruthy();
+			expect(component.disableRipple).toBeTrue();
 		});
 	});
 });
