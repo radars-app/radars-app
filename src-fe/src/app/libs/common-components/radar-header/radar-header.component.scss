@@ -9,12 +9,13 @@
 	padding-left: $secondary-grid-unit * 5;
 	padding-right: $secondary-grid-unit * 5;
 
-	&--white-theme {
-		background-color: #fff;
-	}
-
 	&--dark-theme {
-		background-color: #fff;
+		background-color: #2d3443;
+		border-bottom: 1px solid #5e6670;
+
+		.radar-header__title {
+			color: #fff;
+		}
 	}
 }
 
