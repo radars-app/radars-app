@@ -13,5 +13,6 @@
 
 
     <app-button class="profile-popup__logout-button" [theme]="(appTheme$ | async)" [type]="logoutButtonType"
+        [fullWidth]="true"
         (click)="logOut()">Log Out</app-button>
 </div>

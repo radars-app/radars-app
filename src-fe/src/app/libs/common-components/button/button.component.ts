@@ -26,6 +26,9 @@ export class ButtonComponent {
 	@Input()
 	public disableHover: boolean = false;
 
+	@Input()
+	public fullWidth: boolean = false;
+
 	public get isDarkTheme(): boolean {
 		return this.theme === ComponentTheme.Dark;
 	}
