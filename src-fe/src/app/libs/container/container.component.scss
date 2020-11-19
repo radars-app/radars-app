@@ -1,24 +1,13 @@
 @import 'variables';
 
 .container {
-	&__title {
-		width: 100%;
-		text-align: center;
-		background-color: gray;
-	}
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	min-height: 100vh;
+}
 
-	&__container-header-wrapper {
-		height: 50px;
-		width: 100%;
-		background-color: #39414d;
-
-		&_black {
-			background-color: #39414d;
-		}
-
-		.container-header {
-			height: 100%;
-			margin: 0 20px;
-		}
-	}
+.container__content {
+	display: flex;
+	flex: 1 100%;
 }

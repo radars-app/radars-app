@@ -1,10 +1,10 @@
 <main class="container">
-	<div class="container__container-header-wrapper container__container-header-wrapper_{{ appTheme$ | async}}">
-		<app-radars-global-header
-		class="container-header"
-		[userPhotoURL]="userPhotoURL$ | async"></app-radars-global-header>
-	</div>
-	<div class="container__title">
+	<app-radars-global-header
+		class="container__header"
+		[userPhotoURL]="userPhotoURL$ | async">
+	</app-radars-global-header>
+
+	<div class="container__content">
 		<router-outlet></router-outlet>
 	</div>
 </main>

@@ -9,6 +9,13 @@ const routes: Routes = [
 		component: ContainerComponent,
 		canActivate: [MsalGuard],
 	},
+	{
+		path: 'radars',
+		loadChildren: () =>
+			import('./libs/radar-view/radar-view.module').then(
+				(m: typeof import('./libs/radar-view/radar-view.module')) => m.RadarViewModule
+			),
+	},
 ];
 
 @NgModule({
