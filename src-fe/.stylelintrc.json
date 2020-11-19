@@ -1,7 +1,7 @@
 {
 	"defaultSeverity": "error",
 	"extends": "stylelint-config-standard",
-	"ignoreFiles": "schematics/**/*.scss",
+	"ignoreFiles": "./src/reset.scss",
 	"rules": {
 		"indentation": "tab",
 		"string-quotes": "single",
