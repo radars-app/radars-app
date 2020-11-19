@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { map, switchMap } from 'rxjs/operators';
+import { filter, map, switchMap } from 'rxjs/operators';
 import { of, Observable, NEVER } from 'rxjs';
 import { ContainerActionTypes, LoadUserProfileSuccess, LoadUserPhotoSuccess, ContainerActions } from './container.actions';
 import { HttpResponse } from '@angular/common/http';
@@ -16,6 +16,9 @@ export class ContainerEffects {
 	@Effect({ dispatch: false })
 	public logIn$: Observable<Action> = this.actions$.pipe(
 		ofType(ContainerActionTypes.LogIn),
+		filter(() => {
+			return !this.msalService.getAccount();
+		}),
 		switchMap(() => {
 			this.msalService.loginRedirect();
 			return NEVER;
