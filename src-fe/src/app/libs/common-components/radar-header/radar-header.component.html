@@ -1,3 +1,9 @@
 <div class="radar-header">
     <div class="radar-header__title">{{title}}</div>
+    <div class="radar-header__content">
+        <ng-content></ng-content>
+    </div>
+    <div class="radar-header__buttons">
+        <app-icon-button *ngFor="let button of buttons" [startIcon]="button.icon" [iconSize]="button.iconSize">{{button.label}}</app-icon-button>
+    </div>
 </div>
