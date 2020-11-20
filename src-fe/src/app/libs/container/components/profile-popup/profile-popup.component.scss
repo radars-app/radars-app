@@ -10,7 +10,6 @@
 	font-size: 14px;
 	letter-spacing: 0.48px;
 	line-height: 20px;
-	z-index: 99;
 }
 
 @media screen and (min-width: 600px) and (max-width: 1920px) {
@@ -27,11 +26,13 @@
 
 .profile-popup {
 	&__wrapper {
+		position: relative;
 		display: flex;
 		flex-direction: column;
 		height: 100%;
 		border-radius: $secondary-grid-unit;
 		box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.2);
+		z-index: 99;
 
 		div {
 			padding: 10px 20px;
@@ -43,12 +44,24 @@
 		}
 	}
 
-	&__wrapper--dark {
+	&__wrapper::before {
+		position: absolute;
+		top: -4px;
+		right: 8px;
+		width: 10px;
+		height: 10px;
+		content: '';
+		transform: rotate(45deg);
+	}
+
+	&__wrapper--dark,
+	&__wrapper--dark::before {
 		background-color: #2d3443;
 		color: white;
 	}
 
-	&__wrapper--light {
+	&__wrapper--light,
+	&__wrapper--light::before {
 		background-color: #fff;
 	}
 
