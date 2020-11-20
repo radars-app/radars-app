@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { skip } from 'rxjs/operators';
 import { ButtonType } from 'src/app/libs/common-components/button/models/button-type.enum';
 import { ComponentTheme } from 'src/app/libs/common-components/common/enum/component-theme.enum';
 import { ContainerFacadeService } from '../../service/container-facade.service';
@@ -8,8 +9,11 @@ import { ContainerFacadeService } from '../../service/container-facade.service';
 	selector: 'app-radars-profile-popup',
 	templateUrl: './profile-popup.component.html',
 	styleUrls: ['./profile-popup.component.scss'],
+	host: { '(window:click)': 'clickHandler($event)' },
 })
 export class ProfilePopupComponent {
+	@Output() public clickOutside$: Observable<boolean>;
+
 	public userProfile$: Observable<any> = this.containerFacadeService.userProfile$;
 
 	public appTheme$: Observable<string> = this.containerFacadeService.theme$;
@@ -18,7 +22,12 @@ export class ProfilePopupComponent {
 
 	public themeSliderTitle: string = 'Dark mode';
 
-	constructor(private containerFacadeService: ContainerFacadeService) {}
+	private skipFirstValueSubject: Subject<boolean>;
+
+	constructor(private containerFacadeService: ContainerFacadeService, private eRef: ElementRef) {
+		this.skipFirstValueSubject = new Subject<boolean>();
+		this.clickOutside$ = this.skipFirstValueSubject.asObservable().pipe(skip(1));
+	}
 
 	public logOut(): void {
 		this.containerFacadeService.logOut();
@@ -33,6 +42,12 @@ export class ProfilePopupComponent {
 			this.containerFacadeService.setTheme(ComponentTheme.Dark);
 		} else {
 			this.containerFacadeService.setTheme(ComponentTheme.Light);
+		}
+	}
+
+	private clickHandler(event: MouseEvent): void {
+		if (!this.eRef.nativeElement.contains(event.target)) {
+			this.skipFirstValueSubject.next(true);
 		}
 	}
 }

@@ -11,4 +11,4 @@
 		alt="user photo"
 		(click)="toggleProfilePopup()"/>
 
-<app-radars-profile-popup *ngIf="showProfilePopup"></app-radars-profile-popup>
+<app-radars-profile-popup (clickOutside$)="closeProfile()" *ngIf="showProfilePopup"></app-radars-profile-popup>

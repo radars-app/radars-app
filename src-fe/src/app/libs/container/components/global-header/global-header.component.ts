@@ -23,4 +23,8 @@ export class GlobalHeaderComponent implements OnInit {
 	public toggleProfilePopup(): void {
 		this.showProfilePopup = !this.showProfilePopup;
 	}
+
+	public closeProfile(): void {
+		this.showProfilePopup = false;
+	}
 }
