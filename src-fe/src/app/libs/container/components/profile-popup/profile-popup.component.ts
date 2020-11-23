@@ -15,18 +15,15 @@ export class ProfilePopupComponent {
 	@Output() public clickOutside$: Observable<boolean>;
 
 	public userProfile$: Observable<any> = this.containerFacadeService.userProfile$;
-
 	public appTheme$: Observable<string> = this.containerFacadeService.theme$;
-
 	public logoutButtonType: ButtonType = ButtonType.Flat;
-
 	public themeSliderTitle: string = 'Dark mode';
 
 	private skipFirstValueSubject: Subject<boolean>;
 
 	constructor(private containerFacadeService: ContainerFacadeService, private eRef: ElementRef) {
 		this.skipFirstValueSubject = new Subject<boolean>();
-		this.clickOutside$ = this.skipFirstValueSubject.asObservable().pipe(skip(1));
+		this.clickOutside$ = this.skipFirstValueSubject.pipe(skip(1));
 	}
 
 	public logOut(): void {

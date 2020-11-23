@@ -10,7 +10,6 @@ import { ContainerFacadeService } from './service/container-facade.service';
 })
 export class ContainerComponent implements OnInit {
 	public userPhotoURL$: Observable<string> = this.containerFacadeService.userPhotoBase64$;
-
 	public appTheme$: Observable<string> = this.containerFacadeService.theme$;
 
 	constructor(private containerFacadeService: ContainerFacadeService, private iconService: IconService) {}

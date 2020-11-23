@@ -11,7 +11,6 @@ export class GlobalHeaderComponent implements OnInit {
 	@Input() public userPhotoURL: string;
 
 	public appNamePrefix: string = appConfig.appName.prefix;
-
 	public appNameMain: string = appConfig.appName.main;
 
 	constructor() {}

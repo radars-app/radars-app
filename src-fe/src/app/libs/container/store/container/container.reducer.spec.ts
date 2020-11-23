@@ -1,64 +1,26 @@
-// import {
-// 	reducer,
-// 	initialState,
-// 	ContainerState,
-// } from './container.reducer';
-// import {
-// 	ContainerActionTypes,
-// 	LoadSamples,
-// 	LoadSamplesFailure,
-// 	LoadSamplesSuccess,
-// } from './container.actions';
+import { containerReducer, initialState } from './container.reducer';
+import { ContainerActionTypes, SetTheme } from './container.actions';
+import { ContainerState } from './container.state';
+import { ComponentTheme } from '../../../common-components/common/enum/component-theme.enum';
 
-// describe('Sample Reducer', () => {
+describe('Container Reducer', () => {
+	describe('an unknown action', () => {
+		it('should return the previous state', () => {
+			const action: any = {} as any;
 
-// 	describe('an unknown action', () => {
+			const result: any = containerReducer(initialState, action);
 
-// 		it('should return the previous state', () => {
-// 			const action: any = {} as any;
+			expect(result).toBe(initialState);
+		});
+	});
 
-// 			const result: any = reducer(initialState, action);
+	describe('SetTheme action', () => {
+		it('should return the previous state', () => {
+			const action: SetTheme = new SetTheme(ComponentTheme.Dark);
 
-// 			expect(result).toBe(initialState);
-// 		});
-// 	});
+			const result: ContainerState = containerReducer(initialState, action);
 
-// 	describe('LoadSamples action', () => {
-
-// 		it('should return the previous state', () => {
-// 			const action: LoadSamples = {
-// 				type: ContainerActionTypes.LoadSamples,
-// 			} as LoadSamples;
-
-// 			const result: ContainerState = reducer(initialState, action);
-
-// 			expect(result).toBe(initialState);
-// 		});
-// 	});
-
-// 	describe('LoadSamplesFailure action', () => {
-
-// 		it('should return the previous state', () => {
-// 			const action: LoadSamplesFailure = {
-// 				type: ContainerActionTypes.LoadSamplesFailure,
-// 			} as LoadSamplesFailure;
-
-// 			const result: ContainerState = reducer(initialState, action);
-
-// 			expect(result).toBe(initialState);
-// 		});
-// 	});
-
-// 	describe('LoadSamplesSuccess action', () => {
-
-// 		it('should return the previous state', () => {
-// 			const action: LoadSamplesSuccess = {
-// 				type: ContainerActionTypes.LoadSamplesSuccess,
-// 			} as LoadSamplesSuccess;
-
-// 			const result: ContainerState = reducer(initialState, action);
-
-// 			expect(result).toBe(initialState);
-// 		});
-// 	});
-// });
+			expect(result.theme).toBe(ComponentTheme.Dark);
+		});
+	});
+});

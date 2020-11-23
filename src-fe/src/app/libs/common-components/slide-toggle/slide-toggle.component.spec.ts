@@ -1,10 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SlideToggleComponent } from './slide-toggle.component';
-import { CommonComponentsModule } from '../../common-components.module';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
-import { ComponentTheme } from '../../shared/component-theme.enum';
+import { CommonComponentsModule } from '../common-components.module';
+import { ComponentTheme } from '../common/enum/component-theme.enum';
 
 describe('SlideToggleComponent', () => {
 	let component: SlideToggleComponent;
