@@ -1,4 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Store } from '@ngrx/store';
+import { ContainerFacadeService } from '../../service/container-facade.service';
 
 import { ProfilePopupComponent } from './profile-popup.component';
 
@@ -9,6 +11,16 @@ describe('ProfilePopupComponent', () => {
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
 			declarations: [ProfilePopupComponent],
+			providers: [
+				{
+					provide: ContainerFacadeService,
+					useValue: {},
+				},
+				{
+					provide: Store,
+					useValue: {},
+				},
+			],
 		}).compileComponents();
 	}));
 

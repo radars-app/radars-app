@@ -1,4 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Store } from '@ngrx/store';
+import { ContainerFacadeService } from '../../container/service/container-facade.service';
 
 import { RadarHeaderComponent } from './radar-header.component';
 
@@ -9,6 +11,16 @@ describe('RadarHeaderComponent', () => {
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
 			declarations: [RadarHeaderComponent],
+			providers: [
+				{
+					provide: ContainerFacadeService,
+					useValue: {},
+				},
+				{
+					provide: Store,
+					useValue: {},
+				},
+			],
 		}).compileComponents();
 	}));
 

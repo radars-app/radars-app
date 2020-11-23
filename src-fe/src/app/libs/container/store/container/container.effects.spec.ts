@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
+import { MsalService } from '@azure/msal-angular';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable } from 'rxjs';
 
@@ -10,7 +12,18 @@ describe('ContainerEffects', () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			providers: [ContainerEffects, provideMockActions(() => actions$)],
+			providers: [
+				ContainerEffects,
+				provideMockActions(() => actions$),
+				{
+					provide: MsalService,
+					useValue: {},
+				},
+				{
+					provide: HttpClient,
+					useValue: {},
+				},
+			],
 		});
 
 		effects = TestBed.inject(ContainerEffects);

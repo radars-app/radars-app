@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ContainerComponent } from './container.component';
+import { ContainerFacadeService } from './service/container-facade.service';
 
 describe('ContainerComponent', () => {
 	let component: ContainerComponent;
@@ -9,6 +10,16 @@ describe('ContainerComponent', () => {
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
 			declarations: [ContainerComponent],
+			providers: [
+				{
+					provide: ContainerFacadeService,
+					useValue: {
+						logIn: () => {},
+						loadUserPhoto: () => {},
+						loadUserInfo: () => {},
+					},
+				},
+			],
 		}).compileComponents();
 	});
 
