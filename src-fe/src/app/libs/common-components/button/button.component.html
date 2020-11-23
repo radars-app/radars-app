@@ -7,7 +7,8 @@
 			[class.button--dark-theme]="isDarkTheme"
 			[class.button--disable-hover]="disableHover"
 			[disabled]="disabled"
-			[disableRipple]="disableRipple">
+			[disableRipple]="disableRipple"
+			[ngStyle]="{'border-top-left-radius': topLeftRadius, 'border-top-right-radius': topRightRadius }">
 		<ng-container *ngTemplateOutlet="buttonText"></ng-container>
 	</button>
 	<button
@@ -18,7 +19,8 @@
 			[class.button--dark-theme]="isDarkTheme"
 			[class.button--disable-hover]="disableHover"
 			[disabled]="disabled"
-			[disableRipple]="disableRipple">
+			[disableRipple]="disableRipple"
+			[ngStyle]="{'border-top-left-radius': topLeftRadius, 'border-top-right-radius': topRightRadius }">
 		<ng-container *ngTemplateOutlet="buttonText"></ng-container>
 	</button>
 	<button
@@ -29,7 +31,8 @@
 			[class.button--dark-theme]="isDarkTheme"
 			[class.button--disable-hover]="disableHover"
 			[disabled]="disabled"
-			[disableRipple]="disableRipple">
+			[disableRipple]="disableRipple"
+			[ngStyle]="{'border-top-left-radius': topLeftRadius, 'border-top-right-radius': topRightRadius }">
 		<ng-container *ngTemplateOutlet="buttonText"></ng-container>
 	</button>
 </ng-container>

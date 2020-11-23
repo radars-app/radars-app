@@ -29,6 +29,12 @@ export class ButtonComponent {
 	@Input()
 	public fullWidth: boolean = false;
 
+	@Input()
+	public topLeftRadius: number;
+
+	@Input()
+	public topRightRadius: number;
+
 	public get isDarkTheme(): boolean {
 		return this.theme === ComponentTheme.Dark;
 	}

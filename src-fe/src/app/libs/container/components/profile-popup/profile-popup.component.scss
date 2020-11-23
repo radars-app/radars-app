@@ -92,18 +92,3 @@
 		border-top-right-radius: 0;
 	}
 }
-
-::ng-deep {
-	.mat-slide-toggle {
-		width: 100%;
-	}
-
-	.mat-slide-toggle-label {
-		justify-content: space-between;
-	}
-
-	.profile-popup__logout-button button {
-		border-top-left-radius: 0 !important;
-		border-top-right-radius: 0 !important;
-	}
-}
