@@ -6,9 +6,10 @@ import { ContainerComponent } from './container.component';
 import { GlobalHeaderComponent } from './components/global-header/global-header.component';
 import { ProfilePopupComponent } from './components/profile-popup/profile-popup.component';
 import { CommonComponentsModule } from '../common-components/common-components.module';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 @NgModule({
-	declarations: [ContainerComponent, GlobalHeaderComponent, ProfilePopupComponent],
+	declarations: [ContainerComponent, GlobalHeaderComponent, ProfilePopupComponent, UserProfileComponent],
 	imports: [CommonModule, ContainerStoreModule, RouterModule, CommonComponentsModule],
 	exports: [ContainerComponent, GlobalHeaderComponent],
 })

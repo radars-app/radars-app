@@ -10,8 +10,6 @@ import appConfig from '../../../../../../app-config.json';
 export class GlobalHeaderComponent implements OnInit {
 	@Input() public userPhotoURL: string;
 
-	public showProfilePopup: boolean;
-
 	public appNamePrefix: string = appConfig.appName.prefix;
 
 	public appNameMain: string = appConfig.appName.main;
@@ -19,12 +17,4 @@ export class GlobalHeaderComponent implements OnInit {
 	constructor() {}
 
 	public ngOnInit(): void {}
-
-	public toggleProfilePopup(): void {
-		this.showProfilePopup = !this.showProfilePopup;
-	}
-
-	public closeProfile(): void {
-		this.showProfilePopup = false;
-	}
 }
