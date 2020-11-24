@@ -1,0 +1,10 @@
+<main class="container">
+	<app-radars-global-header
+		class="container__header"
+		[userPhotoURL]="userPhotoURL$ | async">
+	</app-radars-global-header>
+
+	<div class="container__content">
+		<router-outlet></router-outlet>
+	</div>
+</main>

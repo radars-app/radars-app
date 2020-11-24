@@ -1,0 +1,35 @@
+:host {
+	display: flex;
+	height: 50px;
+	width: 100%;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #39414d;
+}
+
+.container-header {
+	&__logo {
+		display: flex;
+		align-items: center;
+		color: #fff;
+		margin: 0 20px;
+
+		.logo {
+			&__prefix {
+				margin-left: 8px;
+				font-family: Roboto, sans-serif;
+				font-size: 14px;
+				letter-spacing: 3.48px;
+				line-height: 24px;
+			}
+
+			&__main {
+				font-family: Roboto, sans-serif;
+				font-size: 14px;
+				font-weight: 300;
+				letter-spacing: 0.48px;
+				line-height: 24px;
+			}
+		}
+	}
+}

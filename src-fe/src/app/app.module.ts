@@ -8,67 +8,55 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
-import { ContainerModule } from './container/container.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
-import {
-	MsalModule,
-	MsalInterceptor,
-} from '@azure/msal-angular';
-import {
-	HTTP_INTERCEPTORS,
-	HttpClientModule,
-} from '@angular/common/http';
+import { MsalModule, MsalInterceptor } from '@azure/msal-angular';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import creds from '../../auth-config.json';
+import { ContainerModule } from './libs/container/container.module';
 
 @NgModule({
-  declarations: [
-	AppComponent,
-  ],
-  imports: [
-	BrowserModule,
-	AppRoutingModule,
-  BrowserAnimationsModule,
-  ContainerModule,
-  StoreModule.forRoot({}),
-  EffectsModule.forRoot([]),
-  StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-  ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-	HttpClientModule,
-	AppRoutingModule,
-	MsalModule.forRoot({
-		auth: {
-		clientId: creds.clientId,
-		authority: creds.authority,
-		redirectUri: creds.redirectUri,
+	declarations: [AppComponent],
+	imports: [
+		BrowserModule,
+		AppRoutingModule,
+		BrowserAnimationsModule,
+		ContainerModule,
+		StoreModule.forRoot({}),
+		EffectsModule.forRoot([]),
+		StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+		ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+		HttpClientModule,
+		AppRoutingModule,
+		MsalModule.forRoot(
+			{
+				auth: {
+					clientId: creds.clientId,
+					authority: creds.authority,
+					redirectUri: creds.redirectUri,
+				},
+				cache: {
+					cacheLocation: 'localStorage',
+					storeAuthStateInCookie: false,
+				},
+			},
+			{
+				popUp: true,
+				consentScopes: ['user.read', 'openid', 'profile'],
+				unprotectedResources: [],
+				protectedResourceMap: [['https://graph.microsoft.com/v1.0/me', ['user.read']]],
+				extraQueryParameters: {},
+			}
+		),
+	],
+	providers: [
+		{
+			provide: HTTP_INTERCEPTORS,
+			useClass: MsalInterceptor,
+			multi: true,
 		},
-		cache: {
-		cacheLocation: 'localStorage',
-		storeAuthStateInCookie: false, // set to true for IE 11
-		},
-	},
-	{
-		popUp: true,
-		consentScopes: [
-		'user.read',
-		'openid',
-		'profile',
-		],
-		unprotectedResources: [],
-		protectedResourceMap: [
-		['https://graph.microsoft.com/v1.0/me', ['user.read']]
-		],
-		extraQueryParameters: {}
-	})
-  ],
-  providers: [
-	{
-		provide: HTTP_INTERCEPTORS,
-		useClass: MsalInterceptor,
-		multi: true,
-	}
-  ],
-  bootstrap: [AppComponent]
+	],
+	bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

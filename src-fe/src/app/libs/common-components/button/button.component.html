@@ -1,0 +1,44 @@
+<ng-container [ngSwitch]="type">
+	<button
+			*ngSwitchCase="basicType"
+			mat-button
+			class="button button--basic"
+			[class.button--full-width]="fullWidth"
+			[class.button--dark-theme]="isDarkTheme"
+			[class.button--disable-hover]="disableHover"
+			[disabled]="disabled"
+			[disableRipple]="disableRipple"
+			[ngStyle]="{'border-top-left-radius': topLeftRadius, 'border-top-right-radius': topRightRadius }">
+		<ng-container *ngTemplateOutlet="buttonText"></ng-container>
+	</button>
+	<button
+			*ngSwitchCase="outlinedType"
+			mat-stroked-button
+			class="button button--outlined"
+			[class.button--full-width]="fullWidth"
+			[class.button--dark-theme]="isDarkTheme"
+			[class.button--disable-hover]="disableHover"
+			[disabled]="disabled"
+			[disableRipple]="disableRipple"
+			[ngStyle]="{'border-top-left-radius': topLeftRadius, 'border-top-right-radius': topRightRadius }">
+		<ng-container *ngTemplateOutlet="buttonText"></ng-container>
+	</button>
+	<button
+			*ngSwitchCase="flatType"
+			mat-flat-button
+			class="button button--flat"
+			[class.button--full-width]="fullWidth"
+			[class.button--dark-theme]="isDarkTheme"
+			[class.button--disable-hover]="disableHover"
+			[disabled]="disabled"
+			[disableRipple]="disableRipple"
+			[ngStyle]="{'border-top-left-radius': topLeftRadius, 'border-top-right-radius': topRightRadius }">
+		<ng-container *ngTemplateOutlet="buttonText"></ng-container>
+	</button>
+</ng-container>
+
+<ng-template #buttonText>
+	<div class="button__content">
+		<ng-content></ng-content>
+	</div>
+</ng-template>

@@ -1,0 +1,30 @@
+<div class="profile-popup__wrapper profile-popup__wrapper--{{appTheme$ |async}}">
+
+	<div
+		class="profile-popup__item profile-popup__username"
+		>{{ (userProfile$ | async)?.fullName}}</div>
+
+	<div class="profile-popup__item profile-popup__info">
+		<span>E-mail:</span>
+		<span>{{ (userProfile$ | async)?.email}}</span>
+	</div>
+
+
+	<app-slide-toggle
+		class="profile-popup__theme-switcher profile-popup__theme-switcher--{{appTheme$ |async}}"
+		[theme]="(appTheme$ | async)"
+		[labelPosition]="'before'"
+		[title]="'Dark mode'"
+		[value]="(appTheme$ | async) === 'dark'"
+		(toggled)="toggleTheme($event)"></app-slide-toggle>
+
+
+	<app-button
+		class="profile-popup__logout-button"
+		[theme]="(appTheme$ | async)"
+		[type]="logoutButtonType"
+		[fullWidth]="true"
+		[topLeftRadius]="0"
+		[topRightRadius]="0"
+		(click)="logOut()">Log Out</app-button>
+</div>

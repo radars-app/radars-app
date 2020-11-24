@@ -1,0 +1,33 @@
+@import 'variables';
+
+.radar-header {
+	display: flex;
+	flex: 1;
+	align-items: center;
+	height: $main-grid-unit * 7;
+	border-bottom: 1px solid #c7d0d8;
+	padding-left: $secondary-grid-unit * 5;
+	padding-right: $secondary-grid-unit * 5;
+	background-color: #fff;
+
+	&--dark-theme {
+		background-color: #2d3443;
+		border-bottom: 1px solid #5e6670;
+
+		.radar-header__title {
+			color: #fff;
+		}
+	}
+}
+
+.radar-header__title {
+	color: #272c39;
+	font-family: Roboto, sans-serif;
+	font-size: 24px;
+	letter-spacing: 0.48px;
+	line-height: 32px;
+}
+
+.radar-header__content {
+	flex: 1;
+}
