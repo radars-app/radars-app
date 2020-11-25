@@ -36,3 +36,4 @@ $app-typography: mat-typography-config(
 @include angular-material-theme($app-theme);
 
 @import './app/libs/common-components/slide-toggle/slide-toggle.theme.scss';
+@import './app/libs/common-components/accordion/accordion.theme.scss';

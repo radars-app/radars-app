@@ -1,0 +1,18 @@
+@import 'variables';
+
+.radar-accordion {
+	&--dark-theme {
+		.mat-expansion-panel {
+			background-color: #2d3443;
+			color: $color-white;
+		}
+
+		.mat-expansion-panel-header-title {
+			color: $color-white;
+		}
+
+		.accordion-item__counter {
+			color: #c7d0d8;
+		}
+	}
+}
