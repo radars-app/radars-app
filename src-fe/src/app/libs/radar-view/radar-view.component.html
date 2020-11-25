@@ -1,6 +1,10 @@
 <div class="radar-view">
 	<app-radar-header class="radar-view__header" title="The Greatest Radar" [buttons]="buttons"></app-radar-header>
-	<div class="radar-view__sidenav">
-		<app-radars-accordion></app-radars-accordion>
+	<div>
+		<app-radars-accordion
+			class="radar-view__sidenav"
+			[class.radar-view__sidenav--dark]="darkTheme$ | async"
+			[items]="items$ | async"
+			[darkTheme$]="darkTheme$"></app-radars-accordion>
 	</div>
 </div>

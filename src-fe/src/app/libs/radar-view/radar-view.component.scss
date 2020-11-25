@@ -1,6 +1,6 @@
 @import 'variables';
 
-$headers-margin: $main-grid-unit * 14;
+$headers-height: $main-grid-unit * 13 + 3px;
 
 :host {
 	display: flex;
@@ -19,10 +19,14 @@ $headers-margin: $main-grid-unit * 14;
 	&__sidenav {
 		position: absolute;
 		width: 320px;
-		top: $headers-margin;
+		top: $headers-height;
 		bottom: 0;
 		left: 0;
 		overflow-y: auto;
 		overflow-x: hidden;
+
+		&--dark {
+			background-color: #2d3443;
+		}
 	}
 }

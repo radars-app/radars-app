@@ -1,4 +1,4 @@
-<mat-accordion>
+<mat-accordion [class.radar-accordion--dark-theme]="(darkTheme$ | async)">
 
 	<mat-expansion-panel *ngFor="let item of items" (opened)="item.opened = true" (closed)="item.opened = false">
 
@@ -17,7 +17,7 @@
 		</mat-expansion-panel-header>
 
 		<p class="accordion-subitem" *ngFor="let subitem of item.children; index as i"
-			(click)="clickSubitem(subitem.id)">
+			(click)="emitSubItemClick(subitem.id)">
 			<span class="accordion-subitem__index">{{ i + 1 }}</span>{{ subitem.title }}
 		</p>
 

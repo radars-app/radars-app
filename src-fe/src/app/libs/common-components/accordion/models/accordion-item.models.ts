@@ -1,7 +1,4 @@
-export interface AccordionSubItem {
-	title: string;
-	id: string;
-}
+import { AccordionSubItem } from './accordion-subitem.model';
 
 export interface AccordionItem {
 	title: string;
