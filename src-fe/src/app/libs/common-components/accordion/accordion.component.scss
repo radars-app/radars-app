@@ -1,22 +1,5 @@
 @import 'variables';
 
-.radar-accordion {
-	&--dark-theme {
-		.mat-expansion-panel {
-			background-color: #2d3443;
-			color: #fff;
-		}
-
-		.mat-expansion-panel-header-title {
-			color: #fff;
-		}
-
-		.accordion-item__counter {
-			color: #c7d0d8;
-		}
-	}
-}
-
 .accordion-item {
 	align-items: center;
 
