@@ -3,16 +3,35 @@
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { Controller, ValidationService, FieldErrors, ValidateError, TsoaRoute, HttpStatusCodeLiteral, TsoaResponse } from '@tsoa/runtime';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-import { SampleController } from './../app/controller/sample.controller';
+import { RadarsController } from './../app/controller/radar.controller';
 import * as express from 'express';
 
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 
 const models: TsoaRoute.Models = {
-    "SampleEntity": {
+    "RadarConfig": {
         "dataType": "refObject",
         "properties": {
             "name": {"dataType":"string","required":true},
+            "csv": {"dataType":"string","required":true},
+            "ringColumn": {"dataType":"string","required":true},
+            "sectorColumn": {"dataType":"string","required":true},
+            "contentColumn": {"dataType":"string","required":true},
+            "dotNameColumn": {"dataType":"string","required":true},
+            "ringColumnMapping": {"dataType":"array","array":{"dataType":"array","array":{"dataType":"string"}},"required":true},
+            "sectorColumnMapping": {"dataType":"array","array":{"dataType":"array","array":{"dataType":"string"}},"required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "RadarEntity": {
+        "dataType": "refObject",
+        "properties": {
+            "id": {"dataType":"string","required":true},
+            "name": {"dataType":"string","required":true},
+            "lastUpdatedDate": {"dataType":"string","required":true},
+            "radars": {"dataType":"array","array":{"dataType":"any"},"required":true},
+            "config": {"ref":"RadarConfig","required":true},
         },
         "additionalProperties": false,
     },
@@ -27,7 +46,7 @@ export function RegisterRoutes(app: express.Router) {
     //  NOTE: If you do not see routes for all of your controllers in this file, then you might not have informed tsoa of where to look
     //      Please look into the "controllerPathGlobs" config option described in the readme: https://github.com/lukeautry/tsoa
     // ###########################################################################################################
-        app.get('/sample/:entityId',
+        app.get('/radars/:entityId',
             function (request: any, response: any, next: any) {
             const args = {
                     entityId: {"in":"path","name":"entityId","required":true,"dataType":"string"},
@@ -42,10 +61,33 @@ export function RegisterRoutes(app: express.Router) {
                 return next(err);
             }
 
-            const controller = new SampleController();
+            const controller = new RadarsController();
 
 
-            const promise = controller.getUser.apply(controller, validatedArgs as any);
+            const promise = controller.getRadar.apply(controller, validatedArgs as any);
+            promiseHandler(controller, promise, response, next);
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.put('/radars/:entityId',
+            function (request: any, response: any, next: any) {
+            const args = {
+                    entityId: {"in":"path","name":"entityId","required":true,"dataType":"string"},
+                    radar: {"in":"body","name":"radar","required":true,"ref":"RadarEntity"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+            } catch (err) {
+                return next(err);
+            }
+
+            const controller = new RadarsController();
+
+
+            const promise = controller.updateRadar.apply(controller, validatedArgs as any);
             promiseHandler(controller, promise, response, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
