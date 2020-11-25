@@ -1,0 +1,26 @@
+<mat-accordion>
+
+	<mat-expansion-panel *ngFor="let item of items" (opened)="item.opened = true" (closed)="item.opened = false">
+
+		<mat-expansion-panel-header>
+
+			<mat-panel-title class="accordion-item">
+
+				<div class="accordion-item__colored-mark" [ngStyle]="{ 'background-color': item.color }"></div>
+
+				{{ item.title }}
+
+				<span class="accordion-item__counter"> ({{ item.children?.length }})</span>
+
+			</mat-panel-title>
+
+		</mat-expansion-panel-header>
+
+		<p class="accordion-subitem" *ngFor="let subitem of item.children; index as i"
+			(click)="clickSubitem(subitem.id)">
+			<span class="accordion-subitem__index">{{ i + 1 }}</span>{{ subitem.title }}
+		</p>
+
+	</mat-expansion-panel>
+
+</mat-accordion>

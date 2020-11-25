@@ -1,3 +1,7 @@
+@import 'variables';
+
+$headers-margin: $main-grid-unit * 14;
+
 :host {
 	display: flex;
 	flex: 1 100%;
@@ -7,8 +11,18 @@
 .radar-view {
 	display: flex;
 	flex: 1 100%;
-}
 
-.radar-view__header {
-	width: 100%;
+	&__header {
+		width: 100%;
+	}
+
+	&__sidenav {
+		position: absolute;
+		width: 320px;
+		top: $headers-margin;
+		bottom: 0;
+		left: 0;
+		overflow-y: auto;
+		overflow-x: hidden;
+	}
 }
