@@ -1,3 +1,4 @@
+import { ViewChild } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -6,6 +7,7 @@ import { ComponentTheme } from '../common-components/common/enum/component-theme
 import { IconButtonModel } from '../common-components/icon-button/model/icon-button-model';
 import { IconSize } from '../common-components/icon/models/icon-size.enum';
 import { ContainerFacadeService } from '../container/service/container-facade.service';
+import { EditDialogComponent } from './components/edit-dialog/edit-dialog.component';
 
 @Component({
 	selector: 'app-radars-radar-view',
@@ -13,11 +15,16 @@ import { ContainerFacadeService } from '../container/service/container-facade.se
 	styleUrls: ['./radar-view.component.scss'],
 })
 export class RadarViewComponent implements OnInit {
+	@ViewChild('editRadarDialog', { static: true })
+	public readonly editRadarDialog: EditDialogComponent;
+
 	public buttons: IconButtonModel[];
 
 	public darkTheme$: Observable<boolean> = this.containerFacadeService.theme$.pipe(
 		map((theme: ComponentTheme) => theme === ComponentTheme.Dark)
 	);
+
+	public theme$: Observable<ComponentTheme> = this.containerFacadeService.theme$;
 
 	public items$: Observable<AccordionItem[]> = of([
 		{
@@ -131,7 +138,9 @@ export class RadarViewComponent implements OnInit {
 
 		const editButton: IconButtonModel = {
 			label: 'Edit',
-			callback: () => {},
+			callback: () => {
+				this.editRadarDialog.open();
+			},
 			icon: 'edit_1',
 			iconSize: IconSize.S,
 		};
