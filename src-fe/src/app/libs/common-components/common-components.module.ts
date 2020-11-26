@@ -15,6 +15,7 @@ import { IconService } from './icon/service/icon.service';
 import { AccordionComponent } from './accordion/accordion.component';
 import { PopoverComponent } from './popover/popover.component';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
 	declarations: [
@@ -26,7 +27,16 @@ import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 		AccordionComponent,
 		PopoverComponent,
 	],
-	imports: [MatButtonModule, CommonModule, MatSlideToggleModule, MatIconModule, MatCardModule, MatExpansionModule, MatDialogModule],
+	imports: [
+		MatButtonModule,
+		CommonModule,
+		MatSlideToggleModule,
+		MatIconModule,
+		MatCardModule,
+		MatExpansionModule,
+		MatDialogModule,
+		BrowserAnimationsModule,
+	],
 	providers: [
 		IconService,
 		{

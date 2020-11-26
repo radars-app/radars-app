@@ -5,6 +5,11 @@ import { ContainerFacadeService } from '../container/service/container-facade.se
 import { RadarViewComponent } from './radar-view.component';
 import { ComponentTheme } from '../common-components/common/enum/component-theme.enum';
 import { of } from 'rxjs';
+import { SideNavigationComponent } from './components/side-navigation/side-navigation.component';
+import { RadarHeaderComponent } from '../common-components/radar-header/radar-header.component';
+import { EditDialogComponent } from './components/edit-dialog/edit-dialog.component';
+import { CommonComponentsModule } from '../common-components/common-components.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('RadarViewComponent', () => {
 	let component: RadarViewComponent;
@@ -12,12 +17,8 @@ describe('RadarViewComponent', () => {
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: [RadarViewComponent],
+			declarations: [RadarViewComponent, SideNavigationComponent, EditDialogComponent],
 			providers: [
-				{
-					provide: Store,
-					useValue: {},
-				},
 				{
 					provide: ContainerFacadeService,
 					useValue: {
@@ -25,6 +26,7 @@ describe('RadarViewComponent', () => {
 					},
 				},
 			],
+			imports: [CommonComponentsModule],
 		}).compileComponents();
 	}));
 

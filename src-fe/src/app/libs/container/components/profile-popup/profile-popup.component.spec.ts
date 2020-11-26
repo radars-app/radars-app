@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Store } from '@ngrx/store';
+import { CommonComponentsModule } from 'src/app/libs/common-components/common-components.module';
 import { ContainerFacadeService } from '../../service/container-facade.service';
 
 import { ProfilePopupComponent } from './profile-popup.component';
@@ -21,6 +22,7 @@ describe('ProfilePopupComponent', () => {
 					useValue: {},
 				},
 			],
+			imports: [CommonComponentsModule],
 		}).compileComponents();
 	}));
 
