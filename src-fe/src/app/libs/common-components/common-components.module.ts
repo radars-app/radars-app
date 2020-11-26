@@ -13,11 +13,35 @@ import { IconComponent } from './icon/icon.component';
 import { IconButtonComponent } from './icon-button/icon-button.component';
 import { IconService } from './icon/service/icon.service';
 import { AccordionComponent } from './accordion/accordion.component';
+import { PopoverComponent } from './popover/popover.component';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 
 @NgModule({
-	declarations: [SlideToggleComponent, ButtonComponent, RadarHeaderComponent, IconComponent, IconButtonComponent, AccordionComponent],
-	imports: [MatButtonModule, CommonModule, MatSlideToggleModule, MatIconModule, MatCardModule, MatExpansionModule],
-	providers: [IconService],
-	exports: [ButtonComponent, SlideToggleComponent, MatCard, RadarHeaderComponent, IconButtonComponent, IconComponent, AccordionComponent],
+	declarations: [
+		SlideToggleComponent,
+		ButtonComponent,
+		RadarHeaderComponent,
+		IconComponent,
+		IconButtonComponent,
+		AccordionComponent,
+		PopoverComponent,
+	],
+	imports: [MatButtonModule, CommonModule, MatSlideToggleModule, MatIconModule, MatCardModule, MatExpansionModule, MatDialogModule],
+	providers: [
+		IconService,
+		{
+			provide: MatDialogRef,
+			useValue: {},
+		},
+	],
+	exports: [
+		ButtonComponent,
+		SlideToggleComponent,
+		RadarHeaderComponent,
+		IconButtonComponent,
+		IconComponent,
+		AccordionComponent,
+		PopoverComponent,
+	],
 })
 export class CommonComponentsModule {}

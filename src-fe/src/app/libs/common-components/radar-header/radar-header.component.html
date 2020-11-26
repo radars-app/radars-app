@@ -4,6 +4,11 @@
         <ng-content></ng-content>
     </div>
     <div class="radar-header__buttons">
-        <app-icon-button *ngFor="let button of buttons" [startIcon]="button.icon" [theme]="theme$ | async" [iconSize]="button.iconSize">{{button.label}}</app-icon-button>
+		<app-icon-button
+			*ngFor="let button of buttons"
+			[startIcon]="button.icon"
+			[theme]="theme$ | async"
+			[iconSize]="button.iconSize"
+			(click)="button.callback()">{{button.label}}</app-icon-button>
     </div>
 </div>
