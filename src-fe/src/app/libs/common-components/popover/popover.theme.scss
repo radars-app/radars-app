@@ -4,3 +4,11 @@
 	background: linear-gradient(0deg, $color-white-10, $color-white-10), #2d3443;
 	color: $color-white;
 }
+
+.popover--dark {
+	.popover-common {
+		&__title {
+			color: $color-white !important;
+		}
+	}
+}
