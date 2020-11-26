@@ -33,4 +33,13 @@
 		position: relative;
 		top: -$secondary-grid-unit;
 	}
+
+	.mat-expansion-panel-header.mat-expanded .mat-expansion-indicator::after {
+		width: $secondary-grid-unit;
+		height: $secondary-grid-unit;
+		border-width: 0 1px 1px 0;
+		border-color: #5e6670;
+		position: relative;
+		top: -($secondary-grid-unit + 3px);
+	}
 }
