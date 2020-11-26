@@ -10,7 +10,7 @@ import { Inject } from '../ioc';
 import { RadarEntity } from '../model/radar-entity';
 import { RadarsService } from '../service/radars.service';
 
-@Route('radars')
+@Route('api/radars')
 
 export class RadarsController extends Controller {
 	@Inject() private radarsService!: RadarsService;

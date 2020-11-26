@@ -100,7 +100,7 @@
 	},
 	"openapi": "3.0.0",
 	"paths": {
-		"/radars/{entityId}": {
+		"/api/radars/{entityId}": {
 			"get": {
 				"operationId": "GetRadar",
 				"responses": {
