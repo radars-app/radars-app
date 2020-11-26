@@ -11,22 +11,20 @@ $headers-height: $main-grid-unit * 13 + 3px;
 .radar-view {
 	display: flex;
 	flex: 1 100%;
+	flex-direction: column;
+	align-items: stretch;
 
-	&__header {
-		width: 100%;
-	}
-
-	&__sidenav {
+	&__side-navigation {
 		position: absolute;
-		width: 320px;
-		top: $headers-height;
+		width: 340px;
+		top: 0;
 		bottom: 0;
 		left: 0;
-		overflow-y: auto;
-		overflow-x: hidden;
+	}
 
-		&--dark {
-			background-color: #2d3443;
-		}
+	&__content-wrapper {
+		display: flex;
+		flex: 1 100%;
+		position: relative;
 	}
 }

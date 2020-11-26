@@ -11,17 +11,20 @@ import { AccordionItem } from './models/accordion-item.models';
 	styleUrls: ['./accordion.component.scss'],
 })
 export class AccordionComponent implements OnInit {
+	@Input() public items: AccordionItem[];
+	@Input() public theme: ComponentTheme;
+
 	@Output() public subItemClickEvent$: EventEmitter<string> = new EventEmitter();
 
-	@Input() public items: AccordionItem[];
-
-	@Input() public darkTheme$: Observable<boolean> = of(false);
-
-	constructor(private containerFacadeService: ContainerFacadeService) {}
+	constructor() {}
 
 	public ngOnInit(): void {}
 
 	public emitSubItemClick(id: string): void {
 		this.subItemClickEvent$.emit(id);
+	}
+
+	public get isDarkTheme(): boolean {
+		return this.theme === ComponentTheme.Dark;
 	}
 }
