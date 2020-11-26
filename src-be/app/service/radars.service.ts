@@ -8,16 +8,10 @@ let radarMock: RadarEntity = {
 	radars: [],
 	config: {
 		name: 'Default Radar',
-		csv: `Ring,Name,Sector,Content
+		csv: `
 Trial,Linux,OS,"Content 1 <a href=""mysite.com"">Test, with comma</a>"
 Not Necessary Ring,Windows,OS,"Content 2 <a href=""mysite.com"">Test</a>"
 Necessary Ring,Nano-computing,Cloud,"Content 3 <a href=""mysite.com"">Test</a>"`,
-		ringColumn: 'Ring',
-		sectorColumn: 'Sector',
-		contentColumn: 'Content',
-		dotNameColumn: 'Name',
-		ringColumnMapping: [['Not Necessary Ring', 'Necessary Ring']],
-		sectorColumnMapping: [['Not Necessary Sector', 'Necessary Sector']]
 	}
 };
 

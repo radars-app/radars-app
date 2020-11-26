@@ -1,4 +1,4 @@
-<mat-accordion [class.radar-accordion--dark-theme]="(darkTheme$ | async)">
+<mat-accordion [class.radar-accordion--dark-theme]="isDarkTheme">
 
 	<mat-expansion-panel *ngFor="let item of items" (opened)="item.opened = true" (closed)="item.opened = false">
 

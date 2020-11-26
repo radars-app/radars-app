@@ -95,7 +95,7 @@ $font-main-medium: 'Roboto Medium', sans-serif;
 	font-family: $font-main-regular;
 	font-size: 12px;
 	line-height: 16px;
-	letter-spacing: 0;
+	letter-spacing: 0.48px;
 }
 
 @mixin text-small-bold() {

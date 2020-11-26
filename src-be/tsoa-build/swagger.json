@@ -13,47 +13,11 @@
 					},
 					"csv": {
 						"type": "string"
-					},
-					"ringColumn": {
-						"type": "string"
-					},
-					"sectorColumn": {
-						"type": "string"
-					},
-					"contentColumn": {
-						"type": "string"
-					},
-					"dotNameColumn": {
-						"type": "string"
-					},
-					"ringColumnMapping": {
-						"items": {
-							"items": {
-								"type": "string"
-							},
-							"type": "array"
-						},
-						"type": "array"
-					},
-					"sectorColumnMapping": {
-						"items": {
-							"items": {
-								"type": "string"
-							},
-							"type": "array"
-						},
-						"type": "array"
 					}
 				},
 				"required": [
 					"name",
-					"csv",
-					"ringColumn",
-					"sectorColumn",
-					"contentColumn",
-					"dotNameColumn",
-					"ringColumnMapping",
-					"sectorColumnMapping"
+					"csv"
 				],
 				"type": "object",
 				"additionalProperties": false
