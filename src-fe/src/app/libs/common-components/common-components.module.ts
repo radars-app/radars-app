@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatIconModule } from '@angular/material/icon';
-import { MatCard, MatCardModule } from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
 
 import { SlideToggleComponent } from './slide-toggle/slide-toggle.component';
@@ -15,7 +15,6 @@ import { IconService } from './icon/service/icon.service';
 import { AccordionComponent } from './accordion/accordion.component';
 import { PopoverComponent } from './popover/popover.component';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
 	declarations: [
@@ -27,16 +26,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 		AccordionComponent,
 		PopoverComponent,
 	],
-	imports: [
-		MatButtonModule,
-		CommonModule,
-		MatSlideToggleModule,
-		MatIconModule,
-		MatCardModule,
-		MatExpansionModule,
-		MatDialogModule,
-		BrowserAnimationsModule,
-	],
+	imports: [MatButtonModule, CommonModule, MatSlideToggleModule, MatIconModule, MatCardModule, MatExpansionModule, MatDialogModule],
 	providers: [
 		IconService,
 		{

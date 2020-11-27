@@ -1,8 +1,6 @@
 import { ViewChild } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { AccordionItem } from '../common-components/accordion/models/accordion-item.models';
+import { Observable } from 'rxjs';
 import { ComponentTheme } from '../common-components/common/enum/component-theme.enum';
 import { IconButtonModel } from '../common-components/icon-button/model/icon-button-model';
 import { IconSize } from '../common-components/icon/models/icon-size.enum';

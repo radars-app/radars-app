@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { of } from 'rxjs';
 import { CommonComponentsModule } from 'src/app/libs/common-components/common-components.module';
 import { ComponentTheme } from 'src/app/libs/common-components/common/enum/component-theme.enum';
@@ -21,7 +22,7 @@ describe('SideNavigationComponent', () => {
 					},
 				},
 			],
-			imports: [CommonComponentsModule],
+			imports: [CommonComponentsModule, BrowserAnimationsModule],
 		}).compileComponents();
 	}));
 

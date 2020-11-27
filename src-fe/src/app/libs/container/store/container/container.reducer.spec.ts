@@ -1,5 +1,5 @@
 import { containerReducer, initialState } from './container.reducer';
-import { ContainerActionTypes, SetTheme } from './container.actions';
+import { SetTheme } from './container.actions';
 import { ContainerState } from './container.state';
 import { ComponentTheme } from '../../../common-components/common/enum/component-theme.enum';
 

@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { CommonComponentsModule } from '../common-components.module';
 
 import { IconButtonComponent } from './icon-button.component';
 
@@ -9,6 +10,7 @@ describe('IconButtonComponent', () => {
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
 			declarations: [IconButtonComponent],
+			imports: [CommonComponentsModule],
 		}).compileComponents();
 	}));
 

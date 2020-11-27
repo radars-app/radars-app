@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatButtonModule } from '@angular/material/button';
 import { ComponentTheme } from '../common/enum/component-theme.enum';
 
 import { ButtonComponent } from './button.component';
@@ -12,6 +13,7 @@ describe('ButtonComponent', () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			declarations: [ButtonComponent],
+			imports: [MatButtonModule],
 		}).compileComponents();
 		fixture = TestBed.createComponent(ButtonComponent);
 		component = fixture.componentInstance;

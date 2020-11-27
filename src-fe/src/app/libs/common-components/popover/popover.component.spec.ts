@@ -1,4 +1,3 @@
-import { Container } from '@angular/compiler/src/i18n/i18n_ast';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';

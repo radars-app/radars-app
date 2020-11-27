@@ -1,7 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { ContainerFacadeService } from '../../container/service/container-facade.service';
 import { ComponentTheme } from '../common/enum/component-theme.enum';
 import { AccordionItem } from './models/accordion-item.models';
 

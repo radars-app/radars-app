@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Store } from '@ngrx/store';
 import { ContainerFacadeService } from '../../container/service/container-facade.service';
+import { CommonComponentsModule } from '../common-components.module';
 
 import { RadarHeaderComponent } from './radar-header.component';
 
@@ -21,6 +22,7 @@ describe('RadarHeaderComponent', () => {
 					useValue: {},
 				},
 			],
+			imports: [CommonComponentsModule],
 		}).compileComponents();
 	}));
 
