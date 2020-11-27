@@ -32,7 +32,7 @@ export class RadarViewComponent implements OnInit, AfterViewInit {
 
 	private showRadarChartExample(): void {
 		const model: RadarChartModel = new RadarChartModel();
-		model.ringNames$.next(['Hold', 'Assess', 'Trial', 'Adopt'].reverse());
+		model.ringNames$.next(['Hold', 'Assess', 'Trial', 'Adopt', 'Add', 'Pad'].reverse());
 		model.sectorNames$.next([
 			'Technologies',
 			'Startups',
@@ -58,13 +58,13 @@ export class RadarViewComponent implements OnInit, AfterViewInit {
 		const config$: BehaviorSubject<RadarChartConfig> = new BehaviorSubject<RadarChartConfig>(lightConfig);
 
 		const size$: BehaviorSubject<{ width: number; height: number }> = new BehaviorSubject({
-			width: document.body.clientWidth - 17,
+			width: document.body.clientWidth,
 			height: window.innerHeight,
 		});
 
 		window.onresize = ($event: Event) => {
 			size$.next({
-				width: document.body.clientWidth - 17,
+				width: document.body.clientWidth,
 				height: window.innerHeight,
 			});
 		};
