@@ -4,9 +4,8 @@
 	<div class="radar-view__content-wrapper">
 		<app-side-navigation class="radar-view__side-navigation"></app-side-navigation>
 		<app-radar-chart-legend class="radar-view__legend"></app-radar-chart-legend>
+		<svg class="radar-chart"></svg>
 	</div>
-	
-	<svg class="radar-chart"></svg>
 </div>
 
 <app-radars-edit-dialog	[theme]="(theme$ | async)" #editRadarDialog></app-radars-edit-dialog>

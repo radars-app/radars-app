@@ -1,4 +1,4 @@
-import { ViewChild } from '@angular/core';
+import { AfterViewInit, ViewChild } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { RadarChartConfig, RadarChartModel, RadarChartRenderer } from 'radar-chart-project';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -13,7 +13,7 @@ import { EditDialogComponent } from './components/edit-dialog/edit-dialog.compon
 	templateUrl: './radar-view.component.html',
 	styleUrls: ['./radar-view.component.scss'],
 })
-export class RadarViewComponent implements OnInit {
+export class RadarViewComponent implements OnInit, AfterViewInit {
 	@ViewChild('editRadarDialog', { static: true }) public readonly editRadarDialog: EditDialogComponent;
 
 	public buttons: IconButtonModel[];
@@ -27,6 +27,10 @@ export class RadarViewComponent implements OnInit {
 	}
 
 	public ngAfterViewInit(): void {
+		this.showRadarChartExample();
+	}
+
+	private showRadarChartExample(): void {
 		const model: RadarChartModel = new RadarChartModel();
 		model.ringNames$.next(['Hold', 'Assess', 'Trial', 'Adopt'].reverse());
 		model.sectorNames$.next([
@@ -60,8 +64,8 @@ export class RadarViewComponent implements OnInit {
 
 		window.onresize = ($event: Event) => {
 			size$.next({
-				width: 1366,
-				height: 652,
+				width: document.body.clientWidth - 17,
+				height: window.innerHeight,
 			});
 		};
 
