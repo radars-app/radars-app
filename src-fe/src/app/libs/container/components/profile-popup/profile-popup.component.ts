@@ -1,5 +1,5 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { Component, ElementRef, Output } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
 import { skip } from 'rxjs/operators';
 import { ButtonType } from 'src/app/libs/common-components/button/models/button-type.enum';
 import { ComponentTheme } from 'src/app/libs/common-components/common/enum/component-theme.enum';
@@ -42,7 +42,7 @@ export class ProfilePopupComponent {
 		}
 	}
 
-	private clickHandler(event: MouseEvent): void {
+	public clickHandler(event: MouseEvent): void {
 		if (!this.eRef.nativeElement.contains(event.target)) {
 			this.skipFirstValueSubject.next(true);
 		}

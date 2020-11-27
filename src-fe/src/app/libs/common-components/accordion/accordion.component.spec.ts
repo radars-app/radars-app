@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { Store } from '@ngrx/store';
 import { ContainerFacadeService } from '../../container/service/container-facade.service';
 
@@ -21,6 +22,7 @@ describe('AccordionComponent', () => {
 					useValue: {},
 				},
 			],
+			imports: [MatExpansionModule],
 		}).compileComponents();
 	}));
 

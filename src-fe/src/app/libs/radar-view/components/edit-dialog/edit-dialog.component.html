@@ -1,0 +1,23 @@
+
+<div class="edit-radar-dialog">
+	<app-radars-popover [theme]="theme" #radarsPopover>
+		<div class="popover-title">
+			Edit Radar
+		</div>
+		<div class="popover-content">
+
+		</div>
+		<div class="popover-actions">
+			<app-button
+				class="popover-actions__btn"
+				type="outlined"
+				[theme]="theme"
+				(click)="radarsPopover.close()">Cancel</app-button>
+
+			<app-button
+				[type]="'flat'"
+				[theme]="theme"
+				(click)="radarsPopover.close()">Edit</app-button>
+		</div>
+	</app-radars-popover>
+</div>

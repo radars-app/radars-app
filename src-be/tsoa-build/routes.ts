@@ -14,12 +14,6 @@ const models: TsoaRoute.Models = {
         "properties": {
             "name": {"dataType":"string","required":true},
             "csv": {"dataType":"string","required":true},
-            "ringColumn": {"dataType":"string","required":true},
-            "sectorColumn": {"dataType":"string","required":true},
-            "contentColumn": {"dataType":"string","required":true},
-            "dotNameColumn": {"dataType":"string","required":true},
-            "ringColumnMapping": {"dataType":"array","array":{"dataType":"array","array":{"dataType":"string"}},"required":true},
-            "sectorColumnMapping": {"dataType":"array","array":{"dataType":"array","array":{"dataType":"string"}},"required":true},
         },
         "additionalProperties": false,
     },

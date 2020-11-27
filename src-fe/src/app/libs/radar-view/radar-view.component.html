@@ -1,11 +1,12 @@
 <div class="radar-view">
 	<app-radar-header class="radar-view__header" title="The Greatest Radar" [buttons]="buttons"></app-radar-header>
-	<div>
-		<app-radars-accordion
-			class="radar-view__sidenav"
-			[class.radar-view__sidenav--dark]="darkTheme$ | async"
-			[items]="items$ | async"
-			[darkTheme$]="darkTheme$"></app-radars-accordion>
-		<svg class="radar-chart"></svg>
+
+	<div class="radar-view__content-wrapper">
+		<app-side-navigation class="radar-view__side-navigation"></app-side-navigation>
+		<app-radar-chart-legend class="radar-view__legend"></app-radar-chart-legend>
 	</div>
+	
+	<svg class="radar-chart"></svg>
 </div>
+
+<app-radars-edit-dialog	[theme]="(theme$ | async)" #editRadarDialog></app-radars-edit-dialog>
