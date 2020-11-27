@@ -9,6 +9,7 @@ import { CommonComponentsModule } from '../common-components/common-components.m
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IconService } from '../common-components/icon/service/icon.service';
 import { HttpClientModule } from '@angular/common/http';
+import { RadarChartLegendComponent } from './components/radar-chart-legend/radar-chart-legend.component';
 
 describe('RadarViewComponent', () => {
 	let component: RadarViewComponent;
@@ -16,7 +17,7 @@ describe('RadarViewComponent', () => {
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: [RadarViewComponent, SideNavigationComponent, EditDialogComponent],
+			declarations: [RadarViewComponent, SideNavigationComponent, EditDialogComponent, RadarChartLegendComponent],
 			providers: [
 				{
 					provide: ContainerFacadeService,
