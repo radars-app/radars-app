@@ -11,6 +11,7 @@ $headers-height: $main-grid-unit * 13 + 3px;
 .radar-view {
 	display: flex;
 	flex: 1 100%;
+	flex-flow: column;
 
 	&__header {
 		width: 100%;

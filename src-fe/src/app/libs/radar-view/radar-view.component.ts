@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { RadarChartConfig, RadarChartModel, RadarChartRenderer } from 'radar-chart-project';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AccordionItem } from '../common-components/accordion/models/accordion-item.models';
 import { ComponentTheme } from '../common-components/common/enum/component-theme.enum';
@@ -12,7 +13,7 @@ import { ContainerFacadeService } from '../container/service/container-facade.se
 	templateUrl: './radar-view.component.html',
 	styleUrls: ['./radar-view.component.scss'],
 })
-export class RadarViewComponent implements OnInit {
+export class RadarViewComponent implements OnInit, AfterViewInit {
 	public buttons: IconButtonModel[];
 
 	public darkTheme$: Observable<boolean> = this.containerFacadeService.theme$.pipe(
@@ -144,5 +145,48 @@ export class RadarViewComponent implements OnInit {
 		};
 
 		this.buttons = [printButton, editButton, removeButton];
+	}
+
+	public ngAfterViewInit(): void {
+		const model: RadarChartModel = new RadarChartModel();
+		model.ringNames$.next(['Hold', 'Assess', 'Trial', 'Adopt'].reverse());
+		model.sectorNames$.next([
+			'Technologies',
+			'Startups',
+			'Libraries',
+			'Devices',
+			'Languages-And-Frameworks',
+			'Tools',
+			'Platforms',
+			'Techniques',
+		]);
+
+		const lightConfig: RadarChartConfig = new RadarChartConfig();
+		const darkConfig: RadarChartConfig = new RadarChartConfig();
+
+		// dark config adjusting
+		const primaryColor: string = '#5E6670';
+		const secondaryColor: string = '#2D3443';
+		darkConfig.backgroundColor = secondaryColor;
+		darkConfig.ringsConfig.ringsColor = primaryColor;
+		darkConfig.ringsConfig.labelsConfig.textColor = primaryColor;
+		darkConfig.dividersConfig.dividerColor = primaryColor;
+
+		const config$: BehaviorSubject<RadarChartConfig> = new BehaviorSubject<RadarChartConfig>(lightConfig);
+
+		const size$: BehaviorSubject<{ width: number; height: number }> = new BehaviorSubject({
+			width: document.body.clientWidth - 17,
+			height: window.innerHeight,
+		});
+
+		window.onresize = ($event: Event) => {
+			size$.next({
+				width: 1366,
+				height: 652,
+			});
+		};
+
+		const renderer: RadarChartRenderer = new RadarChartRenderer(document.querySelector('svg.radar-chart'), model, config$, size$);
+		renderer.start();
 	}
 }
