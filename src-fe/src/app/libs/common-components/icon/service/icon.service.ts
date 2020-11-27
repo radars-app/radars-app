@@ -10,9 +10,15 @@ export class IconService {
 
 	public addIcons(): void {
 		this.matIconRegistry.addSvgIcon('edit_1', this.domSanitizer.bypassSecurityTrustResourceUrl('../../../../../assets/edit-1.svg'));
-
 		this.matIconRegistry.addSvgIcon('delete', this.domSanitizer.bypassSecurityTrustResourceUrl('../../../../../assets/delete.svg'));
-
 		this.matIconRegistry.addSvgIcon('print', this.domSanitizer.bypassSecurityTrustResourceUrl('../../../../../assets/print.svg'));
+		this.matIconRegistry.addSvgIcon(
+			'ring_legend',
+			this.domSanitizer.bypassSecurityTrustResourceUrl('../../../../../assets/ring_legend.svg')
+		);
+		this.matIconRegistry.addSvgIcon(
+			'ring_legend_base',
+			this.domSanitizer.bypassSecurityTrustResourceUrl('../../../../../assets/ring_legend_base.svg')
+		);
 	}
 }
