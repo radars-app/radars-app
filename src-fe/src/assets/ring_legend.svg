@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16">
+  <defs>
+    <rect id="after-second-a" width="16" height="16" x="0" y="0"/>
+  </defs>
+  <g fill="none" fill-rule="evenodd">
+    <mask id="after-second-b" fill="#fff">
+      <use xlink:href="#after-second-a"/>
+    </mask>
+    <circle cx="8" cy="15" r="12" stroke="#99A6B5" mask="url(#after-second-b)"/>
+  </g>
+</svg>

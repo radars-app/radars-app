@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16">
+  <defs>
+    <rect id="first-in-a-row-a" width="16" height="16" x="0" y="0"/>
+  </defs>
+  <g fill="none" fill-rule="evenodd">
+    <mask id="first-in-a-row-b" fill="#fff">
+      <use xlink:href="#first-in-a-row-a"/>
+    </mask>
+    <circle cx="8" cy="13" r="12" stroke="#99A6B5" mask="url(#first-in-a-row-b)"/>
+    <circle cx="8" cy="14" r="2" fill="#99A6B5" mask="url(#first-in-a-row-b)"/>
+  </g>
+</svg>

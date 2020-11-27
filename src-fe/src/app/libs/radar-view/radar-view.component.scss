@@ -1,7 +1,5 @@
 @import 'variables';
 
-$headers-height: $main-grid-unit * 13 + 3px;
-
 :host {
 	display: flex;
 	flex: 1 100%;
@@ -13,18 +11,25 @@ $headers-height: $main-grid-unit * 13 + 3px;
 	flex: 1 100%;
 	flex-direction: column;
 	align-items: stretch;
+}
 
-	&__side-navigation {
-		position: absolute;
-		width: 340px;
-		top: 0;
-		bottom: 0;
-		left: 0;
-	}
+.radar-view__side-navigation {
+	position: absolute;
+	width: $secondary-grid-unit * 85;
+	top: 0;
+	bottom: 0;
+	left: 0;
+}
 
-	&__content-wrapper {
-		display: flex;
-		flex: 1 100%;
-		position: relative;
-	}
+.radar-view__content-wrapper {
+	display: flex;
+	flex: 1 100%;
+	position: relative;
+}
+
+.radar-view__legend {
+	position: absolute;
+	width: $secondary-grid-unit * 45;
+	top: $main-grid-unit;
+	right: $secondary-grid-unit * 5;
 }

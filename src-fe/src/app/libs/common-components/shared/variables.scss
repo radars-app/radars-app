@@ -80,15 +80,15 @@ $font-main-medium: 'Roboto Medium', sans-serif;
 @mixin text-p() {
 	font-family: $font-main-regular;
 	font-size: 14px;
-	line-height: 24px;
-	letter-spacing: 0;
+	letter-spacing: 0.48px;
+	line-height: 16px;
 }
 
 @mixin text-p-bold() {
 	font-family: $font-main-bold;
 	font-size: 14px;
-	line-height: 24px;
-	letter-spacing: 0;
+	letter-spacing: 0.48px;
+	line-height: 16px;
 }
 
 @mixin text-small() {
@@ -102,5 +102,5 @@ $font-main-medium: 'Roboto Medium', sans-serif;
 	font-family: $font-main-bold;
 	font-size: 12px;
 	line-height: 16px;
-	letter-spacing: 0;
+	letter-spacing: 0.48px;
 }

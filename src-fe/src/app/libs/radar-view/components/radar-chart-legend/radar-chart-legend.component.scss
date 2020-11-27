@@ -1,0 +1,80 @@
+@import 'variables';
+
+:host {
+	display: flex;
+}
+
+.radar-chart-legend {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	align-items: stretch;
+	padding-top: $secondary-grid-unit * 5;
+	padding-left: $secondary-grid-unit * 5;
+	padding-right: $secondary-grid-unit * 5;
+	border: 1px solid #c7d0d8;
+	border-radius: $secondary-grid-unit;
+	background-color: #fff;
+}
+
+.radar-chart-legend__section {
+	padding-bottom: $secondary-grid-unit * 5;
+}
+
+.legend-section {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+}
+
+.legend-section__label {
+	color: #5e6670;
+
+	@include text-p-bold();
+}
+
+.legend-section__content {
+	padding-top: $main-grid-unit;
+}
+
+.sectors-legend-list {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+}
+
+.sectors-legend-list__item {
+	display: flex;
+	flex: 1;
+}
+
+.legend {
+	display: flex;
+	flex: 1;
+	align-items: center;
+	padding-bottom: $secondary-grid-unit;
+}
+
+.legend__icon {
+	display: flex;
+	align-items: center;
+	width: $secondary-grid-unit * 4;
+}
+
+.color-rect {
+	height: $secondary-grid-unit * 3;
+	width: $secondary-grid-unit * 4;
+}
+
+.legend__label {
+	padding-left: $secondary-grid-unit;
+	color: #272c39;
+
+	@include text-small-bold();
+}
+
+.ring-icon {
+	height: $secondary-grid-unit * 4;
+	position: relative;
+	top: -2px;
+}
