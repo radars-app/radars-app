@@ -6,6 +6,42 @@
 		"requestBodies": {},
 		"responses": {},
 		"schemas": {
+			"RadarDataItemEntity": {
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"radarId": {
+						"type": "string"
+					},
+					"versionId": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"sector": {
+						"type": "string"
+					},
+					"ring": {
+						"type": "string"
+					},
+					"content": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"id",
+					"radarId",
+					"versionId",
+					"name",
+					"sector",
+					"ring",
+					"content"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
 			"RadarConfig": {
 				"properties": {
 					"name": {
@@ -24,7 +60,10 @@
 			},
 			"RadarEntity": {
 				"properties": {
-					"id": {
+					"uid": {
+						"type": "string"
+					},
+					"radarId": {
 						"type": "string"
 					},
 					"name": {
@@ -33,19 +72,19 @@
 					"lastUpdatedDate": {
 						"type": "string"
 					},
-					"radars": {
-						"items": {},
-						"type": "array"
+					"versionId": {
+						"type": "string"
 					},
 					"config": {
 						"$ref": "#/components/schemas/RadarConfig"
 					}
 				},
 				"required": [
-					"id",
+					"uid",
+					"radarId",
 					"name",
 					"lastUpdatedDate",
-					"radars",
+					"versionId",
 					"config"
 				],
 				"type": "object",
@@ -64,7 +103,7 @@
 	},
 	"openapi": "3.0.0",
 	"paths": {
-		"/api/radars/{entityId}": {
+		"/api/radar-data-items/{radarId}": {
 			"get": {
 				"operationId": "GetRadar",
 				"responses": {
@@ -73,7 +112,10 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/RadarEntity"
+									"items": {
+										"$ref": "#/components/schemas/RadarDataItemEntity"
+									},
+									"type": "array"
 								}
 							}
 						}
@@ -83,7 +125,38 @@
 				"parameters": [
 					{
 						"in": "path",
-						"name": "entityId",
+						"name": "radarId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/api/radars/{radarId}": {
+			"get": {
+				"operationId": "GetRadar",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/RadarEntity"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "radarId",
 						"required": true,
 						"schema": {
 							"type": "string"
@@ -91,7 +164,7 @@
 					}
 				]
 			},
-			"put": {
+			"post": {
 				"operationId": "UpdateRadar",
 				"responses": {
 					"200": {
@@ -109,7 +182,7 @@
 				"parameters": [
 					{
 						"in": "path",
-						"name": "entityId",
+						"name": "radarId",
 						"required": true,
 						"schema": {
 							"type": "string"
@@ -121,7 +194,7 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/RadarEntity"
+								"$ref": "#/components/schemas/RadarConfig"
 							}
 						}
 					}
