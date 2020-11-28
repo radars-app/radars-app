@@ -1,9 +1,10 @@
 import { RadarConfig } from './radar-config';
 
 export interface RadarEntity {
-	id: string;
+	uid: string;
+	radarId: string;
 	name: string;
 	lastUpdatedDate: string;
-	radars: any[];
+	versionId: string;
 	config: RadarConfig;
 }
