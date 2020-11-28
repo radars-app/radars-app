@@ -1,6 +1,8 @@
 <div class="side-navigation" [class.side-navigation--dark-theme]="(theme$ | async) === 'dark'">
-	<div class="side-navigation__date">Updated {{date | date:'y-m-d hh:mm'}}</div>
-	<app-radars-accordion	[items]="items" 
-							[theme]="theme$ | async">
-	</app-radars-accordion>
+	<perfect-scrollbar>
+		<div class="side-navigation__date">Updated {{date | date:'y-m-d hh:mm'}}</div>
+		<app-radars-accordion	[items]="items" 
+								[theme]="theme$ | async">
+		</app-radars-accordion>
+	</perfect-scrollbar>
 </div>

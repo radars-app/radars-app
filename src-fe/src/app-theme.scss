@@ -2,6 +2,7 @@
 @import '~@angular/material/theming';
 @import 'variables';
 @import 'md-palette';
+@import 'scrollbar';
 
 $app-theme: mat-light-theme(
 	mat-palette($md-primary-palette),
