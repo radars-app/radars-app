@@ -1,6 +1,10 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { PopoverComponent } from 'src/app/libs/common-components/popover/popover.component';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
+
+import { PopoverComponent } from '../../../common-components/popover/popover.component';
 import { ComponentTheme } from '../../../common-components/common/enum/component-theme.enum';
+import { RadarViewFacadeService } from '../../service/radar-view-facade.service';
 
 @Component({
 	selector: 'app-radars-edit-dialog',
@@ -13,11 +17,21 @@ export class EditDialogComponent implements OnInit {
 
 	@Input() public theme: ComponentTheme = ComponentTheme.Light;
 
-	constructor() {}
+	public radarID: string;
 
-	public ngOnInit(): void {}
+	constructor(private radarViewFacadeSevice: RadarViewFacadeService, private route: ActivatedRoute) {}
+
+	public ngOnInit(): void {
+		this.route.paramMap.pipe(switchMap((params: ParamMap) => params.getAll('id'))).subscribe((radarID: string) => {
+			this.radarID = radarID;
+		});
+	}
 
 	public open(): void {
 		this.radarsPopover.open();
+	}
+
+	public downloadConfigFile() {
+		this.radarViewFacadeSevice.downloadRadarConfigFile(this.radarID);
 	}
 }
