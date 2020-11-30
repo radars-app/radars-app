@@ -1,4 +1,4 @@
-<div class="radar-chart-legend">
+<div class="radar-chart-legend" [class.radar-chart-legend--dark-theme]="(theme$ | async) === 'dark'">
 	<div class="radar-chart-legend__section legend-section">
 		<div class="legend-section__label">Sectors:</div>
 		<div class="legend-section__content">

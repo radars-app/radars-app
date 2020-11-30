@@ -15,6 +15,14 @@
 	border: 1px solid #c7d0d8;
 	border-radius: $secondary-grid-unit;
 	background-color: #fff;
+
+	&--dark-theme {
+		background-color: #2d3443;
+
+		.legend__label {
+			color: #99a6b5;
+		}
+	}
 }
 
 .radar-chart-legend__section {
