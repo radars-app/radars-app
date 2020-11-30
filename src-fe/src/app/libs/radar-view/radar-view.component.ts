@@ -1,7 +1,6 @@
-import { AfterViewInit, ViewChild } from '@angular/core';
+import { ViewChild } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
-import { RadarChartConfig, RadarChartModel, RadarChartRenderer } from 'radar-chart-project';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { ComponentTheme } from '../common-components/common/enum/component-theme.enum';
 import { IconButtonModel } from '../common-components/icon-button/model/icon-button-model';
 import { IconSize } from '../common-components/icon/models/icon-size.enum';
@@ -13,7 +12,7 @@ import { EditDialogComponent } from './components/edit-dialog/edit-dialog.compon
 	templateUrl: './radar-view.component.html',
 	styleUrls: ['./radar-view.component.scss'],
 })
-export class RadarViewComponent implements OnInit, AfterViewInit {
+export class RadarViewComponent implements OnInit {
 	@ViewChild('editRadarDialog', { static: true }) public readonly editRadarDialog: EditDialogComponent;
 
 	public buttons: IconButtonModel[];
@@ -24,53 +23,6 @@ export class RadarViewComponent implements OnInit, AfterViewInit {
 
 	public ngOnInit(): void {
 		this.initCommandButtons();
-	}
-
-	public ngAfterViewInit(): void {
-		this.showRadarChartExample();
-	}
-
-	private showRadarChartExample(): void {
-		const model: RadarChartModel = new RadarChartModel();
-		model.ringNames$.next(['Hold', 'Assess', 'Trial', 'Adopt', 'Add', 'Pad'].reverse());
-		model.sectorNames$.next([
-			'Technologies',
-			'Startups',
-			'Libraries',
-			'Devices',
-			'Languages-And-Frameworks',
-			'Tools',
-			'Platforms',
-			'Techniques',
-		]);
-
-		const lightConfig: RadarChartConfig = new RadarChartConfig();
-		const darkConfig: RadarChartConfig = new RadarChartConfig();
-
-		// dark config adjusting
-		const primaryColor: string = '#5E6670';
-		const secondaryColor: string = '#2D3443';
-		darkConfig.backgroundColor = secondaryColor;
-		darkConfig.ringsConfig.ringsColor = primaryColor;
-		darkConfig.ringsConfig.labelsConfig.textColor = primaryColor;
-		darkConfig.dividersConfig.dividerColor = primaryColor;
-
-		const config$: BehaviorSubject<RadarChartConfig> = new BehaviorSubject<RadarChartConfig>(lightConfig);
-
-		const size$: BehaviorSubject<{ width: number; height: number }> = new BehaviorSubject({
-			width: document.body.clientWidth,
-			height: window.innerHeight,
-		});
-
-		window.onresize = ($event: Event) => {
-			size$.next({
-				width: document.body.clientWidth,
-				height: window.innerHeight,
-			});
-		};
-
-		const renderer: RadarChartRenderer = new RadarChartRenderer(document.querySelector('svg.radar-chart'), model, config$, size$);
-		renderer.start();
 	}
 
 	private initCommandButtons(): void {
