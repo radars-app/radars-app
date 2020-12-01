@@ -7,9 +7,10 @@ import { EditDialogComponent } from './components/edit-dialog/edit-dialog.compon
 import { SideNavigationComponent } from './components/side-navigation/side-navigation.component';
 import { RadarChartLegendComponent } from './components/radar-chart-legend/radar-chart-legend.component';
 import { RadarViewStoreModule } from './store/store.module';
+import { RadarChartComponent } from './components/radar-chart/radar-chart.component';
 
 @NgModule({
-	declarations: [RadarViewComponent, EditDialogComponent, SideNavigationComponent, RadarChartLegendComponent],
+	declarations: [RadarViewComponent, EditDialogComponent, SideNavigationComponent, RadarChartLegendComponent, RadarChartComponent],
 	imports: [CommonComponentsModule, CommonModule, RadarViewStoreModule],
 	exports: [RadarViewRoutingModule],
 })

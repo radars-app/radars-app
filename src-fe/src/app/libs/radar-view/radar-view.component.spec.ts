@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IconService } from '../common-components/icon/service/icon.service';
 import { HttpClientModule } from '@angular/common/http';
 import { RadarChartLegendComponent } from './components/radar-chart-legend/radar-chart-legend.component';
+import { RadarChartComponent } from './components/radar-chart/radar-chart.component';
 
 describe('RadarViewComponent', () => {
 	let component: RadarViewComponent;
@@ -17,7 +18,13 @@ describe('RadarViewComponent', () => {
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: [RadarViewComponent, SideNavigationComponent, EditDialogComponent, RadarChartLegendComponent],
+			declarations: [
+				RadarViewComponent,
+				SideNavigationComponent,
+				EditDialogComponent,
+				RadarChartLegendComponent,
+				RadarChartComponent,
+			],
 			providers: [
 				{
 					provide: ContainerFacadeService,
