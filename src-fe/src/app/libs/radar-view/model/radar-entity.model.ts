@@ -6,3 +6,10 @@ export interface RadarEntity {
 	lastUpdatedDate: string;
 	config: RadarConfig;
 }
+
+export interface RadarEntityDto {
+	id: string;
+	name: string;
+	lastUpdatedDate: string;
+	config: RadarConfig;
+}

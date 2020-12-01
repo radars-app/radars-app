@@ -9,7 +9,7 @@ describe('Radar-view Selectors', () => {
 	it('should select the feature state', () => {
 		const result: RadarViewState = selectRadarViewState({
 			[radarViewFeatureKey]: {
-				radarConfig: {
+				radars: {
 					value: null,
 					status: EntityStatus.Init,
 				},
@@ -17,7 +17,7 @@ describe('Radar-view Selectors', () => {
 		});
 
 		expect(result).toEqual({
-			radarConfig: {
+			radars: {
 				value: null,
 				status: EntityStatus.Init,
 			},

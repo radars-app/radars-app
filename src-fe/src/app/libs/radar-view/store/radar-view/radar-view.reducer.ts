@@ -1,9 +1,9 @@
 import { EntityStatus } from 'src/app/libs/container/model/entity-status';
-import { RadarViewActions, RadarViewActionTypes, LoadRadarConfigSuccess } from './radar-view.actions';
+import { RadarViewActions, RadarViewActionTypes, LoadRadarsSuccess } from './radar-view.actions';
 import { RadarViewState } from './radar-view.state';
 
 export const initialState: RadarViewState = {
-	radarConfig: {
+	radars: {
 		value: null,
 		status: EntityStatus.Init,
 	},
@@ -11,22 +11,22 @@ export const initialState: RadarViewState = {
 
 export function radarViewReducer(state: RadarViewState = initialState, action: RadarViewActions): RadarViewState {
 	switch (action.type) {
-		case RadarViewActionTypes.LoadRadarConfig: {
+		case RadarViewActionTypes.LoadRadars: {
 			return {
 				...state,
-				radarConfig: {
-					...state.radarConfig,
+				radars: {
+					...state.radars,
 					status: EntityStatus.Pending,
 				},
 			};
 		}
 
-		case RadarViewActionTypes.LoadRadarConfigSuccess: {
+		case RadarViewActionTypes.LoadRadarsSuccess: {
 			return {
 				...state,
-				radarConfig: {
-					...state.radarConfig,
-					value: (action as LoadRadarConfigSuccess).payload,
+				radars: {
+					...state.radars,
+					value: (action as LoadRadarsSuccess).payload,
 					status: EntityStatus.Success,
 				},
 			};

@@ -2,18 +2,18 @@ import { Action } from '@ngrx/store';
 import { RadarEntity } from '../../model/radar-entity.model';
 
 export enum RadarViewActionTypes {
-	LoadRadarConfig = '[RadarView] Load Radar Config',
-	LoadRadarConfigSuccess = '[RadarView] Load Radar Config Success',
+	LoadRadars = '[RadarView] Load Radars',
+	LoadRadarsSuccess = '[RadarView] Load Radars Success',
 }
 
 export class LoadRadars implements Action {
-	public readonly type: RadarViewActionTypes = RadarViewActionTypes.LoadRadarConfig;
+	public readonly type: RadarViewActionTypes = RadarViewActionTypes.LoadRadars;
 	constructor(public payload: string) {}
 }
 
 export class LoadRadarsSuccess implements Action {
-	public readonly type: RadarViewActionTypes = RadarViewActionTypes.LoadRadarConfigSuccess;
-	constructor(public payload: RadarEntity) {}
+	public readonly type: RadarViewActionTypes = RadarViewActionTypes.LoadRadarsSuccess;
+	constructor(public payload: RadarEntity[]) {}
 }
 
 export type RadarViewActions = LoadRadars | LoadRadarsSuccess;

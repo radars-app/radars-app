@@ -1,37 +1,31 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { filter, map, switchMap } from 'rxjs/operators';
-import { Observable, NEVER } from 'rxjs';
-import { RadarViewActionTypes, RadarViewActions } from './radar-view.actions';
-import { HttpResponse } from '@angular/common/http';
+import { map, switchMap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { RadarViewActionTypes, RadarViewActions, LoadRadarsSuccess } from './radar-view.actions';
 import { Action } from '@ngrx/store';
-import { MsalService } from '@azure/msal-angular';
-
-import { MsGraphRepositoryService } from 'src/app/libs/container/service/ms-graph-repository.service';
+import { RadarViewRepositoryService } from '../../service/radar-view-repository.service';
+import { RadarEntity, RadarEntityDto } from '../../model/radar-entity.model';
+import { RadarsConverterService } from '../../service/radars-converter.service';
 
 @Injectable()
 export class RadarViewEffects {
-	/* 	@Effect()
-	public loadRadarConfig$: Observable<Action> = this.actions$.pipe(
-		ofType(RadarViewActionTypes.LoadRadarConfig),
-		switchMap(() => {
-			return this.msGraphRepository.loadUserPhoto().pipe(
-				switchMap((response: HttpResponse<Blob>) => {
-					return this.userPhotoConverter.fromDto(response).pipe(
-						map((base64Photo: string) => {
-							return new LoadRadarConfigSuccess(base64Photo);
-						})
-					);
+	@Effect()
+	public loadRadars$: Observable<Action> = this.actions$.pipe(
+		ofType(RadarViewActionTypes.LoadRadars),
+		switchMap((payload: string) => {
+			return this.radarViewRepository.downloadRadars(payload).pipe(
+				map((dto: RadarEntityDto[]) => {
+					const radarEntities: RadarEntity[] = this.radarsConverterService.fromDto(dto);
+					return new LoadRadarsSuccess(radarEntities);
 				})
 			);
 		})
-	); */
+	);
 
 	constructor(
 		private actions$: Actions<RadarViewActions>,
-		private msGraphRepository: MsGraphRepositoryService,
-		// private userPhotoConverter: UserPhotoConverterService,
-		// private userProfileConverter: UserProfileConverterService,
-		private msalService: MsalService
+		private radarViewRepository: RadarViewRepositoryService,
+		private radarsConverterService: RadarsConverterService
 	) {}
 }

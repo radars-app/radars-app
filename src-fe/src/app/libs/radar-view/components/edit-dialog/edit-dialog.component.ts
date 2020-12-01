@@ -32,6 +32,6 @@ export class EditDialogComponent implements OnInit {
 	}
 
 	public downloadConfigFile() {
-		this.radarViewFacadeSevice.downloadRadarConfigFile(this.radarID);
+		this.radarViewFacadeSevice.downloadRadars(this.radarID);
 	}
 }
