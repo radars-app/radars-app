@@ -8,9 +8,8 @@ export class RadarsConverterService {
 	constructor() {}
 
 	public fromDto(dto: RadarEntityDto[]): RadarEntity[] {
-		console.log('RadarEntityDto', dto);
 		return dto.map((entity: RadarEntityDto) => ({
-			id: entity.id,
+			id: entity.radarId,
 			name: entity.name,
 			lastUpdatedDate: entity.lastUpdatedDate,
 			config: entity.config,

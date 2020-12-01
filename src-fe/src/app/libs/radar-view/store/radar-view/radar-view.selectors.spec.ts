@@ -1,5 +1,4 @@
 import { EntityStatus } from 'src/app/libs/container/model/entity-status';
-import { ComponentTheme } from '../../../common-components/common/enum/component-theme.enum';
 
 import { radarViewFeatureKey } from '../store.module';
 import { selectRadarViewState } from './radar-view.selectors';

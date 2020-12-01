@@ -8,8 +8,10 @@ export interface RadarEntity {
 }
 
 export interface RadarEntityDto {
-	id: string;
+	uid: string;
+	radarId: string;
 	name: string;
 	lastUpdatedDate: string;
+	versionId: string;
 	config: RadarConfig;
 }

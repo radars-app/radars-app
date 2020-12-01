@@ -1,37 +1,46 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
+import { Component, Input, ViewChild } from '@angular/core';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 import { PopoverComponent } from '../../../common-components/popover/popover.component';
 import { ComponentTheme } from '../../../common-components/common/enum/component-theme.enum';
 import { RadarViewFacadeService } from '../../service/radar-view-facade.service';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { RadarEntity } from '../../model/radar-entity.model';
 
 @Component({
 	selector: 'app-radars-edit-dialog',
 	templateUrl: './edit-dialog.component.html',
 	styleUrls: ['./edit-dialog.component.scss'],
 })
-export class EditDialogComponent implements OnInit {
+export class EditDialogComponent {
 	@ViewChild('radarsPopover', { static: true })
 	public readonly radarsPopover: PopoverComponent;
 
 	@Input() public theme: ComponentTheme = ComponentTheme.Light;
 
-	public radarID: string;
+	public radarsURI$: Observable<SafeUrl> = this.radarViewFacadeSevice.activeRadars$.pipe(
+		map((activeRadars: RadarEntity[]) => {
+			const theJSON: string = JSON.stringify(activeRadars);
+			const blob: Blob = new Blob([theJSON], { type: 'text/json' });
+			const url: string = window.URL.createObjectURL(blob);
+			const uri: SafeUrl = this.sanitizer.bypassSecurityTrustUrl(url);
 
-	constructor(private radarViewFacadeSevice: RadarViewFacadeService, private route: ActivatedRoute) {}
+			return uri;
+		})
+	);
 
-	public ngOnInit(): void {
-		this.route.paramMap.pipe(switchMap((params: ParamMap) => params.getAll('id'))).subscribe((radarID: string) => {
-			this.radarID = radarID;
-		});
-	}
+	public radarName$: Observable<string> = this.radarViewFacadeSevice.activeRadars$.pipe(
+		map((activeRadars: RadarEntity[]) => {
+			if (activeRadars) {
+				return activeRadars[0]?.name;
+			}
+		})
+	);
+
+	constructor(private radarViewFacadeSevice: RadarViewFacadeService, private sanitizer: DomSanitizer) {}
 
 	public open(): void {
 		this.radarsPopover.open();
-	}
-
-	public downloadConfigFile() {
-		this.radarViewFacadeSevice.downloadRadars(this.radarID);
 	}
 }

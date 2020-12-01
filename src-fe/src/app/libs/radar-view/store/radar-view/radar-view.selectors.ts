@@ -6,7 +6,7 @@ import { RadarEntity } from '../../model/radar-entity.model';
 
 export const selectRadarViewState: MemoizedSelector<{}, RadarViewState> = createFeatureSelector<RadarViewState>(radarViewFeatureKey);
 
-export const selectUserProfile: MemoizedSelector<RadarViewState, RadarEntity[]> = createSelector(
+export const selectActiveRadars: MemoizedSelector<RadarViewState, RadarEntity[]> = createSelector(
 	selectRadarViewState,
 	(state: RadarViewState) => state.radars.value
 );

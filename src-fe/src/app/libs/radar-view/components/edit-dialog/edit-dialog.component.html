@@ -5,7 +5,13 @@
 			Edit Radar
 		</div>
 		<div class="popover-content">
-			<app-icon-button startIcon="download" (click)="downloadConfigFile()"></app-icon-button>
+			<a
+				[href]="radarsURI$ | async"
+				title="Download radars as JSON"
+				download="{{radarName$ |async}}.config.json">
+				
+					<app-icon-button startIcon="download"></app-icon-button>
+			</a>
 
 		</div>
 		<div class="popover-actions">

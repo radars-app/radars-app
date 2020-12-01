@@ -1,4 +1,4 @@
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MsalService } from '@azure/msal-angular';
 import { AuthResponse } from 'msal';
@@ -15,7 +15,6 @@ export class RadarViewRepositoryService {
 	public downloadRadars(ID: string): Observable<RadarEntityDto[]> {
 		return this.loadToken().pipe(
 			switchMap((token: AuthResponse) => {
-				console.log('repository');
 				const RADARS_ENDPOINT: string = `/api/radars/${ID}`;
 				return this.http.get<RadarEntityDto[]>(RADARS_ENDPOINT, {
 					headers: { Authorization: 'Bearer ' + token.accessToken },
