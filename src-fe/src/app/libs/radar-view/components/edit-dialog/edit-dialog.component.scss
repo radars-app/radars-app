@@ -1,3 +1,31 @@
 .popover-actions__btn {
 	margin-right: 0.5rem;
 }
+
+.popover-content {
+	padding-left: 24px;
+}
+
+.edit-radar-dialog__download-info {
+	color: #5e6670;
+	letter-spacing: 0.48px;
+}
+
+.edit-radar-dialog__download-file-name {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 175px;
+	color: #000;
+	letter-spacing: 0.48px;
+}
+
+.edit-radar-dialog__download-link {
+	text-decoration: none;
+}
+
+.edit-radar-dialog__download-operation {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}

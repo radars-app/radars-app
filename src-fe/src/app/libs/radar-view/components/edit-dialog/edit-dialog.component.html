@@ -5,14 +5,21 @@
 			Edit Radar
 		</div>
 		<div class="popover-content">
-			<a
-				[href]="radarsURI$ | async"
-				title="Download radars as JSON"
-				download="{{radarName$ |async}}.config.json">
-				
-					<app-icon-button startIcon="download"></app-icon-button>
-			</a>
-
+			<div
+			class="edit-radar-dialog__download-info">Radar was created based on .config file:</div>
+			<div class="edit-radar-dialog__download-operation">
+				<div 
+				class="edit-radar-dialog__download-file-name">{{radarName$ |async}}.config</div>
+				<div>
+					<a
+						class="edit-radar-dialog__download-link"
+						[href]="radarsURI$ | async"
+						title="Download radars as JSON"
+						download="{{radarName$ |async}}.config.json">
+							<app-icon-button [startIcon]="'download'">Download</app-icon-button>
+					</a>
+				</div>
+			</div>
 		</div>
 		<div class="popover-actions">
 			<app-button
