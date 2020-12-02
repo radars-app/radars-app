@@ -7,12 +7,12 @@ import { RadarEntity, RadarEntityDto } from '../model/radar-entity.model';
 export class RadarsConverterService {
 	constructor() {}
 
-	public fromDto(dto: RadarEntityDto[]): RadarEntity[] {
-		return dto.map((entity: RadarEntityDto) => ({
-			id: entity.radarId,
-			name: entity.name,
-			lastUpdatedDate: entity.lastUpdatedDate,
-			config: entity.config,
-		}));
+	public fromDto(dto: RadarEntityDto): RadarEntity {
+		return {
+			id: dto.radarId,
+			name: dto.name,
+			lastUpdatedDate: new Date(dto.lastUpdatedDate),
+			config: dto.config,
+		};
 	}
 }

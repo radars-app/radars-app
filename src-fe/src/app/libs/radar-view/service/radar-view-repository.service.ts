@@ -9,13 +9,13 @@ import { RadarEntityDto } from '../model/radar-entity.model';
 @Injectable({
 	providedIn: 'root',
 })
-export class RadarViewRepositoryService {
+export class RadarsRepositoryService {
 	constructor(private authService: MsalService, private http: HttpClient) {}
 
-	public downloadRadars(ID: string): Observable<RadarEntityDto[]> {
+	public downloadRadars(id: string): Observable<RadarEntityDto[]> {
 		return this.loadToken().pipe(
 			switchMap((token: AuthResponse) => {
-				const RADARS_ENDPOINT: string = `/api/radars/${ID}`;
+				const RADARS_ENDPOINT: string = `/api/radars/${id}`;
 				return this.http.get<RadarEntityDto[]>(RADARS_ENDPOINT, {
 					headers: { Authorization: 'Bearer ' + token.accessToken },
 				});

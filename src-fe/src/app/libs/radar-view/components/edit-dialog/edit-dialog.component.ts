@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
@@ -13,32 +13,38 @@ import { RadarEntity } from '../../model/radar-entity.model';
 	templateUrl: './edit-dialog.component.html',
 	styleUrls: ['./edit-dialog.component.scss'],
 })
-export class EditDialogComponent {
+export class EditDialogComponent implements OnInit {
 	@ViewChild('radarsPopover', { static: true })
 	public readonly radarsPopover: PopoverComponent;
 
 	@Input() public theme: ComponentTheme = ComponentTheme.Light;
 
-	public radarsURI$: Observable<SafeUrl> = this.radarViewFacadeSevice.activeRadars$.pipe(
-		map((activeRadars: RadarEntity[]) => {
-			const theJSON: string = JSON.stringify(activeRadars);
-			const blob: Blob = new Blob([theJSON], { type: 'text/json' });
-			const url: string = window.URL.createObjectURL(blob);
-			const uri: SafeUrl = this.sanitizer.bypassSecurityTrustUrl(url);
+	public radarsURI$: Observable<SafeUrl>;
 
-			return uri;
-		})
-	);
-
-	public radarName$: Observable<string> = this.radarViewFacadeSevice.activeRadars$.pipe(
-		map((activeRadars: RadarEntity[]) => {
-			if (activeRadars) {
-				return activeRadars[0]?.name;
-			}
-		})
-	);
+	public radarName$: Observable<string>;
 
 	constructor(private radarViewFacadeSevice: RadarViewFacadeService, private sanitizer: DomSanitizer) {}
+
+	public ngOnInit(): void {
+		this.radarsURI$ = this.radarViewFacadeSevice.activeRadars$.pipe(
+			map((activeRadars: RadarEntity[]) => {
+				const theJSON: string = JSON.stringify(activeRadars);
+				const blob: Blob = new Blob([theJSON], { type: 'text/json' });
+				const url: string = window.URL.createObjectURL(blob);
+				const uri: SafeUrl = this.sanitizer.bypassSecurityTrustUrl(url);
+
+				return uri;
+			})
+		);
+
+		this.radarName$ = this.radarViewFacadeSevice.activeRadars$.pipe(
+			map((activeRadars: RadarEntity[]) => {
+				if (activeRadars) {
+					return activeRadars[0]?.name;
+				}
+			})
+		);
+	}
 
 	public open(): void {
 		this.radarsPopover.open();

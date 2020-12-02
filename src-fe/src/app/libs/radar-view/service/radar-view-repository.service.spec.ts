@@ -1,13 +1,26 @@
+import { HttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
+import { MsalService } from '@azure/msal-angular';
 
-import { RadarViewRepositoryService } from './radar-view-repository.service';
+import { RadarsRepositoryService } from './radar-view-repository.service';
 
-describe('RadarViewRepositoryService', () => {
-	let service: RadarViewRepositoryService;
+describe('RadarsRepositoryService', () => {
+	let service: RadarsRepositoryService;
 
 	beforeEach(() => {
-		TestBed.configureTestingModule({});
-		service = TestBed.inject(RadarViewRepositoryService);
+		TestBed.configureTestingModule({
+			providers: [
+				{
+					provide: MsalService,
+					useValue: {},
+				},
+				{
+					provide: HttpClient,
+					useValue: {},
+				},
+			],
+		});
+		service = TestBed.inject(RadarsRepositoryService);
 	});
 
 	it('should be created', () => {

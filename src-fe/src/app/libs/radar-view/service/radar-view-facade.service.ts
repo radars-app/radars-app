@@ -16,7 +16,7 @@ export class RadarViewFacadeService {
 		return this.store.pipe(select(selectActiveRadars));
 	}
 
-	public downloadRadars(ID: string): void {
-		this.store.dispatch(new LoadRadars(ID));
+	public downloadRadars(id: string): void {
+		this.store.dispatch(new LoadRadars(id));
 	}
 }
