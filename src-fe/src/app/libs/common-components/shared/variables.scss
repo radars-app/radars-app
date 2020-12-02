@@ -64,10 +64,10 @@ $font-main-medium: 'Roboto Medium', sans-serif;
 }
 
 @mixin text-h3() {
-	font-family: $font-main-bold;
-	font-size: 24px;
-	line-height: 28px;
-	letter-spacing: 0;
+	font-family: $font-main-medium;
+	font-size: 20px;
+	line-height: 24px;
+	letter-spacing: 0.48px;
 }
 
 @mixin text-h4() {

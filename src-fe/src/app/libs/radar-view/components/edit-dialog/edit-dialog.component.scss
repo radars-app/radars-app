@@ -1,23 +1,23 @@
+@import 'variables';
+
 .popover-actions__btn {
 	margin-right: 0.5rem;
 }
 
 .popover-content {
-	padding-left: 24px;
+	padding-left: $secondary-grid-unit * 6;
 }
 
 .edit-radar-dialog__download-info {
 	color: #5e6670;
-	letter-spacing: 0.48px;
 }
 
 .edit-radar-dialog__download-file-name {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	max-width: 175px;
+	max-width: $secondary-grid-unit * 44;
 	color: #000;
-	letter-spacing: 0.48px;
 }
 
 .edit-radar-dialog__download-link {
