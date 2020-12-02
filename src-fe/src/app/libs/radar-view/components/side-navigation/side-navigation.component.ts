@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
 import { AccordionItem } from 'src/app/libs/common-components/accordion/models/accordion-item.models';
 import { ComponentTheme } from 'src/app/libs/common-components/common/enum/component-theme.enum';
 import { ContainerFacadeService } from 'src/app/libs/container/service/container-facade.service';
+import { Radar } from '../../model/radar';
+import { RadarViewFacadeService } from '../../service/radar-view-facade.service';
 
 @Component({
 	selector: 'app-side-navigation',
@@ -12,13 +15,19 @@ import { ContainerFacadeService } from 'src/app/libs/container/service/container
 export class SideNavigationComponent implements OnInit {
 	public items: AccordionItem[];
 	public theme$: Observable<ComponentTheme>;
-	public date: Date;
+	public lastUpdatedDate$: Observable<Date>;
 
-	constructor(public containerFacade: ContainerFacadeService) {}
+	constructor(public containerFacade: ContainerFacadeService, private radarViewFacade: RadarViewFacadeService) {}
 
 	public ngOnInit(): void {
 		this.theme$ = this.containerFacade.theme$;
-		this.date = new Date('Thu, 26 Nov 2020 18:17:20 GMT');
+		this.lastUpdatedDate$ = this.radarViewFacade.radars$.pipe(
+			filter((radars: Radar[]) => Boolean(radars)),
+			map((radars: Radar[]) => {
+				return radars[0].lastUpdatedDate;
+			})
+		);
+
 		this.initMockAccordeonItems();
 	}
 

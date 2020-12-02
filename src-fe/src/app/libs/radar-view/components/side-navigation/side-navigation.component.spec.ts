@@ -4,6 +4,7 @@ import { of } from 'rxjs';
 import { CommonComponentsModule } from 'src/app/libs/common-components/common-components.module';
 import { ComponentTheme } from 'src/app/libs/common-components/common/enum/component-theme.enum';
 import { ContainerFacadeService } from 'src/app/libs/container/service/container-facade.service';
+import { RadarViewFacadeService } from '../../service/radar-view-facade.service';
 
 import { SideNavigationComponent } from './side-navigation.component';
 
@@ -19,6 +20,12 @@ describe('SideNavigationComponent', () => {
 					provide: ContainerFacadeService,
 					useValue: {
 						theme$: of(ComponentTheme.Light),
+					},
+				},
+				{
+					provide: RadarViewFacadeService,
+					useValue: {
+						radars$: of([{ lastUpdatedAt: new Date() }]),
 					},
 				},
 			],
