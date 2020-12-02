@@ -20,5 +20,9 @@ export class IconService {
 			'ring_legend_base',
 			this.domSanitizer.bypassSecurityTrustResourceUrl('../../../../../assets/ring_legend_base.svg')
 		);
+		this.matIconRegistry.addSvgIcon(
+			'download',
+			this.domSanitizer.bypassSecurityTrustResourceUrl('../../../../../assets/svg/download.svg')
+		);
 	}
 }
