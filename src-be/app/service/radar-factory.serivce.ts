@@ -17,6 +17,8 @@ export class RadarFactoryService {
 			lastUpdatedDate: new Date().toISOString(),
 			name: config.name,
 			versionId: v4(),
+			rings: config.rings,
+			sectors: config.sectors,
 			config: config
 		};
 	}

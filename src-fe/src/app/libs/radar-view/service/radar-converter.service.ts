@@ -13,6 +13,8 @@ export class RadarConverterService {
 			name: dto.name,
 			lastUpdatedDate: new Date(dto.lastUpdatedDate),
 			config: dto.config,
+			rings: dto.rings,
+			sectors: dto.sectors,
 		};
 	}
 }

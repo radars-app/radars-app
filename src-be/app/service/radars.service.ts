@@ -17,7 +17,9 @@ Windows X,OS,Acceptance,"Content 3 <a href=""mysite.com"">Test</a>"`;
 
 const defaultConfig: RadarConfig = {
 	name: 'Default Radar',
-	csv: defaultCsv
+	csv: defaultCsv,
+	rings: ['Trial', 'Hold', 'Acceptance'],
+	sectors: ['OS', 'Hardware', 'Cloud']
 };
 
 const radars: RadarEntity[] = [];

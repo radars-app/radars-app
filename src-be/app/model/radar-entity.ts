@@ -6,5 +6,7 @@ export interface RadarEntity {
 	name: string;
 	lastUpdatedDate: string;
 	versionId: string;
+	rings: string[];
+	sectors: string[];
 	config: RadarConfig;
 }

@@ -1,4 +1,4 @@
-export const CATEGORY_COLORS: string[] = [
+export const SECTOR_COLORS: string[] = [
 	'#2196F3',
 	'#D47500',
 	'#8D7D67',

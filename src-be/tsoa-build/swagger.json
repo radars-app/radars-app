@@ -47,12 +47,26 @@
 					"name": {
 						"type": "string"
 					},
+					"rings": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"sectors": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
 					"csv": {
 						"type": "string"
 					}
 				},
 				"required": [
 					"name",
+					"rings",
+					"sectors",
 					"csv"
 				],
 				"type": "object",
@@ -75,6 +89,18 @@
 					"versionId": {
 						"type": "string"
 					},
+					"rings": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"sectors": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
 					"config": {
 						"$ref": "#/components/schemas/RadarConfig"
 					}
@@ -85,6 +111,8 @@
 					"name",
 					"lastUpdatedDate",
 					"versionId",
+					"rings",
+					"sectors",
 					"config"
 				],
 				"type": "object",

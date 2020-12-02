@@ -2,9 +2,9 @@
 	<div class="radar-chart-legend__section legend-section">
 		<div class="legend-section__label">Sectors:</div>
 		<div class="legend-section__content">
-			<div class="legend" *ngFor="let sector of sectors">
+			<div class="legend" *ngFor="let sector of (sectors$ | async)">
 				<div class="legend__icon">
-					<div class="color-rect" style="background-color: #638BB3"></div>
+					<div class="color-rect" [style.background-color]="sectorToColorConverter.getColorBySector(sector)"></div>
 				</div>
 				<div class="legend__label">{{sector}}</div>
 			</div>
@@ -13,7 +13,7 @@
 	<div class="radar-chart-legend__section">
 		<div class="legend-section__label">Rings:</div>
 		<div class="legend-section__content">
-			<div class="legend" *ngFor="let ring of rings; let last = last;">
+			<div class="legend" *ngFor="let ring of (rings$ | async); let last = last;">
 				<div class="legend__icon">
 					<app-icon class="ring-icon" [icon]="getRingIcon(last)" size="extra-small"></app-icon>
 				</div>

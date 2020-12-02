@@ -13,6 +13,7 @@ import { RadarChartLegendComponent } from './components/radar-chart-legend/radar
 import { RadarChartComponent } from './components/radar-chart/radar-chart.component';
 import { ActivatedRoute, convertToParamMap } from '@angular/router';
 import { RadarViewFacadeService } from './service/radar-view-facade.service';
+import { SectorToColorConverterService } from './service/sector-to-color-converter.service';
 
 describe('RadarViewComponent', () => {
 	let component: RadarViewComponent;
@@ -28,6 +29,7 @@ describe('RadarViewComponent', () => {
 				RadarChartComponent,
 			],
 			providers: [
+				SectorToColorConverterService,
 				{
 					provide: ContainerFacadeService,
 					useValue: {

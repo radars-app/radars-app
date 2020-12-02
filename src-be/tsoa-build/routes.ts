@@ -29,6 +29,8 @@ const models: TsoaRoute.Models = {
         "dataType": "refObject",
         "properties": {
             "name": {"dataType":"string","required":true},
+            "rings": {"dataType":"array","array":{"dataType":"string"},"required":true},
+            "sectors": {"dataType":"array","array":{"dataType":"string"},"required":true},
             "csv": {"dataType":"string","required":true},
         },
         "additionalProperties": false,
@@ -42,6 +44,8 @@ const models: TsoaRoute.Models = {
             "name": {"dataType":"string","required":true},
             "lastUpdatedDate": {"dataType":"string","required":true},
             "versionId": {"dataType":"string","required":true},
+            "rings": {"dataType":"array","array":{"dataType":"string"},"required":true},
+            "sectors": {"dataType":"array","array":{"dataType":"string"},"required":true},
             "config": {"ref":"RadarConfig","required":true},
         },
         "additionalProperties": false,

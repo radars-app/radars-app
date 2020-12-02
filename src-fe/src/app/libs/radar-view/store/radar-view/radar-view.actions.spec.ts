@@ -12,9 +12,13 @@ describe('RadarView', () => {
 					id: '1',
 					name: 'Radar',
 					lastUpdatedDate: new Date('12/1/2020'),
+					rings: [],
+					sectors: [],
 					config: {
 						name: 'RADAR',
 						csv: 'csv',
+						rings: [],
+						sectors: [],
 					},
 				},
 			])

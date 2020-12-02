@@ -4,6 +4,8 @@ export interface Radar {
 	id: string;
 	name: string;
 	lastUpdatedDate: Date;
+	rings: string[];
+	sectors: string[];
 	config: RadarConfig;
 }
 
@@ -13,5 +15,7 @@ export interface RadarDto {
 	name: string;
 	lastUpdatedDate: string;
 	versionId: string;
+	rings: string[];
+	sectors: string[];
 	config: RadarConfig;
 }
