@@ -1,13 +1,13 @@
-import { RadarConfig } from './radar-config.model';
+import { RadarConfig } from './radar-config';
 
-export interface RadarEntity {
+export interface Radar {
 	id: string;
 	name: string;
 	lastUpdatedDate: Date;
 	config: RadarConfig;
 }
 
-export interface RadarEntityDto {
+export interface RadarDto {
 	uid: string;
 	radarId: string;
 	name: string;

@@ -2,11 +2,17 @@ import { createFeatureSelector, createSelector, MemoizedSelector } from '@ngrx/s
 
 import { radarViewFeatureKey } from '../store.module';
 import { RadarViewState } from './radar-view.state';
-import { RadarEntity } from '../../model/radar-entity.model';
+import { Radar } from '../../model/radar';
+import { RadarDataItem } from '../../model/radar-data-item';
 
 export const selectRadarViewState: MemoizedSelector<{}, RadarViewState> = createFeatureSelector<RadarViewState>(radarViewFeatureKey);
 
-export const selectActiveRadars: MemoizedSelector<RadarViewState, RadarEntity[]> = createSelector(
+export const selectRadars: MemoizedSelector<RadarViewState, Radar[]> = createSelector(
 	selectRadarViewState,
 	(state: RadarViewState) => state.radars.value
+);
+
+export const selectRadarDataItems: MemoizedSelector<RadarViewState, RadarDataItem[]> = createSelector(
+	selectRadarViewState,
+	(state: RadarViewState) => state.radarDataItems.value
 );

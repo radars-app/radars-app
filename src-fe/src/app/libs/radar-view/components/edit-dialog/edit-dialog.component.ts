@@ -6,7 +6,7 @@ import { PopoverComponent } from '../../../common-components/popover/popover.com
 import { ComponentTheme } from '../../../common-components/common/enum/component-theme.enum';
 import { RadarViewFacadeService } from '../../service/radar-view-facade.service';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { RadarEntity } from '../../model/radar-entity.model';
+import { Radar } from '../../model/radar';
 
 @Component({
 	selector: 'app-radars-edit-dialog',
@@ -26,8 +26,8 @@ export class EditDialogComponent implements OnInit {
 	constructor(private radarViewFacadeSevice: RadarViewFacadeService, private sanitizer: DomSanitizer) {}
 
 	public ngOnInit(): void {
-		this.radarsURI$ = this.radarViewFacadeSevice.activeRadars$.pipe(
-			map((activeRadars: RadarEntity[]) => {
+		this.radarsURI$ = this.radarViewFacadeSevice.radars$.pipe(
+			map((activeRadars: Radar[]) => {
 				const theJSON: string = JSON.stringify(activeRadars);
 				const blob: Blob = new Blob([theJSON], { type: 'text/json' });
 				const url: string = window.URL.createObjectURL(blob);
@@ -37,8 +37,8 @@ export class EditDialogComponent implements OnInit {
 			})
 		);
 
-		this.radarName$ = this.radarViewFacadeSevice.activeRadars$.pipe(
-			map((activeRadars: RadarEntity[]) => {
+		this.radarName$ = this.radarViewFacadeSevice.radars$.pipe(
+			map((activeRadars: Radar[]) => {
 				if (activeRadars) {
 					return activeRadars[0]?.name;
 				}

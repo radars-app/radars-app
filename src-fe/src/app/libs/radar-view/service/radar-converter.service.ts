@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { RadarEntity, RadarEntityDto } from '../model/radar-entity.model';
+import { Radar, RadarDto } from '../model/radar';
 
 @Injectable({
 	providedIn: 'root',
 })
-export class RadarsConverterService {
+export class RadarConverterService {
 	constructor() {}
 
-	public fromDto(dto: RadarEntityDto): RadarEntity {
+	public fromDto(dto: RadarDto): Radar {
 		return {
 			id: dto.radarId,
 			name: dto.name,

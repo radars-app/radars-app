@@ -3,6 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { MsalService } from '@azure/msal-angular';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable } from 'rxjs';
+import { RadarViewFacadeService } from '../../service/radar-view-facade.service';
 
 import { RadarViewEffects } from './radar-view.effects';
 
@@ -22,6 +23,12 @@ describe('RadarViewEffects', () => {
 				{
 					provide: HttpClient,
 					useValue: {},
+				},
+				{
+					provide: RadarViewFacadeService,
+					useValue: {
+						loadRadarDataItems: jasmine.createSpy().and.stub(),
+					},
 				},
 			],
 		});

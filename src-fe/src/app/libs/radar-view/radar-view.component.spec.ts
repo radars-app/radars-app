@@ -47,7 +47,7 @@ describe('RadarViewComponent', () => {
 				{
 					provide: RadarViewFacadeService,
 					useValue: {
-						activeRadars$: of([
+						radars$: of([
 							{
 								id: '1',
 								name: 'Radar1',
@@ -58,7 +58,7 @@ describe('RadarViewComponent', () => {
 								},
 							},
 						]),
-						downloadRadars: () => {},
+						loadRadars: jasmine.createSpy().and.stub(),
 					},
 				},
 			],

@@ -37,7 +37,7 @@ export class RadarViewComponent implements OnInit, OnDestroy {
 				takeUntil(this.destroy$)
 			)
 			.subscribe((radarId: string) => {
-				this.radarViewFacadeSevice.downloadRadars(radarId);
+				this.radarViewFacadeSevice.loadRadars(radarId);
 			});
 	}
 

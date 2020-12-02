@@ -6,7 +6,7 @@ const parse: Function = require('csv-parse/lib/sync');
 export class CsvParserService {
 	public parseDefaultDataScheme(csv: string): DefaultCsvSchemeRecord[] {
 		const records: DefaultCsvSchemeRecord[] = parse(csv, {
-			columns: ['name', 'ring', 'sector', 'content'],
+			columns: ['name', 'sector', 'ring', 'content'],
 			skip_empty_lines: true
 		});
 

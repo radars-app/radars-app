@@ -12,11 +12,19 @@ describe('Radar-view Selectors', () => {
 					value: null,
 					status: EntityStatus.Init,
 				},
+				radarDataItems: {
+					value: null,
+					status: EntityStatus.Init,
+				},
 			},
 		});
 
 		expect(result).toEqual({
 			radars: {
+				value: null,
+				status: EntityStatus.Init,
+			},
+			radarDataItems: {
 				value: null,
 				status: EntityStatus.Init,
 			},

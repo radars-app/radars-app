@@ -21,13 +21,13 @@ describe('EditDialogComponent', () => {
 				{
 					provide: RadarViewFacadeService,
 					useValue: {
-						activeRadars$: of([
+						radars$: of([
 							{
 								id: '1',
 								name: radarName,
 								lastUpdatedDate: '12/1/2020',
 								config: {
-									name: 'Radar1',
+									name: radarName,
 									csv: 'string',
 								},
 							},
