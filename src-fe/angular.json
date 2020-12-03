@@ -31,7 +31,8 @@
             ],
             "styles": [
               "src/styles.scss",
-							"src/app-theme.scss"
+							"src/app-theme.scss",
+							"node_modules/radar-chart-project/dist/style.css"
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
