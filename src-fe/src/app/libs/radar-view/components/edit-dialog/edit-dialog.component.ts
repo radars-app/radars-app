@@ -23,6 +23,8 @@ export class EditDialogComponent implements OnInit {
 
 	public radarName$: Observable<string>;
 
+	public files: File[] = [];
+
 	constructor(private radarViewFacadeSevice: RadarViewFacadeService, private sanitizer: DomSanitizer) {}
 
 	public ngOnInit(): void {
@@ -48,5 +50,42 @@ export class EditDialogComponent implements OnInit {
 
 	public open(): void {
 		this.radarsPopover.open();
+	}
+
+	public edit(): void {
+		const reader: FileReader = new FileReader();
+		reader.readAsText(this.files[0]);
+
+		reader.onload = () => {
+			const parsedJSON: Radar[] = JSON.parse(reader.result as string);
+
+			this.radarViewFacadeSevice.uploadRadar(parsedJSON);
+			this.radarsPopover.close();
+		};
+	}
+
+	/**
+	 * on file drop handler
+	 */
+	public onFileDropped($event: File[]): void {
+		this.prepareFilesList($event);
+	}
+
+	/**
+	 * handle file from browsing
+	 */
+	public fileBrowseHandler(files: File[]): void {
+		this.prepareFilesList(files);
+	}
+
+	public deleteFile(index: number): void {
+		this.files.splice(index, 1);
+	}
+
+	private prepareFilesList(files: any[]): void {
+		for (const item of files) {
+			item.progress = 0;
+			this.files.push(item);
+		}
 	}
 }

@@ -4,7 +4,7 @@ import { MsalService } from '@azure/msal-angular';
 import { AuthResponse } from 'msal';
 import { from, Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { RadarDto } from '../model/radar';
+import { Radar, RadarDto } from '../model/radar';
 import { RadarDataItemDto } from '../model/radar-data-item';
 
 @Injectable({
@@ -31,6 +31,27 @@ export class RadarsRepositoryService {
 				return this.http.get<RadarDataItemDto[]>(RADARS_ENDPOINT, {
 					headers: { Authorization: 'Bearer ' + token.accessToken },
 				});
+			})
+		);
+	}
+
+	public uploadRadar(radars: Radar[]): Observable<RadarDto> {
+		return this.loadToken().pipe(
+			switchMap((token: AuthResponse) => {
+				const lastIndex: number = radars.length - 1;
+				const RADARS_ENDPOINT: string = `/api/radars/${radars[lastIndex].id}`;
+				return this.http.post<RadarDto>(
+					RADARS_ENDPOINT,
+					{
+						name: radars[lastIndex].name,
+						rings: radars[lastIndex].rings,
+						sectors: radars[lastIndex].sectors,
+						csv: radars[lastIndex].config.csv,
+					},
+					{
+						headers: { Authorization: 'Bearer ' + token.accessToken },
+					}
+				);
 			})
 		);
 	}
