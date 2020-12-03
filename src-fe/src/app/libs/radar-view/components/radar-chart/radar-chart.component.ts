@@ -3,7 +3,6 @@ import { RadarChartConfig, RadarChartModel, RadarChartRenderer } from 'radar-cha
 import { BehaviorSubject } from 'rxjs';
 import { ComponentTheme } from 'src/app/libs/common-components/common/enum/component-theme.enum';
 import { ContainerFacadeService } from 'src/app/libs/container/service/container-facade.service';
-
 import { RadarDataItem } from '../../model/radar-data-item';
 import { SECTOR_COLORS } from '../../model/sector-colors';
 
@@ -409,7 +408,8 @@ export class RadarChartComponent implements OnInit, AfterViewInit {
 	private handleThemeChange(): void {
 		const lightConfig: RadarChartConfig = new RadarChartConfig();
 		const darkConfig: RadarChartConfig = new RadarChartConfig();
-		const primaryFontFamily: string = "'Roboto Regular', sans-serif";
+
+		const primaryFontFamily: string = `${'Roboto Regular'}, sans-serif`;
 
 		lightConfig.ringsConfig.labelsConfig.fontFamily = primaryFontFamily;
 		lightConfig.dotsConfig.numberFontFamily = primaryFontFamily;
