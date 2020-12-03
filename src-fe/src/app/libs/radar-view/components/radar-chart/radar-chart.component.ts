@@ -3,8 +3,9 @@ import { RadarChartConfig, RadarChartModel, RadarChartRenderer } from 'radar-cha
 import { BehaviorSubject } from 'rxjs';
 import { ComponentTheme } from 'src/app/libs/common-components/common/enum/component-theme.enum';
 import { ContainerFacadeService } from 'src/app/libs/container/service/container-facade.service';
-import { CATEGORY_COLORS } from '../../model/category-colors';
+
 import { RadarDataItem } from '../../model/radar-data-item';
+import { SECTOR_COLORS } from '../../model/sector-colors';
 
 @Component({
 	selector: 'app-radar-chart',
@@ -49,23 +50,23 @@ export class RadarChartComponent implements OnInit, AfterViewInit {
 			[
 				{
 					name: 'OS',
-					color: CATEGORY_COLORS['0'],
+					color: SECTOR_COLORS['0'],
 				},
 				{
 					name: 'Hardware',
-					color: CATEGORY_COLORS['1'],
+					color: SECTOR_COLORS['1'],
 				},
 				{
 					name: 'Devices',
-					color: CATEGORY_COLORS['3'],
+					color: SECTOR_COLORS['3'],
 				},
 				{
 					name: 'Platforms',
-					color: CATEGORY_COLORS['4'],
+					color: SECTOR_COLORS['4'],
 				},
 				{
 					name: 'Cloud',
-					color: CATEGORY_COLORS['2'],
+					color: SECTOR_COLORS['2'],
 				},
 			].reverse()
 		);
