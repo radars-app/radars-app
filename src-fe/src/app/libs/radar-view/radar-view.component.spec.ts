@@ -11,6 +11,9 @@ import { IconService } from '../common-components/icon/service/icon.service';
 import { HttpClientModule } from '@angular/common/http';
 import { RadarChartLegendComponent } from './components/radar-chart-legend/radar-chart-legend.component';
 import { RadarChartComponent } from './components/radar-chart/radar-chart.component';
+import { ActivatedRoute, convertToParamMap } from '@angular/router';
+import { RadarViewFacadeService } from './service/radar-view-facade.service';
+import { SectorToColorConverterService } from './service/sector-to-color-converter.service';
 
 describe('RadarViewComponent', () => {
 	let component: RadarViewComponent;
@@ -26,10 +29,38 @@ describe('RadarViewComponent', () => {
 				RadarChartComponent,
 			],
 			providers: [
+				SectorToColorConverterService,
 				{
 					provide: ContainerFacadeService,
 					useValue: {
 						theme$: of(ComponentTheme.Light),
+					},
+				},
+				{
+					provide: ActivatedRoute,
+					useValue: {
+						paramMap: of(
+							convertToParamMap({
+								id: '1',
+							})
+						),
+					},
+				},
+				{
+					provide: RadarViewFacadeService,
+					useValue: {
+						radars$: of([
+							{
+								id: '1',
+								name: 'Radar1',
+								lastUpdatedDate: '12/1/2020',
+								config: {
+									name: 'Radar1',
+									csv: 'string',
+								},
+							},
+						]),
+						loadRadars: jasmine.createSpy().and.stub(),
 					},
 				},
 			],

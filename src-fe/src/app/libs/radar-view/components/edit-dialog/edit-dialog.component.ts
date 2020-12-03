@@ -1,6 +1,12 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { PopoverComponent } from 'src/app/libs/common-components/popover/popover.component';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+
+import { PopoverComponent } from '../../../common-components/popover/popover.component';
 import { ComponentTheme } from '../../../common-components/common/enum/component-theme.enum';
+import { RadarViewFacadeService } from '../../service/radar-view-facade.service';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { Radar } from '../../model/radar';
 
 @Component({
 	selector: 'app-radars-edit-dialog',
@@ -13,9 +19,32 @@ export class EditDialogComponent implements OnInit {
 
 	@Input() public theme: ComponentTheme = ComponentTheme.Light;
 
-	constructor() {}
+	public radarsURI$: Observable<SafeUrl>;
 
-	public ngOnInit(): void {}
+	public radarName$: Observable<string>;
+
+	constructor(private radarViewFacadeSevice: RadarViewFacadeService, private sanitizer: DomSanitizer) {}
+
+	public ngOnInit(): void {
+		this.radarsURI$ = this.radarViewFacadeSevice.radars$.pipe(
+			map((activeRadars: Radar[]) => {
+				const theJSON: string = JSON.stringify(activeRadars);
+				const blob: Blob = new Blob([theJSON], { type: 'text/json' });
+				const url: string = window.URL.createObjectURL(blob);
+				const uri: SafeUrl = this.sanitizer.bypassSecurityTrustUrl(url);
+
+				return uri;
+			})
+		);
+
+		this.radarName$ = this.radarViewFacadeSevice.radars$.pipe(
+			map((activeRadars: Radar[]) => {
+				if (activeRadars) {
+					return activeRadars[0]?.name;
+				}
+			})
+		);
+	}
 
 	public open(): void {
 		this.radarsPopover.open();

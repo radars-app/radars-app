@@ -5,6 +5,8 @@ import { CommonComponentsModule } from 'src/app/libs/common-components/common-co
 import { ComponentTheme } from 'src/app/libs/common-components/common/enum/component-theme.enum';
 import { IconService } from 'src/app/libs/common-components/icon/service/icon.service';
 import { ContainerFacadeService } from 'src/app/libs/container/service/container-facade.service';
+import { RadarViewFacadeService } from '../../service/radar-view-facade.service';
+import { SectorToColorConverterService } from '../../service/sector-to-color-converter.service';
 
 import { RadarChartLegendComponent } from './radar-chart-legend.component';
 
@@ -20,6 +22,28 @@ describe('RadarChartLegendComponent', () => {
 					provide: ContainerFacadeService,
 					useValue: {
 						theme$: of(ComponentTheme.Light),
+					},
+				},
+				{
+					provide: SectorToColorConverterService,
+					useValue: {
+						getColorBySector: jasmine.createSpy().and.returnValue('#123123'),
+					},
+				},
+				{
+					provide: RadarViewFacadeService,
+					useValue: {
+						radars$: of([
+							{
+								id: '1',
+								name: 'radarName',
+								lastUpdatedDate: '12/1/2020',
+								config: {
+									name: 'radarName',
+									csv: 'string',
+								},
+							},
+						]),
 					},
 				},
 			],
