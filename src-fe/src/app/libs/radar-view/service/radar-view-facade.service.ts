@@ -17,7 +17,7 @@ export class RadarViewFacadeService {
 		return this.store.pipe(select(selectRadars));
 	}
 
-	public get radarDataItems(): Observable<RadarDataItem[]> {
+	public get radarDataItems$(): Observable<RadarDataItem[]> {
 		return this.store.pipe(select(selectRadarDataItems));
 	}
 

@@ -5,6 +5,7 @@ import { CommonComponentsModule } from 'src/app/libs/common-components/common-co
 import { ComponentTheme } from 'src/app/libs/common-components/common/enum/component-theme.enum';
 import { ContainerFacadeService } from 'src/app/libs/container/service/container-facade.service';
 import { RadarViewFacadeService } from '../../service/radar-view-facade.service';
+import { SectorToColorConverterService } from '../../service/sector-to-color-converter.service';
 
 import { SideNavigationComponent } from './side-navigation.component';
 
@@ -25,7 +26,14 @@ describe('SideNavigationComponent', () => {
 				{
 					provide: RadarViewFacadeService,
 					useValue: {
-						radars$: of([{ lastUpdatedAt: new Date() }]),
+						radars$: of([{ lastUpdatedAt: new Date(), sectors: [] }]),
+						radarDataItems$: of([]),
+					},
+				},
+				{
+					provide: SectorToColorConverterService,
+					useValue: {
+						getColorBySector: jasmine.createSpy().and.returnValue('#123123'),
 					},
 				},
 			],

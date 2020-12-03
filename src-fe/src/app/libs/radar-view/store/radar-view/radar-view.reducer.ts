@@ -8,7 +8,7 @@ export const initialState: RadarViewState = {
 		status: EntityStatus.Init,
 	},
 	radarDataItems: {
-		value: null,
+		value: [],
 		status: EntityStatus.Init,
 	},
 };

@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { combineLatest, Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { AccordionItem } from 'src/app/libs/common-components/accordion/models/accordion-item.models';
 import { ComponentTheme } from 'src/app/libs/common-components/common/enum/component-theme.enum';
 import { ContainerFacadeService } from 'src/app/libs/container/service/container-facade.service';
 import { Radar } from '../../model/radar';
+import { RadarDataItem } from '../../model/radar-data-item';
 import { RadarViewFacadeService } from '../../service/radar-view-facade.service';
+import { SectorToColorConverterService } from '../../service/sector-to-color-converter.service';
 
 @Component({
 	selector: 'app-side-navigation',
@@ -13,378 +15,51 @@ import { RadarViewFacadeService } from '../../service/radar-view-facade.service'
 	styleUrls: ['./side-navigation.component.scss'],
 })
 export class SideNavigationComponent implements OnInit {
-	public items: AccordionItem[];
 	public theme$: Observable<ComponentTheme>;
 	public lastUpdatedDate$: Observable<Date>;
+	public items$: Observable<AccordionItem[]>;
+	public radar$: Observable<Radar>;
 
-	constructor(public containerFacade: ContainerFacadeService, private radarViewFacade: RadarViewFacadeService) {}
+	constructor(
+		public containerFacade: ContainerFacadeService,
+		private radarViewFacade: RadarViewFacadeService,
+		private sectorToColorConverter: SectorToColorConverterService
+	) {}
 
 	public ngOnInit(): void {
 		this.theme$ = this.containerFacade.theme$;
-		this.lastUpdatedDate$ = this.radarViewFacade.radars$.pipe(
+
+		this.radar$ = this.radarViewFacade.radars$.pipe(
 			filter((radars: Radar[]) => Boolean(radars)),
 			map((radars: Radar[]) => {
-				return radars[0].lastUpdatedDate;
+				return radars[radars.length - 1];
 			})
 		);
 
-		this.initMockAccordeonItems();
-	}
+		this.lastUpdatedDate$ = this.radar$.pipe(
+			map((radar: Radar) => {
+				return radar.lastUpdatedDate;
+			})
+		);
 
-	private initMockAccordeonItems(): void {
-		this.items = [
-			{
-				title: 'Techniques',
-				opened: false,
-				color: '#123123',
-				children: [
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC1',
-					},
-				],
-			},
-			{
-				title: 'Startups',
-				opened: false,
-				color: 'violet',
-				children: [
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC71',
-					},
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC72',
-					},
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC73',
-					},
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC74',
-					},
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC7',
-					},
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC7',
-					},
-				],
-			},
-			{
-				title: 'Startups',
-				opened: false,
-				color: 'violet',
-				children: [
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC71',
-					},
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC72',
-					},
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC73',
-					},
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC74',
-					},
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC7',
-					},
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC7',
-					},
-				],
-			},
-			{
-				title: 'Startups',
-				opened: false,
-				color: 'violet',
-				children: [
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC71',
-					},
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC72',
-					},
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC73',
-					},
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC74',
-					},
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC7',
-					},
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC7',
-					},
-				],
-			},
-			{
-				title: 'Startups',
-				opened: false,
-				color: 'violet',
-				children: [
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC71',
-					},
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC72',
-					},
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC73',
-					},
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC74',
-					},
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC7',
-					},
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC7',
-					},
-				],
-			},
-			{
-				title: 'Startups',
-				opened: false,
-				color: 'violet',
-				children: [
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC71',
-					},
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC72',
-					},
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC73',
-					},
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC74',
-					},
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC7',
-					},
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC7',
-					},
-				],
-			},
-			{
-				title: 'Startups',
-				opened: false,
-				color: 'violet',
-				children: [
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC71',
-					},
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC72',
-					},
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC73',
-					},
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC74',
-					},
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC7',
-					},
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC7',
-					},
-				],
-			},
-			{
-				title: 'Startups',
-				opened: false,
-				color: 'violet',
-				children: [
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC71',
-					},
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC72',
-					},
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC73',
-					},
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC74',
-					},
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC7',
-					},
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC7',
-					},
-				],
-			},
-			{
-				title: 'Startups',
-				opened: false,
-				color: 'violet',
-				children: [
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC71',
-					},
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC72',
-					},
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC73',
-					},
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC74',
-					},
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC7',
-					},
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC7',
-					},
-				],
-			},
-			{
-				title: 'Startups',
-				opened: false,
-				color: 'violet',
-				children: [
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC71',
-					},
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC72',
-					},
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC73',
-					},
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC74',
-					},
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC7',
-					},
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC7',
-					},
-				],
-			},
-			{
-				title: 'Startups',
-				opened: false,
-				color: 'violet',
-				children: [
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC71',
-					},
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC72',
-					},
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC73',
-					},
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC74',
-					},
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC7',
-					},
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC7',
-					},
-				],
-			},
-			{
-				title: 'Startups',
-				opened: false,
-				color: 'violet',
-				children: [
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC71',
-					},
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC72',
-					},
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC73',
-					},
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC74',
-					},
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC7',
-					},
-					{
-						title: 'Sequrity policy as code',
-						id: 'SPAC7',
-					},
-				],
-			},
-		];
+		this.items$ = combineLatest([this.radar$, this.radarViewFacade.radarDataItems$]).pipe(
+			map(([radar, items]: [Radar, RadarDataItem[]]) => {
+				return radar.sectors.map((sector: string) => {
+					return {
+						title: sector,
+						opened: false,
+						color: this.sectorToColorConverter.getColorBySector(sector),
+						children: items
+							.filter((item: RadarDataItem) => item.sector === sector)
+							.map((item: RadarDataItem) => {
+								return {
+									id: item.id,
+									title: item.name,
+								};
+							}),
+					};
+				});
+			})
+		);
 	}
 }
