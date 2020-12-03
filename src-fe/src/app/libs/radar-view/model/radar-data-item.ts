@@ -6,13 +6,14 @@ export interface RadarDataItemDto {
 	sector: string;
 	ring: string;
 	content: string;
+	number: number;
 }
 
 export interface RadarDataItem {
 	id: string;
-	number: number;
 	name: string;
 	sector: string;
 	ring: string;
 	content: string;
+	number: number;
 }

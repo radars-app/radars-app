@@ -3,6 +3,8 @@ import { RadarChartConfig, RadarChartModel, RadarChartRenderer } from 'radar-cha
 import { BehaviorSubject } from 'rxjs';
 import { ComponentTheme } from 'src/app/libs/common-components/common/enum/component-theme.enum';
 import { ContainerFacadeService } from 'src/app/libs/container/service/container-facade.service';
+import { RadarDataItem } from '../../model/radar-data-item';
+import { SECTOR_COLORS } from '../../model/sector-colors';
 
 @Component({
 	selector: 'app-radar-chart',
@@ -42,22 +44,309 @@ export class RadarChartComponent implements OnInit, AfterViewInit {
 
 	private handleModelChange(): void {
 		this.model = new RadarChartModel();
-		this.model.ringNames$.next(['Hold', 'Assess', 'Trial', 'Adopt', 'Add', 'Pad'].reverse());
-		this.model.sectorNames$.next([
-			'Technologies',
-			'Startups',
-			'Libraries',
-			'Devices',
-			'Languages-And-Frameworks',
-			'Tools',
-			'Platforms',
-			'Techniques',
-		]);
+		this.model.ringNames$.next(['Acceptance', 'Trial', 'Hold', 'Archive']);
+		this.model.sectors$.next(
+			[
+				{
+					name: 'OS',
+					color: SECTOR_COLORS['0'],
+				},
+				{
+					name: 'Hardware',
+					color: SECTOR_COLORS['1'],
+				},
+				{
+					name: 'Devices',
+					color: SECTOR_COLORS['3'],
+				},
+				{
+					name: 'Platforms',
+					color: SECTOR_COLORS['4'],
+				},
+				{
+					name: 'Cloud',
+					color: SECTOR_COLORS['2'],
+				},
+			].reverse()
+		);
+
+		const dots: RadarDataItem[] = [
+			{
+				id: 'test0',
+				name: 'Linux',
+				sector: 'Hardware',
+				ring: 'Archive',
+				content: 'Content test <a href="mysite.com">Test, with comma</a>',
+				number: 266,
+			},
+			{
+				id: 'test0',
+				name: 'Linux',
+				sector: 'Platforms',
+				ring: 'Trial',
+				content: 'Content test <a href="mysite.com">Test, with comma</a>',
+				number: 2,
+			},
+			{
+				id: 'test0',
+				name: 'Linux',
+				sector: 'Devices',
+				ring: 'Trial',
+				content: 'Content test <a href="mysite.com">Test, with comma</a>',
+				number: 3,
+			},
+			{
+				id: 'test0',
+				name: 'Linux',
+				sector: 'OS',
+				ring: 'Trial',
+				content: 'Content test <a href="mysite.com">Test, with comma</a>',
+				number: 4,
+			},
+			{
+				id: 'test0',
+				name: 'Linux',
+				sector: 'OS',
+				ring: 'Trial',
+				content: 'Content test <a href="mysite.com">Test, with comma</a>',
+				number: 5,
+			},
+			{
+				id: 'test0',
+				name: 'Linux',
+				sector: 'Devices',
+				ring: 'Archive',
+				content: 'Content test <a href="mysite.com">Test, with comma</a>',
+				number: 6,
+			},
+			{
+				id: 'test0',
+				name: 'Linux',
+				sector: 'Devices',
+				ring: 'Archive',
+				content: 'Content test <a href="mysite.com">Test, with comma</a>',
+				number: 7,
+			},
+			{
+				id: 'test0',
+				name: 'Linux',
+				sector: 'Devices',
+				ring: 'Archive',
+				content: 'Content test <a href="mysite.com">Test, with comma</a>',
+				number: 8,
+			},
+			{
+				id: 'test0',
+				name: 'Linux',
+				sector: 'Devices',
+				ring: 'Archive',
+				content: 'Content test <a href="mysite.com">Test, with comma</a>',
+				number: 9,
+			},
+			{
+				id: 'test0',
+				name: 'Linux',
+				sector: 'Platforms',
+				ring: 'Trial',
+				content: 'Content test <a href="mysite.com">Test, with comma</a>',
+				number: 10,
+			},
+			{
+				id: 'test0',
+				name: 'Linux',
+				sector: 'Platforms',
+				ring: 'Trial',
+				content: 'Content test <a href="mysite.com">Test, with comma</a>',
+				number: 11,
+			},
+			{
+				id: 'test0',
+				name: 'Linux',
+				sector: 'Platforms',
+				ring: 'Trial',
+				content: 'Content test <a href="mysite.com">Test, with comma</a>',
+				number: 12,
+			},
+			{
+				id: 'test0',
+				name: 'Linux',
+				sector: 'Platforms',
+				ring: 'Trial',
+				content: 'Content test <a href="mysite.com">Test, with comma</a>',
+				number: 13,
+			},
+			{
+				id: 'test0',
+				name: 'Linux',
+				sector: 'Platforms',
+				ring: 'Trial',
+				content: 'Content test <a href="mysite.com">Test, with comma</a>',
+				number: 14,
+			},
+			{
+				id: 'test0',
+				name: 'Linux',
+				sector: 'Platforms',
+				ring: 'Trial',
+				content: 'Content test <a href="mysite.com">Test, with comma</a>',
+				number: 15,
+			},
+			{
+				id: 'test0',
+				name: 'Linux',
+				sector: 'Cloud',
+				ring: 'Hold',
+				content: 'Content test <a href="mysite.com">Test, with comma</a>',
+				number: 16,
+			},
+			{
+				id: 'test0',
+				name: 'Linux',
+				sector: 'Cloud',
+				ring: 'Hold',
+				content: 'Content test <a href="mysite.com">Test, with comma</a>',
+				number: 17,
+			},
+			{
+				id: 'test0',
+				name: 'Linux',
+				sector: 'Cloud',
+				ring: 'Hold',
+				content: 'Content test <a href="mysite.com">Test, with comma</a>',
+				number: 18,
+			},
+			{
+				id: 'test0',
+				name: 'Linux',
+				sector: 'Cloud',
+				ring: 'Hold',
+				content: 'Content test <a href="mysite.com">Test, with comma</a>',
+				number: 19,
+			},
+			{
+				id: 'test0',
+				name: 'Linux',
+				sector: 'Cloud',
+				ring: 'Trial',
+				content: 'Content test <a href="mysite.com">Test, with comma</a>',
+				number: 20,
+			},
+			{
+				id: 'test0',
+				name: 'Linux',
+				sector: 'OS',
+				ring: 'Hold',
+				content: 'Content test <a href="mysite.com">Test, with comma</a>',
+				number: 21,
+			},
+			{
+				id: 'test0',
+				name: 'Linux',
+				sector: 'Cloud',
+				ring: 'Acceptance',
+				content: 'Content test <a href="mysite.com">Test, with comma</a>',
+				number: 22,
+			},
+			{
+				id: 'test0',
+				name: 'Linux',
+				sector: 'Cloud',
+				ring: 'Archive',
+				content: 'Content test <a href="mysite.com">Test, with comma</a>',
+				number: 23,
+			},
+			{
+				id: 'test0',
+				name: 'Linux',
+				sector: 'Cloud',
+				ring: 'Archive',
+				content: 'Content test <a href="mysite.com">Test, with comma</a>',
+				number: 24,
+			},
+			{
+				id: 'test0',
+				name: 'Linux',
+				sector: 'Cloud',
+				ring: 'Archive',
+				content: 'Content test <a href="mysite.com">Test, with comma</a>',
+				number: 25,
+			},
+			{
+				id: 'test0',
+				name: 'Linux',
+				sector: 'Cloud',
+				ring: 'Acceptance',
+				content: 'Content test <a href="mysite.com">Test, with comma</a>',
+				number: 26,
+			},
+			{
+				id: 'test1',
+				name: 'Linux',
+				sector: 'Hardware',
+				ring: 'Trial',
+				content: 'Content test <a href="mysite.com">Test, with comma</a>',
+				number: 27,
+			},
+			{
+				id: 'test2',
+				name: 'Linux',
+				sector: 'OS',
+				ring: 'Hold',
+				content: 'Content test <a href="mysite.com">Test, with comma</a>',
+				number: 28,
+			},
+			{
+				id: '68187c54-d20c-43f2-88ba-5f8d05cd1ea6',
+				name: 'Linux',
+				sector: 'OS',
+				ring: 'Hold',
+				content: 'Content 1 <a href="mysite.com">Test, with comma</a>',
+				number: 29,
+			},
+			{
+				id: 'fb06786a-1f73-4de5-9da3-d26887a492d1',
+				name: 'Nano-computing',
+				sector: 'Hardware',
+				ring: 'Trial',
+				content: 'Content 2 <a href="mysite.com">Test</a>',
+				number: 30,
+			},
+			{
+				id: '5120a3f7-080a-4941-a864-326efe5e35b8',
+				name: 'Magic',
+				sector: 'Cloud',
+				ring: 'Trial',
+				content: 'Content 3 <a href="mysite.com">Test</a>',
+				number: 31,
+			},
+			{
+				id: '5850456f-debf-4209-b351-e1d48e3f8f3e',
+				name: 'Wizards',
+				sector: 'Cloud',
+				ring: 'Acceptance',
+				content: 'Content 3 <a href="mysite.com">Test</a>',
+				number: 32,
+			},
+			{
+				id: '0642cca9-e84a-4962-af06-8a40d0ba9cd1',
+				name: 'Windows X',
+				sector: 'OS',
+				ring: 'Acceptance',
+				content: 'Content 3 <a href="mysite.com">Test</a>',
+				number: 33,
+			},
+		];
+		this.model.dots$.next(dots);
 	}
 
 	private handleThemeChange(): void {
 		const lightConfig: RadarChartConfig = new RadarChartConfig();
 		const darkConfig: RadarChartConfig = new RadarChartConfig();
+
+		const primaryFontFamily: string = `${'Roboto Regular'}, sans-serif`;
+
+		lightConfig.ringsConfig.labelsConfig.fontFamily = primaryFontFamily;
+		lightConfig.dotsConfig.numberFontFamily = primaryFontFamily;
 
 		const primaryColor: string = '#5E6670';
 		const secondaryColor: string = '#2D3443';
@@ -65,6 +354,8 @@ export class RadarChartComponent implements OnInit, AfterViewInit {
 		darkConfig.ringsConfig.ringsColor = primaryColor;
 		darkConfig.ringsConfig.labelsConfig.textColor = primaryColor;
 		darkConfig.dividersConfig.dividerColor = primaryColor;
+		darkConfig.ringsConfig.labelsConfig.fontFamily = primaryFontFamily;
+		darkConfig.dotsConfig.numberFontFamily = primaryFontFamily;
 
 		this.config$ = new BehaviorSubject<RadarChartConfig>(lightConfig);
 
