@@ -73,8 +73,6 @@ export class RadarChartComponent implements OnInit, AfterViewInit {
 		const dots: RadarDataItem[] = [
 			{
 				id: 'test0',
-				radarId: '1',
-				versionId: 'test0',
 				name: 'Linux',
 				sector: 'Hardware',
 				ring: 'Archive',
@@ -83,8 +81,6 @@ export class RadarChartComponent implements OnInit, AfterViewInit {
 			},
 			{
 				id: 'test0',
-				radarId: '1',
-				versionId: 'test0',
 				name: 'Linux',
 				sector: 'Platforms',
 				ring: 'Trial',
@@ -93,8 +89,6 @@ export class RadarChartComponent implements OnInit, AfterViewInit {
 			},
 			{
 				id: 'test0',
-				radarId: '1',
-				versionId: 'test0',
 				name: 'Linux',
 				sector: 'Devices',
 				ring: 'Trial',
@@ -103,8 +97,6 @@ export class RadarChartComponent implements OnInit, AfterViewInit {
 			},
 			{
 				id: 'test0',
-				radarId: '1',
-				versionId: 'test0',
 				name: 'Linux',
 				sector: 'OS',
 				ring: 'Trial',
@@ -113,8 +105,6 @@ export class RadarChartComponent implements OnInit, AfterViewInit {
 			},
 			{
 				id: 'test0',
-				radarId: '1',
-				versionId: 'test0',
 				name: 'Linux',
 				sector: 'OS',
 				ring: 'Trial',
@@ -123,8 +113,6 @@ export class RadarChartComponent implements OnInit, AfterViewInit {
 			},
 			{
 				id: 'test0',
-				radarId: '1',
-				versionId: 'test0',
 				name: 'Linux',
 				sector: 'Devices',
 				ring: 'Archive',
@@ -133,8 +121,6 @@ export class RadarChartComponent implements OnInit, AfterViewInit {
 			},
 			{
 				id: 'test0',
-				radarId: '1',
-				versionId: 'test0',
 				name: 'Linux',
 				sector: 'Devices',
 				ring: 'Archive',
@@ -143,8 +129,6 @@ export class RadarChartComponent implements OnInit, AfterViewInit {
 			},
 			{
 				id: 'test0',
-				radarId: '1',
-				versionId: 'test0',
 				name: 'Linux',
 				sector: 'Devices',
 				ring: 'Archive',
@@ -153,8 +137,6 @@ export class RadarChartComponent implements OnInit, AfterViewInit {
 			},
 			{
 				id: 'test0',
-				radarId: '1',
-				versionId: 'test0',
 				name: 'Linux',
 				sector: 'Devices',
 				ring: 'Archive',
@@ -163,8 +145,6 @@ export class RadarChartComponent implements OnInit, AfterViewInit {
 			},
 			{
 				id: 'test0',
-				radarId: '1',
-				versionId: 'test0',
 				name: 'Linux',
 				sector: 'Platforms',
 				ring: 'Trial',
@@ -173,8 +153,6 @@ export class RadarChartComponent implements OnInit, AfterViewInit {
 			},
 			{
 				id: 'test0',
-				radarId: '1',
-				versionId: 'test0',
 				name: 'Linux',
 				sector: 'Platforms',
 				ring: 'Trial',
@@ -183,8 +161,6 @@ export class RadarChartComponent implements OnInit, AfterViewInit {
 			},
 			{
 				id: 'test0',
-				radarId: '1',
-				versionId: 'test0',
 				name: 'Linux',
 				sector: 'Platforms',
 				ring: 'Trial',
@@ -193,8 +169,6 @@ export class RadarChartComponent implements OnInit, AfterViewInit {
 			},
 			{
 				id: 'test0',
-				radarId: '1',
-				versionId: 'test0',
 				name: 'Linux',
 				sector: 'Platforms',
 				ring: 'Trial',
@@ -203,8 +177,6 @@ export class RadarChartComponent implements OnInit, AfterViewInit {
 			},
 			{
 				id: 'test0',
-				radarId: '1',
-				versionId: 'test0',
 				name: 'Linux',
 				sector: 'Platforms',
 				ring: 'Trial',
@@ -213,8 +185,6 @@ export class RadarChartComponent implements OnInit, AfterViewInit {
 			},
 			{
 				id: 'test0',
-				radarId: '1',
-				versionId: 'test0',
 				name: 'Linux',
 				sector: 'Platforms',
 				ring: 'Trial',
@@ -223,8 +193,6 @@ export class RadarChartComponent implements OnInit, AfterViewInit {
 			},
 			{
 				id: 'test0',
-				radarId: '1',
-				versionId: 'test0',
 				name: 'Linux',
 				sector: 'Cloud',
 				ring: 'Hold',
@@ -233,8 +201,6 @@ export class RadarChartComponent implements OnInit, AfterViewInit {
 			},
 			{
 				id: 'test0',
-				radarId: '1',
-				versionId: 'test0',
 				name: 'Linux',
 				sector: 'Cloud',
 				ring: 'Hold',
@@ -243,8 +209,6 @@ export class RadarChartComponent implements OnInit, AfterViewInit {
 			},
 			{
 				id: 'test0',
-				radarId: '1',
-				versionId: 'test0',
 				name: 'Linux',
 				sector: 'Cloud',
 				ring: 'Hold',
@@ -253,8 +217,6 @@ export class RadarChartComponent implements OnInit, AfterViewInit {
 			},
 			{
 				id: 'test0',
-				radarId: '1',
-				versionId: 'test0',
 				name: 'Linux',
 				sector: 'Cloud',
 				ring: 'Hold',
@@ -263,8 +225,6 @@ export class RadarChartComponent implements OnInit, AfterViewInit {
 			},
 			{
 				id: 'test0',
-				radarId: '1',
-				versionId: 'test0',
 				name: 'Linux',
 				sector: 'Cloud',
 				ring: 'Trial',
@@ -273,8 +233,6 @@ export class RadarChartComponent implements OnInit, AfterViewInit {
 			},
 			{
 				id: 'test0',
-				radarId: '1',
-				versionId: 'test0',
 				name: 'Linux',
 				sector: 'OS',
 				ring: 'Hold',
@@ -283,8 +241,6 @@ export class RadarChartComponent implements OnInit, AfterViewInit {
 			},
 			{
 				id: 'test0',
-				radarId: '1',
-				versionId: 'test0',
 				name: 'Linux',
 				sector: 'Cloud',
 				ring: 'Acceptance',
@@ -293,8 +249,6 @@ export class RadarChartComponent implements OnInit, AfterViewInit {
 			},
 			{
 				id: 'test0',
-				radarId: '1',
-				versionId: 'test0',
 				name: 'Linux',
 				sector: 'Cloud',
 				ring: 'Archive',
@@ -303,8 +257,6 @@ export class RadarChartComponent implements OnInit, AfterViewInit {
 			},
 			{
 				id: 'test0',
-				radarId: '1',
-				versionId: 'test0',
 				name: 'Linux',
 				sector: 'Cloud',
 				ring: 'Archive',
@@ -313,8 +265,6 @@ export class RadarChartComponent implements OnInit, AfterViewInit {
 			},
 			{
 				id: 'test0',
-				radarId: '1',
-				versionId: 'test0',
 				name: 'Linux',
 				sector: 'Cloud',
 				ring: 'Archive',
@@ -323,8 +273,6 @@ export class RadarChartComponent implements OnInit, AfterViewInit {
 			},
 			{
 				id: 'test0',
-				radarId: '1',
-				versionId: 'test0',
 				name: 'Linux',
 				sector: 'Cloud',
 				ring: 'Acceptance',
@@ -333,8 +281,6 @@ export class RadarChartComponent implements OnInit, AfterViewInit {
 			},
 			{
 				id: 'test1',
-				radarId: '1',
-				versionId: 'test1',
 				name: 'Linux',
 				sector: 'Hardware',
 				ring: 'Trial',
@@ -343,8 +289,6 @@ export class RadarChartComponent implements OnInit, AfterViewInit {
 			},
 			{
 				id: 'test2',
-				radarId: '1',
-				versionId: 'test2',
 				name: 'Linux',
 				sector: 'OS',
 				ring: 'Hold',
@@ -353,8 +297,6 @@ export class RadarChartComponent implements OnInit, AfterViewInit {
 			},
 			{
 				id: '68187c54-d20c-43f2-88ba-5f8d05cd1ea6',
-				radarId: '1',
-				versionId: '7cf3cf5a-bde0-4005-a73b-891f16a6a692',
 				name: 'Linux',
 				sector: 'OS',
 				ring: 'Hold',
@@ -363,8 +305,6 @@ export class RadarChartComponent implements OnInit, AfterViewInit {
 			},
 			{
 				id: 'fb06786a-1f73-4de5-9da3-d26887a492d1',
-				radarId: '1',
-				versionId: '7cf3cf5a-bde0-4005-a73b-891f16a6a692',
 				name: 'Nano-computing',
 				sector: 'Hardware',
 				ring: 'Trial',
@@ -373,8 +313,6 @@ export class RadarChartComponent implements OnInit, AfterViewInit {
 			},
 			{
 				id: '5120a3f7-080a-4941-a864-326efe5e35b8',
-				radarId: '1',
-				versionId: '7cf3cf5a-bde0-4005-a73b-891f16a6a692',
 				name: 'Magic',
 				sector: 'Cloud',
 				ring: 'Trial',
@@ -383,8 +321,6 @@ export class RadarChartComponent implements OnInit, AfterViewInit {
 			},
 			{
 				id: '5850456f-debf-4209-b351-e1d48e3f8f3e',
-				radarId: '1',
-				versionId: '7cf3cf5a-bde0-4005-a73b-891f16a6a692',
 				name: 'Wizards',
 				sector: 'Cloud',
 				ring: 'Acceptance',
@@ -393,8 +329,6 @@ export class RadarChartComponent implements OnInit, AfterViewInit {
 			},
 			{
 				id: '0642cca9-e84a-4962-af06-8a40d0ba9cd1',
-				radarId: '1',
-				versionId: '7cf3cf5a-bde0-4005-a73b-891f16a6a692',
 				name: 'Windows X',
 				sector: 'OS',
 				ring: 'Acceptance',
