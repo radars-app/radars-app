@@ -6,11 +6,17 @@
 
 .popover-content {
 	padding-left: $secondary-grid-unit * 6;
+	padding-right: $secondary-grid-unit * 6;
 }
 
 .edit-radar-dialog__download-info,
 .edit-radar-dialog__upload-info {
 	color: #5e6670;
+}
+
+.edit-radar-dialog__download-button {
+	position: relative;
+	right: -$secondary-grid-unit * 5;
 }
 
 .edit-radar-dialog__download-file-name {
