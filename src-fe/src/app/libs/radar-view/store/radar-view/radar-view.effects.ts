@@ -63,7 +63,7 @@ export class RadarViewEffects {
 	public uploadRadar$: Observable<any> = this.actions$.pipe(
 		ofType(RadarViewActionTypes.UploadRadar),
 		switchMap((action: UploadRadar) => {
-			return this.radarsRepositoryService.uploadRadar(action.payload).pipe(
+			return this.radarsRepositoryService.uploadRadar(action.payload.radarId, action.payload.radarConfig).pipe(
 				map((radarDto: RadarDto) => {
 					return new LoadRadars(radarDto.radarId);
 				})

@@ -8,6 +8,7 @@ import { RadarViewFacadeService } from '../../service/radar-view-facade.service'
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Radar } from '../../model/radar';
 import { IconSize } from '../../../common-components/icon/models/icon-size.enum';
+import { RadarConfig } from '../../model/radar-config';
 
 @Component({
 	selector: 'app-radars-edit-dialog',
@@ -30,27 +31,38 @@ export class EditDialogComponent implements OnInit {
 
 	public fileIconSize: IconSize = IconSize.M;
 
+	private radarId: string;
+
 	constructor(private radarViewFacadeSevice: RadarViewFacadeService, private sanitizer: DomSanitizer) {}
 
 	public ngOnInit(): void {
 		this.radarsURI$ = this.radarViewFacadeSevice.radars$.pipe(
 			map((activeRadars: Radar[]) => {
-				const theJSON: string = JSON.stringify(activeRadars);
-				const blob: Blob = new Blob([theJSON], { type: 'text/json' });
-				const url: string = window.URL.createObjectURL(blob);
-				const uri: SafeUrl = this.sanitizer.bypassSecurityTrustUrl(url);
+				if (activeRadars) {
+					const lastIndex: number = activeRadars?.length - 1;
+					const configJSON: string = JSON.stringify(activeRadars[lastIndex].config);
+					const blob: Blob = new Blob([configJSON], { type: 'text/json' });
+					const url: string = window.URL.createObjectURL(blob);
+					const uri: SafeUrl = this.sanitizer.bypassSecurityTrustUrl(url);
 
-				return uri;
+					return uri;
+				}
 			})
 		);
 
 		this.radarName$ = this.radarViewFacadeSevice.radars$.pipe(
 			map((activeRadars: Radar[]) => {
 				if (activeRadars) {
-					return activeRadars[0]?.name;
+					const activeRadarsLastIndex: number = activeRadars.length - 1;
+					this.radarId = activeRadars[activeRadarsLastIndex]?.id;
+					return activeRadars[activeRadarsLastIndex]?.name;
 				}
 			})
 		);
+	}
+
+	public get isDarkTheme(): boolean {
+		return this.theme === ComponentTheme.Dark;
 	}
 
 	public open(): void {
@@ -62,9 +74,9 @@ export class EditDialogComponent implements OnInit {
 		reader.readAsText(this.files[0]);
 
 		reader.onload = () => {
-			const parsedJSON: Radar[] = JSON.parse(reader.result as string);
+			const parsedJSON: RadarConfig = JSON.parse(reader.result as string);
 
-			this.radarViewFacadeSevice.uploadRadar(parsedJSON);
+			this.radarViewFacadeSevice.uploadRadar(this.radarId, parsedJSON);
 			this.radarsPopover.close();
 		};
 	}

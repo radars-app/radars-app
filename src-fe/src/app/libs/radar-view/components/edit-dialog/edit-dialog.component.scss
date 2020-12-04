@@ -21,6 +21,10 @@
 	color: #000;
 }
 
+.edit-radar-dialog__download-file-name--dark-theme {
+	color: $color-white;
+}
+
 .edit-radar-dialog__download-link {
 	text-decoration: none;
 }
@@ -58,6 +62,10 @@
 		top: 0;
 		left: 0;
 	}
+}
+
+.container--dark-theme {
+	background-color: #2d3443;
 }
 
 .container:focus,

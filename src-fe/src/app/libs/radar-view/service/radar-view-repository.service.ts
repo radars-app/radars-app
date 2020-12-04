@@ -4,8 +4,9 @@ import { MsalService } from '@azure/msal-angular';
 import { AuthResponse } from 'msal';
 import { from, Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { Radar, RadarDto } from '../model/radar';
+import { RadarDto } from '../model/radar';
 import { RadarDataItemDto } from '../model/radar-data-item';
+import { RadarConfig } from '../model/radar-config';
 
 @Injectable({
 	providedIn: 'root',
@@ -35,23 +36,13 @@ export class RadarsRepositoryService {
 		);
 	}
 
-	public uploadRadar(radars: Radar[]): Observable<RadarDto> {
+	public uploadRadar(radarId: string, radarConfig: RadarConfig): Observable<RadarDto> {
 		return this.loadToken().pipe(
 			switchMap((token: AuthResponse) => {
-				const lastIndex: number = radars.length - 1;
-				const RADARS_ENDPOINT: string = `/api/radars/${radars[lastIndex].id}`;
-				return this.http.post<RadarDto>(
-					RADARS_ENDPOINT,
-					{
-						name: radars[lastIndex].name,
-						rings: radars[lastIndex].rings,
-						sectors: radars[lastIndex].sectors,
-						csv: radars[lastIndex].config.csv,
-					},
-					{
-						headers: { Authorization: 'Bearer ' + token.accessToken },
-					}
-				);
+				const RADARS_ENDPOINT: string = `/api/radars/${radarId}`;
+				return this.http.post<RadarDto>(RADARS_ENDPOINT, radarConfig, {
+					headers: { Authorization: 'Bearer ' + token.accessToken },
+				});
 			})
 		);
 	}

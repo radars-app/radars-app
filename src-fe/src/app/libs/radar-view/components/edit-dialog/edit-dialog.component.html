@@ -10,7 +10,9 @@
 
 			<div class="edit-radar-dialog__download-operation">
 
-				<div class="edit-radar-dialog__download-file-name">{{radarName$ |async}}.config</div>
+				<div
+					[class.edit-radar-dialog__download-file-name--dark-theme]="isDarkTheme"
+					class="edit-radar-dialog__download-file-name">{{radarName$ |async}}.config</div>
 
 				<div>
 
@@ -19,7 +21,9 @@
 						[href]="radarsURI$ | async"
 						download="{{radarName$ |async}}.config.json">
 
-							<app-icon-button [startIcon]="'download'">Download</app-icon-button>
+							<app-icon-button
+								[startIcon]="'download'"
+								[theme]="theme">Download</app-icon-button>
 
 					</a>
 
@@ -33,6 +37,7 @@
 
 				<div
 					class="container"
+					[class.container--dark-theme]="isDarkTheme"
 					appRadarsDragAndDrop
 					(fileDropped)="onFileDropped($event)">
 
