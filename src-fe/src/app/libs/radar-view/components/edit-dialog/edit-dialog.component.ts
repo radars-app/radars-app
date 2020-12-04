@@ -80,6 +80,7 @@ export class EditDialogComponent implements OnInit {
 			const parsedJSON: RadarConfig = JSON.parse(reader.result as string);
 
 			this.radarViewFacadeSevice.uploadRadar(this.radarId, parsedJSON);
+			this.files = [];
 			this.radarsPopover.close();
 		};
 	}
