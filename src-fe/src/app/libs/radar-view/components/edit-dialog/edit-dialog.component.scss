@@ -10,8 +10,13 @@
 }
 
 .edit-radar-dialog__download-info,
-.edit-radar-dialog__upload-info {
+.upload-operation__upload-info {
 	color: #5e6670;
+}
+
+.edit-radar-dialog__download-info--dark-theme,
+.upload-operation__upload-info--dark-theme {
+	color: #99a6b5;
 }
 
 .edit-radar-dialog__download-button {
@@ -28,7 +33,7 @@
 }
 
 .edit-radar-dialog__download-file-name--dark-theme {
-	color: $color-white;
+	color: #99a6b5;
 }
 
 .edit-radar-dialog__download-link {
