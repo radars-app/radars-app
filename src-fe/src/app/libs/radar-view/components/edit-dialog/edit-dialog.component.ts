@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
@@ -18,6 +18,9 @@ import { RadarConfig } from '../../model/radar-config';
 export class EditDialogComponent implements OnInit {
 	@ViewChild('radarsPopover', { static: true })
 	public readonly radarsPopover: PopoverComponent;
+
+	@ViewChild('fileDropRef', { static: true })
+	public readonly fileDropRef: ElementRef;
 
 	@Input() public theme: ComponentTheme = ComponentTheme.Light;
 
@@ -82,21 +85,20 @@ export class EditDialogComponent implements OnInit {
 	}
 
 	public onFileDropped($event: File[]): void {
-		this.prepareFilesList($event);
+		this.prepareFile($event[0]);
 	}
 
-	public fileBrowseHandler(files: File[]): void {
-		this.prepareFilesList(files);
+	public fileBrowseHandler(file: File): void {
+		this.prepareFile(file);
 	}
 
 	public deleteFile(index: number): void {
-		this.files.splice(index, 1);
+		this.fileDropRef.nativeElement.value = null;
+		this.files = [];
 	}
 
-	private prepareFilesList(files: any[]): void {
-		for (const item of files) {
-			item.progress = 0;
-			this.files.push(item);
-		}
+	private prepareFile(file: any): void {
+		file.progress = 0;
+		this.files[0] = file;
 	}
 }

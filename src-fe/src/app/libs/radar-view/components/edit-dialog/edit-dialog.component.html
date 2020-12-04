@@ -42,11 +42,11 @@
 					(fileDropped)="onFileDropped($event)">
 
 						<input
-						class="edit-radar-dialog__upload-input"
+							class="edit-radar-dialog__upload-input"
 							type="file"
 							#fileDropRef
 							id="fileDropRef"
-							(change)="fileBrowseHandler($event.target.files)"/>
+							(change)="fileBrowseHandler($event.target.files[0])"/>
 
 						<label for="fileDropRef">Drop here or click</label>
 
