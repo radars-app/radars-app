@@ -7,6 +7,7 @@ import { ComponentTheme } from '../../../common-components/common/enum/component
 import { RadarViewFacadeService } from '../../service/radar-view-facade.service';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Radar } from '../../model/radar';
+import { IconSize } from '../../../common-components/icon/models/icon-size.enum';
 
 @Component({
 	selector: 'app-radars-edit-dialog',
@@ -24,6 +25,10 @@ export class EditDialogComponent implements OnInit {
 	public radarName$: Observable<string>;
 
 	public files: File[] = [];
+
+	public deletFileIconSize: IconSize = IconSize.XSS;
+
+	public fileIconSize: IconSize = IconSize.M;
 
 	constructor(private radarViewFacadeSevice: RadarViewFacadeService, private sanitizer: DomSanitizer) {}
 
@@ -52,7 +57,7 @@ export class EditDialogComponent implements OnInit {
 		this.radarsPopover.open();
 	}
 
-	public edit(): void {
+	public updateRadar(): void {
 		const reader: FileReader = new FileReader();
 		reader.readAsText(this.files[0]);
 
@@ -64,16 +69,10 @@ export class EditDialogComponent implements OnInit {
 		};
 	}
 
-	/**
-	 * on file drop handler
-	 */
 	public onFileDropped($event: File[]): void {
 		this.prepareFilesList($event);
 	}
 
-	/**
-	 * handle file from browsing
-	 */
 	public fileBrowseHandler(files: File[]): void {
 		this.prepareFilesList(files);
 	}

@@ -37,6 +37,7 @@
 					(fileDropped)="onFileDropped($event)">
 
 						<input
+						class="edit-radar-dialog__upload-input"
 							type="file"
 							#fileDropRef
 							id="fileDropRef"
@@ -54,16 +55,18 @@
 
 						<div class="icon-info">
 
-							<img
+							<app-icon
 								class="file-icon"
-								src="../../../../../assets/svg/document.svg"
-								alt="document icon"/>
+								icon="document"
+								[size]="fileIconSize"
+								alt="document icon"></app-icon>
 
-							<img
+							<app-icon
 								class="delete"
 								(click)="deleteFile(i)"
-								src="../../../../../assets/svg/close.svg"
-								alt="close  icon"/>
+								icon="close"
+								[size]="deletFileIconSize"
+								alt="close icon"></app-icon>
 						</div>
 
 						<div class="info">
@@ -93,7 +96,7 @@
 			<app-button
 				[type]="'flat'"
 				[theme]="theme"
-				(click)="edit()">Edit</app-button>
+				(click)="updateRadar()">Edit</app-button>
 
 		</div>
 
