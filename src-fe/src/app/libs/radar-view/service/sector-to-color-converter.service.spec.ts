@@ -24,6 +24,7 @@ describe('SectorToColorConverterService', () => {
 									csv: 'string',
 								},
 								sectors: [],
+								rings: [],
 							},
 						]),
 						radarDataItems$: of([]),

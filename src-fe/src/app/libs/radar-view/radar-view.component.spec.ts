@@ -59,6 +59,7 @@ describe('RadarViewComponent', () => {
 									csv: 'string',
 								},
 								sectors: [],
+								rings: [],
 							},
 						]),
 						radarDataItems$: of([]),

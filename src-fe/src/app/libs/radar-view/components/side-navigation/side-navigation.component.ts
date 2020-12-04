@@ -55,6 +55,7 @@ export class SideNavigationComponent implements OnInit {
 								return {
 									id: item.id,
 									title: item.name,
+									number: item.number,
 								};
 							}),
 					};

@@ -31,6 +31,7 @@ describe('EditDialogComponent', () => {
 									csv: 'string',
 								},
 								sectors: [],
+								rings: [],
 							},
 						]),
 						radarDataItems$: of([]),

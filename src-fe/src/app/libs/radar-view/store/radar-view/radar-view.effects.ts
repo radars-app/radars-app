@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { map, switchMap } from 'rxjs/operators';
+import { map, switchMap, take } from 'rxjs/operators';
 import { NEVER, Observable } from 'rxjs';
 import {
 	RadarViewActionTypes,
-	RadarViewActions,
 	LoadRadarsSuccess,
 	LoadRadars,
 	LoadRadarDataItems,
 	LoadRadarDataItemsSuccess,
 	UploadRadar,
+	RadarViewActions,
 } from './radar-view.actions';
 import { Action } from '@ngrx/store';
 
@@ -48,12 +48,29 @@ export class RadarViewEffects {
 	public loadRadarDataItems$: Observable<Action> = this.actions$.pipe(
 		ofType(RadarViewActionTypes.LoadRadarDataItems),
 		switchMap((action: LoadRadarDataItems) => {
-			return this.radarsRepositoryService.loadRadarDataItems(action.radarId).pipe(
-				map((radarDataItemsDto: RadarDataItemDto[]) => {
-					const items: RadarDataItem[] = radarDataItemsDto.map((dto: RadarDataItemDto) =>
-						this.radarDataItemsConverterService.fromDto(dto)
+			return this.radarViewFacadeService.radars$.pipe(
+				take(1),
+				switchMap((radars: Radar[]) => {
+					return this.radarsRepositoryService.loadRadarDataItems(action.radarId).pipe(
+						map((radarDataItemsDto: RadarDataItemDto[]) => {
+							const items: RadarDataItem[] = radarDataItemsDto.map((dto: RadarDataItemDto) =>
+								this.radarDataItemsConverterService.fromDto(dto)
+							);
+							const radar: Radar = radars[radars.length - 1];
+							let number: number = 0;
+							radar.sectors.forEach((sector: string) => {
+								radar.rings.forEach((ring: string) => {
+									const findedRadarItems: RadarDataItem[] = items.filter(
+										(item: RadarDataItem) => item.ring === ring && item.sector === sector
+									);
+									findedRadarItems.forEach((item: RadarDataItem) => {
+										item.number = ++number;
+									});
+								});
+							});
+							return new LoadRadarDataItemsSuccess(items);
+						})
 					);
-					return new LoadRadarDataItemsSuccess(items);
 				})
 			);
 		})

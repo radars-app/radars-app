@@ -26,7 +26,7 @@ describe('SideNavigationComponent', () => {
 				{
 					provide: RadarViewFacadeService,
 					useValue: {
-						radars$: of([{ lastUpdatedAt: new Date(), sectors: [] }]),
+						radars$: of([{ lastUpdatedAt: new Date(), sectors: [], rings: [] }]),
 						radarDataItems$: of([]),
 					},
 				},

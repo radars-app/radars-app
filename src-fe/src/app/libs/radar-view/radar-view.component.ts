@@ -1,12 +1,13 @@
 import { OnDestroy, ViewChild, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
-import { switchMap, takeUntil } from 'rxjs/operators';
+import { filter, map, switchMap, takeUntil } from 'rxjs/operators';
 import { ComponentTheme } from '../common-components/common/enum/component-theme.enum';
 import { IconButtonModel } from '../common-components/icon-button/model/icon-button-model';
 import { IconSize } from '../common-components/icon/models/icon-size.enum';
 import { ContainerFacadeService } from '../container/service/container-facade.service';
 import { EditDialogComponent } from './components/edit-dialog/edit-dialog.component';
+import { Radar } from './model/radar';
 import { RadarViewFacadeService } from './service/radar-view-facade.service';
 
 @Component({
@@ -18,8 +19,8 @@ export class RadarViewComponent implements OnInit, OnDestroy {
 	@ViewChild('editRadarDialog', { static: true }) public readonly editRadarDialog: EditDialogComponent;
 
 	public buttons: IconButtonModel[];
-
 	public theme$: Observable<ComponentTheme> = this.containerFacadeService.theme$;
+	public radarName$: Observable<string>;
 
 	private destroy$: Subject<boolean> = new Subject<boolean>();
 
@@ -39,6 +40,12 @@ export class RadarViewComponent implements OnInit, OnDestroy {
 			.subscribe((radarId: string) => {
 				this.radarViewFacadeSevice.loadRadars(radarId);
 			});
+
+		this.radarName$ = this.radarViewFacadeSevice.radars$.pipe(
+			takeUntil(this.destroy$),
+			filter((radars: Radar[]) => Boolean(radars)),
+			map((radars: Radar[]) => radars[radars.length - 1].name)
+		);
 	}
 
 	public ngOnDestroy(): void {

@@ -28,6 +28,7 @@ describe('RadarViewEffects', () => {
 					provide: RadarViewFacadeService,
 					useValue: {
 						radarDataItems$: of([]),
+						radars$: of([]),
 						loadRadarDataItems: jasmine.createSpy().and.stub(),
 					},
 				},

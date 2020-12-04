@@ -43,6 +43,7 @@ describe('RadarChartLegendComponent', () => {
 									csv: 'string',
 								},
 								sectors: [],
+								rings: [],
 							},
 						]),
 						radarDataItems$: of([]),

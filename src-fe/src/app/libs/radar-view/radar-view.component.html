@@ -1,5 +1,5 @@
 <div class="radar-view">
-	<app-radar-header class="radar-view__header" title="The Greatest Radar" [buttons]="buttons"></app-radar-header>
+	<app-radar-header class="radar-view__header" [title]="radarName$ | async" [buttons]="buttons"></app-radar-header>
 
 	<div class="radar-view__content-wrapper">
 		<app-side-navigation class="radar-view__side-navigation"></app-side-navigation>
