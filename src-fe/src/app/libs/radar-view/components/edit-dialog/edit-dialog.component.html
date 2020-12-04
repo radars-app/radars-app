@@ -6,7 +6,9 @@
 
 		<div class="popover-content">
 
-			<div class="edit-radar-dialog__download-info">Radar was created based on .config file:</div>
+			<div
+				[class.edit-radar-dialog__download-info--dark-theme]="isDarkTheme"
+				class="edit-radar-dialog__download-info">Radar was created based on .config file:</div>
 
 			<div class="edit-radar-dialog__download-operation">
 
@@ -33,11 +35,13 @@
 
 			<div class="edit-radar-dialog__upload-operation">
 
-				<div class="upload-operation__upload-info">For updating radar, upload .config file</div>
+				<div
+					[class.upload-operation__upload-info--dark-theme]="isDarkTheme"
+					class="upload-operation__upload-info">For updating radar, upload .config file</div>
 
 				<div
 					class="upload-operation__dropzone"
-					[class.edit-radar-dialog__dropzone--dark-theme]="isDarkTheme"
+					[class.upload-operation__dropzone--dark-theme]="isDarkTheme"
 					appRadarsDragAndDrop
 					(fileDropped)="onFileDropped($event)">
 
