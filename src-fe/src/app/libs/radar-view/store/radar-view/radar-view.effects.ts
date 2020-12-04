@@ -9,6 +9,7 @@ import {
 	LoadRadars,
 	LoadRadarDataItems,
 	LoadRadarDataItemsSuccess,
+	UploadRadar,
 } from './radar-view.actions';
 import { Action } from '@ngrx/store';
 
@@ -53,6 +54,18 @@ export class RadarViewEffects {
 						this.radarDataItemsConverterService.fromDto(dto)
 					);
 					return new LoadRadarDataItemsSuccess(items);
+				})
+			);
+		})
+	);
+
+	@Effect()
+	public uploadRadar$: Observable<any> = this.actions$.pipe(
+		ofType(RadarViewActionTypes.UploadRadar),
+		switchMap((action: UploadRadar) => {
+			return this.radarsRepositoryService.uploadRadar(action.payload.radarId, action.payload.radarConfig).pipe(
+				map((radarDto: RadarDto) => {
+					return new LoadRadars(radarDto.radarId);
 				})
 			);
 		})

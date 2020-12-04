@@ -10,7 +10,9 @@
 
 			<div class="edit-radar-dialog__download-operation">
 
-				<div class="edit-radar-dialog__download-file-name">{{radarName$ |async}}.config</div>
+				<div
+					[class.edit-radar-dialog__download-file-name--dark-theme]="isDarkTheme"
+					class="edit-radar-dialog__download-file-name">{{radarName$ |async}}.config</div>
 
 				<div>
 
@@ -18,8 +20,69 @@
 						class="edit-radar-dialog__download-link"
 						[href]="radarsURI$ | async"
 						download="{{radarName$ |async}}.config.json">
-							<app-icon-button [startIcon]="'download'">Download</app-icon-button>
+
+							<app-icon-button
+								[startIcon]="'download'"
+								[theme]="theme">Download</app-icon-button>
+
 					</a>
+
+				</div>
+
+			</div>
+
+			<div class="edit-radar-dialog__upload-operation">
+
+				<div class="upload-operation__upload-info">For updating radar, upload .config file</div>
+
+				<div
+					class="upload-operation__dropzone"
+					[class.edit-radar-dialog__dropzone--dark-theme]="isDarkTheme"
+					appRadarsDragAndDrop
+					(fileDropped)="onFileDropped($event)">
+
+						<input
+							class="edit-radar-dialog__upload-input"
+							type="file"
+							#fileDropRef
+							id="fileDropRef"
+							(change)="fileBrowseHandler($event.target.files[0])"/>
+
+						<label for="fileDropRef">Drop here or click</label>
+
+				</div>
+
+				<div class="upload-operation__files-list">
+
+					<div
+					class="files-list__uploding-file"
+					*ngFor="let file of files; let i = index">
+
+						<div class="uploding-file__icon-info">
+
+							<app-icon
+								class="icon-info__file-icon"
+								icon="document"
+								[size]="fileIconSize"
+								alt="document icon"></app-icon>
+
+							<app-icon
+								class="icon-info__delete"
+								(click)="deleteFile(i)"
+								icon="close"
+								[size]="deletFileIconSize"
+								alt="close icon"></app-icon>
+						</div>
+
+						<div class="uploding-file__info">
+
+							<p class="uploding-file__name">
+								{{ file?.name }}
+							</p>
+
+						</div>
+				
+					</div>
 
 				</div>
 
@@ -33,12 +96,12 @@
 				class="popover-actions__btn"
 				type="outlined"
 				[theme]="theme"
-				(click)="radarsPopover.close()">Cancel</app-button>
+				(click)="close()">Cancel</app-button>
 
 			<app-button
 				[type]="'flat'"
 				[theme]="theme"
-				(click)="radarsPopover.close()">Edit</app-button>
+				(click)="updateRadar()">Edit</app-button>
 
 		</div>
 

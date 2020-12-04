@@ -6,6 +6,7 @@ import { from, Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { RadarDto } from '../model/radar';
 import { RadarDataItemDto } from '../model/radar-data-item';
+import { RadarConfig } from '../model/radar-config';
 
 @Injectable({
 	providedIn: 'root',
@@ -29,6 +30,17 @@ export class RadarsRepositoryService {
 			switchMap((token: AuthResponse) => {
 				const RADARS_ENDPOINT: string = `/api/radar-data-items/${radarId}`;
 				return this.http.get<RadarDataItemDto[]>(RADARS_ENDPOINT, {
+					headers: { Authorization: 'Bearer ' + token.accessToken },
+				});
+			})
+		);
+	}
+
+	public uploadRadar(radarId: string, radarConfig: RadarConfig): Observable<RadarDto> {
+		return this.loadToken().pipe(
+			switchMap((token: AuthResponse) => {
+				const RADARS_ENDPOINT: string = `/api/radars/${radarId}`;
+				return this.http.post<RadarDto>(RADARS_ENDPOINT, radarConfig, {
 					headers: { Authorization: 'Bearer ' + token.accessToken },
 				});
 			})

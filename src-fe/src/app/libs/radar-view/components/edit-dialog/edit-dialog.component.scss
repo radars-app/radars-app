@@ -8,7 +8,8 @@
 	padding-left: $secondary-grid-unit * 6;
 }
 
-.edit-radar-dialog__download-info {
+.edit-radar-dialog__download-info,
+.edit-radar-dialog__upload-info {
 	color: #5e6670;
 }
 
@@ -20,6 +21,10 @@
 	color: #000;
 }
 
+.edit-radar-dialog__download-file-name--dark-theme {
+	color: $color-white;
+}
+
 .edit-radar-dialog__download-link {
 	text-decoration: none;
 }
@@ -28,4 +33,103 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+}
+
+.upload-operation__upload-info {
+	margin: $secondary-grid-unit * 3 0 $secondary-grid-unit * 4 0;
+}
+
+.upload-operation__dropzone {
+	position: relative;
+	box-sizing: border-box;
+	height: $secondary-grid-unit * 25;
+	width: $secondary-grid-unit * 75;
+	border: 2px dashed #c7d0d8;
+	border-radius: 4px;
+	background-color: #f1f4f9;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+
+	.edit-radar-dialog__upload-input {
+		opacity: 0;
+		position: absolute;
+		z-index: 2;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+	}
+}
+
+.upload-operation__dropzone--dark-theme {
+	background-color: #2d3443;
+}
+
+.upload-operation__dropzone:focus,
+.upload-operation__dropzone:hover {
+	border-color: #005ebd;
+}
+
+.fileover {
+	border-color: #005ebd;
+}
+
+.upload-operation__files-list {
+	margin-top: 1.5rem;
+
+	.files-list__uploding-file {
+		width: $secondary-grid-unit * 16;
+		position: relative;
+		display: -ms-flexbox;
+		display: flex;
+		-ms-flex-wrap: wrap;
+		flex-wrap: wrap;
+		-ms-flex-direction: column;
+		flex-direction: column;
+		-ms-flex-pack: center;
+		justify-content: center;
+		-ms-flex-align: center;
+		align-items: center;
+		padding-right: $secondary-grid-unit;
+		flex-grow: 1;
+
+		.uploding-file__icon-info {
+			display: flex;
+		}
+
+		.icon-info__file-icon {
+			width: $secondary-grid-unit * 8;
+			height: $secondary-grid-unit * 16;
+			display: flex;
+			align-items: center;
+		}
+
+		.icon-info__delete {
+			cursor: pointer;
+			align-self: self-start;
+			height: $secondary-grid-unit * 3;
+			filter: invert(40%);
+		}
+
+		.icon-info__delete:hover,
+		.icon-info__delete:focus {
+			outline: 0;
+			filter: invert(0);
+		}
+
+		.uploding-file__name {
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			max-width: $secondary-grid-unit * 16;
+			margin: 0;
+		}
+
+		.uploding-file__info {
+			width: 100%;
+		}
+	}
 }

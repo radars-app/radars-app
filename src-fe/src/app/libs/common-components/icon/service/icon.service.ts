@@ -24,5 +24,10 @@ export class IconService {
 			'download',
 			this.domSanitizer.bypassSecurityTrustResourceUrl('../../../../../assets/svg/download.svg')
 		);
+		this.matIconRegistry.addSvgIcon(
+			'document',
+			this.domSanitizer.bypassSecurityTrustResourceUrl('../../../../../assets/svg/document.svg')
+		);
+		this.matIconRegistry.addSvgIcon('close', this.domSanitizer.bypassSecurityTrustResourceUrl('../../../../../assets/svg/close.svg'));
 	}
 }
