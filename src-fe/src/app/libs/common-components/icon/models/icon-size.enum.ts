@@ -1,5 +1,5 @@
 export enum IconSize {
-	XSS = 'extra-exstra-small',
+	XSS = 'extra-extra-small',
 	XS = 'extra-small',
 	S = 'small',
 	M = 'medium',
