@@ -1,0 +1,46 @@
+<app-radars-popover
+	[minWidth]="540"
+	[theme]="theme"
+	#infoPopover>
+
+	<div class="popover-title">{{(selectedRadarDataItem$ | async)?.name}}</div>
+
+	<div class="popover-content">
+		<div class="info-section">
+			<div class="sector-info">
+				<div
+					class="sector-info__colored-mark"
+					[style.background-color]="sectorToColorConverter.getColorBySector(
+						(selectedRadarDataItem$ | async)?.sector
+					)"></div>
+
+				<div class="sector-info__label">Sector: {{(selectedRadarDataItem$ | async)?.sector}}</div>
+			</div>
+
+			<div class="ring-info">
+
+				<div class="ring-info__icon">
+					<app-icon
+						class="ring-icon"
+						icon="ring_legend"
+						size="extra-small"></app-icon>
+				</div>
+
+				<div class="ring-info__label">Ring: {{(selectedRadarDataItem$ | async)?.ring}}</div>
+			</div>
+
+		</div>
+
+		<span [innerHTML]="(selectedRadarDataItemContent$ | async)"></span>
+	</div>
+
+	<div class="popover-actions">
+
+		<app-button
+			[type]="'flat'"
+			[theme]="theme"
+			(click)="close()">Done</app-button>
+
+	</div>
+
+</app-radars-popover>

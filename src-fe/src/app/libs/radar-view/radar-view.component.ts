@@ -5,6 +5,7 @@ import { filter, map, switchMap, takeUntil } from 'rxjs/operators';
 import { ComponentTheme } from '../common-components/common/enum/component-theme.enum';
 import { IconButtonModel } from '../common-components/icon-button/model/icon-button-model';
 import { IconSize } from '../common-components/icon/models/icon-size.enum';
+import { InfoDialogComponent } from '../common-components/info-dialog/info-dialog.component';
 import { ContainerFacadeService } from '../container/service/container-facade.service';
 import { EditDialogComponent } from './components/edit-dialog/edit-dialog.component';
 import { Radar } from './model/radar';
@@ -17,6 +18,7 @@ import { RadarViewFacadeService } from './service/radar-view-facade.service';
 })
 export class RadarViewComponent implements OnInit, OnDestroy {
 	@ViewChild('editRadarDialog', { static: true }) public readonly editRadarDialog: EditDialogComponent;
+	@ViewChild('infoDialog', { static: true }) public readonly infoDialog: InfoDialogComponent;
 
 	public buttons: IconButtonModel[];
 	public theme$: Observable<ComponentTheme> = this.containerFacadeService.theme$;
@@ -51,6 +53,10 @@ export class RadarViewComponent implements OnInit, OnDestroy {
 	public ngOnDestroy(): void {
 		this.destroy$.next(true);
 		this.destroy$.unsubscribe();
+	}
+
+	public openInfoDialog(event: string): void {
+		this.infoDialog.open(event);
 	}
 
 	private initCommandButtons(): void {

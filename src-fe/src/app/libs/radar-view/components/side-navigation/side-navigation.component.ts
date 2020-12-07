@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { combineLatest, Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { AccordionItem } from 'src/app/libs/common-components/accordion/models/accordion-item.models';
@@ -15,6 +15,8 @@ import { SectorToColorConverterService } from '../../service/sector-to-color-con
 	styleUrls: ['./side-navigation.component.scss'],
 })
 export class SideNavigationComponent implements OnInit {
+	@Output() public radarItemClickEvent$: EventEmitter<string> = new EventEmitter();
+
 	public theme$: Observable<ComponentTheme>;
 	public lastUpdatedDate$: Observable<Date>;
 	public items$: Observable<AccordionItem[]>;
@@ -62,5 +64,9 @@ export class SideNavigationComponent implements OnInit {
 				});
 			})
 		);
+	}
+
+	public clickRadarItem(event: string): void {
+		this.radarItemClickEvent$.emit(event);
 	}
 }

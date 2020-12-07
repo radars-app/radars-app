@@ -18,6 +18,7 @@ export class AccordionComponent implements OnInit {
 	public ngOnInit(): void {}
 
 	public emitSubItemClick(id: string): void {
+		console.log(id);
 		this.subItemClickEvent$.emit(id);
 	}
 

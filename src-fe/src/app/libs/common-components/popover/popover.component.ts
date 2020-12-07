@@ -12,6 +12,9 @@ export class PopoverComponent {
 	@Input()
 	public theme: ComponentTheme = ComponentTheme.Light;
 
+	@Input()
+	public minWidth: number = 340;
+
 	@ViewChild('template')
 	public popoverTemplate: TemplateRef<PopoverComponent>;
 
@@ -24,12 +27,12 @@ export class PopoverComponent {
 	public open(): void {
 		if (this.isDarkTheme) {
 			this.dialogRef = this.dialog.open(this.popoverTemplate, {
-				minWidth: '340px',
+				minWidth: `${this.minWidth}px`,
 				panelClass: 'popover--dark',
 			});
 		} else {
 			this.dialogRef = this.dialog.open(this.popoverTemplate, {
-				minWidth: '340px',
+				minWidth: `${this.minWidth}px`,
 			});
 		}
 	}
