@@ -1,8 +1,11 @@
+import { HttpClientModule } from '@angular/common/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { IconService } from '../icon/service/icon.service';
 
 import { PopoverComponent } from './popover.component';
+import { CommonComponentsModule } from '../common-components.module';
 
 describe('PopoverCommonComponent', () => {
 	let component: PopoverComponent;
@@ -12,7 +15,7 @@ describe('PopoverCommonComponent', () => {
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
 			declarations: [PopoverComponent],
-			imports: [MatDialogModule, BrowserAnimationsModule],
+			imports: [MatDialogModule, BrowserAnimationsModule, HttpClientModule, CommonComponentsModule],
 			providers: [
 				{
 					provide: MatDialogRef,
@@ -23,6 +26,8 @@ describe('PopoverCommonComponent', () => {
 	}));
 
 	beforeEach(() => {
+		const iconService: IconService = TestBed.inject(IconService);
+		iconService.addIcons();
 		fixture = TestBed.createComponent(PopoverComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
