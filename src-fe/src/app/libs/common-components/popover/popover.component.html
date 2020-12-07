@@ -1,5 +1,11 @@
 <ng-template #template>
 	<div class="popover-common">
+		<app-icon
+			class="popover-common__close-icon"
+			(click)="close()"
+			icon="close"
+			[size]="closeIconSize"
+			alt="close popover icon"></app-icon>
 		<div class="popover-common__title" mat-dialog-title>
 			<ng-content select=".popover-title"></ng-content>
 		</div>

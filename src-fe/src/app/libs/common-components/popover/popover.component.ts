@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ComponentTheme } from '../common/enum/component-theme.enum';
+import { IconSize } from '../icon/models/icon-size.enum';
 
 @Component({
 	selector: 'app-radars-popover',
@@ -17,6 +18,8 @@ export class PopoverComponent {
 
 	@ViewChild('template')
 	public popoverTemplate: TemplateRef<PopoverComponent>;
+
+	public closeIconSize: IconSize = IconSize.XS;
 
 	constructor(private dialog: MatDialog, public dialogRef: MatDialogRef<any>) {}
 
