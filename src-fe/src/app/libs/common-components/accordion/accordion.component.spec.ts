@@ -37,11 +37,11 @@ describe('AccordionComponent', () => {
 	});
 
 	it('should emit clicked ID', () => {
-		spyOn(component.subItemClickEvent$, 'emit');
+		spyOn(component.subItemClicked$, 'emit');
 		fixture.detectChanges();
 
 		component.emitSubItemClick('testID');
 
-		expect(component.subItemClickEvent$.emit).toHaveBeenCalled();
+		expect(component.subItemClicked$.emit).toHaveBeenCalled();
 	});
 });

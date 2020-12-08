@@ -1,0 +1,25 @@
+@import 'variables';
+
+.popover-content {
+	padding: 0 $secondary-grid-unit * 6;
+}
+
+.info-section {
+	display: flex;
+	margin-bottom: $secondary-grid-unit * 5;
+
+	@include text-small();
+}
+
+.sector-info,
+.ring-info {
+	display: flex;
+	margin-right: $secondary-grid-unit * 12;
+}
+
+.sector-info__colored-mark,
+.ring-info__icon {
+	width: $secondary-grid-unit * 4;
+	height: $secondary-grid-unit * 3;
+	margin: 0 $secondary-grid-unit 0 0;
+}

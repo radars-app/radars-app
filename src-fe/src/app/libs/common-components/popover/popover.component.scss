@@ -1,9 +1,24 @@
 @import 'variables';
 
 .popover-common {
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	max-width: $secondary-grid-unit * 150;
+
+	&__close-icon {
+		position: absolute;
+		top: 0;
+		right: 0;
+		filter: invert(40%);
+		cursor: pointer;
+	}
+
+	&__close-icon:hover,
+	&__close-icon:focus {
+		outline: 0;
+		filter: invert(0);
+	}
 
 	&__title {
 		margin-bottom: 0;
