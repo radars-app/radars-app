@@ -6,7 +6,6 @@ import { RadarDataItem } from '../../radar-view/model/radar-data-item';
 import { RadarViewFacadeService } from '../../radar-view/service/radar-view-facade.service';
 import { SectorToColorConverterService } from '../../radar-view/service/sector-to-color-converter.service';
 import { ComponentTheme } from '../common/enum/component-theme.enum';
-import { IconSize } from '../icon/models/icon-size.enum';
 import { PopoverComponent } from '../popover/popover.component';
 
 @Component({
@@ -26,8 +25,6 @@ export class InfoDialogComponent implements OnInit {
 
 	public selectedRadarDataItemId$: Subject<string> = new Subject();
 
-	public closeSize: IconSize = IconSize.M;
-
 	constructor(
 		private radarViewFacadeSevice: RadarViewFacadeService,
 		public sectorToColorConverter: SectorToColorConverterService,
@@ -44,8 +41,7 @@ export class InfoDialogComponent implements OnInit {
 		this.selectedRadarDataItemContent$ = this.selectedRadarDataItem$.pipe(
 			map((selectedItem: RadarDataItem) => {
 				const HTMLString: string = JSON.stringify(selectedItem.content);
-				console.log('HTMLString', HTMLString);
-				return this.sanitizer.bypassSecurityTrustHtml(HTMLString.replace(/['"]+/g, ''));
+				return this.sanitizer.bypassSecurityTrustHtml(HTMLString.replace(/^"(.*)"$/, '$1'));
 			})
 		);
 	}

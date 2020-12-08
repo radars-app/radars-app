@@ -11,15 +11,14 @@ export class AccordionComponent implements OnInit {
 	@Input() public items: AccordionItem[];
 	@Input() public theme: ComponentTheme;
 
-	@Output() public subItemClickEvent$: EventEmitter<string> = new EventEmitter();
+	@Output() public subItemClicked$: EventEmitter<string> = new EventEmitter();
 
 	constructor() {}
 
 	public ngOnInit(): void {}
 
 	public emitSubItemClick(id: string): void {
-		console.log(id);
-		this.subItemClickEvent$.emit(id);
+		this.subItemClicked$.emit(id);
 	}
 
 	public get isDarkTheme(): boolean {

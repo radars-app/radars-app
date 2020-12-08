@@ -2,6 +2,6 @@
 	<div class="side-navigation__date">Updated {{lastUpdatedDate$ | async | date:'y-m-d hh:mm'}}</div>
 	<app-radars-accordion	[items]="items$ | async" 
 							[theme]="theme$ | async"
-							(subItemClickEvent$)="clickRadarItem($event)">
+							(subItemClicked$)="showRadarDataItemDetails($event)">
 	</app-radars-accordion>
 </div>

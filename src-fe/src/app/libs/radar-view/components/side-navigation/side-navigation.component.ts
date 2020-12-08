@@ -15,7 +15,7 @@ import { SectorToColorConverterService } from '../../service/sector-to-color-con
 	styleUrls: ['./side-navigation.component.scss'],
 })
 export class SideNavigationComponent implements OnInit {
-	@Output() public radarItemClickEvent$: EventEmitter<string> = new EventEmitter();
+	@Output() public showRadarDataItemDetails$: EventEmitter<string> = new EventEmitter();
 
 	public theme$: Observable<ComponentTheme>;
 	public lastUpdatedDate$: Observable<Date>;
@@ -66,7 +66,7 @@ export class SideNavigationComponent implements OnInit {
 		);
 	}
 
-	public clickRadarItem(event: string): void {
-		this.radarItemClickEvent$.emit(event);
+	public showRadarDataItemDetails(event: string): void {
+		this.showRadarDataItemDetails$.emit(event);
 	}
 }
