@@ -1,11 +1,20 @@
 <div class="radar-view">
-	<app-radar-header class="radar-view__header" [title]="radarName$ | async" [buttons]="buttons"></app-radar-header>
+	<app-radar-header class="radar-view__header" [title]="radarName$ | async" [buttons]="buttons">
+		<app-search-input
+		[theme]="(theme$ | async)"
+		[foundItems$]="foundItems$"
+		preIcon="search"
+		(keyup)="search($event.target.value)"
+		(valueChange)="search($event)"></app-search-input>
+	</app-radar-header>
 
 	<div class="radar-view__content-wrapper">
 
 		<app-side-navigation
 			class="radar-view__side-navigation"
-			(showRadarDataItemDetails$)="openInfoDialog($event)"></app-side-navigation>
+			(showRadarDataItemDetails$)="openInfoDialog($event)"
+			(foundItems$)="setFoundItems($event)"
+			[search$]="search$"></app-side-navigation>
 
 		<app-radar-chart-legend class="radar-view__legend"></app-radar-chart-legend>
 		<app-radar-chart></app-radar-chart>

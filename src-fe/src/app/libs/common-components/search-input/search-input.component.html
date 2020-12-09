@@ -1,0 +1,20 @@
+<app-input
+	#searchInput
+	class="search-input"
+	[type]="'text'"
+	[theme]="theme"
+	[label]="label"
+	[placeholder]="placeholder"
+	[preIcon]="preIcon"
+	(keyup)="setValue($event.target.value)">
+</app-input>
+
+<div
+	*ngIf="value"
+	class="search-suggestion">
+
+		<div
+			*ngFor="let item of foundItems$ | async"
+			(click)="setInnerValue(item?.name)">{{item?.name}}</div>
+
+</div>

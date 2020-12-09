@@ -5,6 +5,10 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { PerfectScrollbarComponent, PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { MatInputModule } from '@angular/material/input';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { SlideToggleComponent } from './slide-toggle/slide-toggle.component';
 import { RadarHeaderComponent } from './radar-header/radar-header.component';
@@ -14,9 +18,9 @@ import { IconButtonComponent } from './icon-button/icon-button.component';
 import { IconService } from './icon/service/icon.service';
 import { AccordionComponent } from './accordion/accordion.component';
 import { PopoverComponent } from './popover/popover.component';
-import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { PerfectScrollbarComponent, PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { InfoDialogComponent } from './info-dialog/info-dialog.component';
+import { SearchInputComponent } from './search-input/search-input.component';
+import { InputComponent } from './input/input.component';
 
 @NgModule({
 	declarations: [
@@ -28,6 +32,8 @@ import { InfoDialogComponent } from './info-dialog/info-dialog.component';
 		AccordionComponent,
 		PopoverComponent,
 		InfoDialogComponent,
+		InputComponent,
+		SearchInputComponent,
 	],
 	imports: [
 		MatButtonModule,
@@ -38,6 +44,8 @@ import { InfoDialogComponent } from './info-dialog/info-dialog.component';
 		MatExpansionModule,
 		MatDialogModule,
 		PerfectScrollbarModule,
+		MatInputModule,
+		ReactiveFormsModule,
 	],
 	providers: [
 		IconService,
@@ -56,6 +64,7 @@ import { InfoDialogComponent } from './info-dialog/info-dialog.component';
 		PopoverComponent,
 		PerfectScrollbarComponent,
 		InfoDialogComponent,
+		SearchInputComponent,
 	],
 })
 export class CommonComponentsModule {}

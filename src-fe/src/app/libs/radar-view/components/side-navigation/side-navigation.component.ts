@@ -1,5 +1,5 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { combineLatest, Observable } from 'rxjs';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { combineLatest, Observable, Subject } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { AccordionItem } from 'src/app/libs/common-components/accordion/models/accordion-item.models';
 import { ComponentTheme } from 'src/app/libs/common-components/common/enum/component-theme.enum';
@@ -16,6 +16,9 @@ import { SectorToColorConverterService } from '../../service/sector-to-color-con
 })
 export class SideNavigationComponent implements OnInit {
 	@Output() public showRadarDataItemDetails$: EventEmitter<string> = new EventEmitter();
+	@Output() public foundItems$ = new Subject();
+
+	@Input() public search$: Subject<any>;
 
 	public theme$: Observable<ComponentTheme>;
 	public lastUpdatedDate$: Observable<Date>;
@@ -44,8 +47,10 @@ export class SideNavigationComponent implements OnInit {
 			})
 		);
 
-		this.items$ = combineLatest([this.radar$, this.radarViewFacade.radarDataItems$]).pipe(
-			map(([radar, items]: [Radar, RadarDataItem[]]) => {
+		this.items$ = combineLatest([this.search$, this.radar$, this.radarViewFacade.radarDataItems$]).pipe(
+			map(([search, radar, itemsRaw]: [any, Radar, RadarDataItem[]]) => {
+				const items = itemsRaw.filter((item) => item.name.includes(search));
+				this.foundItems$.next(items);
 				return radar.sectors.map((sector: string) => {
 					return {
 						title: sector,
@@ -53,6 +58,7 @@ export class SideNavigationComponent implements OnInit {
 						color: this.sectorToColorConverter.getColorBySector(sector),
 						children: items
 							.filter((item: RadarDataItem) => item.sector === sector)
+							/* 							.filter((item: RadarDataItem) => item.name.includes(search)) */
 							.map((item: RadarDataItem) => {
 								return {
 									id: item.id,

@@ -1,6 +1,6 @@
 import { OnDestroy, ViewChild, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, BehaviorSubject } from 'rxjs';
 import { filter, map, switchMap, takeUntil } from 'rxjs/operators';
 import { ComponentTheme } from '../common-components/common/enum/component-theme.enum';
 import { IconButtonModel } from '../common-components/icon-button/model/icon-button-model';
@@ -23,6 +23,8 @@ export class RadarViewComponent implements OnInit, OnDestroy {
 	public buttons: IconButtonModel[];
 	public theme$: Observable<ComponentTheme> = this.containerFacadeService.theme$;
 	public radarName$: Observable<string>;
+	public search$: BehaviorSubject<string> = new BehaviorSubject('');
+	public foundItems$: Subject<any[]> = new Subject();
 
 	private destroy$: Subject<boolean> = new Subject<boolean>();
 
@@ -57,6 +59,16 @@ export class RadarViewComponent implements OnInit, OnDestroy {
 
 	public openInfoDialog(event: string): void {
 		this.infoDialog.open(event);
+	}
+
+	public search(event: string): void {
+		console.log('search', event);
+		this.search$.next(event);
+	}
+
+	public setFoundItems(event: any[]): void {
+		console.log('array', event);
+		this.foundItems$.next(event);
 	}
 
 	private initCommandButtons(): void {

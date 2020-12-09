@@ -1,0 +1,20 @@
+@import 'variables';
+
+:host {
+	position: relative;
+}
+
+.search-input {
+
+	&--hidden {
+		visibility: hidden;
+	}
+}
+
+.search-suggestion {
+	position: absolute;
+	left: 0;
+	right: 0;
+	z-index: 1;
+	background-color: $color-white;
+}
