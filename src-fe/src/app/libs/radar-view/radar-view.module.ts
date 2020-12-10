@@ -10,6 +10,7 @@ import { RadarViewStoreModule } from './store/store.module';
 import { RadarChartComponent } from './components/radar-chart/radar-chart.component';
 import { DragAndDropDirective } from './components/edit-dialog/drag-and-drop.directive';
 import { ZoomInOutPanelComponent } from './components/zoom-in-out-panel/zoom-in-out-panel.component';
+import { DotTooltipComponent } from './components/dot-tooltip/dot-tooltip.component';
 
 @NgModule({
 	declarations: [
@@ -20,6 +21,7 @@ import { ZoomInOutPanelComponent } from './components/zoom-in-out-panel/zoom-in-
 		RadarChartComponent,
 		DragAndDropDirective,
 		ZoomInOutPanelComponent,
+		DotTooltipComponent,
 	],
 	imports: [CommonComponentsModule, CommonModule, RadarViewStoreModule],
 	exports: [RadarViewRoutingModule],

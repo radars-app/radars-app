@@ -1,7 +1,7 @@
 <svg #chartRoot class="radar-chart"></svg>
 
 <app-tooltip #tooltip [options]="dotTooltipOptions">
-	<b>hovered</b>
+	<app-dot-tooltip class="radar-chart__dot-tooltip" [dot]="hoveredDot"></app-dot-tooltip>
 </app-tooltip>
 
 <app-zoom-in-out-panel	class="radar-chart__zoom-in-out" 

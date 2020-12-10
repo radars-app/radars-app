@@ -5,8 +5,10 @@
 	flex: 1 100%;
 }
 
-.radar-chart__zoom-in-out {
-	position: absolute;
-	bottom: $secondary-grid-unit * 5;
-	right: $secondary-grid-unit * 5;
+.radar-chart {
+	&__zoom-in-out {
+		position: absolute;
+		bottom: $secondary-grid-unit * 5;
+		right: $secondary-grid-unit * 5;
+	}
 }

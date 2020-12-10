@@ -7,6 +7,10 @@
 	min-height: 100vh;
 }
 
+.container__header {
+	z-index: 111;
+}
+
 .container__content {
 	display: flex;
 	flex: 1 100%;
