@@ -1,6 +1,6 @@
 import { OnDestroy, ViewChild, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Observable, Subject, BehaviorSubject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { filter, map, switchMap, takeUntil } from 'rxjs/operators';
 import { ComponentTheme } from '../common-components/common/enum/component-theme.enum';
 import { IconButtonModel } from '../common-components/icon-button/model/icon-button-model';

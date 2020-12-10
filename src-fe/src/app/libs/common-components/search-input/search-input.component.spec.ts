@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { IconService } from '../icon/service/icon.service';
 
 import { SearchInputComponent } from './search-input.component';
 
@@ -13,6 +14,8 @@ describe('SearchInputComponent', () => {
 	}));
 
 	beforeEach(() => {
+		const iconService: IconService = TestBed.inject(IconService);
+		iconService.addIcons();
 		fixture = TestBed.createComponent(SearchInputComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();

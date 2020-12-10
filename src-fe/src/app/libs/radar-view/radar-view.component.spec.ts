@@ -63,7 +63,7 @@ describe('RadarViewComponent', () => {
 							},
 						]),
 						radarDataItems$: of([]),
-						radarFilteredDataItems$: of([]),
+						filteredRadarDataItems$: of([]),
 						loadRadars: jasmine.createSpy().and.stub(),
 					},
 				},

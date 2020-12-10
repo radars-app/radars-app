@@ -1,4 +1,3 @@
-import { Input } from '@angular/core';
 import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { RadarChartConfig, RadarChartModel, RadarChartRenderer, DotHoverEvent } from 'radar-chart-project';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
