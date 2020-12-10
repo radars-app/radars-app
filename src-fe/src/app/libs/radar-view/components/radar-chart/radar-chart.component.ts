@@ -1,6 +1,6 @@
-import { AfterContentInit, AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { RadarChartConfig, RadarChartModel, RadarChartRenderer, DotHoverEvent } from 'radar-chart-project';
-import { BehaviorSubject, merge, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { filter, map, takeUntil } from 'rxjs/operators';
 import { ComponentTheme } from 'src/app/libs/common-components/common/enum/component-theme.enum';
 import { ContainerFacadeService } from 'src/app/libs/container/service/container-facade.service';
@@ -116,7 +116,7 @@ export class RadarChartComponent implements OnInit, AfterViewInit, OnDestroy {
 		});
 	}
 
-	public changeTooltipTarget(target: Element): void {
+	private changeTooltipTarget(target: Element): void {
 		this.dotTooltipOptions = {
 			target: target,
 			repositionOptions: TooltipReposition.TopCenter,

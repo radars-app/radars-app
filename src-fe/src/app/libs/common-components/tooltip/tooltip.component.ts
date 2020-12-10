@@ -47,7 +47,12 @@ export class TooltipComponent implements OnInit, OnChanges, OnDestroy {
 		}
 	}
 
-	private positionTooltip(target: Element): void {
+	public ngOnDestroy(): void {
+		this.destroy$.next();
+		this.destroy$.complete();
+	}
+
+	private positionTooltip(target: Element): Tether {
 		let tetherOptions: ITetherOptions;
 		switch (this.options.repositionOptions) {
 			case TooltipReposition.TopCenter:
@@ -58,7 +63,7 @@ export class TooltipComponent implements OnInit, OnChanges, OnDestroy {
 					targetAttachment: this.options.repositionOptions,
 				};
 		}
-		const positioner: Tether = new Tether(tetherOptions);
+		return new Tether(tetherOptions);
 	}
 
 	private initVisibilityBehavior(target: HTMLElement): void {
@@ -70,10 +75,5 @@ export class TooltipComponent implements OnInit, OnChanges, OnDestroy {
 				this.isTooltipVisible.next(false);
 			};
 		}
-	}
-
-	public ngOnDestroy(): void {
-		this.destroy$.next();
-		this.destroy$.complete();
 	}
 }
