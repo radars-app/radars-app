@@ -20,6 +20,7 @@ export class RadarViewComponent implements OnInit, OnDestroy {
 	@ViewChild('editRadarDialog', { static: true }) public readonly editRadarDialog: EditDialogComponent;
 	@ViewChild('infoDialog', { static: true }) public readonly infoDialog: InfoDialogComponent;
 
+	public searchPlaceholder: string = 'Search and filter dots by keywords';
 	public buttons: IconButtonModel[];
 	public theme$: Observable<ComponentTheme> = this.containerFacadeService.theme$;
 	public radarName$: Observable<string>;
@@ -57,6 +58,10 @@ export class RadarViewComponent implements OnInit, OnDestroy {
 
 	public openInfoDialog(event: string): void {
 		this.infoDialog.open(event);
+	}
+
+	public search(searchString: string): void {
+		this.radarViewFacadeSevice.searchRadarItems(searchString);
 	}
 
 	private initCommandButtons(): void {

@@ -26,6 +26,7 @@ describe('RadarChartComponent', () => {
 					useValue: {
 						radars$: of([{ lastUpdatedAt: new Date(), sectors: [], rings: [] }]),
 						radarDataItems$: of([]),
+						filteredRadarDataItems$: of([]),
 					},
 				},
 				{

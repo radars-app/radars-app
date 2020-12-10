@@ -5,4 +5,6 @@ import { RadarDataItem } from '../../model/radar-data-item';
 export interface RadarViewState {
 	radars: EntityWrapper<Radar[]>;
 	radarDataItems: EntityWrapper<RadarDataItem[]>;
+	searchQuery: string;
+	filteredRadarDataItems: RadarDataItem[];
 }

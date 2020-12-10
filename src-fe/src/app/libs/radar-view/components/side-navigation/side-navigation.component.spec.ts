@@ -28,6 +28,7 @@ describe('SideNavigationComponent', () => {
 					useValue: {
 						radars$: of([{ lastUpdatedAt: new Date(), sectors: [], rings: [] }]),
 						radarDataItems$: of([]),
+						radarFilteredDataItems$: of([]),
 					},
 				},
 				{

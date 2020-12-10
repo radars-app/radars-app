@@ -44,7 +44,8 @@ export class SideNavigationComponent implements OnInit {
 			})
 		);
 
-		this.items$ = combineLatest([this.radar$, this.radarViewFacade.radarDataItems$]).pipe(
+		this.items$ = combineLatest([this.radar$, this.radarViewFacade.filteredRadarDataItems$]).pipe(
+			filter(([_, items]: [Radar, RadarDataItem[]]) => Boolean(items)),
 			map(([radar, items]: [Radar, RadarDataItem[]]) => {
 				return radar.sectors.map((sector: string) => {
 					return {
