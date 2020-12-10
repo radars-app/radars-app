@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { RadarChartConfig, RadarChartModel, RadarChartRenderer } from 'radar-chart-project';
+import { RadarChartConfig, RadarChartModel, RadarChartRenderer, DotHoverEvent } from 'radar-chart-project';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { filter, map, takeUntil } from 'rxjs/operators';
 import { ComponentTheme } from 'src/app/libs/common-components/common/enum/component-theme.enum';
@@ -8,6 +8,10 @@ import { Radar } from '../../model/radar';
 import { RadarDataItem } from '../../model/radar-data-item';
 import { RadarViewFacadeService } from '../../service/radar-view-facade.service';
 import { SectorToColorConverterService } from '../../service/sector-to-color-converter.service';
+import { TooltipOptions } from '../../../common-components/tooltip/models/tooltip-options';
+import { TooltipComponent } from '../../../common-components/tooltip/tooltip.component';
+import { TooltipReposition } from '../../../common-components/tooltip/models/tooltip-reposition';
+import { TooltipTrigger } from '../../../common-components/tooltip/models/tooltip-trigger';
 
 @Component({
 	selector: 'app-radar-chart',
@@ -16,6 +20,9 @@ import { SectorToColorConverterService } from '../../service/sector-to-color-con
 })
 export class RadarChartComponent implements OnInit, AfterViewInit, OnDestroy {
 	@ViewChild('chartRoot', { static: false }) public chartRoot: ElementRef<SVGElement>;
+	@ViewChild('tooltip') public tooltipComponent: TooltipComponent;
+
+	public dotTooltipOptions: TooltipOptions;
 
 	public config$: BehaviorSubject<RadarChartConfig>;
 	public radar$: Observable<Radar>;
@@ -32,9 +39,9 @@ export class RadarChartComponent implements OnInit, AfterViewInit, OnDestroy {
 	public ngOnInit(): void {
 		this.destroy$ = new Subject<void>();
 		this.radar$ = this.radarViewFacade.radars$.pipe(
-			takeUntil(this.destroy$),
 			filter((radars: Radar[]) => Boolean(radars)),
-			map((radars: Radar[]) => radars[radars.length - 1])
+			map((radars: Radar[]) => radars[radars.length - 1]),
+			takeUntil(this.destroy$)
 		);
 		this.handleThemeChange();
 		this.handleModelChange();
@@ -60,6 +67,7 @@ export class RadarChartComponent implements OnInit, AfterViewInit, OnDestroy {
 
 	public ngOnDestroy(): void {
 		this.destroy$.next();
+		this.destroy$.complete();
 	}
 
 	private handleModelChange(): void {
@@ -79,6 +87,41 @@ export class RadarChartComponent implements OnInit, AfterViewInit, OnDestroy {
 		this.radarViewFacade.radarDataItems$.pipe(takeUntil(this.destroy$)).subscribe((items: RadarDataItem[]) => {
 			this.model.dots$.next(items);
 		});
+
+		this.model.dotMouseOver$
+			.pipe(
+				filter((dotHoverEvent: DotHoverEvent) => Boolean(dotHoverEvent.element)),
+				takeUntil(this.destroy$)
+			)
+			.subscribe((dotHoverEvent: DotHoverEvent) => {
+				this.changeTooltipTarget(dotHoverEvent.element);
+				this.tooltipComponent.isTooltipVisible.next(true);
+			});
+
+		this.model.dotMouseOut$
+			.pipe(
+				filter((dotHoverEvent: DotHoverEvent) => Boolean(dotHoverEvent.element)),
+				takeUntil(this.destroy$)
+			)
+			.subscribe((dotHoverEvent: DotHoverEvent) => {
+				this.changeTooltipTarget(dotHoverEvent.element);
+				this.tooltipComponent.isTooltipVisible.next(false);
+			});
+
+		this.model.zoomEmitted$.subscribe(() => {
+			const target: SVGGElement = this.model.dotMouseOver$.getValue().element || this.model.dotMouseOut$.getValue().element;
+			if (target) {
+				this.changeTooltipTarget(target);
+			}
+		});
+	}
+
+	private changeTooltipTarget(target: Element): void {
+		this.dotTooltipOptions = {
+			target: target,
+			repositionOptions: TooltipReposition.TopCenter,
+			trigger: [TooltipTrigger.OnHover],
+		};
 	}
 
 	private handleThemeChange(): void {

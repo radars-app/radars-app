@@ -17,6 +17,7 @@ import { PopoverComponent } from './popover/popover.component';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { PerfectScrollbarComponent, PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { InfoDialogComponent } from './info-dialog/info-dialog.component';
+import { TooltipComponent } from './tooltip/tooltip.component';
 
 @NgModule({
 	declarations: [
@@ -28,6 +29,7 @@ import { InfoDialogComponent } from './info-dialog/info-dialog.component';
 		AccordionComponent,
 		PopoverComponent,
 		InfoDialogComponent,
+		TooltipComponent,
 	],
 	imports: [
 		MatButtonModule,
@@ -56,6 +58,7 @@ import { InfoDialogComponent } from './info-dialog/info-dialog.component';
 		PopoverComponent,
 		PerfectScrollbarComponent,
 		InfoDialogComponent,
+		TooltipComponent,
 	],
 })
 export class CommonComponentsModule {}
