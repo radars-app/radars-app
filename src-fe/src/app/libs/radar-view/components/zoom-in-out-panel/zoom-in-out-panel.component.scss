@@ -1,0 +1,27 @@
+@import 'variables';
+
+:host {
+	display: flex;
+}
+
+.zoom-in-out-panel {
+	display: flex;
+	flex-direction: column;
+	padding: $secondary-grid-unit;
+	border-radius: $secondary-grid-unit;
+	border: 1px solid #c7d0d8;
+	background-color: #fff;
+	color: #c7d0d8;
+
+	&--dark-theme {
+		background-color: #2d3443;
+	}
+}
+
+.zoom-in-out-panel__button {
+	height: 20px;
+
+	&:first-child {
+		padding-bottom: $secondary-grid-unit;
+	}
+}

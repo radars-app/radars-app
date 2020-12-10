@@ -14,6 +14,7 @@ import { RadarChartComponent } from './components/radar-chart/radar-chart.compon
 import { ActivatedRoute, convertToParamMap } from '@angular/router';
 import { RadarViewFacadeService } from './service/radar-view-facade.service';
 import { SectorToColorConverterService } from './service/sector-to-color-converter.service';
+import { ZoomInOutPanelComponent } from './components/zoom-in-out-panel/zoom-in-out-panel.component';
 
 describe('RadarViewComponent', () => {
 	let component: RadarViewComponent;
@@ -27,6 +28,7 @@ describe('RadarViewComponent', () => {
 				EditDialogComponent,
 				RadarChartLegendComponent,
 				RadarChartComponent,
+				ZoomInOutPanelComponent,
 			],
 			providers: [
 				SectorToColorConverterService,

@@ -70,6 +70,14 @@ export class RadarChartComponent implements OnInit, AfterViewInit, OnDestroy {
 		this.destroy$.complete();
 	}
 
+	public zoomIn(): void {
+		this.model.zoomIn$.next();
+	}
+
+	public zoomOut(): void {
+		this.model.zoomOut$.next();
+	}
+
 	private handleModelChange(): void {
 		this.model = new RadarChartModel();
 
