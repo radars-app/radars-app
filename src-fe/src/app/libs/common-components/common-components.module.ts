@@ -8,7 +8,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { PerfectScrollbarComponent, PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { MatInputModule } from '@angular/material/input';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 import { SlideToggleComponent } from './slide-toggle/slide-toggle.component';
 import { RadarHeaderComponent } from './radar-header/radar-header.component';
@@ -46,6 +47,8 @@ import { InputComponent } from './input/input.component';
 		PerfectScrollbarModule,
 		MatInputModule,
 		ReactiveFormsModule,
+		FormsModule,
+		MatAutocompleteModule,
 	],
 	providers: [
 		IconService,

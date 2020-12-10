@@ -5,7 +5,7 @@
 		[foundItems$]="foundItems$"
 		preIcon="search"
 		(keyup)="search($event.target.value)"
-		(valueChange)="search($event)"></app-search-input>
+		(valueChange$)="search($event)"></app-search-input>
 	</app-radar-header>
 
 	<div class="radar-view__content-wrapper">

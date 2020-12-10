@@ -1,4 +1,4 @@
-<app-input
+<!-- <app-input
 	#searchInput
 	class="search-input"
 	[type]="'text'"
@@ -17,4 +17,23 @@
 			*ngFor="let item of foundItems$ | async"
 			(click)="setInnerValue(item?.name)">{{item?.name}}</div>
 
-</div>
+</div> -->
+
+<form class="example-form">
+	<mat-form-field
+		appearance="outline"
+		class="example-full-width">
+		<mat-icon matPrefix>{{preIcon}}</mat-icon>
+		<input type="text"
+			 aria-label="Number"
+			 matInput
+			 [formControl]="myControl"
+			 [matAutocomplete]="auto">
+		<mat-autocomplete #auto="matAutocomplete">
+		<mat-option
+			*ngFor="let option of filteredOptions | async"
+			[value]="option">{{option}}
+		</mat-option>
+		</mat-autocomplete>
+	</mat-form-field>
+</form>
