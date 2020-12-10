@@ -16,7 +16,7 @@ import { SectorToColorConverterService } from '../../service/sector-to-color-con
 })
 export class SideNavigationComponent implements OnInit {
 	@Output() public showRadarDataItemDetails$: EventEmitter<string> = new EventEmitter();
-	@Output() public foundItems$ = new Subject();
+	@Output() public foundItems$: Subject<RadarDataItem[]> = new Subject();
 
 	@Input() public search$: Subject<any>;
 
@@ -47,10 +47,9 @@ export class SideNavigationComponent implements OnInit {
 			})
 		);
 
-		this.items$ = combineLatest([this.search$, this.radar$, this.radarViewFacade.radarDataItems$]).pipe(
-			map(([search, radar, itemsRaw]: [any, Radar, RadarDataItem[]]) => {
-				const items = itemsRaw.filter((item) => item.name.includes(search));
-				this.foundItems$.next(items);
+		this.items$ = combineLatest([this.radar$, this.radarViewFacade.filteredRadarDataItems$]).pipe(
+			filter(([_, items]: [Radar, RadarDataItem[]]) => Boolean(items)),
+			map(([radar, items]: [Radar, RadarDataItem[]]) => {
 				return radar.sectors.map((sector: string) => {
 					return {
 						title: sector,
@@ -58,7 +57,6 @@ export class SideNavigationComponent implements OnInit {
 						color: this.sectorToColorConverter.getColorBySector(sector),
 						children: items
 							.filter((item: RadarDataItem) => item.sector === sector)
-							/* 							.filter((item: RadarDataItem) => item.name.includes(search)) */
 							.map((item: RadarDataItem) => {
 								return {
 									id: item.id,

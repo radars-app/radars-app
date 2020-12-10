@@ -21,7 +21,6 @@ import { AccordionComponent } from './accordion/accordion.component';
 import { PopoverComponent } from './popover/popover.component';
 import { InfoDialogComponent } from './info-dialog/info-dialog.component';
 import { SearchInputComponent } from './search-input/search-input.component';
-import { InputComponent } from './input/input.component';
 
 @NgModule({
 	declarations: [
@@ -33,7 +32,6 @@ import { InputComponent } from './input/input.component';
 		AccordionComponent,
 		PopoverComponent,
 		InfoDialogComponent,
-		InputComponent,
 		SearchInputComponent,
 	],
 	imports: [

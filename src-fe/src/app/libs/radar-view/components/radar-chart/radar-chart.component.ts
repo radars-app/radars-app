@@ -1,3 +1,4 @@
+import { Input } from '@angular/core';
 import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { RadarChartConfig, RadarChartModel, RadarChartRenderer } from 'radar-chart-project';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
@@ -76,8 +77,10 @@ export class RadarChartComponent implements OnInit, AfterViewInit, OnDestroy {
 			this.model.sectors$.next(sectors.reverse());
 		});
 
-		this.radarViewFacade.radarDataItems$.pipe(takeUntil(this.destroy$)).subscribe((items: RadarDataItem[]) => {
-			this.model.dots$.next(items);
+		this.radarViewFacade.filteredRadarDataItems$.pipe(takeUntil(this.destroy$)).subscribe((items: RadarDataItem[]) => {
+			if (Boolean(items)) {
+				this.model.dots$.next(items);
+			}
 		});
 	}
 

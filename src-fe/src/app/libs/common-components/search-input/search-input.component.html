@@ -1,39 +1,13 @@
-<!-- <app-input
-	#searchInput
-	class="search-input"
-	[type]="'text'"
-	[theme]="theme"
-	[label]="label"
-	[placeholder]="placeholder"
-	[preIcon]="preIcon"
-	(keyup)="setValue($event.target.value)">
-</app-input>
 
-<div
-	*ngIf="value"
-	class="search-suggestion">
-
-		<div
-			*ngFor="let item of foundItems$ | async"
-			(click)="setInnerValue(item?.name)">{{item?.name}}</div>
-
-</div> -->
-
-<form class="example-form">
+<form class="search-form">
 	<mat-form-field
 		appearance="outline"
-		class="example-full-width">
-		<mat-icon matPrefix>{{preIcon}}</mat-icon>
+		class="search-input__box">
+		<app-icon matPrefix [icon]="preIcon"></app-icon>
 		<input type="text"
-			 aria-label="Number"
-			 matInput
-			 [formControl]="myControl"
-			 [matAutocomplete]="auto">
-		<mat-autocomplete #auto="matAutocomplete">
-		<mat-option
-			*ngFor="let option of filteredOptions | async"
-			[value]="option">{{option}}
-		</mat-option>
-		</mat-autocomplete>
+			aria-label="Number"
+			[placeholder]="placeholder"
+			matInput
+			[formControl]="searchInputControl">
 	</mat-form-field>
 </form>
