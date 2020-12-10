@@ -21,6 +21,7 @@ import { AccordionComponent } from './accordion/accordion.component';
 import { PopoverComponent } from './popover/popover.component';
 import { InfoDialogComponent } from './info-dialog/info-dialog.component';
 import { SearchInputComponent } from './search-input/search-input.component';
+import { TooltipComponent } from './tooltip/tooltip.component';
 
 @NgModule({
 	declarations: [
@@ -33,6 +34,7 @@ import { SearchInputComponent } from './search-input/search-input.component';
 		PopoverComponent,
 		InfoDialogComponent,
 		SearchInputComponent,
+		TooltipComponent,
 	],
 	imports: [
 		MatButtonModule,
@@ -66,6 +68,7 @@ import { SearchInputComponent } from './search-input/search-input.component';
 		PerfectScrollbarComponent,
 		InfoDialogComponent,
 		SearchInputComponent,
+		TooltipComponent,
 	],
 })
 export class CommonComponentsModule {}
