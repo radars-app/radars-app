@@ -16,3 +16,13 @@ export const selectRadarDataItems: MemoizedSelector<RadarViewState, RadarDataIte
 	selectRadarViewState,
 	(state: RadarViewState) => state.radarDataItems.value
 );
+
+export const selectSearchQuery: MemoizedSelector<RadarViewState, string> = createSelector(
+	selectRadarViewState,
+	(state: RadarViewState) => state.searchQuery
+);
+
+export const selectFilteredRadarDataItems: MemoizedSelector<RadarViewState, RadarDataItem[]> = createSelector(
+	selectRadarViewState,
+	(state: RadarViewState) => state.filteredRadarDataItems
+);

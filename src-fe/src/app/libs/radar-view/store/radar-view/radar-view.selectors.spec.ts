@@ -16,6 +16,8 @@ describe('Radar-view Selectors', () => {
 					value: null,
 					status: EntityStatus.Init,
 				},
+				searchQuery: null,
+				filteredRadarDataItems: null,
 			},
 		});
 
@@ -28,6 +30,8 @@ describe('Radar-view Selectors', () => {
 				value: null,
 				status: EntityStatus.Init,
 			},
+			searchQuery: null,
+			filteredRadarDataItems: null,
 		});
 	});
 });

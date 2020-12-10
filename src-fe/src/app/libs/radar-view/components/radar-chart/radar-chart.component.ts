@@ -93,8 +93,10 @@ export class RadarChartComponent implements OnInit, AfterViewInit, OnDestroy {
 			this.model.sectors$.next(sectors.reverse());
 		});
 
-		this.radarViewFacade.radarDataItems$.pipe(takeUntil(this.destroy$)).subscribe((items: RadarDataItem[]) => {
-			this.model.dots$.next(items);
+		this.radarViewFacade.filteredRadarDataItems$.pipe(takeUntil(this.destroy$)).subscribe((items: RadarDataItem[]) => {
+			if (Boolean(items)) {
+				this.model.dots$.next(items);
+			}
 		});
 
 		this.model.dotMouseOver$

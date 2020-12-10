@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { map, switchMap, take } from 'rxjs/operators';
+import { map, switchMap, take, withLatestFrom } from 'rxjs/operators';
 import { NEVER, Observable } from 'rxjs';
 import {
 	RadarViewActionTypes,
@@ -10,6 +10,8 @@ import {
 	LoadRadarDataItemsSuccess,
 	UploadRadar,
 	RadarViewActions,
+	SetFilteredRadarItems,
+	SetSearchQuery,
 } from './radar-view.actions';
 import { Action } from '@ngrx/store';
 
@@ -85,6 +87,23 @@ export class RadarViewEffects {
 					return new LoadRadars(radarDto.radarId);
 				})
 			);
+		})
+	);
+
+	@Effect()
+	public filterRadarItems$: Observable<any> = this.actions$.pipe(
+		ofType(RadarViewActionTypes.SetSearchQuery, RadarViewActionTypes.LoadRadarDataItemsSuccess),
+		withLatestFrom(this.radarViewFacadeService.radarDataItems$, this.radarViewFacadeService.searchQuery$),
+		map(([_, radarDataItems, searchQuery]: [SetSearchQuery | LoadRadarDataItemsSuccess, RadarDataItem[], string]) => {
+			let filteredDataItems: RadarDataItem[] = radarDataItems;
+
+			if (Boolean(searchQuery)) {
+				filteredDataItems = radarDataItems.filter((item: RadarDataItem) =>
+					item.name.toLowerCase().includes(searchQuery.trim().toLowerCase())
+				);
+			}
+
+			return new SetFilteredRadarItems(filteredDataItems);
 		})
 	);
 
