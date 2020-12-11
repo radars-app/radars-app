@@ -1,0 +1,32 @@
+@import 'variables';
+
+.mat-form-field-appearance-outline.input--dark .mat-form-field-outline {
+	color: #99a6b5;
+}
+
+.input--dark {
+	.mat-input-element {
+		color: #99a6b5;
+	}
+	.mat-input-element::placeholder {
+		color: #99a6b5;
+	}
+	.mat-icon {
+		color: #99a6b5;
+	}
+	.mat-form-field-label {
+		color: #99a6b5;
+	}
+
+	.mat-form-field-disabled .mat-input-element {
+		color: #99a6b5;
+	}
+}
+
+.input--dark.mat-form-field-disabled .mat-input-element {
+	color: #99a6b5;
+}
+
+.input--dark.mat-form-field-disabled .mat-form-field-label {
+	color: #99a6b5;
+}

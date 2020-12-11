@@ -2,8 +2,12 @@
 <form class="search-form">
 	<mat-form-field
 		appearance="outline"
-		class="search-input__box">
-		<app-icon matPrefix [icon]="preIcon"></app-icon>
+		class="search-input"
+		[class.input--dark]="isDarkTheme">
+		<app-icon
+			class="search-input__pre-icon"
+			matPrefix
+			[icon]="preIcon"></app-icon>
 		<input type="text"
 			aria-label="Number"
 			[placeholder]="placeholder"
