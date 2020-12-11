@@ -31,7 +31,7 @@ export class RadarChartLegendComponent implements OnInit {
 			map((radars: Radar[]) => radars[0])
 		);
 		this.sectors$ = this.radar$.pipe(map((radar: Radar) => radar.sectors));
-		this.rings$ = this.radar$.pipe(map((radar: Radar) => radar.rings));
+		this.rings$ = this.radar$.pipe(map((radar: Radar) => [...radar.rings].reverse()));
 	}
 
 	public getRingIcon(isLast: boolean): string {

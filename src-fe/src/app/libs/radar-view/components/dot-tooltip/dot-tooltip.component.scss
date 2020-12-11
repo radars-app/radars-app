@@ -1,0 +1,50 @@
+@import 'variables';
+
+.dot-tooltip {
+	transform: translateY(-5px);
+	z-index: 1;
+	min-width: 152px;
+	padding-top: $secondary-grid-unit;
+	padding-right: $secondary-grid-unit * 2;
+	padding-left: $secondary-grid-unit * 2;
+	padding-bottom: $main-grid-unit;
+	color: $color-white-100;
+	background-color: #272c39;
+	border-radius: $secondary-grid-unit;
+	border-radius: 3px;
+	opacity: 0.95;
+
+	&__title {
+		@include text-p-bold();
+
+		margin-top: $secondary-grid-unit;
+		margin-bottom: $main-grid-unit;
+	}
+
+	&__icon {
+		display: flex;
+		align-items: center;
+		width: $secondary-grid-unit * 4;
+		margin-right: $secondary-grid-unit;
+	}
+
+	&__sector {
+		@include text-small();
+
+		display: flex;
+		margin-top: $secondary-grid-unit;
+		margin-bottom: 0;
+	}
+
+	&__ring {
+		@include text-small();
+
+		display: flex;
+		margin-top: $secondary-grid-unit;
+	}
+
+	.color-rect {
+		width: $secondary-grid-unit * 4;
+		height: $secondary-grid-unit * 3;
+	}
+}

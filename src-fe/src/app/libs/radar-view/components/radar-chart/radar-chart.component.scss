@@ -1,4 +1,14 @@
+@import 'variables';
+
 :host {
 	display: flex;
 	flex: 1 100%;
+}
+
+.radar-chart {
+	&__zoom-in-out {
+		position: absolute;
+		bottom: $secondary-grid-unit * 5;
+		right: $secondary-grid-unit * 5;
+	}
 }

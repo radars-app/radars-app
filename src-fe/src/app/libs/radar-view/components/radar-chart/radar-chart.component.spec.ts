@@ -4,6 +4,7 @@ import { ComponentTheme } from 'src/app/libs/common-components/common/enum/compo
 import { ContainerFacadeService } from 'src/app/libs/container/service/container-facade.service';
 import { RadarViewFacadeService } from '../../service/radar-view-facade.service';
 import { SectorToColorConverterService } from '../../service/sector-to-color-converter.service';
+import { ZoomInOutPanelComponent } from '../zoom-in-out-panel/zoom-in-out-panel.component';
 
 import { RadarChartComponent } from './radar-chart.component';
 
@@ -13,7 +14,7 @@ describe('RadarChartComponent', () => {
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: [RadarChartComponent],
+			declarations: [RadarChartComponent, ZoomInOutPanelComponent],
 			providers: [
 				{
 					provide: ContainerFacadeService,

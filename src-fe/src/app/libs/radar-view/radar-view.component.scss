@@ -15,21 +15,27 @@
 
 .radar-view__side-navigation {
 	position: absolute;
-	width: $secondary-grid-unit * 85;
 	top: 0;
 	bottom: 0;
 	left: 0;
+	z-index: 11;
+	width: $secondary-grid-unit * 85;
 }
 
 .radar-view__content-wrapper {
+	position: relative;
 	display: flex;
 	flex: 1 100%;
-	position: relative;
+}
+
+.radar-view__header {
+	z-index: 11;
 }
 
 .radar-view__legend {
 	position: absolute;
-	width: $secondary-grid-unit * 45;
 	top: $main-grid-unit;
 	right: $secondary-grid-unit * 5;
+	z-index: 11;
+	width: $secondary-grid-unit * 45;
 }

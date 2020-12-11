@@ -23,6 +23,7 @@ export class RadarChartComponent implements OnInit, AfterViewInit, OnDestroy {
 	@ViewChild('tooltip') public tooltipComponent: TooltipComponent;
 
 	public dotTooltipOptions: TooltipOptions;
+	public hoveredDot: RadarDataItem;
 
 	public config$: BehaviorSubject<RadarChartConfig>;
 	public radar$: Observable<Radar>;
@@ -70,6 +71,14 @@ export class RadarChartComponent implements OnInit, AfterViewInit, OnDestroy {
 		this.destroy$.complete();
 	}
 
+	public zoomIn(): void {
+		this.model.zoomIn$.next(true);
+	}
+
+	public zoomOut(): void {
+		this.model.zoomOut$.next(false);
+	}
+
 	private handleModelChange(): void {
 		this.model = new RadarChartModel();
 
@@ -96,6 +105,7 @@ export class RadarChartComponent implements OnInit, AfterViewInit, OnDestroy {
 				takeUntil(this.destroy$)
 			)
 			.subscribe((dotHoverEvent: DotHoverEvent) => {
+				this.hoveredDot = this.getRadarItemById(dotHoverEvent.dotId);
 				this.changeTooltipTarget(dotHoverEvent.element);
 				this.tooltipComponent.isTooltipVisible.next(true);
 			});
@@ -116,6 +126,10 @@ export class RadarChartComponent implements OnInit, AfterViewInit, OnDestroy {
 				this.changeTooltipTarget(target);
 			}
 		});
+	}
+
+	private getRadarItemById(id: string): RadarDataItem {
+		return this.model.dots$.getValue().find((radarItem: RadarDataItem) => radarItem.id === id) as RadarDataItem;
 	}
 
 	private changeTooltipTarget(target: Element): void {

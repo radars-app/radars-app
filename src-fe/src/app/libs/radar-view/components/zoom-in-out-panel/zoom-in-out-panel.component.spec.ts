@@ -4,19 +4,16 @@ import { CommonComponentsModule } from 'src/app/libs/common-components/common-co
 import { ComponentTheme } from 'src/app/libs/common-components/common/enum/component-theme.enum';
 import { IconService } from 'src/app/libs/common-components/icon/service/icon.service';
 import { ContainerFacadeService } from 'src/app/libs/container/service/container-facade.service';
-import { RadarViewFacadeService } from '../../service/radar-view-facade.service';
-import { SectorToColorConverterService } from '../../service/sector-to-color-converter.service';
 import { HttpClientModule } from '@angular/common/http';
 
-import { RadarChartLegendComponent } from './radar-chart-legend.component';
+import { ZoomInOutPanelComponent } from './zoom-in-out-panel.component';
 
-describe('RadarChartLegendComponent', () => {
-	let component: RadarChartLegendComponent;
-	let fixture: ComponentFixture<RadarChartLegendComponent>;
+describe('ZoomInOutPanelComponent', () => {
+	let component: ZoomInOutPanelComponent;
+	let fixture: ComponentFixture<ZoomInOutPanelComponent>;
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: [RadarChartLegendComponent],
 			providers: [
 				{
 					provide: ContainerFacadeService,
@@ -24,32 +21,8 @@ describe('RadarChartLegendComponent', () => {
 						theme$: of(ComponentTheme.Light),
 					},
 				},
-				{
-					provide: SectorToColorConverterService,
-					useValue: {
-						getColorBySector: jasmine.createSpy().and.returnValue('#123123'),
-					},
-				},
-				{
-					provide: RadarViewFacadeService,
-					useValue: {
-						radars$: of([
-							{
-								id: '1',
-								name: 'radarName',
-								lastUpdatedDate: '12/1/2020',
-								config: {
-									name: 'radarName',
-									csv: 'string',
-								},
-								sectors: [],
-								rings: [],
-							},
-						]),
-						radarDataItems$: of([]),
-					},
-				},
 			],
+			declarations: [ZoomInOutPanelComponent],
 			imports: [CommonComponentsModule, HttpClientModule],
 		}).compileComponents();
 	}));
@@ -57,7 +30,7 @@ describe('RadarChartLegendComponent', () => {
 	beforeEach(() => {
 		const iconService: IconService = TestBed.inject(IconService);
 		iconService.addIcons();
-		fixture = TestBed.createComponent(RadarChartLegendComponent);
+		fixture = TestBed.createComponent(ZoomInOutPanelComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 	});
