@@ -6,7 +6,7 @@
 	&__colored-mark {
 		width: $secondary-grid-unit * 4;
 		height: $secondary-grid-unit * 3;
-		margin: 0 $secondary-grid-unit * 3;
+		margin: 0 $secondary-grid-unit * 2 0 0;
 	}
 
 	&__counter {
@@ -20,7 +20,8 @@
 	cursor: pointer;
 
 	&__index {
-		margin: 0 $secondary-grid-unit * 4;
+		display: inline-block;
+		width: $secondary-grid-unit * 7;
 	}
 }
 
@@ -41,5 +42,13 @@
 		border-color: #5e6670;
 		position: relative;
 		top: -($secondary-grid-unit + 3px);
+	}
+
+	.mat-expansion-panel .mat-expansion-panel-header {
+		padding: 0 $secondary-grid-unit * 5;
+	}
+
+	.mat-expansion-panel .mat-expansion-panel-body {
+		padding: 0 $secondary-grid-unit * 5 $secondary-grid-unit * 4;
 	}
 }
