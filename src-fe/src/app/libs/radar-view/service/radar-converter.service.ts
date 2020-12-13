@@ -11,7 +11,7 @@ export class RadarConverterService {
 		return {
 			id: dto.radarId,
 			name: dto.name,
-			lastUpdatedDate: new Date(dto.lastUpdatedDate),
+			lastUpdatedDate: new Date(Number(dto.lastUpdatedDate)),
 			config: dto.config,
 			rings: dto.rings,
 			sectors: dto.sectors,
