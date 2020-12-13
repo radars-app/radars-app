@@ -89,3 +89,13 @@
 		border-top-right-radius: 0;
 	}
 }
+
+.profile-popup__item-label {
+	padding-right: $secondary-grid-unit;
+	flex-shrink: 0;
+}
+
+.profile-popup__item-content {
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
