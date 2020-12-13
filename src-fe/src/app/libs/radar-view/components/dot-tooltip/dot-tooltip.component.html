@@ -1,5 +1,5 @@
 <section class="dot-tooltip" *ngIf="dot">
-	<h4 class="dot-tooltip__title">Diagram as a code</h4>
+	<h4 class="dot-tooltip__title">{{dot.name}}</h4>
 	<div class="dot-tooltip__sector">
 		<div class="dot-tooltip__icon">
 			<div class="color-rect" [style.background-color]="sectorToColorConverter.getColorBySector(dot.sector)"></div>

@@ -28,7 +28,7 @@ export class RadarChartLegendComponent implements OnInit {
 		this.theme$ = this.containerFacade.theme$;
 		this.radar$ = this.radarViewFacade.radars$.pipe(
 			filter((radars: Radar[]) => Boolean(radars)),
-			map((radars: Radar[]) => radars[0])
+			map((radars: Radar[]) => radars[radars.length - 1])
 		);
 		this.sectors$ = this.radar$.pipe(map((radar: Radar) => radar.sectors));
 		this.rings$ = this.radar$.pipe(map((radar: Radar) => [...radar.rings].reverse()));
