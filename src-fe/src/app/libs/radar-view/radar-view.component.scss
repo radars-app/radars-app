@@ -34,7 +34,7 @@
 
 .radar-view__legend {
 	position: absolute;
-	top: $main-grid-unit;
+	top: $secondary-grid-unit * 3;
 	right: $secondary-grid-unit * 5;
 	z-index: 11;
 	width: $secondary-grid-unit * 45;
