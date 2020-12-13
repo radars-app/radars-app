@@ -1,7 +1,7 @@
 
 {
-    "clientId": "878f4ea3-6e6f-4110-8112-1f71ab4191ce",
-    "authority": "https://login.microsoftonline.com/common",
+    "clientId": "8f0f6c4f-d514-435c-a209-40813a9724ff",
+    "authority": "https://login.microsoftonline.com/abc93a01-51df-4247-a302-427c98b19cec/",
     "redirectUri": "http://localhost:8080",
     "protectedResourceMap": [
         [
