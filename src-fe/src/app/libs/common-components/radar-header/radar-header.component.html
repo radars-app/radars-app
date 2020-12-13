@@ -8,7 +8,8 @@
 			*ngFor="let button of buttons"
 			[startIcon]="button.icon"
 			[theme]="theme$ | async"
-			[iconSize]="button.iconSize"
+            [iconSize]="button.iconSize"
+            [disabled]="button.disabled"
 			(click)="button.callback()">{{button.label}}</app-icon-button>
     </div>
 </div>

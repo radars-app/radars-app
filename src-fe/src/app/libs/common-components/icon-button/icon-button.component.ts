@@ -23,4 +23,7 @@ export class IconButtonComponent {
 
 	@Input()
 	public iconSize: IconSize;
+
+	@Input()
+	public disabled: boolean;
 }

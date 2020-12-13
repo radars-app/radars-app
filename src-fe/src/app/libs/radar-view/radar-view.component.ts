@@ -70,6 +70,7 @@ export class RadarViewComponent implements OnInit, OnDestroy {
 			callback: () => {},
 			icon: 'print',
 			iconSize: IconSize.S,
+			disabled: true,
 		};
 
 		const editButton: IconButtonModel = {
@@ -79,6 +80,7 @@ export class RadarViewComponent implements OnInit, OnDestroy {
 			},
 			icon: 'edit_1',
 			iconSize: IconSize.S,
+			disabled: false,
 		};
 
 		const removeButton: IconButtonModel = {
@@ -86,6 +88,7 @@ export class RadarViewComponent implements OnInit, OnDestroy {
 			callback: () => {},
 			icon: 'delete',
 			iconSize: IconSize.S,
+			disabled: true,
 		};
 
 		this.buttons = [printButton, editButton, removeButton];
