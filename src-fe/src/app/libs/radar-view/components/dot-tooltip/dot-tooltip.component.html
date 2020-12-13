@@ -5,7 +5,7 @@
 			<div class="color-rect" [style.background-color]="sectorToColorConverter.getColorBySector(dot.sector)"></div>
 		</div>
 		<div class="dot-tooltip__label">Sector:</div>
-		<div class="dot-tooltip__label"> {{dot.sector}}</div>
+		<div class="dot-tooltip__content">{{dot.sector}}</div>
 	</div>
 	<div class="dot-tooltip__ring">
 		<div class="dot-tooltip__icon">
@@ -13,6 +13,6 @@
 		</div>
 		<div class="dot-tooltip__label">Ring:</div>
 		
-		<div class="dot-tooltip__label">{{dot.ring}}</div>
+		<div class="dot-tooltip__content">{{dot.ring}}</div>
 	</div>
 </section>
