@@ -15,4 +15,30 @@
 			color: #c7d0d8;
 		}
 	}
+
+	.mat-expansion-panel-header .mat-expansion-indicator::after {
+		width: $secondary-grid-unit;
+		height: $secondary-grid-unit;
+		border-width: 0 1px 1px 0;
+		border-color: #5e6670;
+		position: relative;
+		top: -$secondary-grid-unit;
+	}
+
+	.mat-expansion-panel-header.mat-expanded .mat-expansion-indicator::after {
+		width: $secondary-grid-unit;
+		height: $secondary-grid-unit;
+		border-width: 0 1px 1px 0;
+		border-color: #5e6670;
+		position: relative;
+		top: -($secondary-grid-unit + 3px);
+	}
+
+	.mat-expansion-panel .mat-expansion-panel-header {
+		padding: 0 $secondary-grid-unit * 5;
+	}
+
+	.mat-expansion-panel .mat-expansion-panel-body {
+		padding: 0 $secondary-grid-unit * 5 $secondary-grid-unit * 4;
+	}
 }
