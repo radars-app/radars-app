@@ -1,7 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { IconService } from '../icon/service/icon.service';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { IconService } from '../icon/service/icon.service';
 import { SearchInputComponent } from './search-input.component';
+import { CommonComponentsModule } from '../common-components.module';
 
 describe('SearchInputComponent', () => {
 	let component: SearchInputComponent;
@@ -9,6 +12,7 @@ describe('SearchInputComponent', () => {
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
+			imports: [CommonComponentsModule, HttpClientModule, BrowserAnimationsModule],
 			declarations: [SearchInputComponent],
 		}).compileComponents();
 	}));

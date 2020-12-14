@@ -42,9 +42,9 @@ import { ContainerModule } from './libs/container/container.module';
 				},
 			},
 			{
-				consentScopes: ['user.read', 'profile'],
+				consentScopes: ['user.read', 'openid', 'profile'],
 				unprotectedResources: [],
-				protectedResourceMap: [['https://graph.microsoft.com/v1.0/me', ['user.read', 'profile']]],
+				protectedResourceMap: [['https://graph.microsoft.com/v1.0/me', ['user.read']]],
 				extraQueryParameters: {},
 			}
 		),

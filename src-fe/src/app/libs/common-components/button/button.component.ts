@@ -21,10 +21,10 @@ export class ButtonComponent {
 	public disabled: boolean = false;
 
 	@Input()
-	public disableRipple: boolean = false;
+	public disableRipple: boolean = true;
 
 	@Input()
-	public disableHover: boolean = false;
+	public disableHover: boolean = true;
 
 	@Input()
 	public fullWidth: boolean = false;

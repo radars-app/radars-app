@@ -15,6 +15,7 @@ import { ActivatedRoute, convertToParamMap } from '@angular/router';
 import { RadarViewFacadeService } from './service/radar-view-facade.service';
 import { SectorToColorConverterService } from './service/sector-to-color-converter.service';
 import { ZoomInOutPanelComponent } from './components/zoom-in-out-panel/zoom-in-out-panel.component';
+import { DotTooltipComponent } from './components/dot-tooltip/dot-tooltip.component';
 
 describe('RadarViewComponent', () => {
 	let component: RadarViewComponent;
@@ -29,9 +30,15 @@ describe('RadarViewComponent', () => {
 				RadarChartLegendComponent,
 				RadarChartComponent,
 				ZoomInOutPanelComponent,
+				DotTooltipComponent,
 			],
 			providers: [
-				SectorToColorConverterService,
+				{
+					provide: SectorToColorConverterService,
+					useValue: {
+						getColorBySector: jasmine.createSpy().and.returnValue('#123123'),
+					},
+				},
 				{
 					provide: ContainerFacadeService,
 					useValue: {
@@ -59,13 +66,33 @@ describe('RadarViewComponent', () => {
 								config: {
 									name: 'Radar1',
 									csv: 'string',
+									rings: [],
+									sectors: [],
 								},
-								sectors: [],
-								rings: [],
+								sectors: ['OS', 'Hardware', 'Cloud'],
+								rings: ['Trial', 'Hold', 'Acceptance'],
 							},
 						]),
-						radarDataItems$: of([]),
-						filteredRadarDataItems$: of([]),
+						radarDataItems$: of([
+							{
+								id: '3a4dbe90-5a2c-4c81-93ea-22039a921931',
+								name: 'Linux',
+								ring: 'Hold',
+								sector: 'OS',
+								content: `Content 1 <a href="//mysite.com">Test, with comma</a>`,
+								number: 1,
+							},
+						]),
+						filteredRadarDataItems$: of([
+							{
+								id: '3a4dbe90-5a2c-4c81-93ea-22039a921931',
+								name: 'Linux',
+								ring: 'Hold',
+								sector: 'OS',
+								content: `Content 1 <a href="//mysite.com">Test, with comma</a>`,
+								number: 1,
+							},
+						]),
 						loadRadars: jasmine.createSpy().and.stub(),
 					},
 				},

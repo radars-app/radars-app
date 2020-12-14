@@ -6,7 +6,7 @@
 	&__colored-mark {
 		width: $secondary-grid-unit * 4;
 		height: $secondary-grid-unit * 3;
-		margin: 0 $secondary-grid-unit * 3;
+		margin: 0 $secondary-grid-unit * 2 0 0;
 	}
 
 	&__counter {
@@ -20,26 +20,7 @@
 	cursor: pointer;
 
 	&__index {
-		margin: 0 $secondary-grid-unit * 4;
-	}
-}
-
-::ng-deep {
-	.mat-expansion-panel-header .mat-expansion-indicator::after {
-		width: $secondary-grid-unit;
-		height: $secondary-grid-unit;
-		border-width: 0 1px 1px 0;
-		border-color: #5e6670;
-		position: relative;
-		top: -$secondary-grid-unit;
-	}
-
-	.mat-expansion-panel-header.mat-expanded .mat-expansion-indicator::after {
-		width: $secondary-grid-unit;
-		height: $secondary-grid-unit;
-		border-width: 0 1px 1px 0;
-		border-color: #5e6670;
-		position: relative;
-		top: -($secondary-grid-unit + 3px);
+		display: inline-block;
+		width: $secondary-grid-unit * 7;
 	}
 }

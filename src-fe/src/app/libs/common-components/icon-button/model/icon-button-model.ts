@@ -5,4 +5,5 @@ export interface IconButtonModel {
 	callback: Function;
 	icon: string;
 	iconSize: IconSize;
+	disabled: boolean;
 }

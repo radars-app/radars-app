@@ -5,8 +5,8 @@
 		>{{ (userProfile$ | async)?.fullName}}</div>
 
 	<div class="profile-popup__item profile-popup__info">
-		<span>E-mail:</span>
-		<span>{{ (userProfile$ | async)?.email}}</span>
+		<span class="profile-popup__item-label">E-mail:</span>
+		<span class="profile-popup__item-content">{{ (userProfile$ | async)?.email}}</span>
 	</div>
 
 

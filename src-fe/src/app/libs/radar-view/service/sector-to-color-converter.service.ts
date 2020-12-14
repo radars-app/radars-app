@@ -13,7 +13,7 @@ export class SectorToColorConverterService {
 	constructor(private radarViewFacade: RadarViewFacadeService) {
 		this.sectors = [];
 		this.radarViewFacade.radars$.pipe(filter((radars: Radar[]) => Boolean(radars))).subscribe((radars: Radar[]) => {
-			this.sectors = radars[0].sectors;
+			this.sectors = radars[radars.length - 1].sectors;
 		});
 	}
 

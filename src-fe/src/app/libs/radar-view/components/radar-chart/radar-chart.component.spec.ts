@@ -7,6 +7,10 @@ import { SectorToColorConverterService } from '../../service/sector-to-color-con
 import { ZoomInOutPanelComponent } from '../zoom-in-out-panel/zoom-in-out-panel.component';
 
 import { RadarChartComponent } from './radar-chart.component';
+import { CommonComponentsModule } from '../../../common-components/common-components.module';
+import { IconService } from 'src/app/libs/common-components/icon/service/icon.service';
+import { HttpClientModule } from '@angular/common/http';
+import { DotTooltipComponent } from '../dot-tooltip/dot-tooltip.component';
 
 describe('RadarChartComponent', () => {
 	let component: RadarChartComponent;
@@ -14,7 +18,8 @@ describe('RadarChartComponent', () => {
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: [RadarChartComponent, ZoomInOutPanelComponent],
+			declarations: [RadarChartComponent, ZoomInOutPanelComponent, DotTooltipComponent],
+			imports: [CommonComponentsModule, HttpClientModule],
 			providers: [
 				{
 					provide: ContainerFacadeService,
@@ -41,6 +46,8 @@ describe('RadarChartComponent', () => {
 	}));
 
 	beforeEach(() => {
+		const iconService: IconService = TestBed.inject(IconService);
+		iconService.addIcons();
 		fixture = TestBed.createComponent(RadarChartComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();

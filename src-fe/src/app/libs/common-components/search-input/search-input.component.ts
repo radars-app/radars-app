@@ -15,5 +15,9 @@ export class SearchInputComponent {
 
 	@Input() public preIcon: string;
 
+	public get isDarkTheme(): boolean {
+		return this.theme === ComponentTheme.Dark;
+	}
+
 	public searchInputControl: FormControl = new FormControl();
 }

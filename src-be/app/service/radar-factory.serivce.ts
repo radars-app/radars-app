@@ -14,7 +14,7 @@ export class RadarFactoryService {
 		return {
 			uid: v4(),
 			radarId: radarId,
-			lastUpdatedDate: new Date().toISOString(),
+			lastUpdatedDate: new Date().getTime().toString(),
 			name: config.name,
 			versionId: v4(),
 			rings: config.rings,

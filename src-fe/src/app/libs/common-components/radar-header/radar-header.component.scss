@@ -32,4 +32,10 @@
 	flex: 1;
 	display: flex;
 	justify-content: flex-end;
+	padding-right: $secondary-grid-unit * 15;
+}
+
+.radar-header__buttons {
+	position: relative;
+	left: $secondary-grid-unit * 5;
 }
