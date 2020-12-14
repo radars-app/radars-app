@@ -26,9 +26,41 @@ describe('SideNavigationComponent', () => {
 				{
 					provide: RadarViewFacadeService,
 					useValue: {
-						radars$: of([{ lastUpdatedAt: new Date(), sectors: [], rings: [] }]),
-						radarDataItems$: of([]),
-						radarFilteredDataItems$: of([]),
+						radars$: of([
+							{
+								id: '1',
+								name: 'Radar1',
+								lastUpdatedDate: new Date(),
+								config: {
+									name: 'Radar1',
+									csv: 'string',
+									rings: [],
+									sectors: [],
+								},
+								sectors: ['OS', 'Hardware', 'Cloud'],
+								rings: ['Trial', 'Hold', 'Acceptance'],
+							},
+						]),
+						radarDataItems$: of([
+							{
+								id: '3a4dbe90-5a2c-4c81-93ea-22039a921931',
+								name: 'Linux',
+								ring: 'Hold',
+								sector: 'OS',
+								content: "Content 1 <a href='//mysite.com'>Test, with comma</a>",
+								number: 1,
+							},
+						]),
+						filteredRadarDataItems$: of([
+							{
+								id: '3a4dbe90-5a2c-4c81-93ea-22039a921931',
+								name: 'Linux',
+								ring: 'Hold',
+								sector: 'OS',
+								content: "Content 1 <a href='//mysite.com'>Test, with comma</a>",
+								number: 1,
+							},
+						]),
 					},
 				},
 				{
