@@ -22,10 +22,15 @@
 
 .radar-header__title {
 	color: #272c39;
-	font-family: Roboto, sans-serif;
-	font-size: 24px;
-	letter-spacing: 0.48px;
-	line-height: 32px;
+
+	@include text-h3();
+
+	flex: 0 0 auto;
+	max-width: 30vw;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	margin-right: $secondary-grid-unit * 2;
 }
 
 .radar-header__content {

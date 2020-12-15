@@ -58,13 +58,13 @@ $font-main-medium: 'Roboto Medium', sans-serif;
 
 @mixin text-h2() {
 	font-family: $font-main-bold;
-	font-size: 32px;
-	line-height: 40px;
-	letter-spacing: 0;
+	font-size: 24px;
+	line-height: 32px;
+	letter-spacing: 0.48px;
 }
 
 @mixin text-h3() {
-	font-family: $font-main-medium;
+	font-family: $font-main-regular;
 	font-size: 20px;
 	line-height: 24px;
 	letter-spacing: 0.48px;
@@ -95,6 +95,13 @@ $font-main-medium: 'Roboto Medium', sans-serif;
 	font-family: $font-main-regular;
 	font-size: 12px;
 	line-height: 16px;
+	letter-spacing: 0.48px;
+}
+
+@mixin text-small-medium() {
+	font-family: $font-main-medium;
+	font-size: 12px;
+	line-height: 14px;
 	letter-spacing: 0.48px;
 }
 

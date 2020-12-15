@@ -41,7 +41,7 @@
 }
 
 .legend-section__label {
-	@include text-p-bold();
+	@include text-small-medium();
 
 	color: #5e6670;
 }
@@ -80,7 +80,7 @@
 }
 
 .legend__label {
-	@include text-small-bold();
+	@include text-small-medium();
 
 	padding-left: $secondary-grid-unit;
 	color: #272c39;
