@@ -4,13 +4,12 @@ import { ComponentTheme } from 'src/app/libs/common-components/common/enum/compo
 import { ContainerFacadeService } from 'src/app/libs/container/service/container-facade.service';
 import { RadarViewFacadeService } from '../../service/radar-view-facade.service';
 import { SectorToColorConverterService } from '../../service/sector-to-color-converter.service';
-import { ZoomInOutPanelComponent } from '../zoom-in-out-panel/zoom-in-out-panel.component';
-
 import { RadarChartComponent } from './radar-chart.component';
 import { CommonComponentsModule } from '../../../common-components/common-components.module';
 import { IconService } from 'src/app/libs/common-components/icon/service/icon.service';
 import { HttpClientModule } from '@angular/common/http';
 import { DotTooltipComponent } from '../dot-tooltip/dot-tooltip.component';
+import { ZoomInOutPanelComponent } from '../zoom-in-out-panel/zoom-in-out-panel.component';
 
 describe('RadarChartComponent', () => {
 	let component: RadarChartComponent;

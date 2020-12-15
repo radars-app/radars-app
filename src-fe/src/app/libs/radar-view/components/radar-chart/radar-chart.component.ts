@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { RadarChartConfig, RadarChartModel, RadarChartRenderer, DotHoverEvent } from 'radar-chart-project';
+import { RadarChartConfig, RadarChartModel, RadarChartRenderer, DotActionEvent } from 'radar-chart-project';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { filter, map, takeUntil } from 'rxjs/operators';
 import { ComponentTheme } from 'src/app/libs/common-components/common/enum/component-theme.enum';
@@ -98,41 +98,13 @@ export class RadarChartComponent implements OnInit, AfterViewInit, OnDestroy {
 				this.model.dots$.next(items);
 			}
 		});
-
-		this.model.dotMouseOver$
-			.pipe(
-				filter((dotHoverEvent: DotHoverEvent) => Boolean(dotHoverEvent.element)),
-				takeUntil(this.destroy$)
-			)
-			.subscribe((dotHoverEvent: DotHoverEvent) => {
-				this.hoveredDot = this.getRadarItemById(dotHoverEvent.dotId);
-				this.changeTooltipTarget(dotHoverEvent.element);
-				this.tooltipComponent.isTooltipVisible.next(true);
-			});
-
-		this.model.dotMouseOut$
-			.pipe(
-				filter((dotHoverEvent: DotHoverEvent) => Boolean(dotHoverEvent.element)),
-				takeUntil(this.destroy$)
-			)
-			.subscribe((dotHoverEvent: DotHoverEvent) => {
-				this.changeTooltipTarget(dotHoverEvent.element);
-				this.tooltipComponent.isTooltipVisible.next(false);
-			});
-
-		this.model.zoomEmitted$.subscribe(() => {
-			const target: SVGGElement = this.model.dotMouseOver$.getValue().element || this.model.dotMouseOut$.getValue().element;
-			if (target) {
-				this.changeTooltipTarget(target);
-			}
-		});
 	}
 
 	private getRadarItemById(id: string): RadarDataItem {
 		return this.model.dots$.getValue().find((radarItem: RadarDataItem) => radarItem.id === id) as RadarDataItem;
 	}
 
-	private changeTooltipTarget(target: Element): void {
+	private changeTooltipTarget(target: string): void {
 		this.dotTooltipOptions = {
 			target: target,
 			repositionOptions: TooltipReposition.TopCenter,

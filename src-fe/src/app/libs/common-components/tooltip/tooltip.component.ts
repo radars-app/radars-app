@@ -1,4 +1,5 @@
 import {
+	AfterViewInit,
 	ChangeDetectionStrategy,
 	Component,
 	ElementRef,
@@ -15,6 +16,7 @@ import Tether, { ITetherOptions } from 'tether';
 import { TooltipTrigger } from './models/tooltip-trigger';
 import { TooltipOptions } from './models/tooltip-options';
 import { TooltipReposition } from './models/tooltip-reposition';
+import { tooltipAttachment } from './models/tooltip-attachement';
 
 @Component({
 	selector: 'app-tooltip',
@@ -22,13 +24,14 @@ import { TooltipReposition } from './models/tooltip-reposition';
 	styleUrls: ['./tooltip.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TooltipComponent implements OnInit, OnChanges, OnDestroy {
+export class TooltipComponent implements OnInit, AfterViewInit, OnDestroy {
 	@ViewChild('tooltipContent', { static: false }) public tooltipContent: ElementRef<HTMLDivElement>;
 
 	@Input()
 	public options: TooltipOptions;
 
 	public isTooltipVisible: BehaviorSubject<boolean>;
+	public positioner: Tether;
 
 	private destroy$: Subject<void>;
 
@@ -39,12 +42,8 @@ export class TooltipComponent implements OnInit, OnChanges, OnDestroy {
 		this.isTooltipVisible = new BehaviorSubject(false);
 	}
 
-	public ngOnChanges(changes: SimpleChanges): void {
-		if (!changes.options.firstChange) {
-			const target: Element = changes.options.currentValue.target;
-			this.positionTooltip(target);
-			this.initVisibilityBehavior(target as HTMLElement);
-		}
+	public ngAfterViewInit(): void {
+		this.positioner = this.positionTooltip(this.options.target);
 	}
 
 	public ngOnDestroy(): void {
@@ -52,26 +51,32 @@ export class TooltipComponent implements OnInit, OnChanges, OnDestroy {
 		this.destroy$.complete();
 	}
 
-	private positionTooltip(target: Element): Tether {
+	private positionTooltip(target: string): Tether {
 		let tetherOptions: ITetherOptions;
-		switch (this.options.repositionOptions) {
+		const reposition: TooltipReposition = this.options.repositionOptions;
+		switch (reposition) {
 			case TooltipReposition.TopCenter:
 				tetherOptions = {
 					element: this.tooltipContent.nativeElement,
 					target,
-					attachment: 'bottom center',
-					targetAttachment: this.options.repositionOptions,
+					targetAttachment: reposition,
+					attachment: tooltipAttachment.get(reposition),
 				};
 		}
 		return new Tether(tetherOptions);
 	}
 
-	private initVisibilityBehavior(target: HTMLElement): void {
+	private updatePosition(): void {
+		this.positioner.position();
+	}
+
+	private initVisibilityBehavior(target: string): void {
+		const targetElement: HTMLElement = document.querySelector(target);
 		if (this.options.trigger.includes(TooltipTrigger.OnHover)) {
-			target.onmouseover = () => {
+			targetElement.onmouseenter = () => {
 				this.isTooltipVisible.next(true);
 			};
-			target.onmouseout = () => {
+			targetElement.onmouseleave = () => {
 				this.isTooltipVisible.next(false);
 			};
 		}
