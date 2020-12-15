@@ -1,15 +1,4 @@
-import {
-	AfterViewInit,
-	ChangeDetectionStrategy,
-	Component,
-	ElementRef,
-	Input,
-	OnChanges,
-	OnDestroy,
-	OnInit,
-	SimpleChanges,
-	ViewChild,
-} from '@angular/core';
+import { Component, ElementRef, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { Subject } from 'rxjs/internal/Subject';
 import Tether, { ITetherOptions } from 'tether';
