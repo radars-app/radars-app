@@ -1,6 +1,11 @@
 @import 'variables';
 
 .radar-accordion {
+	.mat-expansion-panel-header-title,
+	.mat-expansion-panel-body {
+		@include text-p();
+	}
+
 	&--dark-theme {
 		.mat-expansion-panel {
 			background-color: #2d3443;

@@ -146,14 +146,22 @@ export class RadarChartComponent implements OnInit, AfterViewInit, OnDestroy {
 
 		const primaryFontFamily: string = 'Roboto Regular, sans-serif';
 
+		const lightThemeLinesColor: string = '#99a6b5';
+		const lightThemeTextColor: string = '#272c39';
+
 		lightConfig.ringsConfig.labelsConfig.fontFamily = primaryFontFamily;
 		lightConfig.dotsConfig.numberFontFamily = primaryFontFamily;
+		lightConfig.ringsConfig.labelsConfig.textColor = lightThemeTextColor;
+		lightConfig.ringsConfig.ringsColor = lightThemeLinesColor;
+		lightConfig.dividersConfig.dividerColor = lightThemeLinesColor;
 
 		const primaryColor: string = '#5E6670';
 		const secondaryColor: string = '#2D3443';
+		const darkThemeTextColor: string = '#fff';
+
 		darkConfig.backgroundColor = secondaryColor;
 		darkConfig.ringsConfig.ringsColor = primaryColor;
-		darkConfig.ringsConfig.labelsConfig.textColor = primaryColor;
+		darkConfig.ringsConfig.labelsConfig.textColor = darkThemeTextColor;
 		darkConfig.dividersConfig.dividerColor = primaryColor;
 		darkConfig.ringsConfig.labelsConfig.fontFamily = primaryFontFamily;
 		darkConfig.dotsConfig.numberFontFamily = primaryFontFamily;
