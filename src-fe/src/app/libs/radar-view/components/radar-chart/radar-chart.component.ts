@@ -1,5 +1,5 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { RadarChartConfig, RadarChartModel, RadarChartRenderer, DotActionEvent } from 'radar-chart-project';
+import { AfterViewChecked, AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { DotAction, RadarChartConfig, RadarChartModel, RadarChartRenderer } from 'radar-chart-project';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { filter, map, takeUntil } from 'rxjs/operators';
 import { ComponentTheme } from 'src/app/libs/common-components/common/enum/component-theme.enum';
@@ -20,7 +20,7 @@ import { TooltipTrigger } from '../../../common-components/tooltip/models/toolti
 })
 export class RadarChartComponent implements OnInit, AfterViewInit, OnDestroy {
 	@ViewChild('chartRoot', { static: false }) public chartRoot: ElementRef<SVGElement>;
-	@ViewChild('tooltip') public tooltipComponent: TooltipComponent;
+	@ViewChild('tooltip', { static: false }) public tooltipComponent: TooltipComponent;
 
 	public dotTooltipOptions: TooltipOptions;
 	public hoveredDot: RadarDataItem;
@@ -49,7 +49,7 @@ export class RadarChartComponent implements OnInit, AfterViewInit, OnDestroy {
 	}
 
 	public ngAfterViewInit(): void {
-		const tempTopOffset: number = 108;
+		const tempTopOffset: number = 120;
 		const size$: BehaviorSubject<{ width: number; height: number }> = new BehaviorSubject({
 			width: document.body.clientWidth,
 			height: document.body.clientHeight - tempTopOffset,
@@ -72,11 +72,11 @@ export class RadarChartComponent implements OnInit, AfterViewInit, OnDestroy {
 	}
 
 	public zoomIn(): void {
-		this.model.zoomIn$.next(true);
+		this.model.zoomIn$.next();
 	}
 
 	public zoomOut(): void {
-		this.model.zoomOut$.next(false);
+		this.model.zoomOut$.next();
 	}
 
 	private handleModelChange(): void {
@@ -98,18 +98,20 @@ export class RadarChartComponent implements OnInit, AfterViewInit, OnDestroy {
 				this.model.dots$.next(items);
 			}
 		});
+
+		this.model.dotHovered$.subscribe((dotAction: DotAction) => {
+			this.hoveredDot = this.getRadarItemById(dotAction.dotId);
+			this.dotTooltipOptions = {
+				target: dotAction.selector,
+				repositionOptions: TooltipReposition.TopCenter,
+				trigger: [TooltipTrigger.OnHover],
+			};
+			this.tooltipComponent.isTooltipVisible.next(true);
+		});
 	}
 
 	private getRadarItemById(id: string): RadarDataItem {
 		return this.model.dots$.getValue().find((radarItem: RadarDataItem) => radarItem.id === id) as RadarDataItem;
-	}
-
-	private changeTooltipTarget(target: string): void {
-		this.dotTooltipOptions = {
-			target: target,
-			repositionOptions: TooltipReposition.TopCenter,
-			trigger: [TooltipTrigger.OnHover],
-		};
 	}
 
 	private handleThemeChange(): void {
