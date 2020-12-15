@@ -10,8 +10,8 @@ import { RadarViewFacadeService } from '../../service/radar-view-facade.service'
 import { SectorToColorConverterService } from '../../service/sector-to-color-converter.service';
 import { TooltipOptions } from '../../../common-components/tooltip/models/tooltip-options';
 import { TooltipComponent } from '../../../common-components/tooltip/tooltip.component';
-import { TooltipReposition } from '../../../common-components/tooltip/models/tooltip-reposition';
 import { TooltipTrigger } from '../../../common-components/tooltip/models/tooltip-trigger';
+import { TooltipPlacement } from '../../../common-components/tooltip/models/tooltip-placement';
 
 @Component({
 	selector: 'app-radar-chart',
@@ -102,11 +102,15 @@ export class RadarChartComponent implements OnInit, AfterViewInit, OnDestroy {
 		this.model.dotHovered$.subscribe((dotAction: DotAction) => {
 			this.hoveredDot = this.getRadarItemById(dotAction.dotId);
 			this.dotTooltipOptions = {
-				target: dotAction.selector,
-				repositionOptions: TooltipReposition.TopCenter,
+				target: dotAction.target,
+				placement: TooltipPlacement.Top,
 				trigger: [TooltipTrigger.OnHover],
 			};
 			this.tooltipComponent.isTooltipVisible.next(true);
+		});
+
+		this.model.dragged$.subscribe(() => {
+			this.tooltipComponent.positioner?.forceUpdate();
 		});
 	}
 

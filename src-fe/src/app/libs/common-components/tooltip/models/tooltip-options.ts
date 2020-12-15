@@ -1,8 +1,8 @@
-import { TooltipReposition } from './tooltip-reposition';
+import { TooltipPlacement } from './tooltip-placement';
 import { TooltipTrigger } from './tooltip-trigger';
 
 export interface TooltipOptions {
-	target: string;
-	repositionOptions: TooltipReposition;
+	target: HTMLElement;
+	placement: TooltipPlacement;
 	trigger: TooltipTrigger[];
 }
