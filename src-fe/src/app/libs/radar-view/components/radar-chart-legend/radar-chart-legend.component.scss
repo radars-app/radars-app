@@ -17,7 +17,8 @@
 	border-radius: $secondary-grid-unit;
 
 	&--dark-theme {
-		background-color: #2d3443;
+		background-color: rgba(45, 52, 67, 0.7);
+		border: 1px solid #5e6670;
 
 		.legend__label {
 			color: #99a6b5;

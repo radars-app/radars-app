@@ -9,9 +9,13 @@
 	font-weight: bold;
 	font-size: 14px;
 	line-height: 17px;
-	color: rgba(33, 33, 33, 0.75);
+	color: #99a6b5;
 	letter-spacing: 1px;
 	border-radius: 4px;
+
+	&:not([disabled]):hover {
+		color: #000;
+	}
 
 	&__content {
 		display: flex;
@@ -19,8 +23,11 @@
 	}
 
 	&--dark-theme {
-		color: white;
 		border-color: white;
+
+		&:not([disabled]):hover {
+			color: #fff;
+		}
 
 		&[disabled='true'] {
 			color: transparentize($color: white, $amount: 0.7);
@@ -28,10 +35,18 @@
 	}
 
 	&--outlined {
-		border-color: $color-black-10;
+		border-color: #c7d0d8;
+
+		&:not([disabled]):hover {
+			border-color: #000;
+		}
 
 		&.button--dark-theme {
-			border-color: $color-white-100;
+			border-color: #5e6670;
+
+			&:not([disabled]):hover {
+				border-color: #fff;
+			}
 
 			&[disabled='true'] {
 				color: $color-white-30;
@@ -42,11 +57,24 @@
 
 	&--flat {
 		color: white;
-		background-color: #367ff6;
-		border-color: #367ff6;
+		background-color: #1683fb;
+		border-color: #1683fb;
+
+		&:not([disabled]):hover {
+			color: #fff;
+			background-color: #136fd5;
+		}
 
 		&[disabled='true'] {
 			color: $color-white-100;
+		}
+
+		&.button--dark-theme {
+			background-color: #106ff9;
+
+			&:not([disabled]):hover {
+				background-color: #005ebd;
+			}
 		}
 
 		&.button--dark-theme[disabled='true'] {

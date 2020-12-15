@@ -1,4 +1,4 @@
 <div class="zoom-in-out-panel" [class.zoom-in-out-panel--dark-theme]="(theme$ | async) === 'dark'">
-    <app-icon class="zoom-in-out-panel__zoom-in-button" icon="zoom_in" size="medium" (click)="zoomIn()"></app-icon>
-    <app-icon class="zoom-in-out-panel__zoom-out-button" icon="zoom_out" size="medium" (click)="zoomOut()"></app-icon>
+	<app-icon class="zoom-in-out-panel__zoom-in-button" icon="zoom_in" (click)="zoomIn()"></app-icon>
+	<app-icon class="zoom-in-out-panel__zoom-out-button" icon="zoom_out" (click)="zoomOut()"></app-icon>
 </div>
