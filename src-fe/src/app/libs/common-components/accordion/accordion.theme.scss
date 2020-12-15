@@ -41,4 +41,8 @@
 	.mat-expansion-panel .mat-expansion-panel-body {
 		padding: 0 $secondary-grid-unit * 5 $secondary-grid-unit * 4;
 	}
+
+	.mat-expansion-panel-spacing {
+		margin: $secondary-grid-unit * 3 0;
+	}
 }

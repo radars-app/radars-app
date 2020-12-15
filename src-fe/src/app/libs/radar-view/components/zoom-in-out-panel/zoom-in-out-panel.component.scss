@@ -12,13 +12,19 @@
 		.zoom-in-out-panel__zoom-in-button,
 		.zoom-in-out-panel__zoom-out-button {
 			background-color: #2d3443;
+			border-color: #5e6670;
+
+			&:hover {
+				border-color: #fff;
+				color: #fff;
+			}
 		}
 	}
 }
 
 .zoom-in-out-panel__zoom-in-button,
 .zoom-in-out-panel__zoom-out-button {
-	height: 32px;
+	height: 20px;
 	color: #5e6670;
 	background-color: #fff;
 	padding: $secondary-grid-unit * 2;
@@ -27,6 +33,7 @@
 
 	&:hover {
 		z-index: 25;
+		cursor: pointer;
 	}
 }
 

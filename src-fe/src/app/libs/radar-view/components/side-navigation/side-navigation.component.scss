@@ -13,6 +13,11 @@
 
 	&--dark-theme {
 		background-color: #2d3443;
+		border-right: 1px solid #5e6670;
+
+		.side-navigation__date {
+			color: #99a6b5;
+		}
 	}
 }
 
@@ -22,7 +27,7 @@
 
 .side-navigation__date {
 	padding-bottom: $secondary-grid-unit * 5;
-	color: #99a6b5;
+	color: #5e6670;
 
 	@include text-small;
 }
