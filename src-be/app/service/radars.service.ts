@@ -9,11 +9,11 @@ import { RadarDataItemService } from './radar-data-item.service';
 import { RadarFactoryService } from './radar-factory.serivce';
 import { v4 } from 'uuid';
 
-const defaultCsv: string = `Linux,OS,Hold,"Content 1 <a href=""mysite.com"">Test, with comma</a>"
-Nano-computing,Hardware,Trial,"Content 2 <a href=""mysite.com"">Test</a>"
-Magic,Cloud,Trial,"Content 3 <a href=""mysite.com"">Test</a>"
-Wizards,Cloud,Acceptance,"Content 3 <a href=""mysite.com"">Test</a>"
-Windows X,OS,Acceptance,"Content 3 <a href=""mysite.com"">Test</a>"`;
+const defaultCsv: string = `Linux,OS,Hold,"Content 1 <a href=""http://mysite.com"">Test, with comma</a>"
+Nano-computing,Hardware,Trial,"Content 2 <a href=""http://mysite.com"">Test</a>"
+Magic,Cloud,Trial,"Content 3 <a href=""http://mysite.com"">Test</a>"
+Wizards,Cloud,Acceptance,"Content 3 <a href=""http://mysite.com"">Test</a>"
+Windows X,OS,Acceptance,"Content 3 <a href=""http://mysite.com"">Test</a>"`;
 
 const defaultConfig: RadarConfig = {
 	name: 'Default Radar',

@@ -40,8 +40,8 @@ export class InfoDialogComponent implements OnInit {
 
 		this.selectedRadarDataItemContent$ = this.selectedRadarDataItem$.pipe(
 			map((selectedItem: RadarDataItem) => {
-				const HTMLString: string = JSON.stringify(selectedItem.content);
-				return this.sanitizer.bypassSecurityTrustHtml(HTMLString.replace(/^"(.*)"$/, '$1').replace('href=\\"', 'href="//'));
+				const HTMLString: string = selectedItem.content;
+				return this.sanitizer.bypassSecurityTrustHtml(HTMLString);
 			})
 		);
 	}
