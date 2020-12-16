@@ -23,7 +23,7 @@ export class RadarChartComponent implements OnInit, AfterViewInit, OnDestroy {
 	@ViewChild('chartRoot', { static: false }) public chartRoot: ElementRef<SVGElement>;
 	@ViewChild('tooltip', { static: false }) public tooltipComponent: TooltipComponent;
 
-	@Output() public dotClicked$: EventEmitter<DotAction> = new EventEmitter<DotAction>();
+	@Output() public dotClicked: EventEmitter<DotAction> = new EventEmitter<DotAction>();
 
 	public dotTooltipOptions: TooltipOptions;
 	public hoveredDot: RadarDataItem;
@@ -114,7 +114,7 @@ export class RadarChartComponent implements OnInit, AfterViewInit, OnDestroy {
 		});
 
 		this.model.dotClicked$.subscribe((dotAction: DotAction) => {
-			this.dotClicked$.emit(dotAction);
+			this.dotClicked.emit(dotAction);
 		});
 
 		this.model.zoomed$.subscribe(() => {
