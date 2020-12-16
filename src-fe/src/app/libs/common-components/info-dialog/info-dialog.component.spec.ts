@@ -26,7 +26,7 @@ describe('InfoDialogComponent', () => {
 								name: 'Linux',
 								ring: 'Hold',
 								sector: 'OS',
-								content: `Content 1 <a href='mysite.com'>Test, with comma</a>`,
+								content: `Content 1 <a href='//mysite.com'>Test, with comma</a>`,
 								number: 1,
 							},
 						]),
