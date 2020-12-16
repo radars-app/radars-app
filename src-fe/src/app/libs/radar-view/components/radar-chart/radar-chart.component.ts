@@ -52,7 +52,7 @@ export class RadarChartComponent implements OnInit, AfterViewInit, OnDestroy {
 	}
 
 	public ngAfterViewInit(): void {
-		const tempTopOffset: number = 120;
+		const tempTopOffset: number = 108;
 		const size$: BehaviorSubject<{ width: number; height: number }> = new BehaviorSubject({
 			width: document.body.clientWidth,
 			height: document.body.clientHeight - tempTopOffset,

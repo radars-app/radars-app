@@ -17,10 +17,13 @@
 }
 
 .accordion-subitem {
+	display: flex;
+	align-items: stretch;
 	cursor: pointer;
 
 	&__index {
 		display: inline-block;
 		width: $secondary-grid-unit * 7;
+		flex-shrink: 0;
 	}
 }
