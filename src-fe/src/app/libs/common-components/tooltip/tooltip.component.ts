@@ -1,5 +1,4 @@
 import {
-	AfterViewInit,
 	ChangeDetectionStrategy,
 	Component,
 	ElementRef,
@@ -22,7 +21,7 @@ import { createPopper, Instance as Popper } from '@popperjs/core';
 	styleUrls: ['./tooltip.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TooltipComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy {
+export class TooltipComponent implements OnInit, OnChanges, OnDestroy {
 	@ViewChild('tooltipContent', { static: false }) public tooltipContent: ElementRef<HTMLDivElement>;
 
 	@Input()
