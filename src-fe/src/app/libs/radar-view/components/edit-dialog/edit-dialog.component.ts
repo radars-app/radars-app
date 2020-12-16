@@ -73,7 +73,7 @@ export class EditDialogComponent implements OnInit {
 	}
 
 	public close(): void {
-		this.files = [];
+		this.deleteFile(0);
 		this.radarsPopover.close();
 	}
 
