@@ -1,7 +1,6 @@
 .tooltip {
 	position: absolute;
 	opacity: 0;
-	transition: opacity 0s 0.5s;
 	pointer-events: none;
 
 	&--visible {

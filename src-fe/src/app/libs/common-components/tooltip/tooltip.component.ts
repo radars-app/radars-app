@@ -11,10 +11,9 @@ import {
 } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { Subject } from 'rxjs/internal/Subject';
-import Tether, { ITetherOptions } from 'tether';
 import { TooltipTrigger } from './models/tooltip-trigger';
 import { TooltipOptions } from './models/tooltip-options';
-import { TooltipReposition } from './models/tooltip-reposition';
+import { createPopper, Instance as Popper } from '@popperjs/core';
 
 @Component({
 	selector: 'app-tooltip',
@@ -27,6 +26,7 @@ export class TooltipComponent implements OnInit, OnChanges, OnDestroy {
 
 	@Input()
 	public options: TooltipOptions;
+	public positioner: Popper;
 
 	public isTooltipVisible: BehaviorSubject<boolean>;
 
@@ -41,9 +41,11 @@ export class TooltipComponent implements OnInit, OnChanges, OnDestroy {
 
 	public ngOnChanges(changes: SimpleChanges): void {
 		if (!changes.options.firstChange) {
-			const target: Element = changes.options.currentValue.target;
-			this.positionTooltip(target);
-			this.initVisibilityBehavior(target as HTMLElement);
+			this.tooltipContent.nativeElement.style.transition = `opacity 0s ${this.options.delay}`;
+			this.positioner = createPopper(this.options.target, this.tooltipContent.nativeElement, {
+				placement: this.options.placement,
+			});
+			this.initVisibilityBehavior(this.options.target);
 		}
 	}
 
@@ -52,26 +54,12 @@ export class TooltipComponent implements OnInit, OnChanges, OnDestroy {
 		this.destroy$.complete();
 	}
 
-	private positionTooltip(target: Element): Tether {
-		let tetherOptions: ITetherOptions;
-		switch (this.options.repositionOptions) {
-			case TooltipReposition.TopCenter:
-				tetherOptions = {
-					element: this.tooltipContent.nativeElement,
-					target,
-					attachment: 'bottom center',
-					targetAttachment: this.options.repositionOptions,
-				};
-		}
-		return new Tether(tetherOptions);
-	}
-
 	private initVisibilityBehavior(target: HTMLElement): void {
 		if (this.options.trigger.includes(TooltipTrigger.OnHover)) {
-			target.onmouseover = () => {
+			target.onmouseenter = () => {
 				this.isTooltipVisible.next(true);
 			};
-			target.onmouseout = () => {
+			target.onmouseleave = () => {
 				this.isTooltipVisible.next(false);
 			};
 		}
