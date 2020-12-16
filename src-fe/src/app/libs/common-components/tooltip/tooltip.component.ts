@@ -1,4 +1,5 @@
 import {
+	AfterViewInit,
 	ChangeDetectionStrategy,
 	Component,
 	ElementRef,
@@ -21,7 +22,7 @@ import { createPopper, Instance as Popper } from '@popperjs/core';
 	styleUrls: ['./tooltip.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TooltipComponent implements OnInit, OnChanges, OnDestroy {
+export class TooltipComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy {
 	@ViewChild('tooltipContent', { static: false }) public tooltipContent: ElementRef<HTMLDivElement>;
 
 	@Input()
@@ -41,10 +42,11 @@ export class TooltipComponent implements OnInit, OnChanges, OnDestroy {
 
 	public ngOnChanges(changes: SimpleChanges): void {
 		if (!changes.options.firstChange) {
+			this.tooltipContent.nativeElement.style.transition = `opacity 0s ${this.options.delay}`;
 			this.positioner = createPopper(this.options.target, this.tooltipContent.nativeElement, {
 				placement: this.options.placement,
 			});
-			this.initVisibilityBehavior(this.options.target as HTMLElement);
+			this.initVisibilityBehavior(this.options.target);
 		}
 	}
 

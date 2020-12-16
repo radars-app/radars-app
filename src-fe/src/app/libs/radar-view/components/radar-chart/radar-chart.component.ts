@@ -105,9 +105,10 @@ export class RadarChartComponent implements OnInit, AfterViewInit, OnDestroy {
 		this.model.dotHovered$.subscribe((dotAction: DotAction) => {
 			this.hoveredDot = this.getRadarItemById(dotAction.dotId);
 			this.dotTooltipOptions = {
-				target: dotAction.target,
+				target: dotAction.target as HTMLElement,
 				placement: TooltipPlacement.Top,
 				trigger: [TooltipTrigger.OnHover],
+				delay: '0.4s',
 			};
 			this.tooltipComponent.isTooltipVisible.next(true);
 		});
