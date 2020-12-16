@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { DotAction, RadarChartConfig, RadarChartModel, RadarChartRenderer } from 'radar-chart-project';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { filter, map, takeUntil } from 'rxjs/operators';
@@ -12,6 +12,7 @@ import { TooltipOptions } from '../../../common-components/tooltip/models/toolti
 import { TooltipComponent } from '../../../common-components/tooltip/tooltip.component';
 import { TooltipTrigger } from '../../../common-components/tooltip/models/tooltip-trigger';
 import { TooltipPlacement } from '../../../common-components/tooltip/models/tooltip-placement';
+import { EventEmitter } from '@angular/core';
 
 @Component({
 	selector: 'app-radar-chart',
@@ -21,6 +22,8 @@ import { TooltipPlacement } from '../../../common-components/tooltip/models/tool
 export class RadarChartComponent implements OnInit, AfterViewInit, OnDestroy {
 	@ViewChild('chartRoot', { static: false }) public chartRoot: ElementRef<SVGElement>;
 	@ViewChild('tooltip', { static: false }) public tooltipComponent: TooltipComponent;
+
+	@Output() public dotClicked$: EventEmitter<DotAction> = new EventEmitter<DotAction>();
 
 	public dotTooltipOptions: TooltipOptions;
 	public hoveredDot: RadarDataItem;
@@ -109,7 +112,11 @@ export class RadarChartComponent implements OnInit, AfterViewInit, OnDestroy {
 			this.tooltipComponent.isTooltipVisible.next(true);
 		});
 
-		this.model.dragged$.subscribe(() => {
+		this.model.dotClicked$.subscribe((dotAction: DotAction) => {
+			this.dotClicked$.emit(dotAction);
+		});
+
+		this.model.zoomed$.subscribe(() => {
 			this.tooltipComponent.positioner?.forceUpdate();
 		});
 	}

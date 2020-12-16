@@ -44,7 +44,7 @@ export class TooltipComponent implements OnInit, OnChanges, OnDestroy {
 			this.positioner = createPopper(this.options.target, this.tooltipContent.nativeElement, {
 				placement: this.options.placement,
 			});
-			this.initVisibilityBehavior(this.options.target);
+			this.initVisibilityBehavior(this.options.target as HTMLElement);
 		}
 	}
 

@@ -2,7 +2,7 @@ import { TooltipPlacement } from './tooltip-placement';
 import { TooltipTrigger } from './tooltip-trigger';
 
 export interface TooltipOptions {
-	target: HTMLElement;
+	target: Element;
 	placement: TooltipPlacement;
 	trigger: TooltipTrigger[];
 }

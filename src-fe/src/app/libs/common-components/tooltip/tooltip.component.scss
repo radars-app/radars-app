@@ -2,7 +2,7 @@
 	position: absolute;
 	opacity: 0;
 	pointer-events: none;
-	transition: opacity 0s 0.5s;
+	transition: opacity 0s 0.3s;
 
 	&--visible {
 		opacity: 1;
