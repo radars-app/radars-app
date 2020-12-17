@@ -6,6 +6,16 @@
 		@include text-p();
 	}
 
+	.accordion-item__toggle,
+	.accordion-item__toggle--rotated {
+		color: #5e6670;
+
+		&:hover,
+		&:focus {
+			color: #000;
+		}
+	}
+
 	&--dark-theme {
 		.mat-expansion-panel {
 			background-color: #2d3443;
@@ -18,6 +28,16 @@
 
 		.accordion-item__counter {
 			color: #c7d0d8;
+		}
+
+		.accordion-item__toggle,
+		.accordion-item__toggle--rotated {
+			color: #99a6b5;
+
+			&:hover,
+			&:focus {
+				color: #fff;
+			}
 		}
 	}
 
@@ -43,8 +63,12 @@
 		padding: 0 $secondary-grid-unit * 5;
 	}
 
+	.mat-expansion-panel-header.mat-expanded {
+		height: $secondary-grid-unit * 12;
+	}
+
 	.mat-expansion-panel .mat-expansion-panel-body {
-		padding: 0 $secondary-grid-unit * 5 $secondary-grid-unit * 4;
+		padding: 0 $secondary-grid-unit * 5 0;
 	}
 
 	.mat-expansion-panel-spacing {

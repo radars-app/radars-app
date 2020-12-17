@@ -14,12 +14,27 @@
 		margin: 0 $secondary-grid-unit;
 		color: #5e6670;
 	}
+
+	&__toggle {
+		height: 20px;
+		position: absolute;
+		right: $secondary-grid-unit * 4;
+		transition: 0.2s;
+		transform: rotate(0deg);
+
+		&--rotated {
+			transition: 0.2s;
+			transform: rotate(180deg);
+		}
+	}
 }
 
 .accordion-subitem {
 	display: flex;
 	align-items: stretch;
 	cursor: pointer;
+	height: $secondary-grid-unit * 10;
+	margin: 0;
 
 	&__index {
 		display: inline-block;
