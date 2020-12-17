@@ -9,7 +9,7 @@
 	font-weight: bold;
 	font-size: 14px;
 	line-height: 17px;
-	color: #99a6b5;
+	color: #5e6670;
 	letter-spacing: 1px;
 	border-radius: 4px;
 
@@ -23,6 +23,7 @@
 	}
 
 	&--dark-theme {
+		color: #99a6b5;
 		border-color: white;
 
 		&:not([disabled]):hover {
