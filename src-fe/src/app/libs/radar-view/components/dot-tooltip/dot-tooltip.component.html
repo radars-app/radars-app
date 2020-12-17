@@ -1,4 +1,8 @@
-<section class="dot-tooltip" *ngIf="dot">
+<section
+	class="dot-tooltip"
+	*ngIf="dot"
+	[class.dot-tooltip--dark-theme]="isDarkTheme">
+
 	<h4 class="dot-tooltip__title">{{dot.name}}</h4>
 	<div class="dot-tooltip__sector">
 		<div class="dot-tooltip__icon">
