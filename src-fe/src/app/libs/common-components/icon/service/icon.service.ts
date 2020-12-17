@@ -32,5 +32,13 @@ export class IconService {
 		);
 		this.matIconRegistry.addSvgIcon('close', this.domSanitizer.bypassSecurityTrustResourceUrl('../../../../../assets/svg/close.svg'));
 		this.matIconRegistry.addSvgIcon('search', this.domSanitizer.bypassSecurityTrustResourceUrl('../../../../../assets/svg/search.svg'));
+		this.matIconRegistry.addSvgIcon(
+			'arrow-down',
+			this.domSanitizer.bypassSecurityTrustResourceUrl('../../../../../assets/svg/arrow-down-3.svg')
+		);
+		this.matIconRegistry.addSvgIcon(
+			'arrow-up',
+			this.domSanitizer.bypassSecurityTrustResourceUrl('../../../../../assets/svg/arrow-up-3.svg')
+		);
 	}
 }

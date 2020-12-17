@@ -1,8 +1,10 @@
+import { HttpClientModule } from '@angular/common/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { of } from 'rxjs';
 import { CommonComponentsModule } from 'src/app/libs/common-components/common-components.module';
 import { ComponentTheme } from 'src/app/libs/common-components/common/enum/component-theme.enum';
+import { IconService } from 'src/app/libs/common-components/icon/service/icon.service';
 import { ContainerFacadeService } from 'src/app/libs/container/service/container-facade.service';
 import { RadarViewFacadeService } from '../../service/radar-view-facade.service';
 import { SectorToColorConverterService } from '../../service/sector-to-color-converter.service';
@@ -70,11 +72,13 @@ describe('SideNavigationComponent', () => {
 					},
 				},
 			],
-			imports: [CommonComponentsModule, BrowserAnimationsModule],
+			imports: [CommonComponentsModule, BrowserAnimationsModule, HttpClientModule],
 		}).compileComponents();
 	}));
 
 	beforeEach(() => {
+		const iconService: IconService = TestBed.inject(IconService);
+		iconService.addIcons();
 		fixture = TestBed.createComponent(SideNavigationComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();

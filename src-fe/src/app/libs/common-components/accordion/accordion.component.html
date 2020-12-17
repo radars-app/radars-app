@@ -1,6 +1,10 @@
 <mat-accordion class="radar-accordion" [class.radar-accordion--dark-theme]="isDarkTheme">
 
-	<mat-expansion-panel *ngFor="let item of items" (opened)="item.opened = true" (closed)="item.opened = false">
+	<mat-expansion-panel
+		*ngFor="let item of items"
+		(opened)="item.opened = true"
+		(closed)="item.opened = false"
+		hideToggle="true">
 
 		<mat-expansion-panel-header>
 
@@ -13,6 +17,13 @@
 				<span class="accordion-item__counter"> ({{ item.children?.length }})</span>
 
 			</mat-panel-title>
+
+			<mat-panel-description>
+				<app-icon
+					class="accordion-item__toggle"
+					icon="arrow-down"
+					[class.accordion-item__toggle--rotated]="item.opened"></app-icon>
+			</mat-panel-description>
 
 		</mat-expansion-panel-header>
 
