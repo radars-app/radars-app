@@ -7,9 +7,7 @@
 	max-width: $secondary-grid-unit * 150;
 
 	&__close-icon {
-		position: absolute;
-		top: 0;
-		right: 0;
+		margin-left: $secondary-grid-unit * 5;
 		filter: invert(40%);
 		cursor: pointer;
 	}
@@ -23,6 +21,8 @@
 	&__title {
 		margin-bottom: 0;
 		color: #272c39;
+		display: flex;
+		justify-content: space-between;
 
 		@include text-h3();
 	}
