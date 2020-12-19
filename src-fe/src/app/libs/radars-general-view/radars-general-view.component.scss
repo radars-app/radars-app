@@ -1,0 +1,30 @@
+@import 'variables';
+
+:host {
+	display: flex;
+	flex: 1 100%;
+	background-color: #f0f4f8;
+}
+
+.radars-general-view {
+	display: flex;
+	flex: 1 100%;
+	flex-direction: column;
+	align-items: stretch;
+
+	&--dark-theme {
+		.radars-general-view__content-wrapper {
+			background-color: #272c39;
+		}
+	}
+}
+
+.radars-general-view__content-wrapper {
+	position: relative;
+	display: flex;
+	flex: 1 100%;
+}
+
+.radars-general-view__header {
+	z-index: 11;
+}

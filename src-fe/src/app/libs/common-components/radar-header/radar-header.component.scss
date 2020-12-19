@@ -17,6 +17,10 @@
 		.radar-header__title {
 			color: #fff;
 		}
+
+		.radar-header__title-postfix {
+			color: #99a6b5;
+		}
 	}
 }
 
@@ -33,11 +37,18 @@
 	margin-right: $secondary-grid-unit * 2;
 }
 
+.radar-header__title-postfix {
+	color: #5e6670;
+}
+
 .radar-header__content {
 	flex: 1;
 	display: flex;
 	justify-content: flex-end;
-	padding-right: $secondary-grid-unit * 15;
+}
+
+.radar-header__icon-button:first-child {
+	margin-left: $secondary-grid-unit * 15;
 }
 
 .radar-header__buttons {

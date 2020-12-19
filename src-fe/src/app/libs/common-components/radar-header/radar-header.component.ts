@@ -11,6 +11,7 @@ import { IconButtonModel } from '../icon-button/model/icon-button-model';
 })
 export class RadarHeaderComponent implements OnInit {
 	@Input() public title: string;
+	@Input() public titlePostfix: string;
 	@Input() public buttons: IconButtonModel[];
 
 	public theme$: Observable<ComponentTheme>;
