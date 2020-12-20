@@ -162,6 +162,28 @@
 				]
 			}
 		},
+		"/api/radars": {
+			"get": {
+				"operationId": "GetAllLatestRadars",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/RadarEntity"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": []
+			}
+		},
 		"/api/radars/{radarId}": {
 			"get": {
 				"operationId": "GetRadar",

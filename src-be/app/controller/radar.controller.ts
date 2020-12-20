@@ -15,6 +15,11 @@ import { RadarsService } from '../service/radars.service';
 export class RadarsController extends Controller {
 	@Inject() private radarsService!: RadarsService;
 
+	@Get('')
+	public async getAllLatestRadars(): Promise<RadarEntity[]> {
+		return this.radarsService.getAllLatestRadars();
+	}
+
 	@Get('{radarId}')
 	public async getRadar(@Path() radarId: string): Promise<RadarEntity[]> {
 		return this.radarsService.getRadarsById(radarId);
