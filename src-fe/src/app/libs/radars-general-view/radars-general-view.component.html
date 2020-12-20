@@ -3,7 +3,8 @@
 	[class.radars-general-view--dark-theme]="isDarkTheme$ | async">
 	<app-radar-header
 		class="radars-general-view__header"
-		title="All STIC Radars">
+		title="All STIC Radars"
+		[titlePostfix]="radarsCount$ | async">
 	</app-radar-header>
 
 	<div class="radars-general-view__content-wrapper">
