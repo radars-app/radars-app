@@ -2,7 +2,7 @@
 
 	<mat-card-title class="radar-card__title">{{title}}</mat-card-title>
 
-	<mat-card-subtitle class="radar-card__subtitle">{{subTitle}}</mat-card-subtitle>
+	<mat-card-subtitle class="radar-card__subtitle">Published: {{lastUpdatedDate | date: 'y-M-d hh:mm'}}</mat-card-subtitle>
 
 	<div class="radar-card__radar-chart-container">
 		<ng-content></ng-content>

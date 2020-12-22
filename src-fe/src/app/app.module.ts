@@ -15,6 +15,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import creds from '../../auth-config.json';
 import { ContainerModule } from './libs/container/container.module';
+import { GeneralRadarChartComponent } from './libs/radars-general-view/components/general-radar-chart/general-radar-chart.component';
 
 @NgModule({
 	declarations: [AppComponent],

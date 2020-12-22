@@ -2,14 +2,14 @@ import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core
 import { ComponentTheme } from '../common/enum/component-theme.enum';
 
 @Component({
-	selector: 'app-radars-radar-card',
+	selector: 'app-radar-card',
 	templateUrl: './radar-card.component.html',
 	styleUrls: ['./radar-card.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RadarCardComponent implements OnInit {
 	@Input() public title: string;
-	@Input() public subTitle: string;
+	@Input() public lastUpdatedDate: Date;
 	@Input() public theme: ComponentTheme;
 
 	constructor() {}
