@@ -22,6 +22,7 @@ import { PopoverComponent } from './popover/popover.component';
 import { InfoDialogComponent } from './info-dialog/info-dialog.component';
 import { SearchInputComponent } from './search-input/search-input.component';
 import { TooltipComponent } from './tooltip/tooltip.component';
+import { RadarCardComponent } from './radar-card/radar-card.component';
 
 @NgModule({
 	declarations: [
@@ -35,6 +36,7 @@ import { TooltipComponent } from './tooltip/tooltip.component';
 		InfoDialogComponent,
 		SearchInputComponent,
 		TooltipComponent,
+		RadarCardComponent,
 	],
 	imports: [
 		MatButtonModule,
@@ -69,6 +71,7 @@ import { TooltipComponent } from './tooltip/tooltip.component';
 		InfoDialogComponent,
 		SearchInputComponent,
 		TooltipComponent,
+		RadarCardComponent,
 	],
 })
 export class CommonComponentsModule {}
