@@ -44,6 +44,22 @@ export class TooltipComponent implements OnInit, OnChanges, OnDestroy {
 			this.tooltipContent.nativeElement.style.transition = `opacity 0s ${this.options.delay}`;
 			this.positioner = createPopper(this.options.target, this.tooltipContent.nativeElement, {
 				placement: this.options.placement,
+				modifiers: [
+					{
+						name: 'preventOverflow',
+						options: {
+							mainAxis: false,
+							altAxis: false,
+						},
+					},
+					{
+						name: 'flip',
+						options: {
+							fallbackPlacements: [],
+							flipVariations: false,
+						},
+					},
+				],
 			});
 			this.initVisibilityBehavior(this.options.target);
 		}
