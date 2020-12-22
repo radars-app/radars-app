@@ -37,7 +37,7 @@
 		"express": "^4.17.1",
 		"msal": "^1.4.4",
 		"ngx-perfect-scrollbar": "^10.0.1",
-		"radar-chart-project": "0.0.41",
+		"radar-chart-project": "0.0.43",
 		"rxjs": "^6.6.3",
 		"stylelint-config-standard": "^20.0.0",
 		"tslib": "^2.0.0",
