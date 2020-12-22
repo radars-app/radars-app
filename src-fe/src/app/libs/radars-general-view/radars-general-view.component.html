@@ -9,6 +9,13 @@
 
 	<div class="radars-general-view__content-wrapper">
 
+		<app-radars-radar-card
+		class="radars-general-view__radar-card"
+		*ngFor="let card of (cards$ | async)"
+		[title]="card.title"
+		[subTitle]="card.subTitle"
+		[theme]="theme$ | async"></app-radars-radar-card>
+
 	</div>
 </div>
 
