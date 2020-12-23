@@ -1,5 +1,11 @@
 @import 'variables';
 
+.radar-card {
+	&:hover {
+		box-shadow: 0 0 8px 4px rgba(199, 208, 216, 0.25);
+	}
+}
+
 .radar-card__title {
 	@include text-h4();
 
@@ -20,6 +26,9 @@
 
 .radar-card--dark-theme {
 	background-color: #2d3443;
+	&:hover {
+		box-shadow: 0 0 8px 4px rgba(94, 102, 112, 0.25);
+	}
 
 	.radar-card__title {
 		color: #fff;
