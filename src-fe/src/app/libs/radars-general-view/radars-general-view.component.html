@@ -7,15 +7,20 @@
 		[titlePostfix]="radarsCount$ | async">
 	</app-radar-header>
 
-	<div class="radars-general-view__content-wrapper">
-		<app-radar-card
-			class="radars-general-view__radar-card"
-			*ngFor="let radar of (this.radars$ | async)"
-			[title]="radar.name"
-			[lastUpdatedDate]="radar.lastUpdatedDate"
-			[theme]="theme$ | async">
-			<app-general-radar-chart [radar]="radar"></app-general-radar-chart>
-		</app-radar-card>
-	</div>
+	<perfect-scrollbar>
+
+		<div class="radars-general-view__content-wrapper">
+			<app-radar-card
+				class="radars-general-view__radar-card"
+				*ngFor="let radar of (this.radars$ | async)"
+				[title]="radar.name"
+				[lastUpdatedDate]="radar.lastUpdatedDate"
+				[theme]="theme$ | async">
+				<app-general-radar-chart [radar]="radar"></app-general-radar-chart>
+			</app-radar-card>
+		</div>
+
+	</perfect-scrollbar>
+
 </div>
 
