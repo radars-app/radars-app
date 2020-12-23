@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 import { CommonComponentsModule } from '../../../common-components/common-components.module';
 import { ComponentTheme } from '../../../common-components/common/enum/component-theme.enum';

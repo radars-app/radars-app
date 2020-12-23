@@ -1,16 +1,5 @@
-import {
-	ChangeDetectionStrategy,
-	Component,
-	ElementRef,
-	Input,
-	OnChanges,
-	OnDestroy,
-	OnInit,
-	SimpleChanges,
-	ViewChild,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
-import { Subject } from 'rxjs/internal/Subject';
 import { TooltipTrigger } from './models/tooltip-trigger';
 import { TooltipOptions } from './models/tooltip-options';
 import { createPopper, Instance as Popper } from '@popperjs/core';
