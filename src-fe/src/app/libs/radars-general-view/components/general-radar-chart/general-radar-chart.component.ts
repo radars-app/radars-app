@@ -7,7 +7,6 @@ import { ContainerFacadeService } from '../../../container/service/container-fac
 import { Radar } from '../../../radar-view/model/radar';
 import { RadarDataItem } from '../../../radar-view/model/radar-data-item';
 import { SECTOR_COLORS } from '../../../radar-view/model/sector-colors';
-import { SectorToColorConverterService } from '../../../radar-view/service/sector-to-color-converter.service';
 import { RadarsGeneralViewRepositoryService } from '../../service/radars-general-view-repository.service';
 @Component({
 	selector: 'app-general-radar-chart',
