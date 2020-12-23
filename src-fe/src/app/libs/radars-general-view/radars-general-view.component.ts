@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 
@@ -25,7 +26,8 @@ export class RadarsGeneralViewComponent implements OnInit, OnDestroy {
 
 	constructor(
 		private containerFacadeService: ContainerFacadeService,
-		private radarsGeneralViewFacadeService: RadarsGeneralViewFacadeService
+		private radarsGeneralViewFacadeService: RadarsGeneralViewFacadeService,
+		private router: Router
 	) {}
 
 	public ngOnInit(): void {
@@ -46,5 +48,9 @@ export class RadarsGeneralViewComponent implements OnInit, OnDestroy {
 	public ngOnDestroy(): void {
 		this.destroy$.next();
 		this.destroy$.complete();
+	}
+
+	public navigateToRadar(radarId: string): void {
+		this.router.navigate([`radars/${radarId}`]);
 	}
 }

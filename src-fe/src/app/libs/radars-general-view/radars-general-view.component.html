@@ -13,6 +13,7 @@
 			<app-radar-card
 				class="radars-general-view__radar-card"
 				*ngFor="let radar of (this.radars$ | async)"
+				(click)="navigateToRadar(radar.id)"
 				[title]="radar.name"
 				[lastUpdatedDate]="radar.lastUpdatedDate"
 				[theme]="theme$ | async">
