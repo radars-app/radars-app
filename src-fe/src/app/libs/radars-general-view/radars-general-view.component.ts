@@ -1,12 +1,15 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, Subject } from 'rxjs';
-import { map, takeUntil } from 'rxjs/operators';
+import { forkJoin, Observable, Subject } from 'rxjs';
+import { filter, map, mergeMap, switchMap, takeUntil, tap } from 'rxjs/operators';
 
 import { ComponentTheme } from '../common-components/common/enum/component-theme.enum';
 import { ContainerFacadeService } from '../container/service/container-facade.service';
 import { Radar } from '../radar-view/model/radar';
+import { RadarDataItem, RadarDataItemDto } from '../radar-view/model/radar-data-item';
+import { RadarDataItemConverterService } from '../radar-view/service/radar-data-item-converter.service';
 import { RadarsGeneralViewFacadeService } from './service/radars-general-view-facade.service';
+import { RadarsGeneralViewRepositoryService } from './service/radars-general-view-repository.service';
 
 @Component({
 	selector: 'app-radars-general-view',
@@ -18,15 +21,21 @@ export class RadarsGeneralViewComponent implements OnInit, OnDestroy {
 
 	public isDarkTheme$: Observable<boolean>;
 
-	public radarsCount$: Observable<number>;
+	public radars: Radar[];
 
-	public radars$: Observable<Radar[]>;
+	public radarDataItems: RadarDataItem[][] = [];
+
+	public get radarsCount(): number {
+		return this.radars?.length;
+	}
 
 	private destroy$: Subject<void>;
 
 	constructor(
 		private containerFacadeService: ContainerFacadeService,
 		private radarsGeneralViewFacadeService: RadarsGeneralViewFacadeService,
+		private radarsGeneralViewRepositoryService: RadarsGeneralViewRepositoryService,
+		private radarDataItemConverterService: RadarDataItemConverterService,
 		private router: Router
 	) {}
 
@@ -38,11 +47,21 @@ export class RadarsGeneralViewComponent implements OnInit, OnDestroy {
 			takeUntil(this.destroy$)
 		);
 		this.radarsGeneralViewFacadeService.loadRadars();
-		this.radarsCount$ = this.radarsGeneralViewFacadeService.radars$.pipe(
-			map((latestRadars: Radar[]) => latestRadars?.length),
-			takeUntil(this.destroy$)
-		);
-		this.radars$ = this.radarsGeneralViewFacadeService.radars$;
+		this.radarsGeneralViewFacadeService.radars$
+			.pipe(
+				filter((radars: Radar[]) => Boolean(radars)),
+				tap((radars: Radar[]) => {
+					this.radars = radars;
+				}),
+				mergeMap((radars: Radar[]) => {
+					return forkJoin(radars.map((radar: Radar) => this.radarsGeneralViewRepositoryService.loadRadarDataItems(radar.id)));
+				}),
+				tap((radarDataItems: RadarDataItem[][]) => {
+					this.radarDataItems = radarDataItems;
+				}),
+				takeUntil(this.destroy$)
+			)
+			.subscribe();
 	}
 
 	public ngOnDestroy(): void {

@@ -30,12 +30,6 @@ describe('GeneralRadarChartComponent', () => {
 						theme$: of(ComponentTheme.Light),
 					},
 				},
-				{
-					provide: RadarsGeneralViewRepositoryService,
-					useValue: {
-						loadRadarDataItems: () => of([]),
-					},
-				},
 			],
 			imports: [CommonComponentsModule],
 		}).compileComponents();

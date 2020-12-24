@@ -1,7 +1,6 @@
 import { AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { RadarChartConfig, RadarChartModel, RadarChartRenderer } from 'radar-chart-project';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 import { ComponentTheme } from '../../../common-components/common/enum/component-theme.enum';
 import { ContainerFacadeService } from '../../../container/service/container-facade.service';
 import { Radar } from '../../../radar-view/model/radar';
@@ -19,6 +18,9 @@ export class GeneralRadarChartComponent implements OnInit, AfterViewInit, OnDest
 
 	@Input()
 	public radar: Radar;
+
+	@Input()
+	public radarDataItems: RadarDataItem[];
 
 	public config$: BehaviorSubject<RadarChartConfig>;
 	public model: RadarChartModel;
@@ -63,15 +65,7 @@ export class GeneralRadarChartComponent implements OnInit, AfterViewInit, OnDest
 			};
 		});
 		this.model.sectors$.next(sectors.reverse());
-
-		this.radarsGeneralViewRepositoryService
-			.loadRadarDataItems(this.radar.id)
-			.pipe(takeUntil(this.destroy$))
-			.subscribe((items: RadarDataItem[]) => {
-				if (Boolean(items)) {
-					this.model.dots$.next(items);
-				}
-			});
+		this.model.dots$.next(this.radarDataItems);
 	}
 
 	private handleThemeChange(): void {
