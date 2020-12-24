@@ -11,7 +11,7 @@ import { SECTOR_COLORS } from '../../../radar-view/model/sector-colors';
 	templateUrl: './general-radar-chart.component.html',
 	styleUrls: ['./general-radar-chart.component.scss'],
 })
-export class GeneralRadarChartComponent implements OnInit, AfterViewInit, OnDestroy {
+export class GeneralRadarChartComponent implements OnInit, AfterViewInit {
 	@ViewChild('chartRoot', { static: false }) public chartRoot: ElementRef<SVGElement>;
 	@ViewChild('chartContainer', { static: false }) public chartContainer: ElementRef<HTMLDivElement>;
 
@@ -24,12 +24,9 @@ export class GeneralRadarChartComponent implements OnInit, AfterViewInit, OnDest
 	public config$: BehaviorSubject<RadarChartConfig>;
 	public model: RadarChartModel;
 
-	private destroy$: Subject<void>;
-
 	constructor(public containerFacade: ContainerFacadeService) {}
 
 	public ngOnInit(): void {
-		this.destroy$ = new Subject<void>();
 		this.handleModelChange();
 		this.handleThemeChange();
 	}
@@ -42,11 +39,6 @@ export class GeneralRadarChartComponent implements OnInit, AfterViewInit, OnDest
 
 		const renderer: RadarChartRenderer = new RadarChartRenderer(this.chartRoot.nativeElement, this.model, this.config$, size$);
 		renderer.start();
-	}
-
-	public ngOnDestroy(): void {
-		this.destroy$.next();
-		this.destroy$.complete();
 	}
 
 	private handleModelChange(): void {
