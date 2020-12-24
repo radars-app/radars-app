@@ -2,10 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import { MsalService } from '@azure/msal-angular';
 
-import { RadarsGeneralViewRepositoryService } from './radars-general-view-repository.service';
+import { RadarsGeneralViewRepository } from './radars-general-view-repository.service';
 
 describe('RadarsGeneralViewRepositoryService', () => {
-	let service: RadarsGeneralViewRepositoryService;
+	let service: RadarsGeneralViewRepository;
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
@@ -20,7 +20,7 @@ describe('RadarsGeneralViewRepositoryService', () => {
 				},
 			],
 		});
-		service = TestBed.inject(RadarsGeneralViewRepositoryService);
+		service = TestBed.inject(RadarsGeneralViewRepository);
 	});
 
 	it('should be created', () => {

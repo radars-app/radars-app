@@ -8,7 +8,7 @@ import { ContainerFacadeService } from '../container/service/container-facade.se
 import { Radar } from '../radar-view/model/radar';
 import { RadarDataItem } from '../radar-view/model/radar-data-item';
 import { RadarsGeneralViewFacadeService } from './service/radars-general-view-facade.service';
-import { RadarsGeneralViewRepositoryService } from './service/radars-general-view-repository.service';
+import { RadarsGeneralViewRepository } from './service/radars-general-view-repository.service';
 
 @Component({
 	selector: 'app-radars-general-view',
@@ -33,7 +33,7 @@ export class RadarsGeneralViewComponent implements OnInit, OnDestroy {
 	constructor(
 		private containerFacadeService: ContainerFacadeService,
 		private radarsGeneralViewFacadeService: RadarsGeneralViewFacadeService,
-		private radarsGeneralViewRepositoryService: RadarsGeneralViewRepositoryService,
+		private radarsGeneralViewRepository: RadarsGeneralViewRepository,
 		private router: Router
 	) {}
 
@@ -52,7 +52,7 @@ export class RadarsGeneralViewComponent implements OnInit, OnDestroy {
 					this.radars = radars;
 				}),
 				mergeMap((radars: Radar[]) => {
-					return forkJoin(radars.map((radar: Radar) => this.radarsGeneralViewRepositoryService.loadRadarDataItems(radar.id)));
+					return forkJoin(radars.map((radar: Radar) => this.radarsGeneralViewRepository.loadRadarDataItems(radar.id)));
 				}),
 				tap((radarDataItems: RadarDataItem[][]) => {
 					this.radarDataItems = radarDataItems;

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { RadarChartConfig, RadarChartModel, RadarChartRenderer } from 'radar-chart-project';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { ComponentTheme } from '../../../common-components/common/enum/component-theme.enum';

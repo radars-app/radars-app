@@ -10,7 +10,7 @@ import { RadarDataItemDto } from '../../radar-view/model/radar-data-item';
 @Injectable({
 	providedIn: 'root',
 })
-export class RadarsGeneralViewRepositoryService {
+export class RadarsGeneralViewRepository {
 	constructor(private authService: MsalService, private http: HttpClient) {}
 
 	public loadAllLatestRadars(): Observable<RadarDto[]> {

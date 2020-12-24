@@ -10,7 +10,7 @@ import {
 	LoadAllLatestRadars,
 	RadarsGeneralViewActions,
 } from './radars-general-view.actions';
-import { RadarsGeneralViewRepositoryService } from '../../service/radars-general-view-repository.service';
+import { RadarsGeneralViewRepository } from '../../service/radars-general-view-repository.service';
 import { Radar, RadarDto } from '../../../radar-view/model/radar';
 import { RadarConverterService } from '../../../radar-view/service/radar-converter.service';
 
@@ -31,7 +31,7 @@ export class RadarsGeneralViewEffects {
 
 	constructor(
 		private actions$: Actions<RadarsGeneralViewActions>,
-		private radarsGeneralViewRepositoryService: RadarsGeneralViewRepositoryService,
+		private radarsGeneralViewRepositoryService: RadarsGeneralViewRepository,
 		private radarConverterService: RadarConverterService
 	) {}
 }
