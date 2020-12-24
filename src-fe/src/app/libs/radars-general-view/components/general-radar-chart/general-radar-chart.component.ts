@@ -1,6 +1,6 @@
-import { AfterViewInit, Component, ElementRef, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
 import { RadarChartConfig, RadarChartModel, RadarChartRenderer } from 'radar-chart-project';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { ComponentTheme } from '../../../common-components/common/enum/component-theme.enum';
 import { ContainerFacadeService } from '../../../container/service/container-facade.service';
 import { Radar } from '../../../radar-view/model/radar';
@@ -11,7 +11,7 @@ import { SECTOR_COLORS } from '../../../radar-view/model/sector-colors';
 	templateUrl: './general-radar-chart.component.html',
 	styleUrls: ['./general-radar-chart.component.scss'],
 })
-export class GeneralRadarChartComponent implements OnInit, AfterViewInit {
+export class GeneralRadarChartComponent implements OnInit, AfterViewInit, OnChanges {
 	@ViewChild('chartRoot', { static: false }) public chartRoot: ElementRef<SVGElement>;
 	@ViewChild('chartContainer', { static: false }) public chartContainer: ElementRef<HTMLDivElement>;
 
@@ -24,11 +24,18 @@ export class GeneralRadarChartComponent implements OnInit, AfterViewInit {
 	public config$: BehaviorSubject<RadarChartConfig>;
 	public model: RadarChartModel;
 
-	constructor(public containerFacade: ContainerFacadeService) {}
+	constructor(public containerFacade: ContainerFacadeService) {
+		this.model = new RadarChartModel();
+	}
 
 	public ngOnInit(): void {
-		this.handleModelChange();
 		this.handleThemeChange();
+	}
+
+	public ngOnChanges(): void {
+		if (Boolean(this.radar) && Boolean(this.radarDataItems)) {
+			this.initChartModel();
+		}
 	}
 
 	public ngAfterViewInit(): void {
@@ -41,8 +48,7 @@ export class GeneralRadarChartComponent implements OnInit, AfterViewInit {
 		renderer.start();
 	}
 
-	private handleModelChange(): void {
-		this.model = new RadarChartModel();
+	private initChartModel(): void {
 		this.model.isZoomEnabled.next(false);
 
 		this.model.ringNames$.next(this.radar.rings);
