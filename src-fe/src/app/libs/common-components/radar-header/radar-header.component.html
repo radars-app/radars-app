@@ -1,10 +1,11 @@
 <div class="radar-header" [class.radar-header--dark-theme]="(theme$ | async) === 'dark'">
-	<div class="radar-header__title">{{title}}</div>
+	<div class="radar-header__title">{{title}} <span *ngIf="titlePostfix" class="radar-header__title-postfix">({{titlePostfix}})</span></div>
 	<div class="radar-header__content">
 		<ng-content></ng-content>
 	</div>
 	<div class="radar-header__buttons">
 		<app-icon-button
+			class="radar-header__icon-button"
 			*ngFor="let button of buttons"
 			[startIcon]="button.icon"
 			[theme]="theme$ | async"

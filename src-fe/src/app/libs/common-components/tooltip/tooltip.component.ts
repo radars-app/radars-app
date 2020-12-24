@@ -1,16 +1,5 @@
-import {
-	ChangeDetectionStrategy,
-	Component,
-	ElementRef,
-	Input,
-	OnChanges,
-	OnDestroy,
-	OnInit,
-	SimpleChanges,
-	ViewChild,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
-import { Subject } from 'rxjs/internal/Subject';
 import { TooltipTrigger } from './models/tooltip-trigger';
 import { TooltipOptions } from './models/tooltip-options';
 import { createPopper, Instance as Popper } from '@popperjs/core';
@@ -21,7 +10,7 @@ import { createPopper, Instance as Popper } from '@popperjs/core';
 	styleUrls: ['./tooltip.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TooltipComponent implements OnInit, OnChanges, OnDestroy {
+export class TooltipComponent implements OnInit, OnChanges {
 	@ViewChild('tooltipContent', { static: false }) public tooltipContent: ElementRef<HTMLDivElement>;
 
 	@Input()
@@ -30,12 +19,9 @@ export class TooltipComponent implements OnInit, OnChanges, OnDestroy {
 
 	public isTooltipVisible: BehaviorSubject<boolean>;
 
-	private destroy$: Subject<void>;
-
 	constructor() {}
 
 	public ngOnInit(): void {
-		this.destroy$ = new Subject<void>();
 		this.isTooltipVisible = new BehaviorSubject(false);
 	}
 
@@ -63,11 +49,6 @@ export class TooltipComponent implements OnInit, OnChanges, OnDestroy {
 			});
 			this.initVisibilityBehavior(this.options.target);
 		}
-	}
-
-	public ngOnDestroy(): void {
-		this.destroy$.next();
-		this.destroy$.complete();
 	}
 
 	private initVisibilityBehavior(target: HTMLElement): void {

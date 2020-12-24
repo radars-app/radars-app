@@ -22,7 +22,7 @@ const defaultConfig: RadarConfig = {
 	sectors: ['OS', 'Hardware', 'Cloud']
 };
 
-const radars: RadarEntity[] = [];
+const radars: Map<string, RadarEntity[]> = new Map();
 
 @Injectable()
 export class RadarsService {
@@ -31,14 +31,23 @@ export class RadarsService {
 	@Inject() csvParser!: CsvParserService;
 	@Inject() dataItemFactory!: RadarDataItemFactoryService;
 
-	public async getRadarsById(radarId: string): Promise<RadarEntity[]> {
-		const radarEntities: RadarEntity[] | undefined = radars.filter((radar: RadarEntity) => radar.radarId === radarId);
+	public async getAllLatestRadars(): Promise<RadarEntity[]> {
+		const latestRadars: RadarEntity[] = [];
 
-		if (radarEntities.length > 0) {
+		for (const radar of radars.values()) {
+			latestRadars.push(radar[radar.length - 1]);
+		}
+		return Promise.resolve(latestRadars);
+	}
+
+	public async getRadarsById(radarId: string): Promise<RadarEntity[]> {
+		const radarEntities: RadarEntity[] | undefined = radars.get(radarId);
+
+		if (radarEntities) {
 			return Promise.resolve(radarEntities);
 		} else {
 			await this.createDefaultRadar(radarId);
-			return Promise.resolve(radars.filter((radar: RadarEntity) => radar.radarId === radarId));
+			return Promise.resolve(radars.get(radarId) || []);
 		}
 	}
 
@@ -56,7 +65,13 @@ export class RadarsService {
 
 		await this.dataItemService.createRadarDataItems(radarDataItemsToCreate);
 
-		radars.push(radar);
+		const radarsArray: RadarEntity[] | undefined = radars.get(radar.radarId);
+
+		if (radarsArray) {
+			radarsArray.push(radar);
+		} else {
+			radars.set(radar.radarId, [radar]);
+		}
 
 		return Promise.resolve(radar);
 	}

@@ -1,0 +1,43 @@
+@import 'variables';
+
+:host {
+	position: relative;
+	display: flex;
+	flex: 1 100%;
+	background-color: #f0f4f8;
+}
+
+.radars-general-view {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	display: flex;
+	flex: 1 100%;
+	flex-direction: column;
+	align-items: stretch;
+
+	&--dark-theme {
+		background-color: #272c39;
+	}
+}
+
+.radars-general-view__content-wrapper {
+	position: relative;
+	display: flex;
+	flex: 1 100%;
+	flex-wrap: wrap;
+	overflow-y: auto;
+	padding: $secondary-grid-unit * 8 $secondary-grid-unit * 3 $secondary-grid-unit * 2;
+}
+
+.radars-general-view__header {
+	z-index: 11;
+}
+
+.radars-general-view__radar-card {
+	width: $secondary-grid-unit * 80;
+	margin: $secondary-grid-unit * 2;
+	cursor: pointer;
+}

@@ -1,0 +1,40 @@
+@import 'variables';
+
+.radar-card {
+	&:hover {
+		box-shadow: 0 0 8px 4px rgba(199, 208, 216, 0.25);
+	}
+}
+
+.radar-card__title {
+	@include text-h4();
+
+	color: #272c39;
+}
+
+.radar-card__subtitle {
+	@include text-p();
+
+	color: #5e6670;
+}
+
+.radar-card__radar-chart-container {
+	width: $secondary-grid-unit * 50;
+	height: $secondary-grid-unit * 50;
+	margin: $secondary-grid-unit * 8 auto $secondary-grid-unit * 4 !important;
+}
+
+.radar-card--dark-theme {
+	background-color: #2d3443;
+	&:hover {
+		box-shadow: 0 0 8px 4px rgba(94, 102, 112, 0.25);
+	}
+
+	.radar-card__title {
+		color: #fff;
+	}
+
+	.radar-card__subtitle {
+		color: #99a6b5;
+	}
+}
