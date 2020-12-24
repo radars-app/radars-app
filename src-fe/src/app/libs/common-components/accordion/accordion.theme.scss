@@ -26,10 +26,6 @@
 			color: $color-white;
 		}
 
-		.accordion-item__counter {
-			color: #c7d0d8;
-		}
-
 		.accordion-item__toggle,
 		.accordion-item__toggle--rotated {
 			color: #99a6b5;
@@ -38,6 +34,10 @@
 			&:focus {
 				color: #fff;
 			}
+		}
+
+		span.accordion-item__counter {
+			color: #c7d0d8;
 		}
 	}
 
