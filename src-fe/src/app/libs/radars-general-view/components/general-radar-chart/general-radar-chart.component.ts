@@ -6,7 +6,6 @@ import { ContainerFacadeService } from '../../../container/service/container-fac
 import { Radar } from '../../../radar-view/model/radar';
 import { RadarDataItem } from '../../../radar-view/model/radar-data-item';
 import { SECTOR_COLORS } from '../../../radar-view/model/sector-colors';
-import { RadarsGeneralViewRepositoryService } from '../../service/radars-general-view-repository.service';
 @Component({
 	selector: 'app-general-radar-chart',
 	templateUrl: './general-radar-chart.component.html',
@@ -27,10 +26,7 @@ export class GeneralRadarChartComponent implements OnInit, AfterViewInit, OnDest
 
 	private destroy$: Subject<void>;
 
-	constructor(
-		public containerFacade: ContainerFacadeService,
-		private radarsGeneralViewRepositoryService: RadarsGeneralViewRepositoryService
-	) {}
+	constructor(public containerFacade: ContainerFacadeService) {}
 
 	public ngOnInit(): void {
 		this.destroy$ = new Subject<void>();

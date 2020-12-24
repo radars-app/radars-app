@@ -4,7 +4,6 @@ import { CommonComponentsModule } from '../../../common-components/common-compon
 import { ComponentTheme } from '../../../common-components/common/enum/component-theme.enum';
 import { ContainerFacadeService } from '../../../container/service/container-facade.service';
 import { Radar } from '../../../radar-view/model/radar';
-import { RadarsGeneralViewRepositoryService } from '../../service/radars-general-view-repository.service';
 
 import { GeneralRadarChartComponent } from './general-radar-chart.component';
 

@@ -1,13 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { forkJoin, Observable, Subject } from 'rxjs';
-import { filter, map, mergeMap, switchMap, takeUntil, tap } from 'rxjs/operators';
+import { filter, map, mergeMap, takeUntil, tap } from 'rxjs/operators';
 
 import { ComponentTheme } from '../common-components/common/enum/component-theme.enum';
 import { ContainerFacadeService } from '../container/service/container-facade.service';
 import { Radar } from '../radar-view/model/radar';
-import { RadarDataItem, RadarDataItemDto } from '../radar-view/model/radar-data-item';
-import { RadarDataItemConverterService } from '../radar-view/service/radar-data-item-converter.service';
+import { RadarDataItem } from '../radar-view/model/radar-data-item';
 import { RadarsGeneralViewFacadeService } from './service/radars-general-view-facade.service';
 import { RadarsGeneralViewRepositoryService } from './service/radars-general-view-repository.service';
 
@@ -35,7 +34,6 @@ export class RadarsGeneralViewComponent implements OnInit, OnDestroy {
 		private containerFacadeService: ContainerFacadeService,
 		private radarsGeneralViewFacadeService: RadarsGeneralViewFacadeService,
 		private radarsGeneralViewRepositoryService: RadarsGeneralViewRepositoryService,
-		private radarDataItemConverterService: RadarDataItemConverterService,
 		private router: Router
 	) {}
 
