@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatCardModule } from '@angular/material/card';
 
 import { RadarCardComponent } from './radar-card.component';
 
@@ -9,6 +10,7 @@ describe('RadarCardComponent', () => {
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
 			declarations: [RadarCardComponent],
+			imports: [MatCardModule],
 		}).compileComponents();
 	}));
 
