@@ -7,6 +7,7 @@ import { ContainerFacadeService } from '../container/service/container-facade.se
 
 import { RadarsGeneralViewComponent } from './radars-general-view.component';
 import { RadarsGeneralViewFacadeService } from './service/radars-general-view-facade.service';
+import { RadarsGeneralViewRepositoryService } from './service/radars-general-view-repository.service';
 
 describe('RadarsGeneralViewComponent', () => {
 	let component: RadarsGeneralViewComponent;
@@ -27,6 +28,13 @@ describe('RadarsGeneralViewComponent', () => {
 					useValue: {
 						loadRadars: () => {},
 						radars$: of(),
+					},
+				},
+				{
+					provide: RadarsGeneralViewRepositoryService,
+					useValue: {
+						loadRadarDataItems: () => [],
+						radars$: of([]),
 					},
 				},
 			],

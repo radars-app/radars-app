@@ -36,6 +36,7 @@ describe('GeneralRadarChartComponent', () => {
 		fixture = TestBed.createComponent(GeneralRadarChartComponent);
 		component = fixture.componentInstance;
 		component.radar = radar;
+		component.radarDataItems = [];
 		fixture.detectChanges();
 	});
 
