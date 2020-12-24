@@ -1,18 +1,15 @@
 import { EntityStatus } from 'src/app/libs/container/model/entity-status';
 import { RadarsGeneralViewActions, RadarsGeneralViewActionTypes, LoadAllLatestRadarsSuccess } from './radars-general-view.actions';
-import { RadarsGeneralViewState } from './radars-general-view.state';
+import { RadarsGeneralViewState as GeneralViewState } from './radars-general-view.state';
 
-export const initialRadarsGeneralViewState: RadarsGeneralViewState = {
+export const initialState: GeneralViewState = {
 	radars: {
 		value: null,
 		status: EntityStatus.Init,
 	},
 };
 
-export function radarsGeneralViewReducer(
-	state: RadarsGeneralViewState = initialRadarsGeneralViewState,
-	action: RadarsGeneralViewActions
-): RadarsGeneralViewState {
+export function radarsGeneralViewReducer(state: GeneralViewState = initialState, action: RadarsGeneralViewActions): GeneralViewState {
 	switch (action.type) {
 		case RadarsGeneralViewActionTypes.LoadAllLatestRadars: {
 			return {

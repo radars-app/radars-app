@@ -1,4 +1,4 @@
-import { radarsGeneralViewReducer, initialRadarsGeneralViewState } from './radars-general-view.reducer';
+import { radarsGeneralViewReducer, initialState } from './radars-general-view.reducer';
 import { RadarsGeneralViewState } from './radars-general-view.state';
 import { LoadAllLatestRadars } from './radars-general-view.actions';
 import { EntityStatus } from 'src/app/libs/container/model/entity-status';
@@ -8,9 +8,9 @@ describe('RadarsGeneralView Reducer', () => {
 		it('should return the previous state', () => {
 			const action: any = {} as any;
 
-			const result: any = radarsGeneralViewReducer(initialRadarsGeneralViewState, action);
+			const result: any = radarsGeneralViewReducer(initialState, action);
 
-			expect(result).toBe(initialRadarsGeneralViewState);
+			expect(result).toBe(initialState);
 		});
 	});
 
@@ -18,7 +18,7 @@ describe('RadarsGeneralView Reducer', () => {
 		it('should set radars state to pending', () => {
 			const action: LoadAllLatestRadars = new LoadAllLatestRadars();
 
-			const result: RadarsGeneralViewState = radarsGeneralViewReducer(initialRadarsGeneralViewState, action);
+			const result: RadarsGeneralViewState = radarsGeneralViewReducer(initialState, action);
 
 			expect(result.radars.status).toBe(EntityStatus.Pending);
 		});
