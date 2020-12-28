@@ -1,0 +1,12 @@
+<mat-form-field>
+	<mat-select class="drop-down" #select
+		[value]="items[0]" 
+		[disableOptionCentering]="true" 
+		[disableRipple]="true"
+		(valueChange)="$event.callback()">
+		<mat-option class="drop-down__option" *ngFor="let item of items" [value]="item">
+			<app-icon [icon]="item.icon"></app-icon>
+			<span>{{item.name}}</span>
+		</mat-option>
+	</mat-select>
+</mat-form-field>

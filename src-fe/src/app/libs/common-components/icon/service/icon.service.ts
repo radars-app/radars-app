@@ -37,8 +37,24 @@ export class IconService {
 			this.domSanitizer.bypassSecurityTrustResourceUrl('../../../../../assets/svg/arrow-down-3.svg')
 		);
 		this.matIconRegistry.addSvgIcon(
+			'arrow-down-2',
+			this.domSanitizer.bypassSecurityTrustResourceUrl('../../../../../assets/svg/arrow-down-2.svg')
+		);
+		this.matIconRegistry.addSvgIcon(
 			'arrow-up',
 			this.domSanitizer.bypassSecurityTrustResourceUrl('../../../../../assets/svg/arrow-up-3.svg')
+		);
+		this.matIconRegistry.addSvgIcon(
+			'arrow-up-2',
+			this.domSanitizer.bypassSecurityTrustResourceUrl('../../../../../assets/svg/arrow-up-2.svg')
+		);
+		this.matIconRegistry.addSvgIcon(
+			'sort-ascending',
+			this.domSanitizer.bypassSecurityTrustResourceUrl('../../../../../assets/svg/sort-ascending.svg')
+		);
+		this.matIconRegistry.addSvgIcon(
+			'sort-descending',
+			this.domSanitizer.bypassSecurityTrustResourceUrl('../../../../../assets/svg/sort-descending.svg')
 		);
 	}
 }

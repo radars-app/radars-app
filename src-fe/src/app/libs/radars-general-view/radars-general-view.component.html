@@ -5,6 +5,10 @@
 		class="radars-general-view__header"
 		title="All STIC Radars"
 		[titlePostfix]="radarsCount">
+		<app-drop-down
+			[items]="sortItems"
+			[theme]="theme$ | async">
+		</app-drop-down>
 	</app-radar-header>
 
 	<perfect-scrollbar>

@@ -4,6 +4,7 @@ import { forkJoin, Observable, Subject } from 'rxjs';
 import { filter, map, mergeMap, takeUntil, tap } from 'rxjs/operators';
 
 import { ComponentTheme } from '../common-components/common/enum/component-theme.enum';
+import { DropDownItem } from '../common-components/common/models/drop-down-item';
 import { ContainerFacadeService } from '../container/service/container-facade.service';
 import { Radar } from '../radar-view/model/radar';
 import { RadarDataItem } from '../radar-view/model/radar-data-item';
@@ -23,6 +24,37 @@ export class RadarsGeneralViewComponent implements OnInit, OnDestroy {
 	public radars: Radar[];
 
 	public radarDataItems: RadarDataItem[][] = [];
+
+	public sortItems: DropDownItem[] = [
+		{
+			name: 'Newest to oldest',
+			icon: 'sort-descending',
+			callback: () => {
+				console.log('1');
+			},
+		},
+		{
+			name: 'Oldest to newest',
+			icon: 'sort-ascending',
+			callback: () => {
+				console.log('2');
+			},
+		},
+		{
+			name: 'Alphabetical A to Z',
+			icon: '',
+			callback: () => {
+				console.log('3');
+			},
+		},
+		{
+			name: 'Alphabetical Z to A',
+			icon: '',
+			callback: () => {
+				console.log('4');
+			},
+		},
+	];
 
 	public get radarsCount(): number {
 		return this.radars?.length;
