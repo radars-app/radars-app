@@ -7,8 +7,8 @@
 				disableOptionCentering disableRipple
 				(valueChange)="$event.callback()">
 				<mat-select-trigger class="drop-down__selected">
-					<app-icon class="drop-down__icon" [icon]="select.value.icon"></app-icon>
-					<span>{{select.value.name}}</span>
+					<app-icon class="drop-down__icon" [icon]="select.value?.icon"></app-icon>
+					<span>{{select.value?.name}}</span>
 				</mat-select-trigger>
 			<mat-option class="drop-down__option" *ngFor="let option of options" [value]="option">
 				<app-icon class="drop-down__icon" [icon]="option.icon"></app-icon>
