@@ -56,5 +56,7 @@ export class IconService {
 			'sort-descending',
 			this.domSanitizer.bypassSecurityTrustResourceUrl('../../../../../assets/svg/sort-descending.svg')
 		);
+		this.matIconRegistry.addSvgIcon('z-to-a', this.domSanitizer.bypassSecurityTrustResourceUrl('../../../../../assets/svg/z-to-a.svg'));
+		this.matIconRegistry.addSvgIcon('a-to-z', this.domSanitizer.bypassSecurityTrustResourceUrl('../../../../../assets/svg/a-to-z.svg'));
 	}
 }

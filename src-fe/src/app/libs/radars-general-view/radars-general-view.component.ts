@@ -4,7 +4,7 @@ import { forkJoin, Observable, Subject } from 'rxjs';
 import { filter, map, mergeMap, takeUntil, tap } from 'rxjs/operators';
 
 import { ComponentTheme } from '../common-components/common/enum/component-theme.enum';
-import { DropDownItem } from '../common-components/common/models/drop-down-item';
+import { DropDownOption } from '../common-components/common/models/drop-down-option';
 import { ContainerFacadeService } from '../container/service/container-facade.service';
 import { Radar } from '../radar-view/model/radar';
 import { RadarDataItem } from '../radar-view/model/radar-data-item';
@@ -25,7 +25,7 @@ export class RadarsGeneralViewComponent implements OnInit, OnDestroy {
 
 	public radarDataItems: RadarDataItem[][] = [];
 
-	public sortItems: DropDownItem[] = [
+	public sortOptions: DropDownOption[] = [
 		{
 			name: 'Newest to oldest',
 			icon: 'sort-descending',
@@ -42,14 +42,14 @@ export class RadarsGeneralViewComponent implements OnInit, OnDestroy {
 		},
 		{
 			name: 'Alphabetical A to Z',
-			icon: '',
+			icon: 'a-to-z',
 			callback: () => {
 				console.log('3');
 			},
 		},
 		{
 			name: 'Alphabetical Z to A',
-			icon: '',
+			icon: 'z-to-a',
 			callback: () => {
 				console.log('4');
 			},

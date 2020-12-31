@@ -1,12 +1,20 @@
-<mat-form-field>
-	<mat-select class="drop-down" #select
-		[value]="items[0]" 
-		[disableOptionCentering]="true" 
-		[disableRipple]="true"
-		(valueChange)="$event.callback()">
-		<mat-option class="drop-down__option" *ngFor="let item of items" [value]="item">
-			<app-icon [icon]="item.icon"></app-icon>
-			<span>{{item.name}}</span>
-		</mat-option>
-	</mat-select>
-</mat-form-field>
+<div class="drop-down" [class.drop-down--dark-theme]="isDarkTheme" [class.drop-down--opened]="select.openedChange | async"> 
+	<mat-form-field appearance="outline">
+		<mat-select #select
+				[value]="options[0]"
+				[panelClass]="isDarkTheme ? 'drop-down__panel drop-down__panel--dark-theme' : 'drop-down__panel'"
+				overlayPanelClass="drop-down__overlay-panel"
+				disableOptionCentering disableRipple
+				(valueChange)="$event.callback()">
+				<mat-select-trigger class="drop-down__selected">
+					<app-icon class="drop-down__icon" [icon]="select.value.icon"></app-icon>
+					<span>{{select.value.name}}</span>
+				</mat-select-trigger>
+			<mat-option class="drop-down__option" *ngFor="let option of options" [value]="option">
+				<app-icon class="drop-down__icon" [icon]="option.icon"></app-icon>
+				<span>{{option.name}}</span>
+			</mat-option>
+		</mat-select>
+	</mat-form-field>
+</div>
+
