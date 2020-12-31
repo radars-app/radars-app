@@ -1,6 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { IconComponent } from '../icon/icon.component';
-import { CustomSelectOverlay } from './custom-select-overlay';
 
 import { DropDownComponent } from './drop-down.component';
 
