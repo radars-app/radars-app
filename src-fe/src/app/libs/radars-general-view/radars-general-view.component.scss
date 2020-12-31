@@ -20,6 +20,10 @@
 
 	&--dark-theme {
 		background-color: #272c39;
+
+		.radars-general-view__sort-label {
+			color: $color-white;
+		}
 	}
 }
 
@@ -28,8 +32,8 @@
 	display: flex;
 	flex: 1 100%;
 	flex-wrap: wrap;
-	overflow-y: auto;
 	padding: $secondary-grid-unit * 8 $secondary-grid-unit * 3 $secondary-grid-unit * 2;
+	overflow-y: auto;
 }
 
 .radars-general-view__header {
@@ -40,4 +44,12 @@
 	width: $secondary-grid-unit * 80;
 	margin: $secondary-grid-unit * 2;
 	cursor: pointer;
+}
+
+.radars-general-view__sort-label {
+	@include text-small-medium;
+
+	margin-right: 14px;
+	align-self: center;
+	color: #272c39;
 }
