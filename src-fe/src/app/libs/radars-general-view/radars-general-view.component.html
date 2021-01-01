@@ -11,10 +11,10 @@
 
 	<perfect-scrollbar>
 
-		<div class="radars-general-view__content-wrapper">
+		<div class="radars-general-view__content-wrapper" #radarList>
 			<app-radar-card
 				class="radars-general-view__radar-card"
-				*ngFor="let radar of this.radars; let index=index"
+				*ngFor="let radar of radars; let index=index"
 				(click)="navigateToRadar(radar.id)"
 				[title]="radar.name"
 				[lastUpdatedDate]="radar.lastUpdatedDate"

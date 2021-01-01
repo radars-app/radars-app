@@ -1,5 +1,5 @@
 import { Overlay } from '@angular/cdk/overlay';
-import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ComponentTheme } from '../common/enum/component-theme.enum';
 import { DropDownOption } from '../common/models/drop-down-option';
 import { CustomSelectOverlay } from './custom-select-overlay';
@@ -16,7 +16,7 @@ import { CustomSelectOverlay } from './custom-select-overlay';
 		},
 	],
 })
-export class DropDownComponent implements OnInit, OnChanges {
+export class DropDownComponent implements OnInit, AfterViewInit {
 	@Input()
 	public theme: ComponentTheme = ComponentTheme.Light;
 
@@ -29,9 +29,9 @@ export class DropDownComponent implements OnInit, OnChanges {
 
 	constructor() {}
 
-	public ngOnChanges(changes: SimpleChanges): void {
-		if (changes.options.currentValue[0]) {
-			changes.options.currentValue[0].callback();
+	public ngAfterViewInit(): void {
+		if (this.options[0]) {
+			this.options[0].callback();
 		}
 	}
 

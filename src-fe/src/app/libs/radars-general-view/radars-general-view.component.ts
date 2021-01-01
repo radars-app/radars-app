@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { forkJoin, Observable, Subject } from 'rxjs';
 import { filter, map, mergeMap, takeUntil, tap } from 'rxjs/operators';
@@ -8,6 +8,7 @@ import { DropDownOption } from '../common-components/common/models/drop-down-opt
 import { ContainerFacadeService } from '../container/service/container-facade.service';
 import { Radar } from '../radar-view/model/radar';
 import { RadarDataItem } from '../radar-view/model/radar-data-item';
+import { RadarSorterService } from './service/radar-sorter.service';
 import { RadarsGeneralViewFacadeService } from './service/radars-general-view-facade.service';
 import { RadarsGeneralViewRepository } from './service/radars-general-view-repository.service';
 
@@ -25,33 +26,40 @@ export class RadarsGeneralViewComponent implements OnInit, OnDestroy {
 
 	public radarDataItems: RadarDataItem[][] = [];
 
+	@ViewChild('radarList')
+	public radarList: ElementRef;
+
 	public sortOptions: DropDownOption[] = [
 		{
 			name: 'Newest to oldest',
 			icon: 'sort-descending',
 			callback: () => {
-				console.log('1');
+				const radarListElement: HTMLDivElement = this.radarList.nativeElement;
+				this.radarSorterService.sortAlphabetical(radarListElement, 'radar-card__date--sort-key', true);
 			},
 		},
 		{
 			name: 'Oldest to newest',
 			icon: 'sort-ascending',
 			callback: () => {
-				console.log('2');
+				const radarListElement: HTMLDivElement = this.radarList.nativeElement;
+				this.radarSorterService.sortAlphabetical(radarListElement, 'radar-card__date--sort-key', false);
 			},
 		},
 		{
 			name: 'Alphabetical A to Z',
 			icon: 'a-to-z',
 			callback: () => {
-				console.log('3');
+				const radarListElement: HTMLDivElement = this.radarList.nativeElement;
+				this.radarSorterService.sortAlphabetical(radarListElement, 'radar-card__title--sort-key', true);
 			},
 		},
 		{
 			name: 'Alphabetical Z to A',
 			icon: 'z-to-a',
 			callback: () => {
-				console.log('4');
+				const radarListElement: HTMLDivElement = this.radarList.nativeElement;
+				this.radarSorterService.sortAlphabetical(radarListElement, 'radar-card__title--sort-key', false);
 			},
 		},
 	];
@@ -66,6 +74,7 @@ export class RadarsGeneralViewComponent implements OnInit, OnDestroy {
 		private containerFacadeService: ContainerFacadeService,
 		private radarsGeneralViewFacadeService: RadarsGeneralViewFacadeService,
 		private radarsGeneralViewRepository: RadarsGeneralViewRepository,
+		private radarSorterService: RadarSorterService,
 		private router: Router
 	) {}
 
