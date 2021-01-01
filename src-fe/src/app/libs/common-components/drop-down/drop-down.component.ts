@@ -1,5 +1,5 @@
 import { Overlay } from '@angular/cdk/overlay';
-import { AfterViewInit, ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { ComponentTheme } from '../common/enum/component-theme.enum';
 import { DropDownOption } from '../common/models/drop-down-option';
 import { CustomSelectOverlay } from './custom-select-overlay';
