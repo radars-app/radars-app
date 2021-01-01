@@ -16,7 +16,7 @@ import { CustomSelectOverlay } from './custom-select-overlay';
 		},
 	],
 })
-export class DropDownComponent implements OnInit, AfterViewInit {
+export class DropDownComponent implements AfterViewInit {
 	@Input()
 	public theme: ComponentTheme = ComponentTheme.Light;
 
@@ -34,6 +34,4 @@ export class DropDownComponent implements OnInit, AfterViewInit {
 			this.options[0].callback();
 		}
 	}
-
-	public ngOnInit(): void {}
 }
