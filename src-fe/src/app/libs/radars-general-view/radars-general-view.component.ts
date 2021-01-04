@@ -1,17 +1,14 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, forkJoin, Observable, Subject } from 'rxjs';
-import { filter, map, mergeMap, takeUntil, tap } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
+import { map, takeUntil } from 'rxjs/operators';
 
 import { ComponentTheme } from '../common-components/common/enum/component-theme.enum';
 import { DropDownOption } from '../common-components/common/models/drop-down-option';
 import { ContainerFacadeService } from '../container/service/container-facade.service';
-import { Radar } from '../radar-view/model/radar';
-import { RadarDataItem } from '../radar-view/model/radar-data-item';
 import { RadarWithData } from './model/radar-with-data';
 import { RadarSorterService } from './service/radar-sorter.service';
 import { RadarsGeneralViewFacadeService } from './service/radars-general-view-facade.service';
-import { RadarsGeneralViewRepository } from './service/radars-general-view-repository.service';
 
 @Component({
 	selector: 'app-radars-general-view',

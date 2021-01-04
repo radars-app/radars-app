@@ -20,6 +20,7 @@ describe('RadarView', () => {
 						rings: [],
 						sectors: [],
 					},
+					radarDataItems: [],
 				},
 			])
 		).toBeTruthy();

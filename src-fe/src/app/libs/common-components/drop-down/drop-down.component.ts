@@ -28,12 +28,12 @@ export class DropDownComponent implements AfterViewInit {
 	}
 
 	public get firstValue(): DropDownOption {
-		return this?.options[0];
+		return this.options?.[0];
 	}
 
 	constructor() {}
 
 	public ngAfterViewInit(): void {
-		this?.options[0]?.callback();
+		this.options?.[0]?.callback();
 	}
 }

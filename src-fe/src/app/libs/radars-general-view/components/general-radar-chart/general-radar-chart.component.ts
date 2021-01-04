@@ -55,7 +55,7 @@ export class GeneralRadarChartComponent implements OnInit, AfterViewInit, OnChan
 			};
 		});
 		this.model.sectors$.next(sectors.reverse());
-		this.model.dots$.next(this.radarWidthData.dataItems);
+		this.model.dots$.next(this.radarWidthData.radarDataItems);
 	}
 
 	private handleThemeChange(): void {

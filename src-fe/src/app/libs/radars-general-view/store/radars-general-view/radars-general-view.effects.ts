@@ -36,12 +36,12 @@ export class RadarsGeneralViewEffects {
 				}),
 				map(([radars, radarDataItemDto]: [Radar[], RadarDataItemDto[][]]) => {
 					return radars.map((radar: Radar, index: number) => {
-						const dataItems: RadarDataItem[] = radarDataItemDto[index].map((dto: RadarDataItemDto) =>
+						const radarDataItems: RadarDataItem[] = radarDataItemDto[index].map((dto: RadarDataItemDto) =>
 							this.dataItemConverter.fromDto(dto)
 						);
 						return {
 							...radar,
-							dataItems,
+							radarDataItems,
 						};
 					});
 				}),

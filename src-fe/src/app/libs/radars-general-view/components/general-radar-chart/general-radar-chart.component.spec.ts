@@ -17,7 +17,7 @@ describe('GeneralRadarChartComponent', () => {
 		rings: ['ringName'],
 		sectors: ['sectorName'],
 		config: null,
-		dataItems: [],
+		radarDataItems: [],
 	};
 
 	beforeEach(() => {
