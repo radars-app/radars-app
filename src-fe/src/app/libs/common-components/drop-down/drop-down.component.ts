@@ -1,5 +1,5 @@
 import { Overlay } from '@angular/cdk/overlay';
-import { AfterViewInit, ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { ComponentTheme } from '../common/enum/component-theme.enum';
 import { DropDownOption } from '../common/models/drop-down-option';
 import { CustomSelectOverlay } from './custom-select-overlay';
@@ -16,7 +16,7 @@ import { CustomSelectOverlay } from './custom-select-overlay';
 		},
 	],
 })
-export class DropDownComponent implements AfterViewInit {
+export class DropDownComponent {
 	@Input()
 	public theme: ComponentTheme = ComponentTheme.Light;
 
@@ -32,8 +32,4 @@ export class DropDownComponent implements AfterViewInit {
 	}
 
 	constructor() {}
-
-	public ngAfterViewInit(): void {
-		this.options?.[0]?.callback();
-	}
 }

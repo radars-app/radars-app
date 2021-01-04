@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { RadarWithData } from '../model/radar-with-data';
 
 @Injectable({
 	providedIn: 'root',
@@ -6,35 +7,25 @@ import { Injectable } from '@angular/core';
 export class RadarSorterService {
 	constructor() {}
 
-	public sortByDate(radarListElement: HTMLDivElement, dateClassName: string, isNewestToOldest: boolean): void {
-		Array.from(radarListElement.children)
-			.sort((radarElementA: HTMLElement, radarElementB: HTMLElement): number => {
-				const radarDateA: number = +new Date(radarElementA.querySelector('.' + dateClassName).textContent);
-				const radarDateB: number = +new Date(radarElementB.querySelector('.' + dateClassName).textContent);
-				if (isNewestToOldest) {
-					return radarDateA > radarDateB ? 1 : -1;
-				} else {
-					return radarDateA < radarDateB ? 1 : -1;
-				}
-			})
-			.forEach((node: Node) => {
-				radarListElement.appendChild(node);
-			});
+	public sortByDate(radarWithData: RadarWithData[], isNewestToOldest: boolean): RadarWithData[] {
+		return radarWithData.slice().sort((a: RadarWithData, b: RadarWithData): number => {
+			const radarDataA: number = +a.lastUpdatedDate;
+			const radarDateB: number = +b.lastUpdatedDate;
+			if (isNewestToOldest) {
+				return radarDataA < radarDateB ? 1 : -1;
+			} else {
+				return radarDataA > radarDateB ? 1 : -1;
+			}
+		});
 	}
 
-	public sortAlphabetical(radarListElement: HTMLDivElement, radarTitleClassName: string, isAtoZ: boolean): void {
-		Array.from(radarListElement.children)
-			.sort((radarElementA: HTMLElement, radarElementB: HTMLElement): number => {
-				const radarTitleA: string = radarElementA.querySelector('.' + radarTitleClassName).textContent;
-				const radarTitleB: string = radarElementB.querySelector('.' + radarTitleClassName).textContent;
-				if (isAtoZ) {
-					return radarTitleA > radarTitleB ? 1 : -1;
-				} else {
-					return radarTitleA < radarTitleB ? 1 : -1;
-				}
-			})
-			.forEach((node: Node) => {
-				radarListElement.appendChild(node);
-			});
+	public sortAlphabetical(radarWithData: RadarWithData[], isAtoZ: boolean): RadarWithData[] {
+		return radarWithData.slice().sort((a: RadarWithData, b: RadarWithData): number => {
+			if (isAtoZ) {
+				return a.name > b.name ? 1 : -1;
+			} else {
+				return a.name < b.name ? 1 : -1;
+			}
+		});
 	}
 }

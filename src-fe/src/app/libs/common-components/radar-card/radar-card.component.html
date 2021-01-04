@@ -2,10 +2,10 @@
 	class="radar-card"
 	[class.radar-card--dark-theme]="isDarkTheme">
 
-	<mat-card-title class="radar-card__title radar-card__title--sort-key">{{title}}</mat-card-title>
+	<mat-card-title class="radar-card__title">{{title}}</mat-card-title>
 
 	<mat-card-subtitle class="radar-card__subtitle">Published: 
-		<span class="radar-card__date radar-card__date--sort-key">{{lastUpdatedDate | date: 'y-M-d hh:mm'}}</span>
+		<span class="radar-card__date">{{lastUpdatedDate | date: 'y-M-d hh:mm'}}</span>
 	</mat-card-subtitle>
 
 	<div class="radar-card__radar-chart-container">
