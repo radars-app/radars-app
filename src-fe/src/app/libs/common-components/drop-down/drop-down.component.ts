@@ -34,6 +34,6 @@ export class DropDownComponent implements AfterViewInit {
 	constructor() {}
 
 	public ngAfterViewInit(): void {
-		this?.options[0].callback();
+		this?.options[0]?.callback();
 	}
 }
