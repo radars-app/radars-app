@@ -1,7 +1,7 @@
 <div class="drop-down" [class.drop-down--dark-theme]="isDarkTheme" [class.drop-down--opened]="select.openedChange | async"> 
 	<mat-form-field appearance="outline">
 		<mat-select #select
-				[value]="options[0]"
+				[value]="firstOption"
 				[panelClass]="isDarkTheme ? 'drop-down__panel drop-down__panel--dark-theme' : 'drop-down__panel'"
 				overlayPanelClass="drop-down__overlay-panel"
 				disableOptionCentering disableRipple

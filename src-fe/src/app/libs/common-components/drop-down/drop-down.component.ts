@@ -27,12 +27,14 @@ export class DropDownComponent implements OnInit, OnChanges {
 		return this.theme === ComponentTheme.Dark;
 	}
 
+	public get firstOption(): DropDownOption {
+		return this.options?.[0];
+	}
+
 	constructor() {}
 
 	public ngOnChanges(changes: SimpleChanges): void {
-		if (changes.options.currentValue[0]) {
-			changes.options.currentValue[0].callback();
-		}
+		changes.options?.currentValue?.[0].callback();
 	}
 
 	public ngOnInit(): void {}
