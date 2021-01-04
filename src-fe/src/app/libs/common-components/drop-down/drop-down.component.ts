@@ -21,17 +21,19 @@ export class DropDownComponent implements AfterViewInit {
 	public theme: ComponentTheme = ComponentTheme.Light;
 
 	@Input()
-	public options: DropDownOption[] = [];
+	public options: DropDownOption[];
 
 	public get isDarkTheme(): boolean {
 		return this.theme === ComponentTheme.Dark;
 	}
 
+	public get firstValue(): DropDownOption {
+		return this?.options[0];
+	}
+
 	constructor() {}
 
 	public ngAfterViewInit(): void {
-		if (this.options[0]) {
-			this.options[0].callback();
-		}
+		this?.options[0].callback();
 	}
 }
