@@ -1,6 +1,6 @@
 import { EntityWrapper } from 'src/app/libs/container/model/entity-wrapper';
-import { Radar } from '../../../radar-view/model/radar';
+import { RadarWithData } from '../../model/radar-with-data';
 
 export interface RadarsGeneralViewState {
-	radars: EntityWrapper<Radar[]>;
+	radarsWithData: EntityWrapper<RadarWithData[]>;
 }

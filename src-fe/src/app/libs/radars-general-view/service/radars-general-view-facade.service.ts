@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { RadarWithData } from '../model/radar-with-data';
 
-import { Radar } from '../../radar-view/model/radar';
-import { LoadAllLatestRadars } from '../store/radars-general-view/radars-general-view.actions';
-import { selectRadars } from '../store/radars-general-view/radars-general-view.selectors';
+import { LoadRadarsWithData } from '../store/radars-general-view/radars-general-view.actions';
+import { selectRadarsWithData } from '../store/radars-general-view/radars-general-view.selectors';
 import { RadarsGeneralViewState } from '../store/radars-general-view/radars-general-view.state';
 
 @Injectable({
@@ -13,11 +13,11 @@ import { RadarsGeneralViewState } from '../store/radars-general-view/radars-gene
 export class RadarsGeneralViewFacadeService {
 	constructor(private store: Store<RadarsGeneralViewState>) {}
 
-	public get radars$(): Observable<Radar[]> {
-		return this.store.pipe(select(selectRadars));
+	public get radarsWithData$(): Observable<RadarWithData[]> {
+		return this.store.pipe(select(selectRadarsWithData));
 	}
 
-	public loadRadars(): void {
-		this.store.dispatch(new LoadAllLatestRadars());
+	public loadRadarsWithData(): void {
+		this.store.dispatch(new LoadRadarsWithData());
 	}
 }

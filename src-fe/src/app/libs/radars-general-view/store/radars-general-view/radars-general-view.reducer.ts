@@ -1,9 +1,9 @@
 import { EntityStatus } from 'src/app/libs/container/model/entity-status';
-import { RadarsGeneralViewActions, RadarsGeneralViewActionTypes, LoadAllLatestRadarsSuccess } from './radars-general-view.actions';
+import { RadarsGeneralViewActions, RadarsGeneralViewActionTypes, LoadRadarsWithDataSuccess } from './radars-general-view.actions';
 import { RadarsGeneralViewState as GeneralViewState } from './radars-general-view.state';
 
 export const initialState: GeneralViewState = {
-	radars: {
+	radarsWithData: {
 		value: null,
 		status: EntityStatus.Init,
 	},
@@ -11,22 +11,22 @@ export const initialState: GeneralViewState = {
 
 export function radarsGeneralViewReducer(state: GeneralViewState = initialState, action: RadarsGeneralViewActions): GeneralViewState {
 	switch (action.type) {
-		case RadarsGeneralViewActionTypes.LoadAllLatestRadars: {
+		case RadarsGeneralViewActionTypes.LoadRadarsWithData: {
 			return {
 				...state,
-				radars: {
-					...state.radars,
+				radarsWithData: {
+					...state.radarsWithData,
 					status: EntityStatus.Pending,
 				},
 			};
 		}
 
-		case RadarsGeneralViewActionTypes.LoadAllLatestRadarsSuccess: {
+		case RadarsGeneralViewActionTypes.LoadRadarsWithDataSuccess: {
 			return {
 				...state,
-				radars: {
-					...state.radars,
-					value: (action as LoadAllLatestRadarsSuccess).payload,
+				radarsWithData: {
+					...state.radarsWithData,
+					value: (action as LoadRadarsWithDataSuccess).payload,
 					status: EntityStatus.Success,
 				},
 			};

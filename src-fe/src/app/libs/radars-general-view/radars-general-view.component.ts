@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { forkJoin, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, forkJoin, Observable, Subject } from 'rxjs';
 import { filter, map, mergeMap, takeUntil, tap } from 'rxjs/operators';
 
 import { ComponentTheme } from '../common-components/common/enum/component-theme.enum';
@@ -8,6 +8,7 @@ import { DropDownOption } from '../common-components/common/models/drop-down-opt
 import { ContainerFacadeService } from '../container/service/container-facade.service';
 import { Radar } from '../radar-view/model/radar';
 import { RadarDataItem } from '../radar-view/model/radar-data-item';
+import { RadarWithData } from './model/radar-with-data';
 import { RadarSorterService } from './service/radar-sorter.service';
 import { RadarsGeneralViewFacadeService } from './service/radars-general-view-facade.service';
 import { RadarsGeneralViewRepository } from './service/radars-general-view-repository.service';
@@ -22,9 +23,7 @@ export class RadarsGeneralViewComponent implements OnInit, OnDestroy {
 
 	public isDarkTheme$: Observable<boolean>;
 
-	public radars: Radar[];
-
-	public radarDataItems: RadarDataItem[][] = [];
+	public radarsWithData$: Observable<RadarWithData[]>;
 
 	@ViewChild('radarList')
 	public radarList: ElementRef;
@@ -64,16 +63,11 @@ export class RadarsGeneralViewComponent implements OnInit, OnDestroy {
 		},
 	];
 
-	public get radarsCount(): number {
-		return this.radars?.length;
-	}
-
 	private destroy$: Subject<void>;
 
 	constructor(
 		private containerFacadeService: ContainerFacadeService,
 		private radarsGeneralViewFacadeService: RadarsGeneralViewFacadeService,
-		private radarsGeneralViewRepository: RadarsGeneralViewRepository,
 		private radarSorterService: RadarSorterService,
 		private router: Router
 	) {}
@@ -85,22 +79,8 @@ export class RadarsGeneralViewComponent implements OnInit, OnDestroy {
 			map((theme: ComponentTheme) => theme === ComponentTheme.Dark),
 			takeUntil(this.destroy$)
 		);
-		this.radarsGeneralViewFacadeService.loadRadars();
-		this.radarsGeneralViewFacadeService.radars$
-			.pipe(
-				filter((radars: Radar[]) => Boolean(radars)),
-				tap((radars: Radar[]) => {
-					this.radars = radars;
-				}),
-				mergeMap((radars: Radar[]) => {
-					return forkJoin(radars.map((radar: Radar) => this.radarsGeneralViewRepository.loadRadarDataItems(radar.id)));
-				}),
-				tap((radarDataItems: RadarDataItem[][]) => {
-					this.radarDataItems = radarDataItems;
-				}),
-				takeUntil(this.destroy$)
-			)
-			.subscribe();
+		this.radarsGeneralViewFacadeService.loadRadarsWithData();
+		this.radarsWithData$ = this.radarsGeneralViewFacadeService.radarsWithData$;
 	}
 
 	public ngOnDestroy(): void {

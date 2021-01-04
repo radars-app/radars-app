@@ -4,7 +4,7 @@
 	<app-radar-header
 		class="radars-general-view__header"
 		title="All STIC Radars"
-		[titlePostfix]="radarsCount">
+		[titlePostfix]="(this.radarsWithData$ | async)?.length">
 		<span class="radars-general-view__sort-label">Sort by</span>
 		<app-drop-down [options]="sortOptions" [theme]="theme$ | async"></app-drop-down>
 	</app-radar-header>
@@ -14,12 +14,12 @@
 		<div class="radars-general-view__content-wrapper" #radarList>
 			<app-radar-card
 				class="radars-general-view__radar-card"
-				*ngFor="let radar of radars; let index=index"
-				(click)="navigateToRadar(radar.id)"
-				[title]="radar.name"
-				[lastUpdatedDate]="radar.lastUpdatedDate"
+				*ngFor="let radarWithData of radarsWithData$ | async; let index=index"
+				(click)="navigateToRadar(radarWithData.id)"
+				[title]="radarWithData.name"
+				[lastUpdatedDate]="radarWithData.lastUpdatedDate"
 				[theme]="theme$ | async">
-				<app-general-radar-chart [radar]="radar" [radarDataItems]="radarDataItems[index]"></app-general-radar-chart>
+				<app-general-radar-chart [radarWidthData]="radarWithData"></app-general-radar-chart>
 			</app-radar-card>
 		</div>
 
