@@ -3,7 +3,7 @@ import authConfig from '../auth-config.json';
 import passport from 'passport';
 import { BearerStrategy, IBearerStrategyOption, IBearerStrategyOptionWithRequest, ITokenPayload } from 'passport-azure-ad';
 
-const securedRoutes: string[] = ['/sample'];
+const securedRoutes: string[] = ['/api/radars', 'api/radar-data-items'];
 
 const options: IBearerStrategyOptionWithRequest = {
 	identityMetadata: `https://${authConfig.metadata.authority}/${authConfig.credentials.tenantID}/${authConfig.metadata.version}/${authConfig.metadata.discovery}`,
