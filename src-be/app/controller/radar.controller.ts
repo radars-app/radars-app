@@ -2,6 +2,7 @@ import { RadarConfig } from 'app/model/radar-config';
 import {
 	Body,
 	Controller,
+	Delete,
 	Get,
 	Path,
 	Post,
@@ -28,5 +29,10 @@ export class RadarsController extends Controller {
 	@Post('{radarId}')
 	public async updateRadar(@Path() radarId: string, @Body() config: RadarConfig): Promise<RadarEntity> {
 		return this.radarsService.createRadar(config, radarId);
+	}
+
+	@Delete('{radarId}')
+	public async deleteRadar(@Path() radarId: string): Promise<void> {
+		return this.radarsService.deleteRadar(radarId);
 	}
 }

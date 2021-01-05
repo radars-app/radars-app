@@ -79,4 +79,9 @@ export class RadarsService {
 	public async createDefaultRadar(id: string): Promise<RadarEntity> {
 		return this.createRadar(defaultConfig, id);
 	}
+
+	public async deleteRadar(radarId: string): Promise<void> {
+		radars.delete(radarId);
+		return await this.dataItemService.removeDataItemsByRadarId(radarId);
+	}
 }
