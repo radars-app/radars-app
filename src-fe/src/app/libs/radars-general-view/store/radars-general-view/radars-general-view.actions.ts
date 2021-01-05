@@ -1,19 +1,18 @@
 import { Action } from '@ngrx/store';
-import { Radar } from '../../../radar-view/model/radar';
+import { RadarWithData } from '../../model/radar-with-data';
 
 export enum RadarsGeneralViewActionTypes {
-	LoadAllLatestRadars = '[RadarsGeneralView] Load All Latest Radars',
-	LoadAllLatestRadarsSuccess = '[RadarsGeneralView] Load All Latest Radars Success',
+	LoadRadarsWithData = '[RadarsGeneralView] Load radars with data',
+	LoadRadarsWithDataSuccess = '[RadarsGeneralView] Load radars with data Success',
 }
 
-export class LoadAllLatestRadars implements Action {
-	public readonly type: RadarsGeneralViewActionTypes = RadarsGeneralViewActionTypes.LoadAllLatestRadars;
+export class LoadRadarsWithData implements Action {
+	public readonly type: RadarsGeneralViewActionTypes = RadarsGeneralViewActionTypes.LoadRadarsWithData;
 	constructor() {}
 }
-
-export class LoadAllLatestRadarsSuccess implements Action {
-	public readonly type: RadarsGeneralViewActionTypes = RadarsGeneralViewActionTypes.LoadAllLatestRadarsSuccess;
-	constructor(public payload: Radar[]) {}
+export class LoadRadarsWithDataSuccess implements Action {
+	public readonly type: RadarsGeneralViewActionTypes = RadarsGeneralViewActionTypes.LoadRadarsWithDataSuccess;
+	constructor(public payload: RadarWithData[]) {}
 }
 
-export type RadarsGeneralViewActions = LoadAllLatestRadars | LoadAllLatestRadars;
+export type RadarsGeneralViewActions = LoadRadarsWithData | LoadRadarsWithData;

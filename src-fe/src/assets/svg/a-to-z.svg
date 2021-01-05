@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="20px" viewBox="0 0 18 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icon sorting/A to Z</title>
+    <g id="post-draft-MVP-" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="All-radars-sorting-2" transform="translate(-1152.000000, -204.000000)" fill="currentColor">
+            <g id="01-Form-Controls/01-Light-Theme/05-Dropdown/02-Group/04-Focus-Hover" transform="translate(1083.000000, 60.000000)">
+                <g id="Menu" transform="translate(55.000000, 36.000000)">
+                    <g id="Option-3" transform="translate(0.000000, 96.000000)">
+                        <g id="Group" transform="translate(12.000000, 12.000000)">
+                            <g id="icon-sorting/A-to-Z" transform="translate(2.000000, 0.000000)">
+                                <polygon id="Sort-Ascending" transform="translate(13.000000, 10.000000) rotate(180.000000) translate(-13.000000, -10.000000) " points="13 0 18 5 13.75 5 13.75 20 12.25 20 12.25 5 8 5"></polygon>
+                                <path d="M1.6703683,8 L2.33931362,6.14453125 L5.31782924,6.14453125 L5.99654018,8 L6.95845424,8 L4.23872768,0.890625 L3.41841518,0.890625 L0.703571429,8 L1.6703683,8 Z M5.03950893,5.37304688 L2.62251674,5.37304688 L3.82857143,2.04785156 L5.03950893,5.37304688 Z M6.43111049,19 L6.43111049,18.2333984 L2.36372768,18.2333984 L6.27486049,12.5791016 L6.27486049,11.890625 L1.3188058,11.890625 L1.3188058,12.6621094 L5.15181362,12.6621094 L1.25532924,18.296875 L1.25532924,19 L6.43111049,19 Z" id="AZ"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

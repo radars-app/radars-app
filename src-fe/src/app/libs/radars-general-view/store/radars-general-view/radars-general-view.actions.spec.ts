@@ -2,12 +2,12 @@ import * as RadarViewActions from './radars-general-view.actions';
 
 describe('RadarView', () => {
 	it('should create an instance LoadRadars', () => {
-		expect(new RadarViewActions.LoadAllLatestRadars()).toBeTruthy();
+		expect(new RadarViewActions.LoadRadarsWithData()).toBeTruthy();
 	});
 
 	it('should create an instance LoadRadarsSuccess', () => {
 		expect(
-			new RadarViewActions.LoadAllLatestRadarsSuccess([
+			new RadarViewActions.LoadRadarsWithDataSuccess([
 				{
 					id: '1',
 					name: 'Radar',
@@ -20,6 +20,7 @@ describe('RadarView', () => {
 						rings: [],
 						sectors: [],
 					},
+					radarDataItems: [],
 				},
 			])
 		).toBeTruthy();

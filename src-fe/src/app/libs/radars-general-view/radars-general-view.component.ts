@@ -1,14 +1,14 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { forkJoin, Observable, Subject } from 'rxjs';
-import { filter, map, mergeMap, takeUntil, tap } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
+import { filter, map, takeUntil } from 'rxjs/operators';
 
 import { ComponentTheme } from '../common-components/common/enum/component-theme.enum';
+import { DropDownOption } from '../common-components/common/models/drop-down-option';
 import { ContainerFacadeService } from '../container/service/container-facade.service';
-import { Radar } from '../radar-view/model/radar';
-import { RadarDataItem } from '../radar-view/model/radar-data-item';
+import { RadarWithData } from './model/radar-with-data';
+import { RadarSorterService } from './service/radar-sorter.service';
 import { RadarsGeneralViewFacadeService } from './service/radars-general-view-facade.service';
-import { RadarsGeneralViewRepository } from './service/radars-general-view-repository.service';
 
 @Component({
 	selector: 'app-radars-general-view',
@@ -20,20 +20,49 @@ export class RadarsGeneralViewComponent implements OnInit, OnDestroy {
 
 	public isDarkTheme$: Observable<boolean>;
 
-	public radars: Radar[];
+	public radarsWithData: RadarWithData[];
 
-	public radarDataItems: RadarDataItem[][] = [];
-
-	public get radarsCount(): number {
-		return this.radars?.length;
+	public get radarsQuantity(): number {
+		return this.radarsWithData?.length;
 	}
+
+	public sortOptions: DropDownOption[] = [
+		{
+			name: 'Newest to oldest',
+			icon: 'sort-descending',
+			callback: () => {
+				this.radarsWithData = this.radarSorterService.sortByDate(this.radarsWithData, true);
+			},
+		},
+		{
+			name: 'Oldest to newest',
+			icon: 'sort-ascending',
+			callback: () => {
+				this.radarsWithData = this.radarSorterService.sortByDate(this.radarsWithData, false);
+			},
+		},
+		{
+			name: 'Alphabetical A to Z',
+			icon: 'a-to-z',
+			callback: () => {
+				this.radarsWithData = this.radarSorterService.sortAlphabetical(this.radarsWithData, true);
+			},
+		},
+		{
+			name: 'Alphabetical Z to A',
+			icon: 'z-to-a',
+			callback: () => {
+				this.radarsWithData = this.radarSorterService.sortAlphabetical(this.radarsWithData, false);
+			},
+		},
+	];
 
 	private destroy$: Subject<void>;
 
 	constructor(
 		private containerFacadeService: ContainerFacadeService,
 		private radarsGeneralViewFacadeService: RadarsGeneralViewFacadeService,
-		private radarsGeneralViewRepository: RadarsGeneralViewRepository,
+		private radarSorterService: RadarSorterService,
 		private router: Router
 	) {}
 
@@ -44,22 +73,16 @@ export class RadarsGeneralViewComponent implements OnInit, OnDestroy {
 			map((theme: ComponentTheme) => theme === ComponentTheme.Dark),
 			takeUntil(this.destroy$)
 		);
-		this.radarsGeneralViewFacadeService.loadRadars();
-		this.radarsGeneralViewFacadeService.radars$
+		this.radarsGeneralViewFacadeService.loadRadarsWithData();
+		this.radarsGeneralViewFacadeService.radarsWithData$
 			.pipe(
-				filter((radars: Radar[]) => Boolean(radars)),
-				tap((radars: Radar[]) => {
-					this.radars = radars;
-				}),
-				mergeMap((radars: Radar[]) => {
-					return forkJoin(radars.map((radar: Radar) => this.radarsGeneralViewRepository.loadRadarDataItems(radar.id)));
-				}),
-				tap((radarDataItems: RadarDataItem[][]) => {
-					this.radarDataItems = radarDataItems;
-				}),
+				filter((radars: RadarWithData[]) => Boolean(radars)),
 				takeUntil(this.destroy$)
 			)
-			.subscribe();
+			.subscribe((radarsWithData: RadarWithData[]) => {
+				this.radarsWithData = radarsWithData;
+				this.sortOptions[0].callback();
+			});
 	}
 
 	public ngOnDestroy(): void {

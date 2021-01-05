@@ -1,0 +1,32 @@
+@import 'variables';
+
+.drop-down {
+	@include text-p;
+
+	&__icon {
+		width: 20px;
+		height: 20px;
+		margin-right: $main-grid-unit;
+	}
+
+	&__selected {
+		display: flex;
+		align-items: center;
+		color: #272c39;
+		user-select: none;
+
+		& .drop-down__icon {
+			color: #5e6670;
+		}
+	}
+
+	&.drop-down--dark-theme {
+		& .drop-down__selected {
+			color: #99a6b5;
+		}
+
+		& .drop-down__icon {
+			color: #99a6b5;
+		}
+	}
+}

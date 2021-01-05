@@ -10,6 +10,7 @@ import { PerfectScrollbarComponent, PerfectScrollbarModule } from 'ngx-perfect-s
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatSelectModule } from '@angular/material/select';
 
 import { SlideToggleComponent } from './slide-toggle/slide-toggle.component';
 import { RadarHeaderComponent } from './radar-header/radar-header.component';
@@ -23,6 +24,7 @@ import { InfoDialogComponent } from './info-dialog/info-dialog.component';
 import { SearchInputComponent } from './search-input/search-input.component';
 import { TooltipComponent } from './tooltip/tooltip.component';
 import { RadarCardComponent } from './radar-card/radar-card.component';
+import { DropDownComponent } from './drop-down/drop-down.component';
 
 @NgModule({
 	declarations: [
@@ -37,6 +39,7 @@ import { RadarCardComponent } from './radar-card/radar-card.component';
 		SearchInputComponent,
 		TooltipComponent,
 		RadarCardComponent,
+		DropDownComponent,
 	],
 	imports: [
 		MatButtonModule,
@@ -51,6 +54,7 @@ import { RadarCardComponent } from './radar-card/radar-card.component';
 		ReactiveFormsModule,
 		FormsModule,
 		MatAutocompleteModule,
+		MatSelectModule,
 	],
 	providers: [
 		IconService,
@@ -72,6 +76,7 @@ import { RadarCardComponent } from './radar-card/radar-card.component';
 		SearchInputComponent,
 		TooltipComponent,
 		RadarCardComponent,
+		DropDownComponent,
 	],
 })
 export class CommonComponentsModule {}

@@ -8,7 +8,7 @@ describe('Radars-general-view selectors', () => {
 	it('should select the feature state', () => {
 		const result: RadarsGeneralViewState = selectRadarsGeneralViewState({
 			[radarsGeneralViewFeatureKey]: {
-				radars: {
+				radarsWithData: {
 					value: null,
 					status: EntityStatus.Init,
 				},
@@ -16,7 +16,7 @@ describe('Radars-general-view selectors', () => {
 		});
 
 		expect(result).toEqual({
-			radars: {
+			radarsWithData: {
 				value: null,
 				status: EntityStatus.Init,
 			},
