@@ -6,7 +6,7 @@ $layout-outer-margin: 9 * $main-grid-unit;
 $layout-gutter: 3 * $main-grid-unit;
 $layout-columns-quantity: 12;
 $layout-column-width: 10 * $main-grid-unit;
-$layout-total-width: 153 * $main-grid-unit+2 * $layout-outer-margin;
+$layout-total-width: 153 * $main-grid-unit + 2 * $layout-outer-margin;
 // colors
 // main
 $color-primary: #367ff6;
@@ -48,7 +48,15 @@ $color-white-5: rgba($color-white, 0.05);
 $font-main-bold: 'Roboto Bold', sans-serif;
 $font-main-regular: 'Roboto Regular', sans-serif;
 $font-main-medium: 'Roboto Medium', sans-serif;
+
+// panel colors
+$panel-border-white: #c7d0d8;
+$panel-border-dark: #5e6670;
+$panel-bg-white: #fff;
+$panel-bg-dark: #2d3443;
+
 // typography styles
+
 @mixin text-h1() {
 	font-family: $font-main-bold;
 	font-size: 48px;

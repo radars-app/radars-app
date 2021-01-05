@@ -11,8 +11,8 @@
 	&--dark-theme {
 		.zoom-in-out-panel__zoom-in-button,
 		.zoom-in-out-panel__zoom-out-button {
-			background-color: #2d3443;
-			border-color: #5e6670;
+			background-color: $panel-bg-dark;
+			border-color: $panel-border-dark;
 
 			&:hover {
 				border-color: #fff;
@@ -26,9 +26,9 @@
 .zoom-in-out-panel__zoom-out-button {
 	height: 20px;
 	color: #5e6670;
-	background-color: #fff;
+	background-color: $panel-bg-white;
 	padding: $secondary-grid-unit * 2;
-	border: 1px solid #c7d0d8;
+	border: 1px solid $panel-border-white;
 	z-index: 10;
 
 	&:hover {

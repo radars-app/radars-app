@@ -13,12 +13,12 @@
 	padding-right: $secondary-grid-unit * 5;
 	padding-left: $secondary-grid-unit * 5;
 	background-color: rgba(255, 255, 255, 0.7);
-	border: 1px solid #c7d0d8;
+	border: 1px solid $panel-border-white;
 	border-radius: $secondary-grid-unit;
 
 	&--dark-theme {
 		background-color: rgba(45, 52, 67, 0.7);
-		border: 1px solid #5e6670;
+		border: 1px solid $panel-border-dark;
 
 		.legend__label {
 			color: #fff;

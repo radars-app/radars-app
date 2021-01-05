@@ -8,12 +8,12 @@
 	display: flex;
 	flex: 1 100%;
 	flex-direction: column;
-	background-color: #fff;
-	border-right: 1px solid #c7d0d8;
+	background-color: $panel-bg-white;
+	border-right: 1px solid $panel-border-white;
 
 	&--dark-theme {
-		background-color: #2d3443;
-		border-right: 1px solid #5e6670;
+		background-color: $panel-bg-dark;
+		border-right: 1px solid $panel-border-dark;
 
 		.side-navigation__date {
 			color: #99a6b5;
