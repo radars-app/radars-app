@@ -96,7 +96,7 @@ export class PrepareRadarComponent implements OnChanges, AfterViewInit {
 
 	private generateCsvFileFromString(csv: string): File {
 		const blob: Blob = new Blob([csv], { type: '.csv' });
-		const fileName: string = `${this.config.name.toLowerCase().replace(' ', '_')}.scv`;
+		const fileName: string = `${this.config.name.trim().replace(/\s/g, '_').toLowerCase()}.scv`;
 		return new File([blob], fileName);
 	}
 

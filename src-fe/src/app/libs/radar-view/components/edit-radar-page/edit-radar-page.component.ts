@@ -147,7 +147,7 @@ export class EditRadarPageComponent implements OnInit, OnDestroy {
 				const link: HTMLAnchorElement = document.createElement('a');
 				link.setAttribute('type', 'hidden');
 				link.href = url;
-				const radarConfigFileName: string = latestRadar.name.replace(' ', '_').toLowerCase();
+				const radarConfigFileName: string = latestRadar.name.trim().replace(/\s/g, '_').toLowerCase();
 				link.download = `${radarConfigFileName}.config.json`;
 				document.body.appendChild(link);
 				link.click();

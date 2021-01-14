@@ -29,7 +29,7 @@ export class RadarViewComponent implements OnInit, OnDestroy {
 	constructor(
 		private containerFacadeService: ContainerFacadeService,
 		private route: ActivatedRoute,
-		private radarViewFacadeService: RadarViewFacadeService,
+		public radarViewFacadeService: RadarViewFacadeService,
 		private router: Router
 	) {}
 

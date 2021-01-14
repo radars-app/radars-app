@@ -3,6 +3,7 @@
 		<app-text-input	class="radar-view__search"
 						[theme]="(theme$ | async)"
 						[placeholder]="searchPlaceholder"
+						[value]="radarViewFacadeService.searchQuery$ | async"
 						preIcon="search"
 						(keyup)="search($event.target.value)">
 		</app-text-input>
