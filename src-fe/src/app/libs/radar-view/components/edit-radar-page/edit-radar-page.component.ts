@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
@@ -36,7 +36,8 @@ export class EditRadarPageComponent implements OnInit, OnDestroy {
 		private containerFacadeService: ContainerFacadeService,
 		private radarViewFacadeService: RadarViewFacadeService,
 		private sanitizer: DomSanitizer,
-		private route: ActivatedRoute
+		private route: ActivatedRoute,
+		private cdRef: ChangeDetectorRef
 	) {}
 
 	public ngOnInit(): void {
@@ -83,9 +84,11 @@ export class EditRadarPageComponent implements OnInit, OnDestroy {
 	}
 
 	public applyConfig(config: RadarConfig): void {
+		this.config = JSON.parse(JSON.stringify(this.config));
 		this.config.name = config.name;
 		this.config.rings = config.rings;
 		this.config.sectors = config.sectors;
+		this.cdRef.markForCheck();
 	}
 
 	private initCommandButtons(): void {
