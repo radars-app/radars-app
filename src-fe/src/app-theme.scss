@@ -24,6 +24,10 @@ $app-typography: mat-typography-config(
 	$input: mat-typography-level(inherit, 1.125, normal, $font-main-regular),
 );
 
+.cdk-global-scrollblock {
+	overflow-y: auto !important;
+}
+
 @include mat-core($app-typography);
 @include angular-material-theme($app-theme);
 
