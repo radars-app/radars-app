@@ -1,20 +1,11 @@
-
 @import '~@angular/material/theming';
 @import 'variables';
 @import 'md-palette';
 @import 'scrollbar';
 
-$app-theme: mat-light-theme(
-	mat-palette($md-primary-palette),
-	mat-palette($md-yellow-palette),
-	mat-palette($md-error-palette)
-);
+$app-theme: mat-light-theme(mat-palette($md-primary-palette), mat-palette($md-yellow-palette), mat-palette($md-error-palette));
 
-$app-theme-dark: mat-dark-theme(
-	mat-palette($md-primary-palette),
-	mat-palette($md-yellow-palette),
-	mat-palette($md-error-palette)
-);
+$app-theme-dark: mat-dark-theme(mat-palette($md-primary-palette), mat-palette($md-yellow-palette), mat-palette($md-error-palette));
 
 $app-typography: mat-typography-config(
 	$font-family: $font-main-regular,
@@ -39,6 +30,7 @@ $app-typography: mat-typography-config(
 @import './app/libs/common-components/slide-toggle/slide-toggle.theme.scss';
 @import './app/libs/common-components/accordion/accordion.theme.scss';
 @import './app/libs/common-components/popover/popover.theme.scss';
-@import './app/libs/common-components/search-input/search-input.theme.scss';
+@import './app/libs/common-components/text-input/text-input.theme.scss';
 @import './app/libs/common-components/button/button.theme.scss';
 @import './app/libs/common-components/drop-down/drop-down.theme.scss';
+@import './app/libs/common-components/radio-group/radio-group.theme.scss';

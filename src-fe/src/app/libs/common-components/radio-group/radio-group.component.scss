@@ -1,0 +1,44 @@
+@import 'variables';
+
+:host {
+	display: flex;
+}
+
+.radio-group {
+	display: flex;
+	flex-flow: column;
+	flex: 1;
+
+	@include text-p;
+
+	&--dark-theme {
+		color: $color-white-100;
+	}
+
+	&__title {
+		display: block;
+		flex-basis: 100%;
+		margin-bottom: 10px;
+
+		@include text-h4;
+	}
+
+	&__radio-label {
+		cursor: pointer;
+		color: $color-black-100;
+		white-space: normal;
+
+		&--disabled {
+			opacity: 0.8;
+		}
+
+		&--dark-theme {
+			color: $color-white-100;
+		}
+	}
+
+	&__container {
+		display: flex;
+		flex-flow: column;
+	}
+}

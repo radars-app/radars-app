@@ -13,6 +13,11 @@
 	align-items: stretch;
 }
 
+.radar-view__search {
+	flex: 1;
+	max-width: $secondary-grid-unit * 75;
+}
+
 .radar-view__side-navigation {
 	position: absolute;
 	top: 0;

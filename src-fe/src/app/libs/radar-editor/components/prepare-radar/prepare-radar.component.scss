@@ -1,0 +1,34 @@
+@import 'variables';
+
+.prepare-radar__content {
+	max-width: $secondary-grid-unit * 107;
+
+	&--dark-theme {
+		.prepare-radar__label {
+			color: $font-color-base-dark;
+		}
+	}
+}
+
+.prepare-radar__property {
+	padding-bottom: $secondary-grid-unit * 5;
+}
+
+.prepare-radar__label {
+	@include text-h4-medium;
+
+	color: #5e6670;
+	padding-bottom: $secondary-grid-unit * 3;
+}
+
+.prepare-radar__radio-content {
+	padding-top: $secondary-grid-unit * 5;
+
+	&--disabled {
+		pointer-events: none;
+	}
+}
+
+.prepare-radar__sharepoint-url-input {
+	padding-bottom: $secondary-grid-unit * 5;
+}

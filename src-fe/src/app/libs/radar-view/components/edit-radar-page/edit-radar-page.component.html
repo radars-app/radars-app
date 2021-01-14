@@ -1,0 +1,11 @@
+<div class="edit-radar-page">
+	<app-radar-header	class="edit-radar-page__header"
+						title="Edit radar"
+						[buttons]="buttons"
+						[extraButtons]="extraButtons">
+	</app-radar-header>
+
+	<app-radar-editor [config]="config" (configChanged)="updateLocalConfig($event)"></app-radar-editor>
+</div>
+
+<app-upload-config-dialog #uploadConfigPopover (configUploaded)="applyConfig($event)"></app-upload-config-dialog>

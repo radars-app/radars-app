@@ -1,68 +1,29 @@
 @import 'variables';
 
-.popover-actions__btn {
-	margin-right: 0.5rem;
-}
-
-.popover-content {
-	padding-left: $secondary-grid-unit * 6;
-	padding-right: $secondary-grid-unit * 6;
-}
-
-.edit-radar-dialog__download-info,
-.upload-operation__upload-info {
-	color: #5e6670;
-}
-
-.edit-radar-dialog__download-info--dark-theme,
-.upload-operation__upload-info--dark-theme {
-	color: #99a6b5;
-}
-
-.edit-radar-dialog__download-button {
-	position: relative;
-	right: -$secondary-grid-unit * 5;
-}
-
-.edit-radar-dialog__download-file-name {
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	max-width: $secondary-grid-unit * 44;
-	color: #000;
-}
-
-.edit-radar-dialog__download-file-name--dark-theme {
-	color: #99a6b5;
-}
-
-.edit-radar-dialog__download-link {
-	text-decoration: none;
-}
-
-.edit-radar-dialog__download-operation {
+:host {
 	display: flex;
-	justify-content: space-between;
-	align-items: center;
-}
-
-.upload-operation__upload-info {
-	margin: $secondary-grid-unit * 3 0 $secondary-grid-unit * 4 0;
+	flex: 1;
+	flex-direction: column;
 }
 
 .upload-operation__dropzone {
+	display: flex;
+	flex: 1;
+	justify-content: center;
+	align-items: center;
 	position: relative;
 	box-sizing: border-box;
-	height: $secondary-grid-unit * 25;
-	width: $secondary-grid-unit * 75;
+	min-height: $secondary-grid-unit * 25;
+	min-width: $secondary-grid-unit * 75;
 	border: 2px dashed #c7d0d8;
 	border-radius: 4px;
 	background-color: #f1f4f9;
 	text-align: center;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	cursor: pointer;
+
+	&--disabled {
+		pointer-events: none;
+		color: #6b7885;
+	}
 
 	.edit-radar-dialog__upload-input {
 		opacity: 0;
@@ -72,6 +33,7 @@
 		height: 100%;
 		top: 0;
 		left: 0;
+		cursor: pointer;
 	}
 }
 
@@ -90,9 +52,10 @@
 
 .upload-operation__files-list {
 	margin-top: 1.5rem;
+	align-self: start;
 
 	.files-list__uploding-file {
-		width: $secondary-grid-unit * 16;
+		min-width: $secondary-grid-unit * 16;
 		position: relative;
 		display: -ms-flexbox;
 		display: flex;

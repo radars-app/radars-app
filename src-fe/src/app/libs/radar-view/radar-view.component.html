@@ -1,26 +1,22 @@
 <div class="radar-view">
 	<app-radar-header class="radar-view__header" [title]="radarName$ | async" [buttons]="buttons">
-		<app-search-input
-			[theme]="(theme$ | async)"
-			[placeholder]="searchPlaceholder"
-			preIcon="search"
-			(keyup)="search($event.target.value)">
-		</app-search-input>
+		<app-text-input	class="radar-view__search"
+						[theme]="(theme$ | async)"
+						[placeholder]="searchPlaceholder"
+						preIcon="search"
+						(keyup)="search($event.target.value)">
+		</app-text-input>
 	</app-radar-header>
 
 	<div class="radar-view__content-wrapper">
 
-		<app-side-navigation
-			class="radar-view__side-navigation"
-			(showRadarDataItemDetails$)="openInfoDialog($event)"></app-side-navigation>
+		<app-side-navigation	class="radar-view__side-navigation"
+								(showRadarDataItemDetails$)="openInfoDialog($event)"></app-side-navigation>
 
 		<app-radar-chart-legend class="radar-view__legend"></app-radar-chart-legend>
 		<app-radar-chart (dotClicked)="openInfoDialog($event.dotId)"></app-radar-chart>
 	</div>
 </div>
 
-<app-radars-info-dialog
-	[theme]="(theme$ | async)"
-	#infoDialog></app-radars-info-dialog>
-
-<app-radars-edit-dialog	[theme]="(theme$ | async)" #editRadarDialog></app-radars-edit-dialog>
+<app-radars-info-dialog	[theme]="(theme$ | async)"
+						#infoDialog></app-radars-info-dialog>

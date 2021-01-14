@@ -1,0 +1,30 @@
+@import 'variables';
+@import '../shared/md-themes.mixins.scss';
+
+.text-input {
+	@include app-form-field;
+
+	.input.mat-input-element {
+		caret-color: currentColor;
+
+		&::placeholder {
+			color: $color-black;
+			opacity: 0.7;
+		}
+	}
+
+	&.text-input--dark-theme {
+		@include app-form-field--dark-theme;
+
+		.input.mat-input-element {
+			color: #99a6b5;
+			transition: none;
+		}
+
+		.input.mat-input-element::placeholder {
+			color: #99a6b5;
+			opacity: 0.7;
+			transition: none;
+		}
+	}
+}

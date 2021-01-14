@@ -1,7 +1,7 @@
 @import 'variables';
 
 .popover--dark .mat-dialog-container {
-	background-color: #2d3443;
+	background-color: $panel-bg-dark;
 	color: $color-white;
 }
 
@@ -11,4 +11,14 @@
 			color: $color-white !important;
 		}
 	}
+}
+
+.mat-dialog-container {
+	padding: $secondary-grid-unit * 5 !important;
+}
+
+.mat-dialog-content {
+	margin: -$secondary-grid-unit * 5 !important;
+	margin-top: 0 !important;
+	margin-bottom: 0 !important;
 }

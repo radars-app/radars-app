@@ -1,0 +1,19 @@
+@import 'variables';
+
+.popover-actions__button {
+	margin-right: 0.5rem;
+}
+
+.popover-content {
+	padding-left: $secondary-grid-unit * 5;
+	padding-right: $secondary-grid-unit * 5;
+}
+
+.upload-operation__upload-info {
+	margin: 0 0 $secondary-grid-unit * 5 0;
+	color: #5e6670;
+
+	&--dark-theme {
+		color: #99a6b5;
+	}
+}

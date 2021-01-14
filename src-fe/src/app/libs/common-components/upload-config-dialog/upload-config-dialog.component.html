@@ -1,0 +1,20 @@
+<app-radars-popover [theme]="theme" #popover>
+	<div class="popover-title">Upload .config</div>
+	<div class="popover-content">
+		<div class="upload-config-dialog__upload-file-section">
+			<div	[class.upload-operation__upload-info--dark-theme]="isDarkTheme"
+					class="upload-operation__upload-info">Do you want to upload .config file?</div>
+				<app-drop-zone	[theme]="theme"
+								accept=".config.json"
+								#dropZone></app-drop-zone>
+		</div>
+	</div>
+	<div class="popover-actions">
+		<app-button class="popover-actions__button"	type="outlined" [theme]="theme" (click)="close()">
+			Cancel
+    </app-button>
+		<app-button type="flat" [theme]="theme" (click)="submitConfig()">
+			Upload
+		</app-button>
+	</div>
+</app-radars-popover>

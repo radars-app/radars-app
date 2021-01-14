@@ -19,16 +19,15 @@
 	}
 
 	&__title {
-		margin-bottom: 0;
-		color: #272c39;
 		display: flex;
 		justify-content: space-between;
+		color: $font-color-base;
 
 		@include text-h3();
 	}
 
 	&__content {
-		padding: 0.5rem 0;
+		padding: 0;
 		min-height: $secondary-grid-unit * 12;
 		max-height: $secondary-grid-unit * 77;
 
@@ -37,6 +36,5 @@
 
 	&__actions {
 		align-self: flex-end;
-		padding: 0.5rem 0 0;
 	}
 }

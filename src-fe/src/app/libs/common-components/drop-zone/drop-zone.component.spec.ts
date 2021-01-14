@@ -1,26 +1,26 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-import { IconService } from '../icon/service/icon.service';
-import { SearchInputComponent } from './search-input.component';
 import { CommonComponentsModule } from '../common-components.module';
+import { IconService } from '../icon/service/icon.service';
 
-describe('SearchInputComponent', () => {
-	let component: SearchInputComponent;
-	let fixture: ComponentFixture<SearchInputComponent>;
+import { DropZoneComponent } from './drop-zone.component';
+
+describe('DropzoneComponent', () => {
+	let component: DropZoneComponent;
+	let fixture: ComponentFixture<DropZoneComponent>;
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			imports: [CommonComponentsModule, HttpClientModule, BrowserAnimationsModule],
-			declarations: [SearchInputComponent],
+			declarations: [DropZoneComponent],
+			imports: [CommonComponentsModule, BrowserAnimationsModule, HttpClientModule],
 		}).compileComponents();
 	}));
 
 	beforeEach(() => {
 		const iconService: IconService = TestBed.inject(IconService);
 		iconService.addIcons();
-		fixture = TestBed.createComponent(SearchInputComponent);
+		fixture = TestBed.createComponent(DropZoneComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 	});

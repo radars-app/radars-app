@@ -4,14 +4,22 @@
 		<ng-content></ng-content>
 	</div>
 	<div class="radar-header__buttons">
-		<app-icon-button
-			class="radar-header__icon-button"
-			*ngFor="let button of buttons"
-			[startIcon]="button.icon"
-			[theme]="theme$ | async"
-			[iconSize]="button.iconSize"
-			[disabled]="button.disabled"
-			(click)="button.callback()">{{button.label}}
+		<app-icon-button	class="radar-header__icon-button"
+							*ngFor="let button of buttons"
+							[startIcon]="button.icon"
+							[theme]="theme$ | async"
+							[iconSize]="button.iconSize"
+							[disabled]="button.disabled"
+							(click)="button.callback()">{{button.label}}
 		</app-icon-button>
+	</div>
+
+	<div class="radar-header__extrabuttons">
+		<app-button	class="radar-header__extrabutton"
+					*ngFor="let button of extraButtons"
+					[theme]="theme$ | async"
+					[disabled]="button.disabled"
+					[type]="button.type"
+					(click)="button.callback()">{{button.label}}</app-button>
 	</div>
 </div>

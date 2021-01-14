@@ -1,0 +1,16 @@
+<div class="text-input"
+	[class.text-input--dark-theme]="isDarkTheme"
+	[class.text-input--disabled]="disabled">
+	<label class="text-input__label" *ngIf="labeled">{{label}}<span class="text-input__required-mark" *ngIf="required">*</span></label>
+	<mat-form-field appearance="outline" required>
+		<app-icon  *ngIf="hasIcon" matPrefix class="text-input__icon" [icon]="preIcon"></app-icon>
+		<input	class="input"
+				[class.input--margin-left]="hasIcon"
+				matInput type="text"
+				aria-label="Number"
+				autocomplete="off"
+				(change)="valueChange.next($event.target.value)"
+				[placeholder]="placeholder"
+				[formControl]="inputControl">
+	</mat-form-field>
+</div>

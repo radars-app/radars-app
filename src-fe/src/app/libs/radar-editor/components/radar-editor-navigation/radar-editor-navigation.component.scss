@@ -1,0 +1,17 @@
+@import 'variables';
+
+:host {
+	display: flex;
+	min-width: $main-grid-unit * 28;
+	max-width: $main-grid-unit * 28;
+	flex: 1;
+}
+
+.radar-editor-navigation {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	padding-top: $secondary-grid-unit * 5;
+	padding-left: $secondary-grid-unit;
+	padding-right: $secondary-grid-unit;
+}

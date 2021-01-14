@@ -1,0 +1,37 @@
+<app-editor-panel class="prepare-radar"title="Prepare radar" [theme]="theme">
+	<div class="prepare-radar__content" [class.prepare-radar__content--dark-theme]="isDarkTheme">
+		<div class="prepare-radar__property">
+			<div class="prepare-radar__label">Radar name:</div>
+			<app-text-input label="Add radar name"
+							[value]="config.name"
+							(valueChange)="updateRadarName($event)"
+							[required]="true"
+							placeholder="Radar for technology"
+							[theme]="theme">
+			</app-text-input>
+		</div>
+		
+		<div class="prepare-radar__property">
+			<div class="prepare-radar__label">Select source with data:</div>
+			<app-radio-group [options]="prepareRadarOptions" [theme]="theme" [value]="2"></app-radio-group>
+		</div>
+	
+		<ng-template #dataUrlTemplate>
+			<div class="prepare-radar__radio-content prepare-radar__sharepoint-url-input">
+				<app-text-input label="URL in SharePoint"
+								[required]="true"
+								placeholder="Type url here..."
+								[theme]="theme"
+								[disabled]="!isTextInputEnabled"></app-text-input>
+			</div>
+		</ng-template>
+	
+		<ng-template #dropZoneTemplate>
+			<div class="prepare-radar__radio-content" [class.prepare-radar__radio-content--disabled]="!isDropZoneEnabled">
+				<app-drop-zone [disabled]="!isDropZoneEnabled" [theme]="theme" accept=".csv" (fileLoaded)="updateCsv($event)" [file]="csvFile"></app-drop-zone>
+			</div>
+		</ng-template>
+	
+		<app-button class="prepare-radar__button--submit" type="outlined" [theme]="theme">Get Data</app-button>	
+	</div>
+</app-editor-panel>

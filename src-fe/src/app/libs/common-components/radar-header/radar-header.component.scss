@@ -15,7 +15,7 @@
 		border-bottom: 1px solid #5e6670;
 
 		.radar-header__title {
-			color: #fff;
+			color: $font-color-base-dark;
 		}
 
 		.radar-header__title-postfix {
@@ -54,4 +54,9 @@
 .radar-header__buttons {
 	position: relative;
 	left: $secondary-grid-unit * 5;
+}
+
+.radar-header__extrabutton:first-child {
+	margin-left: $secondary-grid-unit * 30;
+	margin-right: $secondary-grid-unit * 3;
 }

@@ -8,7 +8,7 @@ export class RadarSorterService {
 	constructor() {}
 
 	public sortByDate(radarWithData: RadarWithData[], isNewestToOldest: boolean): RadarWithData[] {
-		return radarWithData.slice().sort((a: RadarWithData, b: RadarWithData): number => {
+		return radarWithData?.slice().sort((a: RadarWithData, b: RadarWithData): number => {
 			const radarDataA: number = +a.lastUpdatedDate;
 			const radarDateB: number = +b.lastUpdatedDate;
 			if (isNewestToOldest) {
@@ -20,7 +20,7 @@ export class RadarSorterService {
 	}
 
 	public sortAlphabetical(radarWithData: RadarWithData[], isAtoZ: boolean): RadarWithData[] {
-		return radarWithData.slice().sort((a: RadarWithData, b: RadarWithData): number => {
+		return radarWithData?.slice().sort((a: RadarWithData, b: RadarWithData): number => {
 			if (isAtoZ) {
 				return a.name > b.name ? 1 : -1;
 			} else {

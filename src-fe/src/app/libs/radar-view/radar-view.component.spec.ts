@@ -4,7 +4,6 @@ import { RadarViewComponent } from './radar-view.component';
 import { ComponentTheme } from '../common-components/common/enum/component-theme.enum';
 import { of } from 'rxjs';
 import { SideNavigationComponent } from './components/side-navigation/side-navigation.component';
-import { EditDialogComponent } from './components/edit-dialog/edit-dialog.component';
 import { CommonComponentsModule } from '../common-components/common-components.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IconService } from '../common-components/icon/service/icon.service';
@@ -16,6 +15,7 @@ import { RadarViewFacadeService } from './service/radar-view-facade.service';
 import { SectorToColorConverterService } from './service/sector-to-color-converter.service';
 import { ZoomInOutPanelComponent } from './components/zoom-in-out-panel/zoom-in-out-panel.component';
 import { DotTooltipComponent } from './components/dot-tooltip/dot-tooltip.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('RadarViewComponent', () => {
 	let component: RadarViewComponent;
@@ -26,7 +26,6 @@ describe('RadarViewComponent', () => {
 			declarations: [
 				RadarViewComponent,
 				SideNavigationComponent,
-				EditDialogComponent,
 				RadarChartLegendComponent,
 				RadarChartComponent,
 				ZoomInOutPanelComponent,
@@ -97,7 +96,7 @@ describe('RadarViewComponent', () => {
 					},
 				},
 			],
-			imports: [CommonComponentsModule, BrowserAnimationsModule, HttpClientModule],
+			imports: [CommonComponentsModule, BrowserAnimationsModule, HttpClientModule, RouterTestingModule],
 		}).compileComponents();
 	}));
 

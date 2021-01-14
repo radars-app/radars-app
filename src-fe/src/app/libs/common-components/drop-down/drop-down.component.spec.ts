@@ -1,4 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CommonComponentsModule } from '../common-components.module';
 import { ComponentTheme } from '../common/enum/component-theme.enum';
 import { DropDownOption } from '../common/models/drop-down-option';
 
@@ -12,6 +14,7 @@ describe('DropDownComponent', () => {
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
 			declarations: [DropDownComponent],
+			imports: [CommonComponentsModule, BrowserAnimationsModule],
 		}).compileComponents();
 	}));
 

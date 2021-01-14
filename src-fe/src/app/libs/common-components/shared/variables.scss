@@ -55,6 +55,10 @@ $panel-border-dark: #5e6670;
 $panel-bg-white: #fff;
 $panel-bg-dark: #2d3443;
 
+// font colors
+$font-color-base: #272c39;
+$font-color-base-dark: #fff;
+
 // typography styles
 
 @mixin text-h1() {
@@ -80,6 +84,13 @@ $panel-bg-dark: #2d3443;
 
 @mixin text-h4() {
 	font-family: $font-main-bold;
+	font-size: 16px;
+	line-height: 16px;
+	letter-spacing: 0.48px;
+}
+
+@mixin text-h4-medium() {
+	font-family: $font-main-medium;
 	font-size: 16px;
 	line-height: 16px;
 	letter-spacing: 0.48px;

@@ -1,0 +1,49 @@
+<div	class="upload-operation__dropzone"
+		[class.upload-operation__dropzone--dark-theme]="isDarkTheme"
+		[class.upload-operation__dropzone--disabled]="disabled"
+		appRadarsDragAndDrop
+		(fileDropped)="onFileDropped($event)">
+
+	<input	class="edit-radar-dialog__upload-input"
+			type="file"
+			#fileDropZone
+			accept="{{accept}}"
+			id="fileDropRef"
+			(change)="fileBrowseHandler($event.target.files[0])"/>
+
+	<label class="upload-operation__label" for="fileDropRef">Drop here or click</label>
+
+</div>
+
+<div class="upload-operation__files-list">
+
+<div	class="files-list__uploding-file"
+		*ngFor="let file of (files$ | async); let i = index">
+
+	<div class="uploding-file__icon-info">
+
+		<app-icon	class="icon-info__file-icon"
+					icon="document"
+					[size]="fileIconSize"
+					alt="document icon">
+		</app-icon>
+
+		<app-icon	class="icon-info__delete"
+					(click)="deleteFile()"
+					icon="close"
+					[size]="deleteFileIconSize"
+					alt="close icon">
+		</app-icon>
+	</div>
+
+	<div class="uploding-file__info">
+
+		<p class="uploding-file__name">
+			{{ file?.name }}
+		</p>
+
+	</div>
+
+</div>
+
+</div>

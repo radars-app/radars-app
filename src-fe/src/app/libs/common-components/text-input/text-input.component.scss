@@ -1,0 +1,46 @@
+@import 'variables';
+
+.text-input {
+	flex-direction: column;
+	display: flex;
+
+	.input {
+		margin-left: 0;
+
+		&--margin-left {
+			margin-left: 12px;
+		}
+	}
+
+	&.text-input--dark-theme {
+		.text-input__icon {
+			color: #99a6b5;
+		}
+	}
+
+	&.text-input--disabled {
+		pointer-events: none;
+		color: #6b7885;
+
+		.text-input__label {
+			color: #6b7885;
+		}
+	}
+
+	&__label {
+		@include text-small-medium;
+
+		margin-bottom: 4px;
+	}
+
+	&__required-mark {
+		color: #da3a3a;
+	}
+}
+
+.mat-option {
+	height: $secondary-grid-unit * 10;
+	line-height: $secondary-grid-unit * 10;
+
+	@include text-p();
+}

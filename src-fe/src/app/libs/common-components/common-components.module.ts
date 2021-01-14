@@ -21,10 +21,16 @@ import { IconService } from './icon/service/icon.service';
 import { AccordionComponent } from './accordion/accordion.component';
 import { PopoverComponent } from './popover/popover.component';
 import { InfoDialogComponent } from './info-dialog/info-dialog.component';
-import { SearchInputComponent } from './search-input/search-input.component';
+import { TextInputComponent } from './text-input/text-input.component';
 import { TooltipComponent } from './tooltip/tooltip.component';
 import { RadarCardComponent } from './radar-card/radar-card.component';
+import { DragAndDropDirective } from '../directives/drag-and-drop.directive';
 import { DropDownComponent } from './drop-down/drop-down.component';
+import { RadioGroupComponent } from './radio-group/radio-group.component';
+import { MatRadioModule } from '@angular/material/radio';
+import { DropZoneComponent } from './drop-zone/drop-zone.component';
+import { EditorPanelComponent } from './editor-panel/editor-panel.component';
+import { UploadConfigDialogComponent } from './upload-config-dialog/upload-config-dialog.component';
 
 @NgModule({
 	declarations: [
@@ -36,10 +42,15 @@ import { DropDownComponent } from './drop-down/drop-down.component';
 		AccordionComponent,
 		PopoverComponent,
 		InfoDialogComponent,
-		SearchInputComponent,
+		TextInputComponent,
 		TooltipComponent,
 		RadarCardComponent,
+		DropZoneComponent,
+		DragAndDropDirective,
 		DropDownComponent,
+		RadioGroupComponent,
+		EditorPanelComponent,
+		UploadConfigDialogComponent,
 	],
 	imports: [
 		MatButtonModule,
@@ -55,6 +66,7 @@ import { DropDownComponent } from './drop-down/drop-down.component';
 		FormsModule,
 		MatAutocompleteModule,
 		MatSelectModule,
+		MatRadioModule,
 	],
 	providers: [
 		IconService,
@@ -73,10 +85,14 @@ import { DropDownComponent } from './drop-down/drop-down.component';
 		PopoverComponent,
 		PerfectScrollbarComponent,
 		InfoDialogComponent,
-		SearchInputComponent,
+		TextInputComponent,
 		TooltipComponent,
 		RadarCardComponent,
 		DropDownComponent,
+		DropZoneComponent,
+		RadioGroupComponent,
+		EditorPanelComponent,
+		UploadConfigDialogComponent,
 	],
 })
 export class CommonComponentsModule {}

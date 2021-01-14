@@ -26,6 +26,7 @@ export class IconService {
 			'download',
 			this.domSanitizer.bypassSecurityTrustResourceUrl('../../../../../assets/svg/download.svg')
 		);
+		this.matIconRegistry.addSvgIcon('upload', this.domSanitizer.bypassSecurityTrustResourceUrl('../../../../../assets/svg/upload.svg'));
 		this.matIconRegistry.addSvgIcon(
 			'document',
 			this.domSanitizer.bypassSecurityTrustResourceUrl('../../../../../assets/svg/document.svg')
