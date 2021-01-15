@@ -11,6 +11,8 @@ export enum RadarViewActionTypes {
 	UploadRadar = '[RadarView] Upload Radars',
 	SetSearchQuery = '[RadarView] Set Search Query',
 	SetFilteredRadarItems = '[RadarView] Set Filtered Radar Items',
+	RemoveRadar = '[RadarView] Remove Radar',
+	RemoveRadarSuccess = '[RadarView] Remove Radar Success',
 }
 
 export class LoadRadars implements Action {
@@ -48,6 +50,16 @@ export class SetFilteredRadarItems implements Action {
 	constructor(public payload: RadarDataItem[]) {}
 }
 
+export class RemoveRadar implements Action {
+	public readonly type: RadarViewActionTypes = RadarViewActionTypes.RemoveRadar;
+	constructor(public radarId: string) {}
+}
+
+export class RemoveRadarSuccess implements Action {
+	public readonly type: RadarViewActionTypes = RadarViewActionTypes.RemoveRadarSuccess;
+	constructor() {}
+}
+
 export type RadarViewActions =
 	| LoadRadars
 	| LoadRadarsSuccess
@@ -55,4 +67,6 @@ export type RadarViewActions =
 	| LoadRadarDataItemsSuccess
 	| UploadRadar
 	| SetSearchQuery
-	| SetFilteredRadarItems;
+	| SetFilteredRadarItems
+	| RemoveRadar
+	| RemoveRadarSuccess;

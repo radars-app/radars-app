@@ -47,6 +47,17 @@ export class RadarsRepositoryService {
 		);
 	}
 
+	public removeRadar(radarId: string): Observable<RadarDto> {
+		return this.loadToken().pipe(
+			switchMap((token: AuthResponse) => {
+				const endpoint: string = `/api/radars/${radarId}`;
+				return this.http.delete<RadarDto>(endpoint, {
+					headers: { Authorization: 'Bearer ' + token.accessToken },
+				});
+			})
+		);
+	}
+
 	private loadToken(): Observable<AuthResponse> {
 		return from(this.authService.acquireTokenSilent({ scopes: ['user.read'] }));
 	}

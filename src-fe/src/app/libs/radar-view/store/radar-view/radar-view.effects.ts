@@ -12,9 +12,10 @@ import {
 	RadarViewActions,
 	SetFilteredRadarItems,
 	SetSearchQuery,
+	RemoveRadar,
+	RemoveRadarSuccess,
 } from './radar-view.actions';
 import { Action } from '@ngrx/store';
-
 import { RadarsRepositoryService } from '../../service/radar-view-repository.service';
 import { Radar, RadarDto } from '../../model/radar';
 import { RadarConverterService } from '../../service/radar-converter.service';
@@ -32,6 +33,18 @@ export class RadarViewEffects {
 				map((dto: RadarDto[]) => {
 					const radarEntities: Radar[] = dto.map((radarDto: RadarDto) => this.radarConverterService.fromDto(radarDto));
 					return new LoadRadarsSuccess(radarEntities);
+				})
+			);
+		})
+	);
+
+	@Effect()
+	public removeRadar$: Observable<Action> = this.actions$.pipe(
+		ofType(RadarViewActionTypes.RemoveRadar),
+		switchMap((action: RemoveRadar) => {
+			return this.radarsRepositoryService.removeRadar(action.radarId).pipe(
+				map(() => {
+					return new RemoveRadarSuccess();
 				})
 			);
 		})

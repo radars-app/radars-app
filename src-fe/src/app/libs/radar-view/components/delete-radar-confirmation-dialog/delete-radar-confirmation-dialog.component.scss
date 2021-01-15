@@ -1,0 +1,14 @@
+@import 'variables';
+
+.popover-title {
+	display: flex;
+	align-items: stretch;
+}
+
+.popover-content {
+	padding: 0 $secondary-grid-unit * 5;
+}
+
+.popover-actions__button {
+	margin-right: 0.5rem;
+}

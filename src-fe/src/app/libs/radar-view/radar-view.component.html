@@ -1,8 +1,8 @@
 <div class="radar-view">
 	<app-radar-header class="radar-view__header" [title]="radarName$ | async" [buttons]="buttons">
 		<app-text-input	class="radar-view__search"
-						[theme]="(theme$ | async)"
-						[placeholder]="searchPlaceholder"
+						[theme]="theme$ | async"
+						placeholder="Search and filter dots by keywords"
 						[value]="radarViewFacadeService.searchQuery$ | async"
 						preIcon="search"
 						(keyup)="search($event.target.value)">
@@ -19,5 +19,10 @@
 	</div>
 </div>
 
-<app-radars-info-dialog	[theme]="(theme$ | async)"
+<app-radars-info-dialog	[theme]="theme$ | async"
 						#infoDialog></app-radars-info-dialog>
+<app-delete-radar-confirmation-dialog	[theme]="theme$ | async"
+										[radarName]="radarName$ | async"
+										(removeConfirmed)="onRemoveConfirmed()"
+										#deleteRadarConfirmationDialog>
+</app-delete-radar-confirmation-dialog>

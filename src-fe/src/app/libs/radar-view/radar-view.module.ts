@@ -12,6 +12,7 @@ import { DotTooltipComponent } from './components/dot-tooltip/dot-tooltip.compon
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditRadarPageComponent } from './components/edit-radar-page/edit-radar-page.component';
 import { RadarEditorModule } from '../radar-editor/radar-editor.module';
+import { DeleteRadarConfirmationDialogComponent } from './components/delete-radar-confirmation-dialog/delete-radar-confirmation-dialog.component';
 
 @NgModule({
 	declarations: [
@@ -22,6 +23,7 @@ import { RadarEditorModule } from '../radar-editor/radar-editor.module';
 		ZoomInOutPanelComponent,
 		DotTooltipComponent,
 		EditRadarPageComponent,
+		DeleteRadarConfirmationDialogComponent,
 	],
 	imports: [
 		CommonComponentsModule,

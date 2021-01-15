@@ -7,6 +7,7 @@ import { IconButtonModel } from '../common-components/icon-button/model/icon-but
 import { IconSize } from '../common-components/icon/models/icon-size.enum';
 import { InfoDialogComponent } from '../common-components/info-dialog/info-dialog.component';
 import { ContainerFacadeService } from '../container/service/container-facade.service';
+import { DeleteRadarConfirmationDialogComponent } from './components/delete-radar-confirmation-dialog/delete-radar-confirmation-dialog.component';
 import { Radar } from './model/radar';
 import { RadarViewFacadeService } from './service/radar-view-facade.service';
 
@@ -17,8 +18,9 @@ import { RadarViewFacadeService } from './service/radar-view-facade.service';
 })
 export class RadarViewComponent implements OnInit, OnDestroy {
 	@ViewChild('infoDialog', { static: true }) public readonly infoDialog: InfoDialogComponent;
+	@ViewChild('deleteRadarConfirmationDialog', { static: true })
+	public readonly deleteRadarConfirmationDialog: DeleteRadarConfirmationDialogComponent;
 
-	public searchPlaceholder: string = 'Search and filter dots by keywords';
 	public buttons: IconButtonModel[];
 	public theme$: Observable<ComponentTheme> = this.containerFacadeService.theme$;
 	public radarName$: Observable<string>;
@@ -57,6 +59,11 @@ export class RadarViewComponent implements OnInit, OnDestroy {
 		this.destroy$.unsubscribe();
 	}
 
+	public onRemoveConfirmed(): void {
+		this.radarViewFacadeService.removeRadar(this.radarId);
+		this.router.navigateByUrl('/');
+	}
+
 	public openInfoDialog(event: string): void {
 		this.infoDialog.open(event);
 	}
@@ -86,10 +93,12 @@ export class RadarViewComponent implements OnInit, OnDestroy {
 
 		const removeButton: IconButtonModel = {
 			label: 'Remove',
-			callback: () => {},
+			callback: () => {
+				this.deleteRadarConfirmationDialog.open();
+			},
 			icon: 'delete',
 			iconSize: IconSize.S,
-			disabled: true,
+			disabled: false,
 		};
 
 		this.buttons = [printButton, editButton, removeButton];

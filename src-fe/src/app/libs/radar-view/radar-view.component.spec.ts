@@ -16,6 +16,7 @@ import { SectorToColorConverterService } from './service/sector-to-color-convert
 import { ZoomInOutPanelComponent } from './components/zoom-in-out-panel/zoom-in-out-panel.component';
 import { DotTooltipComponent } from './components/dot-tooltip/dot-tooltip.component';
 import { RouterTestingModule } from '@angular/router/testing';
+import { DeleteRadarConfirmationDialogComponent } from './components/delete-radar-confirmation-dialog/delete-radar-confirmation-dialog.component';
 
 describe('RadarViewComponent', () => {
 	let component: RadarViewComponent;
@@ -30,6 +31,7 @@ describe('RadarViewComponent', () => {
 				RadarChartComponent,
 				ZoomInOutPanelComponent,
 				DotTooltipComponent,
+				DeleteRadarConfirmationDialogComponent,
 			],
 			providers: [
 				{

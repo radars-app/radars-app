@@ -1,0 +1,21 @@
+<app-radars-popover #popover
+                    [minWidth]="540"
+                    [theme]="theme">
+	<div class="popover-title">
+        Remove Radar
+    </div>
+
+	<div class="popover-content">
+        Do you really want to remove "{{radarName}}"?
+	</div>
+
+	<div class="popover-actions">
+        <app-button	type="outlined" [theme]="theme" (click)="close()" class="popover-actions__button">
+			Cancel
+		</app-button>
+		<app-button type="flat" [theme]="theme" (click)="onRemoveConfirmed()">
+			Remove
+		</app-button>
+	</div>
+
+</app-radars-popover>
