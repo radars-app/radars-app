@@ -11,5 +11,5 @@ export class IconComponent {
 	public icon: string;
 
 	@Input()
-	public size: IconSize = IconSize.S;
+	public size: IconSize = IconSize.Medium;
 }

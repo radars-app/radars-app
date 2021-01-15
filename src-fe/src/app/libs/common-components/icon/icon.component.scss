@@ -1,32 +1,30 @@
-.icon {
+:host {
+	display: flex;
+	flex-shrink: 1;
+}
 
-	&--extra-extra-small {
+.icon {
+	&--xs {
 		height: 12px;
 		width: 12px;
 		font-size: 12px;
 	}
 
-	&--extra-small {
+	&--s {
 		height: 16px;
 		width: 16px;
 		font-size: 16px;
 	}
 
-	&--small {
+	&--m {
 		height: 20px;
 		width: 20px;
 		font-size: 20px;
 	}
 
-	&--medium {
+	&--l {
 		height: 32px;
 		width: 32px;
 		font-size: 32px;
-	}
-
-	&--large {
-		height: 64px;
-		width: 64px;
-		font-size: 64px;
 	}
 }

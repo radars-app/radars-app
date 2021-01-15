@@ -77,7 +77,7 @@ export class RadarViewComponent implements OnInit, OnDestroy {
 			label: 'Print Radar',
 			callback: () => {},
 			icon: 'print',
-			iconSize: IconSize.S,
+			iconSize: IconSize.Medium,
 			disabled: true,
 		};
 
@@ -87,7 +87,7 @@ export class RadarViewComponent implements OnInit, OnDestroy {
 				this.router.navigateByUrl(`/radars/${this.radarId}/edit`);
 			},
 			icon: 'edit_1',
-			iconSize: IconSize.S,
+			iconSize: IconSize.Medium,
 			disabled: false,
 		};
 
@@ -97,7 +97,7 @@ export class RadarViewComponent implements OnInit, OnDestroy {
 				this.deleteRadarConfirmationDialog.open();
 			},
 			icon: 'delete',
-			iconSize: IconSize.S,
+			iconSize: IconSize.Medium,
 			disabled: false,
 		};
 

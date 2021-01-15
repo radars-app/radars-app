@@ -98,7 +98,7 @@ export class EditRadarPageComponent implements OnInit, OnDestroy {
 				this.downloadConfig();
 			},
 			icon: 'download',
-			iconSize: IconSize.S,
+			iconSize: IconSize.Medium,
 			disabled: false,
 		};
 
@@ -108,7 +108,7 @@ export class EditRadarPageComponent implements OnInit, OnDestroy {
 				this.uploadConfigPopover.open();
 			},
 			icon: 'upload',
-			iconSize: IconSize.S,
+			iconSize: IconSize.Medium,
 			disabled: false,
 		};
 

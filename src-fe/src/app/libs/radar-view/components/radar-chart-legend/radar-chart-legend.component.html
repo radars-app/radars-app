@@ -15,7 +15,7 @@
 		<div class="legend-section__content">
 			<div class="legend" *ngFor="let ring of (rings$ | async); let last = last;">
 				<div class="legend__icon">
-					<app-icon class="ring-icon" [icon]="getRingIcon(last)" size="extra-small"></app-icon>
+					<app-icon class="ring-icon" [icon]="getRingIcon(last)" size="s"></app-icon>
 				</div>
 				<div class="legend__label">{{ring}}</div>
 			</div>

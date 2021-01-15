@@ -19,7 +19,7 @@ export class PopoverComponent {
 	@ViewChild('template')
 	public popoverTemplate: TemplateRef<PopoverComponent>;
 
-	public closeIconSize: IconSize = IconSize.XS;
+	public closeIconSize: IconSize = IconSize.Small;
 
 	constructor(private dialog: MatDialog, public dialogRef: MatDialogRef<any>) {}
 

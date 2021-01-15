@@ -32,8 +32,8 @@ export class DropZoneComponent implements OnChanges {
 	@Output() public fileLoaded: EventEmitter<File> = new EventEmitter<File>();
 
 	public files$: BehaviorSubject<File[]> = new BehaviorSubject([]);
-	public deleteFileIconSize: IconSize = IconSize.XSS;
-	public fileIconSize: IconSize = IconSize.M;
+	public deleteFileIconSize: IconSize = IconSize.ExtraSmall;
+	public fileIconSize: IconSize = IconSize.Large;
 
 	constructor() {}
 
