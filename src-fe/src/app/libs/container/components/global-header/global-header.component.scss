@@ -8,6 +8,19 @@
 }
 
 .container-header {
+	&__tools {
+		display: flex;
+		flex-flow: row;
+	}
+
+	&__photo {
+		margin-left: 5px;
+	}
+
+	&__create-icon {
+		margin-right: 8px;
+	}
+
 	&__logo {
 		display: flex;
 		align-items: center;
