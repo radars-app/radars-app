@@ -1,49 +1,21 @@
-// grid
+
 $main-grid-unit: 8px;
 $secondary-grid-unit: 4px;
-// layout
-$layout-outer-margin: 9 * $main-grid-unit;
-$layout-gutter: 3 * $main-grid-unit;
-$layout-columns-quantity: 12;
-$layout-column-width: 10 * $main-grid-unit;
-$layout-total-width: 153 * $main-grid-unit + 2 * $layout-outer-margin;
-// colors
-// main
-$color-primary: #367ff6;
-$color-error: #ef5350;
+
 // additional
-$color-mint: #ef5350;
-$color-purple: #7457e6;
-$color-coral: #ff8a65;
 $color-black: #212121;
-$color-gray: #373737;
-$color-gray-light: #424242;
 $color-white: #fff;
-$color-yellow: #fdd835;
-// gradients
-$gradient-primary: linear-gradient(180deg, rgba(116, 227, 210, 0) 0%, rgba(116, 227, 210, 0.5) 100%), #367ff6;
-$gradient-secondary: linear-gradient(180deg, rgba(54, 127, 246, 0) 0%, rgba(54, 127, 246, 0.5) 100%), #7457e6;
-$gradient-tertiary: linear-gradient(180deg, rgba(116, 87, 230, 0) 0%, rgba(116, 87, 230, 0.5) 100%), #ff7b52;
-$gradient-important-role: linear-gradient(180deg, rgba(54, 127, 246, 0) 0%, rgba(54, 127, 246, 0.5) 100%), #212121;
+
 // blacks
-$color-black-medium-emphasis: rgba(0, 0, 0, 0.6);
 $color-black-100: rgba($color-black, 100);
-$color-black-95: rgba($color-black, 0.95);
-$color-black-90: rgba($color-black, 0.9);
-$color-black-75: rgba($color-black, 0.75);
-$color-black-50: rgba($color-black, 0.5);
 $color-black-30: rgba($color-black, 0.3);
 $color-black-10: rgba($color-black, 0.1);
-$color-black-5: rgba($color-black, 0.05);
 $color-black-3: rgba($color-black, 0.03);
 // whites
 $color-white-100: rgba($color-white, 100);
 $color-white-75: rgba($color-white, 0.75);
-$color-white-50: rgba($color-white, 0.5);
 $color-white-30: rgba($color-white, 0.3);
-$color-white-15: rgba($color-white, 0.15);
 $color-white-10: rgba($color-white, 0.1);
-$color-white-5: rgba($color-white, 0.05);
 // typography
 $font-main-bold: 'Roboto Bold', sans-serif;
 $font-main-regular: 'Roboto Regular', sans-serif;
@@ -60,7 +32,6 @@ $font-color-base: #272c39;
 $font-color-base-dark: #fff;
 
 // typography styles
-
 @mixin text-h1() {
 	font-family: $font-main-bold;
 	font-size: 48px;
