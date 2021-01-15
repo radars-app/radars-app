@@ -22,11 +22,11 @@
 }
 
 .side-navigation__wrapper {
-	padding: $secondary-grid-unit * 5;
+	padding: $gutter-width;
 }
 
 .side-navigation__date {
-	padding-bottom: $secondary-grid-unit * 5;
+	padding-bottom: $gutter-width;
 	color: #5e6670;
 
 	@include text-small;

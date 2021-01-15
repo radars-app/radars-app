@@ -9,9 +9,9 @@
 	flex: 1;
 	flex-direction: column;
 	align-items: stretch;
-	padding-top: $secondary-grid-unit * 5;
-	padding-right: $secondary-grid-unit * 5;
-	padding-left: $secondary-grid-unit * 5;
+	padding-top: $gutter-width;
+	padding-right: $gutter-width;
+	padding-left: $gutter-width;
 	background-color: rgba(255, 255, 255, 0.7);
 	border: 1px solid $panel-border-white;
 	border-radius: $secondary-grid-unit;
@@ -35,7 +35,7 @@
 }
 
 .radar-chart-legend__section:last-child {
-	padding-bottom: $secondary-grid-unit * 5;
+	padding-bottom: $gutter-width;
 }
 
 .legend-section {

@@ -7,7 +7,7 @@
 	max-width: $secondary-grid-unit * 150;
 
 	&__close-icon {
-		margin-left: $secondary-grid-unit * 5;
+		margin-left: $gutter-width;
 		filter: invert(40%);
 		cursor: pointer;
 	}

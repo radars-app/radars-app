@@ -40,7 +40,7 @@
 .radar-view__legend {
 	position: absolute;
 	top: $secondary-grid-unit * 3;
-	right: $secondary-grid-unit * 5;
+	right: $gutter-width;
 	z-index: 11;
 	width: $secondary-grid-unit * 45;
 }

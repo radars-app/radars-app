@@ -24,12 +24,12 @@
 .editor-panel__title {
 	@include text-h3;
 
-	padding-bottom: $secondary-grid-unit * 5;
+	padding-bottom: $gutter-width;
 	color: $font-color-base;
 }
 
 .editor-panel__content {
-	padding-bottom: $secondary-grid-unit * 5;
+	padding-bottom: $gutter-width;
 }
 
 .editor-panel__divider {

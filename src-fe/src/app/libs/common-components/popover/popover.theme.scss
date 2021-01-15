@@ -14,11 +14,11 @@
 }
 
 .mat-dialog-container {
-	padding: $secondary-grid-unit * 5 !important;
+	padding: $gutter-width !important;
 }
 
 .mat-dialog-content {
-	margin: -$secondary-grid-unit * 5 !important;
+	margin: -$gutter-width !important;
 	margin-top: 0 !important;
 	margin-bottom: 0 !important;
 	overflow: initial !important;

@@ -5,12 +5,12 @@
 }
 
 .popover-content {
-	padding-left: $secondary-grid-unit * 5;
-	padding-right: $secondary-grid-unit * 5;
+	padding-left: $gutter-width;
+	padding-right: $gutter-width;
 }
 
 .upload-operation__upload-info {
-	margin: 0 0 $secondary-grid-unit * 5 0;
+	margin: 0 0 $gutter-width 0;
 	color: #5e6670;
 
 	&--dark-theme {

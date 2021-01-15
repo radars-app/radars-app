@@ -57,7 +57,7 @@
 	}
 
 	&__username {
-		padding: $secondary-grid-unit * 5 $secondary-grid-unit * 5 $secondary-grid-unit * 3 $secondary-grid-unit * 5;
+		padding: $gutter-width $gutter-width $secondary-grid-unit * 3 $gutter-width;
 		font-weight: 500;
 	}
 
@@ -80,7 +80,7 @@
 	&__info {
 		display: flex;
 		justify-content: space-between;
-		padding: 0 $secondary-grid-unit * 5 $secondary-grid-unit * 5 $secondary-grid-unit * 5;
+		padding: 0 $gutter-width $gutter-width $gutter-width;
 	}
 
 	&__logout-button {

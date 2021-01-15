@@ -6,12 +6,12 @@
 }
 
 .popover-content {
-	padding: 0 $secondary-grid-unit * 5;
+	padding: 0 $gutter-width;
 }
 
 .info-section {
 	display: flex;
-	margin-bottom: $secondary-grid-unit * 5;
+	margin-bottom: $gutter-width;
 
 	@include text-small();
 }

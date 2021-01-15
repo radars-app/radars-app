@@ -11,7 +11,7 @@
 }
 
 .prepare-radar__property {
-	padding-bottom: $secondary-grid-unit * 5;
+	padding-bottom: $gutter-width;
 }
 
 .prepare-radar__label {
@@ -22,7 +22,7 @@
 }
 
 .prepare-radar__radio-content {
-	padding-top: $secondary-grid-unit * 5;
+	padding-top: $gutter-width;
 
 	&--disabled {
 		pointer-events: none;
@@ -30,5 +30,5 @@
 }
 
 .prepare-radar__sharepoint-url-input {
-	padding-bottom: $secondary-grid-unit * 5;
+	padding-bottom: $gutter-width;
 }

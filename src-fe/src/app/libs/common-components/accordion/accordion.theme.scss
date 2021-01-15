@@ -60,7 +60,7 @@
 	}
 
 	.mat-expansion-panel .mat-expansion-panel-header {
-		padding: 0 $secondary-grid-unit * 5;
+		padding: 0 $gutter-width;
 	}
 
 	.mat-expansion-panel-header.mat-expanded {
@@ -68,7 +68,7 @@
 	}
 
 	.mat-expansion-panel .mat-expansion-panel-body {
-		padding: 0 $secondary-grid-unit * 5 0;
+		padding: 0 $gutter-width 0;
 	}
 
 	.mat-expansion-panel-spacing {
