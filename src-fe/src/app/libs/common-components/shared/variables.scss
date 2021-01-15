@@ -33,35 +33,22 @@ $font-color-base: #272c39;
 $font-color-base-dark: #fff;
 
 // typography styles
-@mixin text-h1() {
-	font-family: $font-main-bold;
-	font-size: 48px;
-	line-height: 56px;
-	letter-spacing: 0;
-}
 
 @mixin text-h2() {
-	font-family: $font-main-bold;
-	font-size: 24px;
-	line-height: 32px;
-	letter-spacing: 0.48px;
-}
-
-@mixin text-h3() {
 	font-family: $font-main-regular;
 	font-size: 20px;
 	line-height: 24px;
 	letter-spacing: 0.48px;
 }
 
-@mixin text-h4() {
+@mixin text-h3-bold() {
 	font-family: $font-main-bold;
 	font-size: 16px;
 	line-height: 16px;
 	letter-spacing: 0.48px;
 }
 
-@mixin text-h4-medium() {
+@mixin text-h3-medium() {
 	font-family: $font-main-medium;
 	font-size: 16px;
 	line-height: 16px;

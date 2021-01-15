@@ -27,7 +27,7 @@
 .radar-header__title {
 	color: #272c39;
 
-	@include text-h3();
+	@include text-h2();
 
 	flex: 0 0 auto;
 	max-width: 30vw;

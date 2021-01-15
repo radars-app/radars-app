@@ -7,7 +7,7 @@
 }
 
 .radar-card__title {
-	@include text-h4();
+	@include text-h3-bold();
 
 	color: #272c39;
 }

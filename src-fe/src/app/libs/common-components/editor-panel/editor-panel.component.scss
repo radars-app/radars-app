@@ -22,7 +22,7 @@
 }
 
 .editor-panel__title {
-	@include text-h3;
+	@include text-h2;
 
 	padding-bottom: $gutter-width;
 	color: $font-color-base;
