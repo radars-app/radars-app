@@ -1,30 +1,24 @@
 @import 'variables';
 
-.popover-title {
+.dot-info {
 	display: flex;
-	align-items: stretch;
-}
-
-.popover-content {
-	padding: 0 $gutter-width;
-}
-
-.info-section {
-	display: flex;
-	margin-bottom: $gutter-width;
+	margin-top: $main-grid-unit;
 
 	@include text-small();
 }
 
-.sector-info,
-.ring-info {
+.dot-info__section {
 	display: flex;
+	align-items: center;
 	margin-right: $secondary-grid-unit * 12;
 }
 
-.sector-info__colored-mark,
-.ring-info__icon {
+.info-section__icon {
 	width: $secondary-grid-unit * 4;
 	height: $secondary-grid-unit * 3;
 	margin: 0 $secondary-grid-unit 0 0;
+}
+
+.dot-description {
+	@include text-p;
 }

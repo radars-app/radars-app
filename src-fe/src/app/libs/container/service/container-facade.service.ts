@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { ComponentTheme } from '../../common-components/common/enum/component-theme.enum';
 import { LoadUserPhoto, LoadUserProfile, LogIn, LogOut, SetTheme } from '../store/container/container.actions';
 import { selectTheme, selectUserPhotoBase64, selectUserProfile } from '../store/container/container.selectors';
@@ -22,6 +23,13 @@ export class ContainerFacadeService {
 
 	public get theme$(): Observable<ComponentTheme> {
 		return this.store.pipe(select(selectTheme));
+	}
+
+	public get isDarkTheme$(): Observable<boolean> {
+		return this.store.pipe(
+			select(selectTheme),
+			map((theme: ComponentTheme) => theme === ComponentTheme.Dark)
+		);
 	}
 
 	public loadUserPhoto(): void {

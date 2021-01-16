@@ -1,0 +1,18 @@
+<ng-template #template>
+	<div class="modal-window" [class.modal-window--dark-theme]="isDarkTheme">
+		<div class="modal-window__title" mat-dialog-title>
+			<ng-content select=".modal-window-title"></ng-content>
+			<app-icon	class="modal-window__close-button"
+						icon="close"
+						size="s"
+						(click)="close()">
+			</app-icon>
+		</div>
+		<div class="modal-window__content" mat-dialog-content>
+			<ng-content select=".modal-window-content"></ng-content>
+		</div>
+		<div class="modal-window__actions" mat-dialog-action>
+			<ng-content select=".modal-window-actions"></ng-content>
+		</div>
+	</div>
+</ng-template>

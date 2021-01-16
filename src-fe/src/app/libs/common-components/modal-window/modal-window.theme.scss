@@ -1,0 +1,41 @@
+@import 'variables';
+
+.modal-window-actions {
+	display: flex;
+	justify-content: flex-end;
+	padding-top: 16px;
+}
+
+.modal-window-actions app-button:not(:first-child) {
+	margin-left: $secondary-grid-unit * 3;
+}
+
+.mat-dialog-container {
+	padding: $gutter-width !important;
+	color: $font-color-base;
+}
+
+.mat-dialog-content {
+	@include text-p-medium;
+
+	margin: 0 !important;
+	padding: 0 !important;
+	overflow: hidden !important;
+	color: $font-color-base;
+}
+
+.mat-dialog-title {
+	display: flex !important;
+	justify-content: space-between;
+}
+
+.modal-window--dark-theme {
+	.mat-dialog-content {
+		color: $font-color-base-dark;
+	}
+
+	.mat-dialog-container {
+		background-color: $panel-bg-dark;
+		color: $font-color-base-dark;
+	}
+}

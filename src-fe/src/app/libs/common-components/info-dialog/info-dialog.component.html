@@ -1,46 +1,40 @@
-<app-radars-popover
-	[minWidth]="540"
-	[theme]="theme"
-	#infoPopover>
+<app-modal-window	width="540px"
+					[theme]="theme"
+					#modal>
 
-	<div class="popover-title">{{(selectedRadarDataItem$ | async)?.name}}</div>
-
-	<div class="popover-content">
-		<div class="info-section">
-			<div class="sector-info">
-				<div
-					class="sector-info__colored-mark"
-					[style.background-color]="sectorToColorConverter.getColorBySector(
-						(selectedRadarDataItem$ | async)?.sector
-					)"></div>
-
-				<div class="sector-info__label">Sector: {{(selectedRadarDataItem$ | async)?.sector}}</div>
-			</div>
-
-			<div class="ring-info">
-
-				<div class="ring-info__icon">
-					<app-icon
-						class="ring-icon"
-						icon="ring_legend"
-						size="s"></app-icon>
+	<div class="modal-window-title">
+		<span>{{(selectedRadarDataItem$ | async)?.name}}</span>
+		<div class="dot-info">
+			<div class="dot-info__section info-section">
+				<div	class="info-section__icon"
+						[style.background-color]="sectorToColorConverter.getColorBySector((selectedRadarDataItem$ | async)?.sector)">
 				</div>
 
-				<div class="ring-info__label">Ring: {{(selectedRadarDataItem$ | async)?.ring}}</div>
+				<div>Sector: {{(selectedRadarDataItem$ | async)?.sector}}</div>
+			</div>
+
+			<div class="dot-info__section info-section">
+				<app-icon	class="info-section__icon"
+							icon="ring_legend"
+							size="s">
+				</app-icon>
+
+				<div>Ring: {{(selectedRadarDataItem$ | async)?.ring}}</div>
 			</div>
 
 		</div>
-
-		<span [innerHTML]="(selectedRadarDataItemContent$ | async)"></span>
 	</div>
 
-	<div class="popover-actions">
-
-		<app-button
-			[type]="'flat'"
-			[theme]="theme"
-			(click)="close()">Done</app-button>
-
+	<div class="modal-window-content">
+		<span class="dot-description" [innerHTML]="(selectedRadarDataItemContent$ | async)"></span>
 	</div>
 
-</app-radars-popover>
+	<div class="modal-window-actions">
+		<app-button	type="flat"
+					[theme]="theme"
+					(click)="close()">
+			Done
+		</app-button>
+	</div>
+
+</app-modal-window>

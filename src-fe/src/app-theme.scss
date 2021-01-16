@@ -14,7 +14,7 @@ $app-typography: mat-typography-config(
 	$display-2: mat-typography-level(45px, 48px, normal, $font-main-regular, $letter-spacing: -0.005em),
 	$display-1: mat-typography-level(34px, 40px, normal, $font-main-regular),
 	$headline: mat-typography-level(48px, 56px, bold, $font-main-bold, 0),
-	$title: mat-typography-level(32px, 40px, bold, $font-main-bold, 0),
+	$title: mat-typography-level(20px, 24px, normal, $font-main-regular, 0.48px),
 	$subheading-2: mat-typography-level(24px, 28px, bold, $font-main-bold, 0),
 	$subheading-1: mat-typography-level(14px, 17px, 500, $font-main-medium, 1px),
 	$body-2: mat-typography-level(14px, 25px, normal, $font-main-regular, 0),
@@ -33,8 +33,8 @@ $app-typography: mat-typography-config(
 
 @import './app/libs/common-components/slide-toggle/slide-toggle.theme.scss';
 @import './app/libs/common-components/accordion/accordion.theme.scss';
-@import './app/libs/common-components/popover/popover.theme.scss';
 @import './app/libs/common-components/text-input/text-input.theme.scss';
 @import './app/libs/common-components/button/button.theme.scss';
 @import './app/libs/common-components/drop-down/drop-down.theme.scss';
 @import './app/libs/common-components/radio-group/radio-group.theme.scss';
+@import './app//libs//common-components/modal-window/modal-window.theme.scss';

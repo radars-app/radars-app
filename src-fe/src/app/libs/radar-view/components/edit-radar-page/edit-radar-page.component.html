@@ -8,4 +8,4 @@
 	<app-radar-editor [config]="config" (configChanged)="updateLocalConfig($event)"></app-radar-editor>
 </div>
 
-<app-upload-config-dialog #uploadConfigPopover (configUploaded)="applyConfig($event)"></app-upload-config-dialog>
+<app-upload-config-dialog #uploadConfigPopover [theme]="theme$ | async" (configUploaded)="applyConfig($event)"></app-upload-config-dialog>

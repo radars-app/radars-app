@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angu
 import { RadarConfig } from '../../radar-view/model/radar-config';
 import { ComponentTheme } from '../common/enum/component-theme.enum';
 import { DropZoneComponent } from '../drop-zone/drop-zone.component';
-import { PopoverComponent } from '../popover/popover.component';
+import { ModalWindowComponent } from '../modal-window/modal-window.component';
 
 @Component({
 	selector: 'app-upload-config-dialog',
@@ -11,7 +11,7 @@ import { PopoverComponent } from '../popover/popover.component';
 })
 export class UploadConfigDialogComponent implements OnInit {
 	@ViewChild('popover', { static: true })
-	public readonly popover: PopoverComponent;
+	public readonly popover: ModalWindowComponent;
 
 	@ViewChild('dropZone', { static: true })
 	public readonly dropZone: DropZoneComponent;

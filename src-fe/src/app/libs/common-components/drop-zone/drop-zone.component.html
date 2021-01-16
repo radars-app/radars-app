@@ -1,47 +1,44 @@
-<div	class="upload-operation__dropzone"
-		[class.upload-operation__dropzone--dark-theme]="isDarkTheme"
-		[class.upload-operation__dropzone--disabled]="disabled"
+<div	class="drop-zone"
+		[class.drop-zone--dark-theme]="isDarkTheme"
+		[class.drop-zone--disabled]="disabled"
 		appRadarsDragAndDrop
 		(fileDropped)="onFileDropped($event)">
 
-	<input	class="edit-radar-dialog__upload-input"
+	<input	class="drop-zone__upload-input"
 			type="file"
 			#fileDropZone
 			accept="{{accept}}"
 			id="fileDropRef"
 			(change)="fileBrowseHandler($event.target.files[0])"/>
 
-	<label class="upload-operation__label" for="fileDropRef">Drop here or click</label>
+	<label class="drop-zone__label" for="fileDropRef">Drop here or click</label>
 
 </div>
 
-<div class="upload-operation__files-list">
+<div 	class="drop-zone__files-list files-list" 
+		*ngIf="(files$ | async).length"
+		[class.files-list--dark-theme]="isDarkTheme">
 
-<div	class="files-list__uploding-file"
+<div	class="files-list__file file"
 		*ngFor="let file of (files$ | async); let i = index">
 
-	<div class="uploding-file__icon-info">
-
-		<app-icon	class="icon-info__file-icon"
+	<div class="file__icon-info">
+		<app-icon	class="file__icon"
 					icon="document"
-					[size]="fileIconSize"
-					alt="document icon">
+					[size]="fileIconSize">
 		</app-icon>
 
-		<app-icon	class="icon-info__delete"
+		<app-icon	class="file__delete-button"
 					(click)="deleteFile()"
 					icon="close"
-					[size]="deleteFileIconSize"
-					alt="close icon">
+					[size]="deleteFileIconSize">
 		</app-icon>
 	</div>
 
-	<div class="uploding-file__info">
-
-		<p class="uploding-file__name">
+	<div class="file__info">
+		<p class="file__name">
 			{{ file?.name }}
 		</p>
-
 	</div>
 
 </div>

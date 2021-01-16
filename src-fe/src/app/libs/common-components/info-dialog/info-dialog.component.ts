@@ -6,7 +6,7 @@ import { RadarDataItem } from '../../radar-view/model/radar-data-item';
 import { RadarViewFacadeService } from '../../radar-view/service/radar-view-facade.service';
 import { SectorToColorConverterService } from '../../radar-view/service/sector-to-color-converter.service';
 import { ComponentTheme } from '../common/enum/component-theme.enum';
-import { PopoverComponent } from '../popover/popover.component';
+import { ModalWindowComponent } from '../modal-window/modal-window.component';
 
 @Component({
 	selector: 'app-radars-info-dialog',
@@ -14,16 +14,14 @@ import { PopoverComponent } from '../popover/popover.component';
 	styleUrls: ['./info-dialog.component.scss'],
 })
 export class InfoDialogComponent implements OnInit {
-	@ViewChild('infoPopover', { static: true })
-	public readonly infoPopover: PopoverComponent;
+	@ViewChild('modal', { static: true })
+	public readonly modal: ModalWindowComponent;
 
 	@Input() public theme: ComponentTheme = ComponentTheme.Light;
 
 	public selectedRadarDataItem$: Observable<RadarDataItem>;
-
 	public selectedRadarDataItemContent$: Observable<SafeHtml>;
-
-	public selectedRadarDataItemId$: Subject<string> = new Subject();
+	public selectedRadarDataItemId$: Subject<string> = new Subject<string>();
 
 	constructor(
 		private radarViewFacadeSevice: RadarViewFacadeService,
@@ -52,10 +50,10 @@ export class InfoDialogComponent implements OnInit {
 
 	public open(radarItemId: string): void {
 		this.selectedRadarDataItemId$.next(radarItemId);
-		this.infoPopover.open();
+		this.modal.open();
 	}
 
 	public close(): void {
-		this.infoPopover.close();
+		this.modal.close();
 	}
 }

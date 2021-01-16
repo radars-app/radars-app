@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { ComponentTheme } from 'src/app/libs/common-components/common/enum/component-theme.enum';
-import { PopoverComponent } from 'src/app/libs/common-components/popover/popover.component';
+import { ModalWindowComponent } from 'src/app/libs/common-components/modal-window/modal-window.component';
 
 @Component({
 	selector: 'app-delete-radar-confirmation-dialog',
@@ -8,8 +8,8 @@ import { PopoverComponent } from 'src/app/libs/common-components/popover/popover
 	styleUrls: ['./delete-radar-confirmation-dialog.component.scss'],
 })
 export class DeleteRadarConfirmationDialogComponent {
-	@ViewChild('popover', { static: true })
-	public readonly popover: PopoverComponent;
+	@ViewChild('modal', { static: true })
+	public readonly modal: ModalWindowComponent;
 
 	@Input() public theme: ComponentTheme;
 	@Input() public radarName: string;
@@ -25,11 +25,11 @@ export class DeleteRadarConfirmationDialogComponent {
 	}
 
 	public open(): void {
-		this.popover.open();
+		this.modal.open();
 	}
 
 	public close(): void {
-		this.popover.close();
+		this.modal.close();
 	}
 
 	public onRemoveConfirmed(): void {

@@ -19,7 +19,6 @@ import { IconComponent } from './icon/icon.component';
 import { IconButtonComponent } from './icon-button/icon-button.component';
 import { IconService } from './icon/service/icon.service';
 import { AccordionComponent } from './accordion/accordion.component';
-import { PopoverComponent } from './popover/popover.component';
 import { InfoDialogComponent } from './info-dialog/info-dialog.component';
 import { TextInputComponent } from './text-input/text-input.component';
 import { TooltipComponent } from './tooltip/tooltip.component';
@@ -31,6 +30,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { DropZoneComponent } from './drop-zone/drop-zone.component';
 import { EditorPanelComponent } from './editor-panel/editor-panel.component';
 import { UploadConfigDialogComponent } from './upload-config-dialog/upload-config-dialog.component';
+import { ModalWindowComponent } from './modal-window/modal-window.component';
 
 @NgModule({
 	declarations: [
@@ -40,7 +40,6 @@ import { UploadConfigDialogComponent } from './upload-config-dialog/upload-confi
 		IconComponent,
 		IconButtonComponent,
 		AccordionComponent,
-		PopoverComponent,
 		InfoDialogComponent,
 		TextInputComponent,
 		TooltipComponent,
@@ -51,6 +50,7 @@ import { UploadConfigDialogComponent } from './upload-config-dialog/upload-confi
 		RadioGroupComponent,
 		EditorPanelComponent,
 		UploadConfigDialogComponent,
+		ModalWindowComponent,
 	],
 	imports: [
 		MatButtonModule,
@@ -82,7 +82,6 @@ import { UploadConfigDialogComponent } from './upload-config-dialog/upload-confi
 		IconButtonComponent,
 		IconComponent,
 		AccordionComponent,
-		PopoverComponent,
 		PerfectScrollbarComponent,
 		InfoDialogComponent,
 		TextInputComponent,
@@ -93,6 +92,7 @@ import { UploadConfigDialogComponent } from './upload-config-dialog/upload-confi
 		RadioGroupComponent,
 		EditorPanelComponent,
 		UploadConfigDialogComponent,
+		ModalWindowComponent,
 	],
 })
 export class CommonComponentsModule {}

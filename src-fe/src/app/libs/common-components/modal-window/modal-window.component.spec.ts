@@ -4,17 +4,17 @@ import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IconService } from '../icon/service/icon.service';
 
-import { PopoverComponent } from './popover.component';
 import { CommonComponentsModule } from '../common-components.module';
+import { ModalWindowComponent } from './modal-window.component';
 
-describe('PopoverCommonComponent', () => {
-	let component: PopoverComponent;
-	let fixture: ComponentFixture<PopoverComponent>;
+describe('ModalWidowComponent', () => {
+	let component: ModalWindowComponent;
+	let fixture: ComponentFixture<ModalWindowComponent>;
 	const timer: number = 1000;
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: [PopoverComponent],
+			declarations: [ModalWindowComponent],
 			imports: [MatDialogModule, BrowserAnimationsModule, HttpClientModule, CommonComponentsModule],
 			providers: [
 				{
@@ -28,7 +28,7 @@ describe('PopoverCommonComponent', () => {
 	beforeEach(() => {
 		const iconService: IconService = TestBed.inject(IconService);
 		iconService.addIcons();
-		fixture = TestBed.createComponent(PopoverComponent);
+		fixture = TestBed.createComponent(ModalWindowComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 	});

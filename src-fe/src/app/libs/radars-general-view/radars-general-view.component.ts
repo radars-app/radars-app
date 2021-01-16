@@ -1,10 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
-import { filter, map, takeUntil } from 'rxjs/operators';
+import { filter, takeUntil } from 'rxjs/operators';
 
 import { ComponentTheme } from '../common-components/common/enum/component-theme.enum';
-import { DropDownOption } from '../common-components/common/models/drop-down-option';
+import { DropDownOption } from '../common-components/drop-down/model/drop-down-option';
 import { ContainerFacadeService } from '../container/service/container-facade.service';
 import { RadarWithData } from './model/radar-with-data';
 import { RadarSorterService } from './service/radar-sorter.service';
@@ -69,10 +69,7 @@ export class RadarsGeneralViewComponent implements OnInit, OnDestroy {
 	public ngOnInit(): void {
 		this.destroy$ = new Subject();
 		this.theme$ = this.containerFacadeService.theme$;
-		this.isDarkTheme$ = this.containerFacadeService.theme$.pipe(
-			map((theme: ComponentTheme) => theme === ComponentTheme.Dark),
-			takeUntil(this.destroy$)
-		);
+		this.isDarkTheme$ = this.containerFacadeService.isDarkTheme$;
 		this.radarsGeneralViewFacadeService.loadRadarsWithData();
 		this.radarsGeneralViewFacadeService.radarsWithData$
 			.pipe(

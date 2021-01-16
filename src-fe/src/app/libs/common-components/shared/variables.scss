@@ -71,6 +71,13 @@ $font-color-base-dark: #fff;
 	line-height: 16px;
 }
 
+@mixin text-p-medium() {
+	font-family: $font-main-medium;
+	font-size: 14px;
+	letter-spacing: 0.48px;
+	line-height: 16px;
+}
+
 @mixin text-small() {
 	font-family: $font-main-regular;
 	font-size: 12px;

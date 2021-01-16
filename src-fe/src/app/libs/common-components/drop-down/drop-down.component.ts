@@ -1,7 +1,7 @@
 import { Overlay } from '@angular/cdk/overlay';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { ComponentTheme } from '../common/enum/component-theme.enum';
-import { DropDownOption } from '../common/models/drop-down-option';
+import { DropDownOption } from './model/drop-down-option';
 import { CustomSelectOverlay } from './custom-select-overlay';
 
 @Component({

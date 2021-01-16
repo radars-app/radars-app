@@ -1,4 +1,4 @@
-<main class="container">
+<main class="container" [class.container--dark-theme]="isDarkTheme$ | async">
 	<app-radars-global-header
 		class="container__header"
 		[userPhotoURL]="userPhotoURL$ | async">
