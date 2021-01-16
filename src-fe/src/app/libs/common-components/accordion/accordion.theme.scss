@@ -8,7 +8,7 @@
 
 	.accordion-item__toggle,
 	.accordion-item__toggle--rotated {
-		color: #5e6670;
+		color: $panel-border-dark;
 
 		&:hover,
 		&:focus {
@@ -18,7 +18,7 @@
 
 	&--dark-theme {
 		.mat-expansion-panel {
-			background-color: #2d3443;
+			background-color: $panel-bg-dark;
 			color: $color-white;
 		}
 
@@ -37,7 +37,7 @@
 		}
 
 		span.accordion-item__counter {
-			color: #c7d0d8;
+			color: $panel-border-white;
 		}
 	}
 
@@ -45,7 +45,7 @@
 		width: $secondary-grid-unit;
 		height: $secondary-grid-unit;
 		border-width: 0 1px 1px 0;
-		border-color: #5e6670;
+		border-color: $panel-border-dark;
 		position: relative;
 		top: -$secondary-grid-unit;
 	}
@@ -54,7 +54,7 @@
 		width: $secondary-grid-unit;
 		height: $secondary-grid-unit;
 		border-width: 0 1px 1px 0;
-		border-color: #5e6670;
+		border-color: $panel-border-dark;
 		position: relative;
 		top: -($secondary-grid-unit + 3px);
 	}

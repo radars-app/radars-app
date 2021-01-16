@@ -15,7 +15,7 @@
 .radar-card__subtitle {
 	@include text-p();
 
-	color: #5e6670;
+	color: $panel-border-dark;
 }
 
 .radar-card__radar-chart-container {
@@ -25,7 +25,7 @@
 }
 
 .radar-card--dark-theme {
-	background-color: #2d3443;
+	background-color: $panel-bg-dark;
 	&:hover {
 		box-shadow: 0 0 8px 4px rgba(94, 102, 112, 0.25);
 	}

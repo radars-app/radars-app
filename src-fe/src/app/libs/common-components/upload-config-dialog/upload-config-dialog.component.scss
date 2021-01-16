@@ -11,7 +11,7 @@
 
 .upload-operation__upload-info {
 	margin: 0 0 $gutter-width 0;
-	color: #5e6670;
+	color: $panel-border-dark;
 
 	&--dark-theme {
 		color: #99a6b5;

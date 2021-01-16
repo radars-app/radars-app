@@ -9,7 +9,7 @@
 	font-weight: bold;
 	font-size: 14px;
 	line-height: 17px;
-	color: #5e6670;
+	color: $panel-border-dark;
 	letter-spacing: 1px;
 	border-radius: 4px;
 
@@ -38,7 +38,7 @@
 	}
 
 	&--outlined {
-		border-color: #c7d0d8;
+		border-color: $panel-border-white;
 		padding: 9px 16px;
 
 		&:not([disabled]):hover {
@@ -46,7 +46,7 @@
 		}
 
 		&.button--dark-theme {
-			border-color: #5e6670;
+			border-color: $panel-border-dark;
 
 			&:not([disabled]):hover {
 				border-color: #fff;

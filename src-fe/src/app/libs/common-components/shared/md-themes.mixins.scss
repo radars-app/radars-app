@@ -76,6 +76,6 @@
 
 @mixin app-form-field--dark-theme {
 	.mat-form-field-appearance-outline .mat-form-field-outline {
-		color: #5e6670;
+		color: $panel-border-dark;
 	}
 }

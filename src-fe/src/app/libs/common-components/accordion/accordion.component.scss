@@ -12,7 +12,7 @@
 	&__counter {
 		font: 'Roboto regular', sans-serif;
 		margin: 0 $secondary-grid-unit;
-		color: #5e6670;
+		color: $panel-border-dark;
 	}
 
 	&__toggle {

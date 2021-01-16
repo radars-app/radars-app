@@ -27,7 +27,7 @@
 
 .side-navigation__date {
 	padding-bottom: $gutter-width;
-	color: #5e6670;
+	color: $panel-border-dark;
 
 	@include text-small;
 }

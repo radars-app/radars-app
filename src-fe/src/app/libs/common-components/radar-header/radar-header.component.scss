@@ -5,14 +5,14 @@
 	flex: 1;
 	align-items: center;
 	height: $main-grid-unit * 7;
-	border-bottom: 1px solid #c7d0d8;
+	border-bottom: 1px solid $panel-border-white;
 	padding-left: $gutter-width;
 	padding-right: $gutter-width;
 	background-color: #fff;
 
 	&--dark-theme {
-		background-color: #2d3443;
-		border-bottom: 1px solid #5e6670;
+		background-color: $panel-bg-dark;
+		border-bottom: 1px solid $panel-border-dark;
 
 		.radar-header__title {
 			color: $font-color-base-dark;
@@ -38,7 +38,7 @@
 }
 
 .radar-header__title-postfix {
-	color: #5e6670;
+	color: $panel-border-dark;
 }
 
 .radar-header__content {

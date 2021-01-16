@@ -18,14 +18,14 @@
 		box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.2) !important;
 
 		&--dark-theme {
-			background: #2d3443;
+			background: $panel-bg-dark;
 			box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.2) !important;
 		}
 
 		.mat-option {
 			user-select: none;
 			padding: 0 12px;
-			color: #5e6670;
+			color: $panel-border-dark;
 			.mat-icon {
 				margin-right: 0;
 			}

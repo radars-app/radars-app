@@ -25,7 +25,7 @@
 .zoom-in-out-panel__zoom-in-button,
 .zoom-in-out-panel__zoom-out-button {
 	height: 20px;
-	color: #5e6670;
+	color: $panel-border-dark;
 	background-color: $panel-bg-white;
 	padding: $secondary-grid-unit * 2;
 	border: 1px solid $panel-border-white;
