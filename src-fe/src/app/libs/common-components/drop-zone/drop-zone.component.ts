@@ -38,7 +38,7 @@ export class DropZoneComponent implements OnChanges {
 	constructor() {}
 
 	public ngOnChanges(changes: SimpleChanges): void {
-		if (changes.file) {
+		if (changes?.file?.currentValue) {
 			this.files$.next([this.file]);
 		}
 	}
