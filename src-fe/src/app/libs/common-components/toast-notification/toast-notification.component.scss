@@ -1,0 +1,111 @@
+@import 'variables';
+
+:host {
+	display: flex;
+	pointer-events: all;
+	background-color: transparent !important;
+	padding-top: $secondary-grid-unit * 3;
+}
+
+:host(.toast-success) {
+	.toast-notification__color-indicator {
+		background-color: #34836f;
+	}
+
+	.toast-notification__status-icon {
+		color: #34836f;
+	}
+
+	.toast-notification__status-icon[icon='approved'] {
+		display: flex;
+	}
+}
+
+:host(.toast-error) {
+	.toast-notification__color-indicator {
+		background-color: #da3a3a;
+	}
+
+	.toast-notification__status-icon {
+		color: #da3a3a;
+	}
+
+	.toast-notification__status-icon[icon='error'] {
+		display: flex;
+	}
+}
+
+.toast-notification {
+	display: flex;
+	flex: 1;
+	width: $secondary-grid-unit * 95;
+	border-radius: $secondary-grid-unit;
+	background-color: $panel-bg-white;
+	box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
+	color: $font-color-base;
+}
+
+.toast-notification--dark-theme {
+	color: $font-color-base-dark;
+	background-color: $panel-bg-dark;
+
+	.toast-notification__close-button {
+		color: #99a6b5;
+
+		&:hover,
+		&:focus {
+			outline: 0;
+			color: #fff;
+		}
+	}
+}
+
+.toast-notification__color-indicator {
+	width: $main-grid-unit;
+	height: 100%;
+	border-top-left-radius: $secondary-grid-unit;
+	border-bottom-left-radius: $secondary-grid-unit;
+}
+
+.toast-notification__content {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	padding: $gutter-width;
+	padding-left: $secondary-grid-unit * 3;
+}
+
+.toast-notification__title {
+	display: flex;
+	align-items: center;
+
+	@include text-p-medium;
+}
+
+.toast-notification__status-icon {
+	display: none;
+	padding-right: $secondary-grid-unit * 3;
+}
+
+.toast-notification__header {
+	display: flex;
+	justify-content: space-between;
+	padding-bottom: $main-grid-unit;
+}
+
+.toast-notification__close-button {
+	align-self: flex-start;
+	margin-left: $gutter-width;
+	color: #5e6670;
+	cursor: pointer;
+
+	&:hover,
+	&:focus {
+		outline: 0;
+		color: #000;
+	}
+}
+
+.toast-notification__message {
+	@include text-p;
+}

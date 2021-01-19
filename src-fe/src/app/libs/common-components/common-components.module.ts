@@ -31,6 +31,9 @@ import { DropZoneComponent } from './drop-zone/drop-zone.component';
 import { EditorPanelComponent } from './editor-panel/editor-panel.component';
 import { UploadConfigDialogComponent } from './upload-config-dialog/upload-config-dialog.component';
 import { ModalWindowComponent } from './modal-window/modal-window.component';
+import { ToastNotificationComponent } from './toast-notification/toast-notification.component';
+import { ToastrModule } from 'ngx-toastr';
+import { ToastNotificationService } from './toast-notification/service/toast-notification.service';
 
 @NgModule({
 	declarations: [
@@ -51,6 +54,7 @@ import { ModalWindowComponent } from './modal-window/modal-window.component';
 		EditorPanelComponent,
 		UploadConfigDialogComponent,
 		ModalWindowComponent,
+		ToastNotificationComponent,
 	],
 	imports: [
 		MatButtonModule,
@@ -67,9 +71,20 @@ import { ModalWindowComponent } from './modal-window/modal-window.component';
 		MatAutocompleteModule,
 		MatSelectModule,
 		MatRadioModule,
+		ToastrModule.forRoot({
+			toastComponent: ToastNotificationComponent,
+			positionClass: 'toast-bottom-right',
+			messageClass: '',
+			titleClass: '',
+			toastClass: '',
+			timeOut: 5000,
+			extendedTimeOut: 1000,
+			easing: 'ease-out',
+		}),
 	],
 	providers: [
 		IconService,
+		ToastNotificationService,
 		{
 			provide: MatDialogRef,
 			useValue: {},

@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { ComponentTheme } from '../common-components/common/enum/component-theme.enum';
 import { IconService } from '../common-components/icon/service/icon.service';
+import { ToastNotificationService } from '../common-components/toast-notification/service/toast-notification.service';
 import { ContainerFacadeService } from './service/container-facade.service';
 
 @Component({
@@ -8,18 +11,33 @@ import { ContainerFacadeService } from './service/container-facade.service';
 	templateUrl: './container.component.html',
 	styleUrls: ['./container.component.scss'],
 })
-export class ContainerComponent implements OnInit {
-	public userPhotoURL$: Observable<string> = this.containerFacadeService.userPhotoBase64$;
-	public appTheme$: Observable<string> = this.containerFacadeService.theme$;
-	public isDarkTheme$: Observable<boolean> = this.containerFacadeService.isDarkTheme$;
+export class ContainerComponent implements OnInit, OnDestroy {
+	public userPhotoURL$: Observable<string>;
+	public appTheme$: Observable<string>;
+	public isDarkTheme$: Observable<boolean>;
+	public destroy$: Subject<void>;
 
 	constructor(private containerFacadeService: ContainerFacadeService, private iconService: IconService) {}
 
 	public ngOnInit(): void {
+		this.userPhotoURL$ = this.containerFacadeService.userPhotoBase64$;
+		this.appTheme$ = this.containerFacadeService.theme$;
+		this.isDarkTheme$ = this.containerFacadeService.isDarkTheme$;
+		this.destroy$ = new Subject<void>();
+
 		this.iconService.addIcons();
 		this.containerFacadeService.logIn();
 
 		this.containerFacadeService.loadUserPhoto();
 		this.containerFacadeService.loadUserInfo();
+
+		this.containerFacadeService.theme$.pipe(takeUntil(this.destroy$)).subscribe((theme: ComponentTheme) => {
+			ToastNotificationService.theme$.next(theme);
+		});
+	}
+
+	public ngOnDestroy(): void {
+		this.destroy$.next();
+		this.destroy$.complete();
 	}
 }

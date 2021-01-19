@@ -32,6 +32,11 @@ export class IconService {
 			this.domSanitizer.bypassSecurityTrustResourceUrl('../../../../../assets/svg/document.svg')
 		);
 		this.matIconRegistry.addSvgIcon('close', this.domSanitizer.bypassSecurityTrustResourceUrl('../../../../../assets/svg/close.svg'));
+		this.matIconRegistry.addSvgIcon(
+			'approved',
+			this.domSanitizer.bypassSecurityTrustResourceUrl('../../../../../assets/svg/approved.svg')
+		);
+		this.matIconRegistry.addSvgIcon('error', this.domSanitizer.bypassSecurityTrustResourceUrl('../../../../../assets/svg/error.svg'));
 		this.matIconRegistry.addSvgIcon('search', this.domSanitizer.bypassSecurityTrustResourceUrl('../../../../../assets/svg/search.svg'));
 		this.matIconRegistry.addSvgIcon(
 			'arrow-down',

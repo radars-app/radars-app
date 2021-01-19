@@ -32,7 +32,8 @@
             "styles": [
               "src/styles.scss",
 							"src/app-theme.scss",
-							"node_modules/radar-chart-project/dist/style.css"
+              "node_modules/radar-chart-project/dist/style.css",
+              "node_modules/ngx-toastr/toastr.css"
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
@@ -105,7 +106,8 @@
             ],
             "styles": [
               "src/styles.scss",
-              "src/app-theme.scss"
+              "src/app-theme.scss",
+              "node_modules/ngx-toastr/toastr.css"
             ],
             "stylePreprocessorOptions": {
               "includePaths": [

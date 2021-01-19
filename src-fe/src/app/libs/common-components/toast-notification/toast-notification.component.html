@@ -1,0 +1,18 @@
+<div class="toast-notification" [class.toast-notification--dark-theme]="isDarkTheme">
+    <div class="toast-notification__color-indicator"></div>
+    <div class="toast-notification__content">
+        <div class="toast-notification__header">
+            <div class="toast-notification__title">
+                <app-icon size="m" icon="approved" class="toast-notification__status-icon"></app-icon>
+                <app-icon size="m" icon="error" class="toast-notification__status-icon"></app-icon>
+                <span>{{title}}</span>
+            </div>
+            <app-icon   class="toast-notification__close-button"
+                        icon="close"
+                        size="s"
+                        (click)="close()">
+            </app-icon>
+        </div>
+        <div class="toast-notification__message">{{message}}</div>
+    </div>
+</div>
