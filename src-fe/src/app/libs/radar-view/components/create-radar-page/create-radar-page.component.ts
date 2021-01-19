@@ -116,6 +116,6 @@ export class CreateRadarPageComponent implements OnInit, OnDestroy {
 	}
 
 	private createRadar(): void {
-		this.radarViewFacadeService.uploadRadar(this.radarId, this.config);
+		this.radarViewFacadeService.createRadar(this.radarId, this.config);
 	}
 }

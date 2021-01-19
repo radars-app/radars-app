@@ -5,6 +5,7 @@
 	pointer-events: all;
 	background-color: transparent !important;
 	padding-top: $secondary-grid-unit * 3;
+	overflow: hidden;
 }
 
 :host(.toast-success) {

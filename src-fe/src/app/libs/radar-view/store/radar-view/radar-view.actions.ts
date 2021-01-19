@@ -9,6 +9,11 @@ export enum RadarViewActionTypes {
 	LoadRadarDataItems = '[RadarView] Load Radar Data Items',
 	LoadRadarDataItemsSuccess = '[RadarView] Load Radar Data Items Success',
 	UploadRadar = '[RadarView] Upload Radars',
+	UploadRadarSuccess = '[RadarView] Upload Radar Success',
+	UploadRadarError = '[RadarView] Upload Radar Error',
+	CreateRadar = '[RadarView] Create Radar',
+	CreateRadarSuccess = '[RadarView] Create Radar Success',
+	CreateRadarError = '[RadarView] Create Radar Error',
 	SetSearchQuery = '[RadarView] Set Search Query',
 	SetFilteredRadarItems = '[RadarView] Set Filtered Radar Items',
 	RemoveRadar = '[RadarView] Remove Radar',
@@ -38,6 +43,31 @@ export class LoadRadarDataItemsSuccess implements Action {
 export class UploadRadar implements Action {
 	public readonly type: RadarViewActionTypes = RadarViewActionTypes.UploadRadar;
 	constructor(public payload: { radarId: string; radarConfig: RadarConfig }) {}
+}
+
+export class UploadRadarSuccess implements Action {
+	public readonly type: RadarViewActionTypes = RadarViewActionTypes.UploadRadarSuccess;
+	constructor(public radarId: string) {}
+}
+
+export class UploadRadarError implements Action {
+	public readonly type: RadarViewActionTypes = RadarViewActionTypes.UploadRadarError;
+	constructor() {}
+}
+
+export class CreateRadar implements Action {
+	public readonly type: RadarViewActionTypes = RadarViewActionTypes.CreateRadar;
+	constructor(public payload: { radarId: string; radarConfig: RadarConfig }) {}
+}
+
+export class CreateRadarSuccess implements Action {
+	public readonly type: RadarViewActionTypes = RadarViewActionTypes.CreateRadarSuccess;
+	constructor(public radarId: string) {}
+}
+
+export class CreateRadarError implements Action {
+	public readonly type: RadarViewActionTypes = RadarViewActionTypes.CreateRadarError;
+	constructor() {}
 }
 
 export class SetSearchQuery implements Action {

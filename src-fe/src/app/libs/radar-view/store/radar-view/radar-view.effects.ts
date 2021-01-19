@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { map, switchMap, take, withLatestFrom } from 'rxjs/operators';
-import { NEVER, Observable } from 'rxjs';
+import { catchError, map, switchMap, take, withLatestFrom } from 'rxjs/operators';
+import { NEVER, Observable, of } from 'rxjs';
 import {
 	RadarViewActionTypes,
 	LoadRadarsSuccess,
@@ -14,6 +14,11 @@ import {
 	SetSearchQuery,
 	RemoveRadar,
 	RemoveRadarSuccess,
+	CreateRadar,
+	CreateRadarSuccess,
+	UploadRadarSuccess,
+	UploadRadarError,
+	CreateRadarError,
 } from './radar-view.actions';
 import { Action } from '@ngrx/store';
 import { RadarsRepositoryService } from '../../service/radar-view-repository.service';
@@ -22,6 +27,7 @@ import { RadarConverterService } from '../../service/radar-converter.service';
 import { RadarDataItem, RadarDataItemDto } from '../../model/radar-data-item';
 import { RadarDataItemConverterService } from '../../service/radar-data-item-converter.service';
 import { RadarViewFacadeService } from '../../service/radar-view-facade.service';
+import { ToastNotificationService } from 'src/app/libs/common-components/toast-notification/service/toast-notification.service';
 
 @Injectable()
 export class RadarViewEffects {
@@ -92,14 +98,76 @@ export class RadarViewEffects {
 	);
 
 	@Effect()
-	public uploadRadar$: Observable<any> = this.actions$.pipe(
+	public uploadRadar$: Observable<Action> = this.actions$.pipe(
 		ofType(RadarViewActionTypes.UploadRadar),
 		switchMap((action: UploadRadar) => {
 			return this.radarsRepositoryService.uploadRadar(action.payload.radarId, action.payload.radarConfig).pipe(
 				map((radarDto: RadarDto) => {
-					return new LoadRadars(radarDto.radarId);
+					return new UploadRadarSuccess(radarDto.radarId);
+				}),
+				catchError(() => {
+					return of(new UploadRadarError());
 				})
 			);
+		})
+	);
+
+	@Effect()
+	public createRadar$: Observable<Action> = this.actions$.pipe(
+		ofType(RadarViewActionTypes.CreateRadar),
+		switchMap((action: CreateRadar) => {
+			return this.radarsRepositoryService.uploadRadar(action.payload.radarId, action.payload.radarConfig).pipe(
+				map((radarDto: RadarDto) => {
+					return new CreateRadarSuccess(radarDto.radarId);
+				}),
+				catchError(() => {
+					return of(new CreateRadarError());
+				})
+			);
+		})
+	);
+
+	@Effect({ dispatch: false })
+	public createRadarSuccessNotification$: Observable<any> = this.actions$.pipe(
+		ofType(RadarViewActionTypes.CreateRadarSuccess),
+		map(() => {
+			this.toastNotificationService.success('Radar has been created', 'All radar information was saved.');
+			return NEVER;
+		})
+	);
+
+	@Effect({ dispatch: false })
+	public uploadRadarSuccessNotification$: Observable<any> = this.actions$.pipe(
+		ofType(RadarViewActionTypes.UploadRadarSuccess),
+		map(() => {
+			this.toastNotificationService.success('Radar has been saved', 'All radar information was saved.');
+			return NEVER;
+		})
+	);
+
+	@Effect({ dispatch: false })
+	public uploadRadarErrorNotification$: Observable<any> = this.actions$.pipe(
+		ofType(RadarViewActionTypes.UploadRadarError),
+		map(() => {
+			this.toastNotificationService.error('Someting wen wrong', 'Radar was not saved succesully. Please try again later.');
+			return NEVER;
+		})
+	);
+
+	@Effect({ dispatch: false })
+	public createRadarErrorNotification$: Observable<any> = this.actions$.pipe(
+		ofType(RadarViewActionTypes.CreateRadarError),
+		map(() => {
+			this.toastNotificationService.error('Something went wrong', 'Radar was not created. Please try again later.');
+			return NEVER;
+		})
+	);
+
+	@Effect()
+	public loadDataAfterUpdatingRadar$: Observable<Action> = this.actions$.pipe(
+		ofType(RadarViewActionTypes.CreateRadarSuccess, RadarViewActionTypes.UploadRadarSuccess),
+		map((action: CreateRadarSuccess | UploadRadarSuccess) => {
+			return new LoadRadars(action.radarId);
 		})
 	);
 
@@ -125,6 +193,7 @@ export class RadarViewEffects {
 		private radarsRepositoryService: RadarsRepositoryService,
 		private radarConverterService: RadarConverterService,
 		private radarDataItemsConverterService: RadarDataItemConverterService,
-		private radarViewFacadeService: RadarViewFacadeService
+		private radarViewFacadeService: RadarViewFacadeService,
+		private toastNotificationService: ToastNotificationService
 	) {}
 }

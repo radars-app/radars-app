@@ -73,7 +73,7 @@ import { ToastNotificationService } from './toast-notification/service/toast-not
 		MatRadioModule,
 		ToastrModule.forRoot({
 			toastComponent: ToastNotificationComponent,
-			positionClass: 'toast-bottom-right',
+			positionClass: 'toast-top-right',
 			messageClass: '',
 			titleClass: '',
 			toastClass: '',

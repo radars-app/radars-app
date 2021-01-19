@@ -3,7 +3,14 @@ import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Radar } from '../model/radar';
 import { RadarDataItem } from '../model/radar-data-item';
-import { LoadRadarDataItems, LoadRadars, RemoveRadar, SetSearchQuery, UploadRadar } from '../store/radar-view/radar-view.actions';
+import {
+	CreateRadar,
+	LoadRadarDataItems,
+	LoadRadars,
+	RemoveRadar,
+	SetSearchQuery,
+	UploadRadar,
+} from '../store/radar-view/radar-view.actions';
 import {
 	selectFilteredRadarDataItems,
 	selectRadarDataItems,
@@ -45,6 +52,10 @@ export class RadarViewFacadeService {
 
 	public uploadRadar(radarId: string, radarConfig: RadarConfig): void {
 		this.store.dispatch(new UploadRadar({ radarId, radarConfig }));
+	}
+
+	public createRadar(radarId: string, radarConfig: RadarConfig): void {
+		this.store.dispatch(new CreateRadar({ radarId, radarConfig }));
 	}
 
 	public searchRadarItems(searchQuery: string): void {

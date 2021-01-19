@@ -24,11 +24,11 @@ import { ToastNotificationService } from './service/toast-notification.service';
 					'300ms ease-in',
 					keyframes([
 						style({
-							transform: 'translate3d(0, 100%, 0)',
-							opacity: 0.9,
+							transform: 'translate3d(0, 40%, 0)',
+							opacity: 0.5,
 						}),
 						style({
-							transform: 'none',
+							transform: 'translate3d(0, 0, 0)',
 							opacity: 1,
 						}),
 					])
@@ -43,8 +43,9 @@ import { ToastNotificationService } from './service/toast-notification.service';
 							opacity: 0,
 						}),
 						style({
-							transform: 'translate3d(0, 100%, 0)',
-							opacity: 0.9,
+							transform: 'translate3d(0, 40%, 0)',
+							opacity: 0.5,
+							height: 0,
 						}),
 					])
 				)
