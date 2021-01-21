@@ -17,6 +17,7 @@ import { ZoomInOutPanelComponent } from './components/zoom-in-out-panel/zoom-in-
 import { DotTooltipComponent } from './components/dot-tooltip/dot-tooltip.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { DeleteRadarConfirmationDialogComponent } from './components/delete-radar-confirmation-dialog/delete-radar-confirmation-dialog.component';
+import { RadarHeaderComponent } from '../common-components/radar-header/radar-header.component';
 
 describe('RadarViewComponent', () => {
 	let component: RadarViewComponent;
@@ -32,6 +33,7 @@ describe('RadarViewComponent', () => {
 				ZoomInOutPanelComponent,
 				DotTooltipComponent,
 				DeleteRadarConfirmationDialogComponent,
+				RadarHeaderComponent,
 			],
 			providers: [
 				{

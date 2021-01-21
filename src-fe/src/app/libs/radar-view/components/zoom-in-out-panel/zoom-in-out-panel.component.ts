@@ -11,11 +11,13 @@ import { ContainerFacadeService } from 'src/app/libs/container/service/container
 export class ZoomInOutPanelComponent implements OnInit {
 	@Output() public zoomInClicked: EventEmitter<void>;
 	@Output() public zoomOutClicked: EventEmitter<void>;
+	@Output() public zoomResetClicked: EventEmitter<void>;
 	public theme$: Observable<ComponentTheme>;
 
 	constructor(private containerFacade: ContainerFacadeService) {
 		this.zoomInClicked = new EventEmitter<void>();
 		this.zoomOutClicked = new EventEmitter<void>();
+		this.zoomResetClicked = new EventEmitter<void>();
 	}
 
 	public ngOnInit(): void {
@@ -28,5 +30,9 @@ export class ZoomInOutPanelComponent implements OnInit {
 
 	public zoomOut(): void {
 		this.zoomOutClicked.next();
+	}
+
+	public zoomReset(): void {
+		this.zoomResetClicked.next();
 	}
 }

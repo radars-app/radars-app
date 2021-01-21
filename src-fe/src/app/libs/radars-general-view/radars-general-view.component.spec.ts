@@ -6,6 +6,7 @@ import { of } from 'rxjs';
 import { CommonComponentsModule } from '../common-components/common-components.module';
 import { ComponentTheme } from '../common-components/common/enum/component-theme.enum';
 import { IconService } from '../common-components/icon/service/icon.service';
+import { RadarHeaderComponent } from '../common-components/radar-header/radar-header.component';
 import { ContainerFacadeService } from '../container/service/container-facade.service';
 
 import { RadarsGeneralViewComponent } from './radars-general-view.component';
@@ -18,7 +19,7 @@ describe('RadarsGeneralViewComponent', () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [RadarsGeneralViewComponent],
+			declarations: [RadarsGeneralViewComponent, RadarHeaderComponent],
 			providers: [
 				{
 					provide: ContainerFacadeService,

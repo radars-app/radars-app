@@ -23,7 +23,8 @@
 }
 
 .zoom-in-out-panel__zoom-in-button,
-.zoom-in-out-panel__zoom-out-button {
+.zoom-in-out-panel__zoom-out-button,
+.zoom-in-out-panel__zoom-reset-button {
 	height: 20px;
 	color: $panel-border-dark;
 	background-color: $panel-bg-white;
@@ -49,4 +50,9 @@
 	top: -1px;
 	border-bottom-left-radius: $secondary-grid-unit;
 	border-bottom-right-radius: $secondary-grid-unit;
+}
+
+.zoom-in-out-panel__zoom-reset-button {
+	border-radius: $secondary-grid-unit;
+	margin-top: 8px;
 }

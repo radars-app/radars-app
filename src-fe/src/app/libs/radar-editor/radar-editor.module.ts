@@ -9,6 +9,6 @@ import { RadarEditorNavigationComponent } from './components/radar-editor-naviga
 @NgModule({
 	declarations: [PrepareRadarComponent, RadarEditorNavigationComponent, RadarEditorComponent],
 	imports: [CommonComponentsModule, CommonModule, RouterModule],
-	exports: [RadarEditorComponent],
+	exports: [PrepareRadarComponent, RadarEditorNavigationComponent, RadarEditorComponent],
 })
 export class RadarEditorModule {}

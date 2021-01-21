@@ -23,6 +23,10 @@ export class IconService {
 		this.matIconRegistry.addSvgIcon('zoom_in', this.domSanitizer.bypassSecurityTrustResourceUrl('../../../../../assets/plus.svg'));
 		this.matIconRegistry.addSvgIcon('zoom_out', this.domSanitizer.bypassSecurityTrustResourceUrl('../../../../../assets/minus.svg'));
 		this.matIconRegistry.addSvgIcon(
+			'zoom-reset',
+			this.domSanitizer.bypassSecurityTrustResourceUrl('../../../../../assets/svg/reduce-screen.svg')
+		);
+		this.matIconRegistry.addSvgIcon(
 			'download',
 			this.domSanitizer.bypassSecurityTrustResourceUrl('../../../../../assets/svg/download.svg')
 		);

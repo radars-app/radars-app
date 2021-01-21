@@ -93,6 +93,7 @@ export class GeneralRadarChartComponent implements OnInit, AfterViewInit, OnChan
 			config.marginLeftRight = 2;
 			config.marginTopBottom = 2;
 			config.offsetLeft = 0;
+			config.offsetRight = 0;
 			config.ringsConfig.labelsConfig.isLabelShown = false;
 			config.dotsConfig.hasClickAction = false;
 			config.dotsConfig.hasHoverAction = false;

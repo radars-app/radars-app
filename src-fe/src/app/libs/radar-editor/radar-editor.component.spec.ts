@@ -1,13 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 import { CommonComponentsModule } from '../common-components/common-components.module';
 import { ComponentTheme } from '../common-components/common/enum/component-theme.enum';
 import { IconService } from '../common-components/icon/service/icon.service';
 import { ContainerFacadeService } from '../container/service/container-facade.service';
+import { PrepareRadarComponent } from './components/prepare-radar/prepare-radar.component';
+import { RadarEditorNavigationComponent } from './components/radar-editor-navigation/radar-editor-navigation.component';
 import { RadarEditorComponent } from './radar-editor.component';
+import { RadarEditorModule } from './radar-editor.module';
 
 describe('RadarEditorComponent', () => {
 	let component: RadarEditorComponent;
@@ -15,7 +17,7 @@ describe('RadarEditorComponent', () => {
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: [RadarEditorComponent],
+			declarations: [RadarEditorComponent, PrepareRadarComponent, RadarEditorNavigationComponent],
 			providers: [
 				{
 					provide: ContainerFacadeService,
@@ -24,7 +26,7 @@ describe('RadarEditorComponent', () => {
 					},
 				},
 			],
-			imports: [CommonComponentsModule, RouterTestingModule, CommonModule, BrowserAnimationsModule],
+			imports: [CommonComponentsModule, CommonModule, RouterTestingModule, RadarEditorModule],
 		}).compileComponents();
 	}));
 
