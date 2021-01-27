@@ -4,8 +4,6 @@ import { UserProfile } from '../../model/user-profile';
 
 export enum ContainerActionTypes {
 	SetTheme = '[Container] Set theme',
-	LoadUserPhoto = '[Container] Get User Photo',
-	LoadUserPhotoSuccess = '[Container] Get User Photo Success',
 	LoadUserProfile = '[Container] Get User Profile',
 	LoadUserProfileSuccess = '[Container] Get User Profile Success',
 	LogIn = '[Container] Log In',
@@ -15,11 +13,6 @@ export enum ContainerActionTypes {
 export class SetTheme implements Action {
 	public readonly type: ContainerActionTypes = ContainerActionTypes.SetTheme;
 	constructor(public payload: ComponentTheme) {}
-}
-
-export class LoadUserPhoto implements Action {
-	public readonly type: ContainerActionTypes = ContainerActionTypes.LoadUserPhoto;
-	constructor() {}
 }
 
 export class LogIn implements Action {
@@ -32,11 +25,6 @@ export class LogOut implements Action {
 	constructor() {}
 }
 
-export class LoadUserPhotoSuccess implements Action {
-	public readonly type: ContainerActionTypes = ContainerActionTypes.LoadUserPhotoSuccess;
-	constructor(public payload: string) {}
-}
-
 export class LoadUserProfile implements Action {
 	public readonly type: ContainerActionTypes = ContainerActionTypes.LoadUserProfile;
 	constructor() {}
@@ -47,13 +35,4 @@ export class LoadUserProfileSuccess implements Action {
 	constructor(public payload: UserProfile) {}
 }
 
-export type ContainerActions =
-	| SetTheme
-	| LoadUserPhoto
-	| LoadUserPhotoSuccess
-	| LoadUserProfile
-	| LoadUserProfileSuccess
-	| SetTheme
-	| LoadUserPhoto
-	| LogIn
-	| LogOut;
+export type ContainerActions = SetTheme | LoadUserProfile | LoadUserProfileSuccess | SetTheme | LogIn | LogOut;

@@ -15,21 +15,23 @@ export class ContainerComponent implements OnInit, OnDestroy {
 	public userPhotoURL$: Observable<string>;
 	public appTheme$: Observable<string>;
 	public isDarkTheme$: Observable<boolean>;
+	public isAdmin$: Observable<boolean>;
 	public destroy$: Subject<void>;
 
-	constructor(private containerFacadeService: ContainerFacadeService, private iconService: IconService) {}
+	constructor(private containerFacadeService: ContainerFacadeService, private iconService: IconService) {
+		this.destroy$ = new Subject<void>();
+	}
 
 	public ngOnInit(): void {
 		this.userPhotoURL$ = this.containerFacadeService.userPhotoBase64$;
 		this.appTheme$ = this.containerFacadeService.theme$;
 		this.isDarkTheme$ = this.containerFacadeService.isDarkTheme$;
-		this.destroy$ = new Subject<void>();
+		this.isAdmin$ = this.containerFacadeService.isAdmin$;
 
 		this.iconService.addIcons();
 		this.containerFacadeService.logIn();
 
-		this.containerFacadeService.loadUserPhoto();
-		this.containerFacadeService.loadUserInfo();
+		this.containerFacadeService.loadUserProfile();
 
 		this.containerFacadeService.theme$.pipe(takeUntil(this.destroy$)).subscribe((theme: ComponentTheme) => {
 			ToastNotificationService.theme$.next(theme);

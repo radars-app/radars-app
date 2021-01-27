@@ -11,6 +11,7 @@ import { ComponentTheme } from '../../../common-components/common/enum/component
 })
 export class GlobalHeaderComponent implements OnInit {
 	@Input() public userPhotoURL: string;
+	@Input() public isAdmin: boolean;
 
 	public appNamePrefix: string = appConfig.appName.prefix;
 	public appNameMain: string = appConfig.appName.main;

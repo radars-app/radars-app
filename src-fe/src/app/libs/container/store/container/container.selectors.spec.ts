@@ -4,17 +4,13 @@ import { containerFeatureKey } from '../store.module';
 import { selectContainerState } from './container.selectors';
 import { ContainerState } from './container.state';
 
-describe('Sample Selectors', () => {
+describe('Container Selectors', () => {
 	it('should select the feature state', () => {
 		const result: ContainerState = selectContainerState({
 			[containerFeatureKey]: {
 				theme: ComponentTheme.Light,
 				userProfile: {
 					value: null,
-					status: EntityStatus.Init,
-				},
-				userPhotoBase64: {
-					value: '../../../../assets/profile.svg',
 					status: EntityStatus.Init,
 				},
 			},
@@ -24,10 +20,6 @@ describe('Sample Selectors', () => {
 			theme: ComponentTheme.Light,
 			userProfile: {
 				value: null,
-				status: EntityStatus.Init,
-			},
-			userPhotoBase64: {
-				value: '../../../../assets/profile.svg',
 				status: EntityStatus.Init,
 			},
 		});

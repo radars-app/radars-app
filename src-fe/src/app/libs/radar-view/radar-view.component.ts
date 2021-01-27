@@ -73,34 +73,44 @@ export class RadarViewComponent implements OnInit, OnDestroy {
 	}
 
 	private initCommandButtons(): void {
-		const printButton: IconButtonModel = {
-			label: 'Print Radar',
-			callback: () => {},
-			icon: 'print',
-			iconSize: IconSize.Medium,
-			disabled: true,
-		};
+		this.containerFacadeService.isAdmin$.pipe(takeUntil(this.destroy$)).subscribe((isAdmin: boolean) => {
+			const printButton: IconButtonModel = {
+				label: 'Print Radar',
+				callback: () => {},
+				icon: 'print',
+				iconSize: IconSize.Medium,
+				disabled: true,
+			};
 
-		const editButton: IconButtonModel = {
-			label: 'Edit',
-			callback: () => {
-				this.router.navigateByUrl(`/radars/${this.radarId}/edit`);
-			},
-			icon: 'edit_1',
-			iconSize: IconSize.Medium,
-			disabled: false,
-		};
+			const editButton: IconButtonModel = {
+				label: 'Edit',
+				callback: () => {
+					this.router.navigateByUrl(`/radars/${this.radarId}/edit`);
+				},
+				icon: 'edit_1',
+				iconSize: IconSize.Medium,
+				disabled: false,
+			};
 
-		const removeButton: IconButtonModel = {
-			label: 'Remove',
-			callback: () => {
-				this.deleteRadarConfirmationDialog.open();
-			},
-			icon: 'delete',
-			iconSize: IconSize.Medium,
-			disabled: false,
-		};
+			const removeButton: IconButtonModel = {
+				label: 'Remove',
+				callback: () => {
+					this.deleteRadarConfirmationDialog.open();
+				},
+				icon: 'delete',
+				iconSize: IconSize.Medium,
+				disabled: false,
+			};
 
-		this.buttons = [printButton, editButton, removeButton];
+			const buttons: IconButtonModel[] = [];
+			buttons.push(printButton);
+
+			if (isAdmin) {
+				buttons.push(editButton);
+				buttons.push(removeButton);
+			}
+
+			this.buttons = buttons;
+		});
 	}
 }

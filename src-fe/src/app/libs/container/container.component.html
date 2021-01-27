@@ -1,6 +1,7 @@
 <main class="container" [class.container--dark-theme]="isDarkTheme$ | async">
 	<app-radars-global-header	class="container__header"
-								[userPhotoURL]="userPhotoURL$ | async">
+								[userPhotoURL]="userPhotoURL$ | async"
+								[isAdmin]="isAdmin$ | async">
 	</app-radars-global-header>
 
 	<div class="container__content">

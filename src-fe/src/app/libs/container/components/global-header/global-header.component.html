@@ -7,7 +7,7 @@
 </div>
 
 <div class="container-header__tools">
-	<app-button *ngIf="isRootPageOpened"
+	<app-button *ngIf="isRootPageOpened && isAdmin"
 							routerLink="/radars/create"
 							[theme]="createRadarButtonTheme">
 		<app-icon class="container-header__create-icon" icon="plus"></app-icon>

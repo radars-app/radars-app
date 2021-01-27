@@ -1,4 +1,4 @@
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MsalService } from '@azure/msal-angular';
 import { AuthResponse } from 'msal';
@@ -15,21 +15,8 @@ export class MsGraphRepositoryService {
 	public loadUserProfile(): Observable<UserProfileDto> {
 		return this.loadToken().pipe(
 			switchMap((token: AuthResponse) => {
-				const GRAPH_ENDPOINT: string = 'https://graph.microsoft.com/v1.0/me';
-				return this.http.get<UserProfileDto>(GRAPH_ENDPOINT, {
+				return this.http.get<UserProfileDto>('api/user', {
 					headers: { Authorization: 'Bearer ' + token.accessToken },
-				});
-			})
-		);
-	}
-
-	public loadUserPhoto(): Observable<HttpResponse<Blob>> {
-		return this.loadToken().pipe(
-			switchMap((token: AuthResponse) => {
-				return this.http.get('https://graph.microsoft.com/beta/me/photo/$value', {
-					headers: { Authorization: 'Bearer ' + token.accessToken },
-					observe: 'response',
-					responseType: 'blob',
 				});
 			})
 		);

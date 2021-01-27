@@ -117,6 +117,37 @@
 				],
 				"type": "object",
 				"additionalProperties": false
+			},
+			"UserRole": {
+				"enum": [
+					"admin",
+					"default"
+				],
+				"type": "string"
+			},
+			"UserEntity": {
+				"properties": {
+					"fullName": {
+						"type": "string"
+					},
+					"email": {
+						"type": "string"
+					},
+					"role": {
+						"$ref": "#/components/schemas/UserRole"
+					},
+					"photo": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"fullName",
+					"email",
+					"role",
+					"photo"
+				],
+				"type": "object",
+				"additionalProperties": false
 			}
 		},
 		"securitySchemes": {}
@@ -228,7 +259,11 @@
 						}
 					}
 				},
-				"security": [],
+				"security": [
+					{
+						"admin-access": []
+					}
+				],
 				"parameters": [
 					{
 						"in": "path",
@@ -257,7 +292,11 @@
 						"description": "No content"
 					}
 				},
-				"security": [],
+				"security": [
+					{
+						"admin-access": []
+					}
+				],
 				"parameters": [
 					{
 						"in": "path",
@@ -268,6 +307,25 @@
 						}
 					}
 				]
+			}
+		},
+		"/api/user": {
+			"get": {
+				"operationId": "GetRadar",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/UserEntity"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": []
 			}
 		}
 	},

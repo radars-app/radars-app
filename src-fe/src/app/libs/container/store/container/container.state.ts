@@ -5,5 +5,4 @@ import { UserProfile } from '../../model/user-profile';
 export interface ContainerState {
 	theme: ComponentTheme;
 	userProfile: EntityWrapper<UserProfile>;
-	userPhotoBase64: EntityWrapper<string>;
 }

@@ -2,9 +2,11 @@
 	"credentials": {
 		"tenantID": "abc93a01-51df-4247-a302-427c98b19cec",
 		"clientID": "8f0f6c4f-d514-435c-a209-40813a9724ff",
-		"audience": "8f0f6c4f-d514-435c-a209-40813a9724ff"
+		"audience": "8f0f6c4f-d514-435c-a209-40813a9724ff",
+		"clientSecret": "P1WZm898G_u4Lzw.SgN7fttNAmFLWV-6~~"
 	},
 	"resource": {},
+	"scopes": ["user.read"],
 	"metadata": {
 		"authority": "login.microsoftonline.com",
 		"discovery": ".well-known/openid-configuration",

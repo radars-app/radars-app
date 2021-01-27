@@ -9,8 +9,10 @@ export class UserProfileConverterService {
 
 	public fromDto(dto: UserProfileDto): UserProfile {
 		return {
-			email: dto.mail,
-			fullName: dto.displayName,
+			email: dto.email,
+			fullName: dto.fullName,
+			photoBase64: dto.photo,
+			role: dto.role,
 		};
 	}
 }

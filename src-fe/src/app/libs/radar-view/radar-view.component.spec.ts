@@ -46,6 +46,7 @@ describe('RadarViewComponent', () => {
 					provide: ContainerFacadeService,
 					useValue: {
 						theme$: of(ComponentTheme.Light),
+						isAdmin$: of(true),
 					},
 				},
 				{

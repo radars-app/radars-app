@@ -3,9 +3,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ToastrModule } from 'ngx-toastr';
+import { BehaviorSubject } from 'rxjs';
 import { of } from 'rxjs';
 import { CommonComponentsModule } from '../common-components/common-components.module';
 import { ComponentTheme } from '../common-components/common/enum/component-theme.enum';
+import { ToastNotificationService } from '../common-components/toast-notification/service/toast-notification.service';
 import { ToastNotificationComponent } from '../common-components/toast-notification/toast-notification.component';
 import { GlobalHeaderComponent } from './components/global-header/global-header.component';
 import { ProfilePopupComponent } from './components/profile-popup/profile-popup.component';
@@ -29,6 +31,7 @@ describe('ContainerComponent', () => {
 						loadUserPhoto: () => {},
 						loadUserInfo: () => {},
 						theme$: of(ComponentTheme.Light),
+						loadUserProfile: jasmine.createSpy(),
 					},
 				},
 			],
@@ -45,9 +48,11 @@ describe('ContainerComponent', () => {
 	});
 
 	beforeEach(() => {
+		ToastNotificationService.theme$ = new BehaviorSubject<ComponentTheme>(ComponentTheme.Light);
 		fixture = TestBed.createComponent(ContainerComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
+		component.ngOnInit();
 	});
 
 	it('should create', () => {

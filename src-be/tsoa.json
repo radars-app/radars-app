@@ -7,6 +7,7 @@
 		"specVersion": 3
 	},
 	"routes": {
-		"routesDir": "tsoa-build"
+		"routesDir": "tsoa-build",
+		"authenticationModule": "./app/security.ts"
 	}
 }

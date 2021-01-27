@@ -1,13 +1,5 @@
 import { RadarConfig } from 'app/model/radar-config';
-import {
-	Body,
-	Controller,
-	Delete,
-	Get,
-	Path,
-	Post,
-	Route
-} from 'tsoa';
+import { Body, Controller, Delete, Get, Path, Post, Route, Security } from 'tsoa';
 import { Inject } from '../ioc';
 import { RadarEntity } from '../model/radar-entity';
 import { RadarsService } from '../service/radars.service';
@@ -27,11 +19,13 @@ export class RadarsController extends Controller {
 	}
 
 	@Post('{radarId}')
+	@Security('admin-access')
 	public async updateRadar(@Path() radarId: string, @Body() config: RadarConfig): Promise<RadarEntity> {
 		return this.radarsService.createRadar(config, radarId);
 	}
 
 	@Delete('{radarId}')
+	@Security('admin-access')
 	public async deleteRadar(@Path() radarId: string): Promise<void> {
 		return this.radarsService.deleteRadar(radarId);
 	}

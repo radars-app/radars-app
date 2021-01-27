@@ -10,6 +10,10 @@ export class UserProfileComponent {
 
 	public showProfilePopup: boolean;
 
+	public get photoUrl(): string {
+		return Boolean(this.userPhotoURL) ? this.userPhotoURL : '../../../../assets/profile.svg';
+	}
+
 	constructor() {}
 
 	public toggleProfilePopup(): void {
