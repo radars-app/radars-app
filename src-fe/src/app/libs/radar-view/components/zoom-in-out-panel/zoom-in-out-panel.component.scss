@@ -10,7 +10,8 @@
 
 	&--dark-theme {
 		.zoom-in-out-panel__zoom-in-button,
-		.zoom-in-out-panel__zoom-out-button {
+		.zoom-in-out-panel__zoom-out-button,
+		.zoom-in-out-panel__zoom-reset-button {
 			background-color: $panel-bg-dark;
 			border-color: $panel-border-dark;
 
