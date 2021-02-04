@@ -9,6 +9,7 @@ import { InfoDialogComponent } from '../common-components/info-dialog/info-dialo
 import { ContainerFacadeService } from '../container/service/container-facade.service';
 import { DeleteRadarConfirmationDialogComponent } from './components/delete-radar-confirmation-dialog/delete-radar-confirmation-dialog.component';
 import { Radar } from './model/radar';
+import { RadarDataItem } from './model/radar-data-item';
 import { RadarViewFacadeService } from './service/radar-view-facade.service';
 
 @Component({
@@ -62,6 +63,12 @@ export class RadarViewComponent implements OnInit, OnDestroy {
 	public onRemoveConfirmed(): void {
 		this.radarViewFacadeService.removeRadar(this.radarId);
 		this.router.navigateByUrl('/');
+	}
+
+	public onDotClicked(event: RadarDataItem[]): void {
+		if (event.length === 1) {
+			this.openInfoDialog(event[0].id);
+		}
 	}
 
 	public openInfoDialog(event: string): void {

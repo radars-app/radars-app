@@ -4,29 +4,17 @@
 
 	<div class="modal-window-title">
 		<span>{{(selectedRadarDataItem$ | async)?.name}}</span>
-		<div class="dot-info">
-			<div class="dot-info__section info-section">
-				<div	class="info-section__icon"
-						[style.background-color]="sectorToColorConverter.getColorBySector((selectedRadarDataItem$ | async)?.sector)">
-				</div>
+		<app-ring-sector-description 	class="info-dialog__ring-sector-description"
+																	[theme]="theme"
+																	[horizontal]="true"
+																	[ring]="(selectedRadarDataItem$ | async)?.sector"
+																	[sector]="(selectedRadarDataItem$ | async)?.sector">
 
-				<div>Sector: {{(selectedRadarDataItem$ | async)?.sector}}</div>
-			</div>
-
-			<div class="dot-info__section info-section">
-				<app-icon	class="info-section__icon"
-							icon="ring_legend"
-							size="s">
-				</app-icon>
-
-				<div>Ring: {{(selectedRadarDataItem$ | async)?.ring}}</div>
-			</div>
-
-		</div>
+		</app-ring-sector-description>
 	</div>
 
 	<div class="modal-window-content">
-		<span class="dot-description" [innerHTML]="(selectedRadarDataItemContent$ | async)"></span>
+		<span class="info-dialog__dot-description" [innerHTML]="(selectedRadarDataItemContent$ | async)"></span>
 	</div>
 
 	<div class="modal-window-actions">

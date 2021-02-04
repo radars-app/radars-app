@@ -1,0 +1,54 @@
+@import 'variables';
+
+.ring-sector-description {
+	color: $font-color-base;
+
+	&--dark-theme {
+		color: $color-white;
+	}
+
+	&--horizontal {
+		display: flex;
+		flex-flow: row nowrap;
+		align-items: center;
+		height: 16px;
+
+		.ring-sector-description__sector {
+			margin-right: $secondary-grid-unit * 10;
+		}
+	}
+
+	&__color-rect {
+		width: $secondary-grid-unit * 4;
+		height: $secondary-grid-unit * 3;
+	}
+
+	&__icon {
+		display: flex;
+		align-items: center;
+		width: $secondary-grid-unit * 4;
+		margin-right: $secondary-grid-unit;
+	}
+
+	&__sector {
+		@include text-small();
+
+		display: flex;
+		margin-bottom: 0;
+	}
+
+	&__ring {
+		@include text-small();
+
+		display: flex;
+		margin-top: $secondary-grid-unit;
+	}
+
+	&__label {
+		padding-right: $secondary-grid-unit;
+	}
+
+	&__content {
+		white-space: nowrap;
+	}
+}

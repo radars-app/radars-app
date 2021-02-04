@@ -1,0 +1,18 @@
+<div class="ring-sector-description" 	[class.ring-sector-description--dark-theme]="isDarkTheme" 
+																			[class.ring-sector-description--horizontal]="horizontal">
+	<div class="ring-sector-description__sector">
+		<div class="ring-sector-description__icon">
+			<div class="ring-sector-description__color-rect" [style.background-color]="sectorToColorConverter.getColorBySector(sector)"></div>
+		</div>
+		<div class="ring-sector-description__label">Sector:</div>
+		<div class="ring-sector-description__content">{{sector}}</div>
+	</div>
+	<div class="ring-sector-description__ring">
+		<div class="ring-sector-description__icon">
+			<app-icon class="ring-icon" [icon]="ringToIconConverter.getIconClassByRing(ring)" size="s"></app-icon>
+		</div>
+		<div class="ring-sector-description__label">Ring:</div>
+		
+		<div class="ring-sector-description__content">{{ring}}</div>
+	</div>
+</div>

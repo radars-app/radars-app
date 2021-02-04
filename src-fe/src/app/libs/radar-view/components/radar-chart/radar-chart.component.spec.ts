@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 import { ComponentTheme } from 'src/app/libs/common-components/common/enum/component-theme.enum';
 import { ContainerFacadeService } from 'src/app/libs/container/service/container-facade.service';
@@ -10,14 +10,22 @@ import { IconService } from 'src/app/libs/common-components/icon/service/icon.se
 import { HttpClientModule } from '@angular/common/http';
 import { DotTooltipComponent } from '../dot-tooltip/dot-tooltip.component';
 import { ZoomInOutPanelComponent } from '../zoom-in-out-panel/zoom-in-out-panel.component';
+import { ClusterTooltipComponent } from '../cluster-tooltip/cluster-tooltip.component';
+import { ClusterItemComponent } from '../cluster-tooltip/cluster-item/cluster-item.component';
 
 describe('RadarChartComponent', () => {
 	let component: RadarChartComponent;
 	let fixture: ComponentFixture<RadarChartComponent>;
 
-	beforeEach(async(() => {
+	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [RadarChartComponent, ZoomInOutPanelComponent, DotTooltipComponent],
+			declarations: [
+				RadarChartComponent,
+				ZoomInOutPanelComponent,
+				DotTooltipComponent,
+				ClusterTooltipComponent,
+				ClusterItemComponent,
+			],
 			imports: [CommonComponentsModule, HttpClientModule],
 			providers: [
 				{
@@ -42,9 +50,7 @@ describe('RadarChartComponent', () => {
 				},
 			],
 		}).compileComponents();
-	}));
 
-	beforeEach(() => {
 		const iconService: IconService = TestBed.inject(IconService);
 		iconService.addIcons();
 		fixture = TestBed.createComponent(RadarChartComponent);

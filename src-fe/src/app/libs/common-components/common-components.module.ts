@@ -34,6 +34,7 @@ import { ModalWindowComponent } from './modal-window/modal-window.component';
 import { ToastNotificationComponent } from './toast-notification/toast-notification.component';
 import { ToastrModule } from 'ngx-toastr';
 import { ToastNotificationService } from './toast-notification/service/toast-notification.service';
+import { RingSectorDescriptionComponent } from './ring-sector-description/ring-sector-description.component';
 
 @NgModule({
 	declarations: [
@@ -55,6 +56,7 @@ import { ToastNotificationService } from './toast-notification/service/toast-not
 		UploadConfigDialogComponent,
 		ModalWindowComponent,
 		ToastNotificationComponent,
+		RingSectorDescriptionComponent,
 	],
 	imports: [
 		MatButtonModule,
@@ -108,6 +110,7 @@ import { ToastNotificationService } from './toast-notification/service/toast-not
 		EditorPanelComponent,
 		UploadConfigDialogComponent,
 		ModalWindowComponent,
+		RingSectorDescriptionComponent,
 	],
 })
 export class CommonComponentsModule {}

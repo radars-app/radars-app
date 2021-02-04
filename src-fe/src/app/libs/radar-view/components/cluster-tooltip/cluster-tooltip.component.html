@@ -1,0 +1,12 @@
+<section class="cluster-tooltip" [class.cluster-tooltip--dark]="isDarkTheme" *ngIf="items?.length">
+	<app-ring-sector-description 	[theme]="theme"
+																[ring]="ring"
+																[sector]="sector">
+	</app-ring-sector-description>
+	<h4 class="cluster-tooltip__title">Items:</h4>
+	<app-cluster-item [theme]="theme"
+										*ngFor="let item of items" 
+										class="cluster-tooltip__item"
+										[dot]="item"></app-cluster-item>
+
+</section>

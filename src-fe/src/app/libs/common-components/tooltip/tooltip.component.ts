@@ -1,4 +1,14 @@
-import { ChangeDetectionStrategy, Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import {
+	ChangeDetectionStrategy,
+	Component,
+	ElementRef,
+	Input,
+	OnChanges,
+	OnDestroy,
+	OnInit,
+	SimpleChanges,
+	ViewChild,
+} from '@angular/core';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { TooltipTrigger } from './models/tooltip-trigger';
 import { TooltipOptions } from './models/tooltip-options';
@@ -10,7 +20,7 @@ import { createPopper, Instance as Popper } from '@popperjs/core';
 	styleUrls: ['./tooltip.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TooltipComponent implements OnInit, OnChanges {
+export class TooltipComponent implements OnInit, OnChanges, OnDestroy {
 	@ViewChild('tooltipContent', { static: false }) public tooltipContent: ElementRef<HTMLDivElement>;
 
 	@Input()
@@ -51,14 +61,37 @@ export class TooltipComponent implements OnInit, OnChanges {
 		}
 	}
 
+	public ngOnDestroy(): void {
+		if (this.options.trigger.includes(TooltipTrigger.OnClick)) {
+			window.removeEventListener('click', this.hideTooltip.bind(this));
+		}
+	}
+
 	private initVisibilityBehavior(target: HTMLElement): void {
 		if (this.options.trigger.includes(TooltipTrigger.OnHover)) {
 			target.onmouseenter = () => {
-				this.isTooltipVisible.next(true);
+				this.showTooltip();
 			};
 			target.onmouseleave = () => {
-				this.isTooltipVisible.next(false);
+				this.hideTooltip();
 			};
 		}
+
+		if (this.options.trigger.includes(TooltipTrigger.OnClick)) {
+			target.onclick = (event: MouseEvent) => {
+				event.stopPropagation();
+				this.showTooltip();
+			};
+
+			window.addEventListener('click', this.hideTooltip.bind(this));
+		}
+	}
+
+	private showTooltip(): void {
+		this.isTooltipVisible.next(true);
+	}
+
+	private hideTooltip(): void {
+		this.isTooltipVisible.next(false);
 	}
 }

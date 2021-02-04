@@ -24,13 +24,13 @@ export class InfoDialogComponent implements OnInit {
 	public selectedRadarDataItemId$: Subject<string> = new Subject<string>();
 
 	constructor(
-		private radarViewFacadeSevice: RadarViewFacadeService,
+		private radarViewFacadeService: RadarViewFacadeService,
 		public sectorToColorConverter: SectorToColorConverterService,
 		private sanitizer: DomSanitizer
 	) {}
 
 	public ngOnInit(): void {
-		this.selectedRadarDataItem$ = combineLatest([this.radarViewFacadeSevice.radarDataItems$, this.selectedRadarDataItemId$]).pipe(
+		this.selectedRadarDataItem$ = combineLatest([this.radarViewFacadeService.radarDataItems$, this.selectedRadarDataItemId$]).pipe(
 			map(([radarDataItems, id]: [RadarDataItem[], string]) => {
 				return radarDataItems.find((radarDataItem: RadarDataItem) => radarDataItem.id === id);
 			})

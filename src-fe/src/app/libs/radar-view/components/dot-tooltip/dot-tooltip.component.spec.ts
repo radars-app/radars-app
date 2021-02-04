@@ -19,8 +19,18 @@ describe('DotTooltipComponent', () => {
 			declarations: [DotTooltipComponent],
 			imports: [CommonComponentsModule, HttpClientModule],
 			providers: [
-				RingToIconConverterService,
-				SectorToColorConverterService,
+				{
+					provide: RingToIconConverterService,
+					useValue: {
+						getIconClassByRing: jasmine.createSpy().and.returnValue('ring_legend_base'),
+					},
+				},
+				{
+					provide: SectorToColorConverterService,
+					useValue: {
+						getColorBySector: jasmine.createSpy().and.returnValue('#123123'),
+					},
+				},
 				{
 					provide: RadarViewFacadeService,
 					useValue: {

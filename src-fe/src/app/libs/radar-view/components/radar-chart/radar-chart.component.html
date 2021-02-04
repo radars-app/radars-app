@@ -1,11 +1,17 @@
 <svg #chartRoot class="radar-chart"></svg>
 
-<app-tooltip #tooltip [options]="dotTooltipOptions">
-	<app-dot-tooltip
-		class="radar-chart__dot-tooltip"
-		[dot]="hoveredDot"
-		[theme]="containerFacade.theme$ | async"></app-dot-tooltip>
+<app-tooltip [options]="tooltipOptions">
+	<app-dot-tooltip 	class="radar-chart__dot-tooltip" *ngIf="isSingleItem(tooltipItems)"
+										[dot]="firstTooltipItem"
+										[theme]="containerFacade.theme$ | async">
+	</app-dot-tooltip>
+
+	<app-cluster-tooltip class="radar-chart__cluster-tooltip" *ngIf="!isSingleItem(tooltipItems)"
+											[items]="tooltipItems"
+											[theme]="containerFacade.theme$ | async">
+	</app-cluster-tooltip>
 </app-tooltip>
+	
 
 <app-zoom-in-out-panel	class="radar-chart__zoom-in-out" 
 						(zoomInClicked)="zoomIn()"

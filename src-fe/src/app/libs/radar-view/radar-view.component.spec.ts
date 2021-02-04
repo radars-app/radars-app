@@ -18,6 +18,8 @@ import { DotTooltipComponent } from './components/dot-tooltip/dot-tooltip.compon
 import { RouterTestingModule } from '@angular/router/testing';
 import { DeleteRadarConfirmationDialogComponent } from './components/delete-radar-confirmation-dialog/delete-radar-confirmation-dialog.component';
 import { RadarHeaderComponent } from '../common-components/radar-header/radar-header.component';
+import { ClusterItemComponent } from './components/cluster-tooltip/cluster-item/cluster-item.component';
+import { ClusterTooltipComponent } from './components/cluster-tooltip/cluster-tooltip.component';
 
 describe('RadarViewComponent', () => {
 	let component: RadarViewComponent;
@@ -32,6 +34,8 @@ describe('RadarViewComponent', () => {
 				RadarChartComponent,
 				ZoomInOutPanelComponent,
 				DotTooltipComponent,
+				ClusterTooltipComponent,
+				ClusterItemComponent,
 				DeleteRadarConfirmationDialogComponent,
 				RadarHeaderComponent,
 			],

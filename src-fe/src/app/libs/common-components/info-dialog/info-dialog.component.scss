@@ -1,24 +1,12 @@
 @import 'variables';
 
-.dot-info {
-	display: flex;
-	margin-top: $main-grid-unit;
+.info-dialog {
+	&__ring-sector-description {
+		display: block;
+		margin-top: $main-grid-unit;
+	}
 
-	@include text-small();
-}
-
-.dot-info__section {
-	display: flex;
-	align-items: center;
-	margin-right: $secondary-grid-unit * 12;
-}
-
-.info-section__icon {
-	width: $secondary-grid-unit * 4;
-	height: $secondary-grid-unit * 3;
-	margin: 0 $secondary-grid-unit 0 0;
-}
-
-.dot-description {
-	@include text-p;
+	&__dot-description {
+		@include text-p;
+	}
 }

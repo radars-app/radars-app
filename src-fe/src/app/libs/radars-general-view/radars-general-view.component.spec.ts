@@ -44,9 +44,6 @@ describe('RadarsGeneralViewComponent', () => {
 			],
 			imports: [CommonComponentsModule, RouterTestingModule, BrowserAnimationsModule, HttpClientModule],
 		}).compileComponents();
-	});
-
-	beforeEach(() => {
 		const iconService: IconService = TestBed.inject(IconService);
 		iconService.addIcons();
 		fixture = TestBed.createComponent(RadarsGeneralViewComponent);

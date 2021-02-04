@@ -1,22 +1,11 @@
-<section
-	class="dot-tooltip"
-	*ngIf="dot"
-	[class.dot-tooltip--dark-theme]="isDarkTheme">
+<section 	class="dot-tooltip" 
+					*ngIf="dot"
+					[class.dot-tooltip--dark-theme]="isDarkTheme">
 
 	<h4 class="dot-tooltip__title">{{dot.name}}</h4>
-	<div class="dot-tooltip__sector">
-		<div class="dot-tooltip__icon">
-			<div class="color-rect" [style.background-color]="sectorToColorConverter.getColorBySector(dot.sector)"></div>
-		</div>
-		<div class="dot-tooltip__label">Sector:</div>
-		<div class="dot-tooltip__content">{{dot.sector}}</div>
-	</div>
-	<div class="dot-tooltip__ring">
-		<div class="dot-tooltip__icon">
-			<app-icon class="ring-icon" [icon]="ringToIconConverter.getIconClassByRing(dot.ring)" size="s"></app-icon>
-		</div>
-		<div class="dot-tooltip__label">Ring:</div>
-		
-		<div class="dot-tooltip__content">{{dot.ring}}</div>
-	</div>
+
+	<app-ring-sector-description 	[theme]="darkTheme" 
+																[ring]="dot.ring"
+																[sector]="dot.sector">
+	</app-ring-sector-description>
 </section>

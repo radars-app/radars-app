@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { CommonComponentsModule } from '../common-components.module';
 import { TooltipOptions } from './models/tooltip-options';
 import { TooltipPlacement } from './models/tooltip-placement';
 import { TooltipTrigger } from './models/tooltip-trigger';
@@ -33,6 +34,7 @@ describe('TooltipComponent', () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			declarations: [TooltipComponent, TestWrapperComponent],
+			imports: [CommonComponentsModule],
 		}).compileComponents();
 
 		fixture = TestBed.createComponent(TestWrapperComponent);

@@ -21,18 +21,22 @@ import { EventEmitter } from '@angular/core';
 })
 export class RadarChartComponent implements OnInit, AfterViewInit, OnDestroy {
 	@ViewChild('chartRoot', { static: false }) public chartRoot: ElementRef<SVGElement>;
-	@ViewChild('tooltip', { static: false }) public tooltipComponent: TooltipComponent;
+	@ViewChild(TooltipComponent, { static: false }) public tooltipComponent: TooltipComponent;
 
 	@Output() public dotClicked: EventEmitter<DotAction> = new EventEmitter<DotAction>();
 
-	public dotTooltipOptions: TooltipOptions;
-	public hoveredDot: RadarDataItem;
+	public tooltipOptions: TooltipOptions;
+	public tooltipItems: RadarDataItem[];
 
 	public config$: BehaviorSubject<RadarChartConfig>;
 	public radar$: Observable<Radar>;
 	public model: RadarChartModel;
 
 	private destroy$: Subject<void>;
+
+	public get firstTooltipItem(): RadarDataItem {
+		return this.tooltipItems?.['0'];
+	}
 
 	constructor(
 		public containerFacade: ContainerFacadeService,
@@ -86,6 +90,10 @@ export class RadarChartComponent implements OnInit, AfterViewInit, OnDestroy {
 		this.model.zoomReset();
 	}
 
+	public isSingleItem(items: RadarDataItem[]): boolean {
+		return items?.length === 1;
+	}
+
 	private handleModelChange(): void {
 		this.model = new RadarChartModel();
 
@@ -107,27 +115,35 @@ export class RadarChartComponent implements OnInit, AfterViewInit, OnDestroy {
 		});
 
 		this.model.dotHovered$.subscribe((dotAction: DotAction) => {
-			this.hoveredDot = this.getRadarItemById(dotAction.dotId);
-			this.dotTooltipOptions = {
-				target: dotAction.target as HTMLElement,
-				placement: TooltipPlacement.Top,
-				trigger: [TooltipTrigger.OnHover],
-				delay: '0.3s',
-			};
-			this.tooltipComponent.isTooltipVisible.next(true);
+			if (this.isSingleItem(dotAction.items)) {
+				this.tooltipItems = dotAction.items;
+				this.tooltipOptions = {
+					target: dotAction.target as HTMLElement,
+					placement: TooltipPlacement.Top,
+					trigger: [TooltipTrigger.OnHover],
+					delay: '0.3s',
+				};
+				this.tooltipComponent.isTooltipVisible.next(true);
+			}
 		});
 
 		this.model.dotClicked$.subscribe((dotAction: DotAction) => {
+			if (!this.isSingleItem(dotAction.items)) {
+				this.tooltipItems = dotAction.items;
+				this.tooltipOptions = {
+					target: dotAction.target as HTMLElement,
+					placement: TooltipPlacement.Bottom,
+					trigger: [TooltipTrigger.OnClick],
+					delay: '0s',
+				};
+				this.tooltipComponent.isTooltipVisible.next(true);
+			}
 			this.dotClicked.emit(dotAction);
 		});
 
 		this.model.zoomed$.subscribe(() => {
 			this.tooltipComponent.positioner?.forceUpdate();
 		});
-	}
-
-	private getRadarItemById(id: string): RadarDataItem {
-		return this.model.dots$.getValue().find((radarItem: RadarDataItem) => radarItem.id === id) as RadarDataItem;
 	}
 
 	private handleThemeChange(): void {
@@ -146,7 +162,7 @@ export class RadarChartComponent implements OnInit, AfterViewInit, OnDestroy {
 		lightConfig.dividersConfig.dividerColor = lightThemeLinesColor;
 
 		const primaryColor: string = '#5E6670';
-		const secondaryColor: string = '#2D3443';
+		const secondaryColor: string = '#272C39';
 		const darkThemeTextColor: string = '#fff';
 
 		darkConfig.backgroundColor = secondaryColor;
