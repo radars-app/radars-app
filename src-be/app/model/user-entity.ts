@@ -8,6 +8,6 @@ export interface UserEntity {
 }
 
 export interface UserProfileDto {
-	mail: string;
+	userPrincipalName: string;
 	displayName: string;
 }

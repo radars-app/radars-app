@@ -12,7 +12,7 @@ export async function expressAuthentication(request: Request, securityName: stri
 		return axios
 			.get('https://graph.microsoft.com/v1.0/me')
 			.then((profileDto: AxiosResponse<UserProfileDto>) => {
-				return roleConfig.admin.includes(profileDto.data.mail);
+				return roleConfig.admin.includes(profileDto.data.userPrincipalName);
 			})
 			.catch((error: string) => {
 				console.log(error);

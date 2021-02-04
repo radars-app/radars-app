@@ -62,9 +62,7 @@ export class TooltipComponent implements OnInit, OnChanges, OnDestroy {
 	}
 
 	public ngOnDestroy(): void {
-		if (this.options.trigger.includes(TooltipTrigger.OnClick)) {
-			window.removeEventListener('click', this.hideTooltip.bind(this));
-		}
+		window.removeEventListener('click', this.hideTooltip.bind(this));
 	}
 
 	private initVisibilityBehavior(target: HTMLElement): void {

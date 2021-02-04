@@ -22,7 +22,7 @@ export class UserService {
 					Authorization: onBehalfOfToken,
 				},
 			});
-			user.email = profileDto.data.mail;
+			user.email = profileDto.data.userPrincipalName;
 			user.fullName = profileDto.data.displayName;
 		} catch (err) {
 			user.email = '';
