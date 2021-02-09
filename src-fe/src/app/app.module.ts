@@ -16,6 +16,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import creds from '../../auth-config.json';
 import { ContainerModule } from './libs/container/container.module';
 import { CommonModule } from '@angular/common';
+import { AuthRedirectInterceptor } from './libs/container/interceptors/auth-redirect.interceptor';
 
 @NgModule({
 	declarations: [AppComponent],
@@ -52,11 +53,18 @@ import { CommonModule } from '@angular/common';
 		),
 	],
 	providers: [
-		{
-			provide: HTTP_INTERCEPTORS,
-			useClass: MsalInterceptor,
-			multi: true,
-		},
+		[
+			{
+				provide: HTTP_INTERCEPTORS,
+				useClass: MsalInterceptor,
+				multi: true,
+			},
+			{
+				provide: HTTP_INTERCEPTORS,
+				useClass: AuthRedirectInterceptor,
+				multi: true,
+			},
+		],
 	],
 	bootstrap: [AppComponent],
 })

@@ -25,8 +25,7 @@ export class UserService {
 			user.email = profileDto.data.userPrincipalName;
 			user.fullName = profileDto.data.displayName;
 		} catch (err) {
-			user.email = '';
-			user.fullName = '';
+			throw new Error('Failed to load user profile');
 		}
 
 		try {
@@ -44,7 +43,6 @@ export class UserService {
 		}
 
 		user.role = roleConfig.admin.includes(user.email) ? UserRole.Admin : UserRole.Default;
-
 		return Promise.resolve(user);
 	}
 }
