@@ -30,7 +30,15 @@
 						"type": "string"
 					}
 				},
-				"required": ["id", "radarId", "versionId", "name", "sector", "ring", "content"],
+				"required": [
+					"id",
+					"radarId",
+					"versionId",
+					"name",
+					"sector",
+					"ring",
+					"content"
+				],
 				"type": "object",
 				"additionalProperties": false
 			},
@@ -55,7 +63,12 @@
 						"type": "string"
 					}
 				},
-				"required": ["name", "rings", "sectors", "csv"],
+				"required": [
+					"name",
+					"rings",
+					"sectors",
+					"csv"
+				],
 				"type": "object",
 				"additionalProperties": false
 			},
@@ -92,12 +105,24 @@
 						"$ref": "#/components/schemas/RadarConfig"
 					}
 				},
-				"required": ["uid", "radarId", "name", "lastUpdatedDate", "versionId", "rings", "sectors", "config"],
+				"required": [
+					"uid",
+					"radarId",
+					"name",
+					"lastUpdatedDate",
+					"versionId",
+					"rings",
+					"sectors",
+					"config"
+				],
 				"type": "object",
 				"additionalProperties": false
 			},
 			"UserRole": {
-				"enum": ["admin", "default"],
+				"enum": [
+					"admin",
+					"default"
+				],
 				"type": "string"
 			},
 			"UserEntity": {
@@ -115,7 +140,12 @@
 						"type": "string"
 					}
 				},
-				"required": ["fullName", "email", "role", "photo"],
+				"required": [
+					"fullName",
+					"email",
+					"role",
+					"photo"
+				],
 				"type": "object",
 				"additionalProperties": false
 			}
@@ -303,7 +333,9 @@
 											"type": "string"
 										}
 									},
-									"required": ["reason"],
+									"required": [
+										"reason"
+									],
 									"type": "object"
 								}
 							}

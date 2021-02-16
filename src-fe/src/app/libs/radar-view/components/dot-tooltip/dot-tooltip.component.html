@@ -2,7 +2,7 @@
 					*ngIf="dot"
 					[class.dot-tooltip--dark-theme]="isDarkTheme">
 
-	<h4 class="dot-tooltip__title">{{dot.name}}</h4>
+	<h4 class="dot-tooltip__title">{{dot.number}}. {{dot.name}}</h4>
 
 	<app-ring-sector-description 	[theme]="darkTheme" 
 																[ring]="dot.ring"

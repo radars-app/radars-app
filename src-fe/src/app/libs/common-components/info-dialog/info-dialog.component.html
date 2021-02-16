@@ -3,18 +3,19 @@
 					#modal>
 
 	<div class="modal-window-title">
-		<span>{{(selectedRadarDataItem$ | async)?.name}}</span>
+		<span>{{selectedRadarDataItem?.number}}. </span>
+		<span>{{selectedRadarDataItem?.name}}</span>
 		<app-ring-sector-description 	class="info-dialog__ring-sector-description"
 																	[theme]="theme"
 																	[horizontal]="true"
-																	[ring]="(selectedRadarDataItem$ | async)?.sector"
-																	[sector]="(selectedRadarDataItem$ | async)?.sector">
+																	[ring]="selectedRadarDataItem?.ring"
+																	[sector]="selectedRadarDataItem?.sector">
 
 		</app-ring-sector-description>
 	</div>
 
 	<div class="modal-window-content">
-		<span class="info-dialog__dot-description" [innerHTML]="(selectedRadarDataItemContent$ | async)"></span>
+		<span class="info-dialog__dot-description" [innerHTML]="selectedRadarDataItemContent"></span>
 	</div>
 
 	<div class="modal-window-actions">

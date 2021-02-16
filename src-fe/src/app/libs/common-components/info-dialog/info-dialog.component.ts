@@ -1,7 +1,7 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { Observable, combineLatest, Subject } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { combineLatest, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { RadarDataItem } from '../../radar-view/model/radar-data-item';
 import { RadarViewFacadeService } from '../../radar-view/service/radar-view-facade.service';
 import { SectorToColorConverterService } from '../../radar-view/service/sector-to-color-converter.service';
@@ -13,15 +13,17 @@ import { ModalWindowComponent } from '../modal-window/modal-window.component';
 	templateUrl: './info-dialog.component.html',
 	styleUrls: ['./info-dialog.component.scss'],
 })
-export class InfoDialogComponent implements OnInit {
+export class InfoDialogComponent implements OnInit, OnDestroy {
 	@ViewChild('modal', { static: true })
 	public readonly modal: ModalWindowComponent;
 
 	@Input() public theme: ComponentTheme = ComponentTheme.Light;
 
-	public selectedRadarDataItem$: Observable<RadarDataItem>;
-	public selectedRadarDataItemContent$: Observable<SafeHtml>;
+	public selectedRadarDataItem: RadarDataItem;
+	public selectedRadarDataItemContent: SafeHtml;
 	public selectedRadarDataItemId$: Subject<string> = new Subject<string>();
+
+	public destroy$: Subject<void> = new Subject<void>();
 
 	constructor(
 		private radarViewFacadeService: RadarViewFacadeService,
@@ -30,18 +32,13 @@ export class InfoDialogComponent implements OnInit {
 	) {}
 
 	public ngOnInit(): void {
-		this.selectedRadarDataItem$ = combineLatest([this.radarViewFacadeService.radarDataItems$, this.selectedRadarDataItemId$]).pipe(
-			map(([radarDataItems, id]: [RadarDataItem[], string]) => {
-				return radarDataItems.find((radarDataItem: RadarDataItem) => radarDataItem.id === id);
-			})
-		);
-
-		this.selectedRadarDataItemContent$ = this.selectedRadarDataItem$.pipe(
-			map((selectedItem: RadarDataItem) => {
-				const HTMLString: string = selectedItem.content;
-				return this.sanitizer.bypassSecurityTrustHtml(HTMLString);
-			})
-		);
+		combineLatest([this.radarViewFacadeService.radarDataItems$, this.selectedRadarDataItemId$])
+			.pipe(takeUntil(this.destroy$))
+			.subscribe(([radarDataItems, id]: [RadarDataItem[], string]) => {
+				this.selectedRadarDataItem = radarDataItems.find((radarDataItem: RadarDataItem) => radarDataItem.id === id);
+				const HTMLString: string = this.selectedRadarDataItem.content;
+				this.selectedRadarDataItemContent = this.sanitizer.bypassSecurityTrustHtml(HTMLString);
+			});
 	}
 
 	public get isDarkTheme(): boolean {
@@ -55,5 +52,10 @@ export class InfoDialogComponent implements OnInit {
 
 	public close(): void {
 		this.modal.close();
+	}
+
+	public ngOnDestroy(): void {
+		this.destroy$.next();
+		this.destroy$.complete();
 	}
 }
