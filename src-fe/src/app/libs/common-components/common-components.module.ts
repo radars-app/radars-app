@@ -35,6 +35,7 @@ import { ToastNotificationComponent } from './toast-notification/toast-notificat
 import { ToastrModule } from 'ngx-toastr';
 import { ToastNotificationService } from './toast-notification/service/toast-notification.service';
 import { RingSectorDescriptionComponent } from './ring-sector-description/ring-sector-description.component';
+import { HighlightTextPipe } from './text-input/pipe/highlight-text.pipe';
 
 @NgModule({
 	declarations: [
@@ -57,6 +58,7 @@ import { RingSectorDescriptionComponent } from './ring-sector-description/ring-s
 		ModalWindowComponent,
 		ToastNotificationComponent,
 		RingSectorDescriptionComponent,
+		HighlightTextPipe,
 	],
 	imports: [
 		MatButtonModule,

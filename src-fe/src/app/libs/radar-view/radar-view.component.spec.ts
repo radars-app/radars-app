@@ -101,6 +101,7 @@ describe('RadarViewComponent', () => {
 								number: 1,
 							},
 						]),
+						searchQuery$: of('Linux'),
 						loadRadars: jasmine.createSpy().and.stub(),
 					},
 				},

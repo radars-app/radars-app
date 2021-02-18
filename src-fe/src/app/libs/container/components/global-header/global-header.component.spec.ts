@@ -2,8 +2,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { CommonComponentsModule } from 'src/app/libs/common-components/common-components.module';
 import { IconService } from 'src/app/libs/common-components/icon/service/icon.service';
+import { ContainerFacadeService } from '../../service/container-facade.service';
+import { ProfilePopupComponent } from '../profile-popup/profile-popup.component';
 import { UserProfileComponent } from '../user-profile/user-profile.component';
 
 import { GlobalHeaderComponent } from './global-header.component';
@@ -18,12 +21,22 @@ describe('GlobalHeaderComponent', () => {
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: [GlobalHeaderComponent, UserProfileComponent],
+			declarations: [GlobalHeaderComponent, UserProfileComponent, ProfilePopupComponent],
 			imports: [CommonComponentsModule, BrowserAnimationsModule, HttpClientModule],
 			providers: [
 				{
 					provide: Router,
 					useValue: router,
+				},
+				{
+					provide: ContainerFacadeService,
+					useValue: {
+						setTheme: jasmine.createSpy(),
+					},
+				},
+				{
+					provide: Store,
+					useValue: {},
 				},
 			],
 		}).compileComponents();

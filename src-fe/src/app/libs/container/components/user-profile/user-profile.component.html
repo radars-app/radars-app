@@ -1,9 +1,6 @@
-<img
-	class="user-profile__photo"
-	[src]="photoUrl"
-	alt="user photo"
-	(click)="toggleProfilePopup()"/>
+<img	class="user-profile__photo"
+		[src]="photoUrl"
+		alt="user photo"
+		(click)="profilePopup.toggle()"/>
 
-<app-radars-profile-popup 
-	(clickOutside$)="closeProfile()" 
-	*ngIf="showProfilePopup"></app-radars-profile-popup>
+<app-radars-profile-popup #profilePopup></app-radars-profile-popup>

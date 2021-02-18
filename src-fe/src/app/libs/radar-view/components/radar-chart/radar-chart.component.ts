@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { DotAction, RadarChartConfig, RadarChartModel, RadarChartRenderer } from 'radar-chart-project';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { filter, map, takeUntil } from 'rxjs/operators';
+import { debounceTime, filter, map, takeUntil } from 'rxjs/operators';
 import { ComponentTheme } from 'src/app/libs/common-components/common/enum/component-theme.enum';
 import { ContainerFacadeService } from 'src/app/libs/container/service/container-facade.service';
 import { Radar } from '../../model/radar';
@@ -108,11 +108,14 @@ export class RadarChartComponent implements OnInit, AfterViewInit, OnDestroy {
 			this.model.sectors$.next(sectors.reverse());
 		});
 
-		this.radarViewFacade.filteredRadarDataItems$.pipe(takeUntil(this.destroy$)).subscribe((items: RadarDataItem[]) => {
-			if (Boolean(items)) {
-				this.model.dots$.next(items);
-			}
-		});
+		const minDotRenderInterval: number = 200;
+		this.radarViewFacade.filteredRadarDataItems$
+			.pipe(takeUntil(this.destroy$), debounceTime(minDotRenderInterval))
+			.subscribe((items: RadarDataItem[]) => {
+				if (Boolean(items)) {
+					this.model.dots$.next(items);
+				}
+			});
 
 		this.model.dotHovered$.subscribe((dotAction: DotAction) => {
 			if (this.isSingleItem(dotAction.items)) {

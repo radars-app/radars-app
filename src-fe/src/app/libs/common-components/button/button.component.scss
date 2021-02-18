@@ -25,7 +25,7 @@
 	}
 
 	&--dark-theme {
-		color: #99a6b5;
+		color: $font-color-gray;
 		border-color: white;
 
 		&:not([disabled]):hover {

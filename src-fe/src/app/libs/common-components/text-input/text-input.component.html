@@ -6,11 +6,29 @@
 		<app-icon  *ngIf="hasIcon" matPrefix class="text-input__icon" [icon]="preIcon"></app-icon>
 		<input	class="input"
 				[class.input--margin-left]="hasIcon"
-				matInput type="text"
-				aria-label="Number"
-				autocomplete="off"
-				(change)="valueChange.next($event.target.value)"
+				matInput
+				type="text"
+				(keyup)="valueChange.next($event.target.value)"
 				[placeholder]="placeholder"
+				[matAutocomplete]="auto"
 				[formControl]="inputControl">
+		<app-icon	class="text-input__close-button"
+					icon="close"
+					size="xs"
+					(click)="reset()">
+		</app-icon>
+		<mat-autocomplete	#auto="matAutocomplete"
+							matAutocompleteDisabled="!autoCompleteEnabled"
+							(optionSelected)="selectAutoCompleteOption($event)"
+							[displayWith]="mapOption"
+							[class]="isDarkTheme ? 'dark' : ''"
+							disableRipple="true"
+							>
+			<perfect-scrollbar>
+				<mat-option *ngFor="let option of autoCompleteOptions" [value]="option">
+					<span [innerHTML]="option.label | highlightText : inputControl.value"></span>
+				</mat-option>
+			</perfect-scrollbar>
+		</mat-autocomplete>
 	</mat-form-field>
 </div>

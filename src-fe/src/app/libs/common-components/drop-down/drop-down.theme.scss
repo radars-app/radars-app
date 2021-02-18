@@ -56,7 +56,7 @@
 
 		&.drop-down__panel--dark-theme {
 			.mat-option {
-				color: #99a6b5;
+				color: $font-color-gray;
 
 				&.mat-selected:not(.mat-option-disabled) {
 					color: $color-white;
@@ -79,11 +79,11 @@
 		@include app-form-field--dark-theme;
 
 		.mat-select-arrow {
-			color: #99a6b5;
+			color: $font-color-gray;
 		}
 
 		.mat-form-field.mat-focused.mat-primary .mat-select-arrow {
-			color: #99a6b5;
+			color: $font-color-gray;
 		}
 	}
 }

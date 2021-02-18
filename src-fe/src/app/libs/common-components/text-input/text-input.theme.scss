@@ -4,6 +4,11 @@
 .text-input {
 	@include app-form-field;
 
+	.mat-form-field-infix {
+		display: flex;
+		align-items: center;
+	}
+
 	.input.mat-input-element {
 		caret-color: currentColor;
 
@@ -25,6 +30,36 @@
 			color: #99a6b5;
 			opacity: 0.7;
 			transition: none;
+		}
+	}
+}
+
+.mat-option-text .highlight {
+	@include text-p;
+}
+
+.mat-option-text {
+	@include text-p-bold;
+
+	color: #5e6670;
+}
+
+.mat-option:hover {
+	background-color: #f1f4f9;
+}
+
+.mat-autocomplete-panel.dark {
+	background-color: $panel-bg-dark !important;
+
+	.mat-option-text {
+		color: $font-color-gray;
+	}
+
+	.mat-option:hover {
+		background-color: #414954;
+
+		.mat-option-text {
+			color: #fff;
 		}
 	}
 }

@@ -22,11 +22,11 @@
 
 	&.drop-down--dark-theme {
 		& .drop-down__selected {
-			color: #99a6b5;
+			color: $font-color-gray;
 		}
 
 		& .drop-down__icon {
-			color: #99a6b5;
+			color: $font-color-gray;
 		}
 	}
 }

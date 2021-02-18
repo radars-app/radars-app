@@ -1,6 +1,8 @@
 import { AfterViewInit, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { ComponentTheme } from '../common/enum/component-theme.enum';
+import { AutoCompleteOption } from './model/auto-complete-option';
 
 @Component({
 	selector: 'app-text-input',
@@ -10,6 +12,12 @@ import { ComponentTheme } from '../common/enum/component-theme.enum';
 export class TextInputComponent implements AfterViewInit, OnChanges {
 	@Input()
 	public theme: ComponentTheme;
+
+	@Input()
+	public autoCompleteOptions: AutoCompleteOption[];
+
+	@Input()
+	public isAutoCompleteEnabled: boolean;
 
 	@Input()
 	public placeholder: string;
@@ -30,6 +38,9 @@ export class TextInputComponent implements AfterViewInit, OnChanges {
 	public value: any;
 
 	@Output()
+	public autoCompleteOptionSelected: EventEmitter<AutoCompleteOption> = new EventEmitter<AutoCompleteOption>();
+
+	@Output()
 	public valueChange: EventEmitter<any> = new EventEmitter<any>();
 
 	public inputControl: FormControl = new FormControl();
@@ -46,6 +57,11 @@ export class TextInputComponent implements AfterViewInit, OnChanges {
 		return Boolean(this.label);
 	}
 
+	public selectAutoCompleteOption(event: MatAutocompleteSelectedEvent): void {
+		this.valueChange.next(event.option.value.label);
+		this.autoCompleteOptionSelected.next(event.option.value);
+	}
+
 	public ngAfterViewInit(): void {
 		setTimeout(() => {
 			if (Boolean(this.value)) {
@@ -58,5 +74,15 @@ export class TextInputComponent implements AfterViewInit, OnChanges {
 		if (changes.value) {
 			this.inputControl.setValue(this.value);
 		}
+	}
+
+	public reset(): void {
+		this.valueChange.next('');
+		this.inputControl.setValue('');
+		this.autoCompleteOptions = [];
+	}
+
+	public mapOption(value: AutoCompleteOption): string {
+		return value?.label;
 	}
 }

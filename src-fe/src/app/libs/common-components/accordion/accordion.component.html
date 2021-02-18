@@ -4,7 +4,8 @@
 		*ngFor="let item of items"
 		(opened)="item.opened = true"
 		(closed)="item.opened = false"
-		hideToggle="true">
+		hideToggle="true"
+		[expanded]="item.opened">
 
 		<mat-expansion-panel-header>
 

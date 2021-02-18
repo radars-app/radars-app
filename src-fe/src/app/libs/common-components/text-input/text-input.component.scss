@@ -14,7 +14,17 @@
 
 	&.text-input--dark-theme {
 		.text-input__icon {
-			color: #99a6b5;
+			color: $font-color-gray;
+		}
+
+		.text-input__close-button {
+			color: $font-color-gray;
+
+			&:hover,
+			&:focus {
+				outline: 0;
+				color: #fff;
+			}
 		}
 	}
 
@@ -35,6 +45,18 @@
 
 	&__required-mark {
 		color: #da3a3a;
+	}
+}
+
+.text-input__close-button {
+	margin-left: $main-grid-unit;
+	color: #5e6670;
+	cursor: pointer;
+
+	&:hover,
+	&:focus {
+		outline: 0;
+		color: #000;
 	}
 }
 

@@ -1,6 +1,7 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
 import { combineLatest, Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
+import { AccordionComponent } from 'src/app/libs/common-components/accordion/accordion.component';
 import { AccordionItem } from 'src/app/libs/common-components/accordion/models/accordion-item.models';
 import { ComponentTheme } from 'src/app/libs/common-components/common/enum/component-theme.enum';
 import { ContainerFacadeService } from 'src/app/libs/container/service/container-facade.service';
@@ -15,6 +16,7 @@ import { SectorToColorConverterService } from '../../service/sector-to-color-con
 	styleUrls: ['./side-navigation.component.scss'],
 })
 export class SideNavigationComponent implements OnInit {
+	@ViewChild('accordion', { static: false }) public accordion: AccordionComponent;
 	@Output() public showRadarDataItemDetails$: EventEmitter<string> = new EventEmitter();
 
 	public theme$: Observable<ComponentTheme>;
@@ -65,6 +67,10 @@ export class SideNavigationComponent implements OnInit {
 				});
 			})
 		);
+	}
+
+	public openAccordionByItemId(id: string): void {
+		this.accordion.openAccordionByItemId(id);
 	}
 
 	public showRadarDataItemDetails(event: string): void {

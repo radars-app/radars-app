@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ComponentTheme } from '../common/enum/component-theme.enum';
 import { AccordionItem } from './models/accordion-item.models';
+import { AccordionSubItem } from './models/accordion-subitem.model';
 
 @Component({
 	selector: 'app-radars-accordion',
@@ -13,7 +14,7 @@ export class AccordionComponent implements OnInit {
 
 	@Output() public subItemClicked$: EventEmitter<string> = new EventEmitter();
 
-	constructor() {}
+	constructor(private cdRef: ChangeDetectorRef) {}
 
 	public ngOnInit(): void {}
 
@@ -23,5 +24,17 @@ export class AccordionComponent implements OnInit {
 
 	public get isDarkTheme(): boolean {
 		return this.theme === ComponentTheme.Dark;
+	}
+
+	public openAccordionByItemId(id: string): void {
+		const item: AccordionItem = this.items.find((option: AccordionItem) => {
+			return option.children.find((child: AccordionSubItem) => child.id === id);
+		});
+
+		if (Boolean(item)) {
+			item.opened = true;
+		}
+
+		this.cdRef.markForCheck();
 	}
 }

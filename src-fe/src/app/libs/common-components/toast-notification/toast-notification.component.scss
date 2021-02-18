@@ -51,7 +51,7 @@
 	background-color: $panel-bg-dark;
 
 	.toast-notification__close-button {
-		color: #99a6b5;
+		color: $font-color-gray;
 
 		&:hover,
 		&:focus {

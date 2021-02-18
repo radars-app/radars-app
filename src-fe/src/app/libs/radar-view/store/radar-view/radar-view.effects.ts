@@ -28,6 +28,7 @@ import { RadarDataItem, RadarDataItemDto } from '../../model/radar-data-item';
 import { RadarDataItemConverterService } from '../../service/radar-data-item-converter.service';
 import { RadarViewFacadeService } from '../../service/radar-view-facade.service';
 import { ToastNotificationService } from 'src/app/libs/common-components/toast-notification/service/toast-notification.service';
+import { DotFilteringServiceService } from '../../service/dot-filtering-service.service';
 
 @Injectable()
 export class RadarViewEffects {
@@ -179,9 +180,7 @@ export class RadarViewEffects {
 			let filteredDataItems: RadarDataItem[] = radarDataItems;
 
 			if (Boolean(searchQuery)) {
-				filteredDataItems = radarDataItems.filter((item: RadarDataItem) =>
-					item.name.toLowerCase().includes(searchQuery.trim().toLowerCase())
-				);
+				filteredDataItems = this.dotFilteringService.filterDotsBySearchQuery(searchQuery, radarDataItems);
 			}
 
 			return new SetFilteredRadarItems(filteredDataItems);
@@ -194,6 +193,7 @@ export class RadarViewEffects {
 		private radarConverterService: RadarConverterService,
 		private radarDataItemsConverterService: RadarDataItemConverterService,
 		private radarViewFacadeService: RadarViewFacadeService,
-		private toastNotificationService: ToastNotificationService
+		private toastNotificationService: ToastNotificationService,
+		private dotFilteringService: DotFilteringServiceService
 	) {}
 }
