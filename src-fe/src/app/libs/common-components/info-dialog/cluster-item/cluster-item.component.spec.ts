@@ -1,11 +1,11 @@
 import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
-import { CommonComponentsModule } from '../../../../common-components/common-components.module';
-import { IconService } from '../../../../common-components/icon/service/icon.service';
-import { RadarViewFacadeService } from '../../../service/radar-view-facade.service';
-import { RingToIconConverterService } from '../../../service/ring-to-icon-converter.service';
-import { SectorToColorConverterService } from '../../../service/sector-to-color-converter.service';
+import { RadarViewFacadeService } from '../../../radar-view/service/radar-view-facade.service';
+import { RingToIconConverterService } from '../../../radar-view/service/ring-to-icon-converter.service';
+import { SectorToColorConverterService } from '../../../radar-view/service/sector-to-color-converter.service';
+import { CommonComponentsModule } from '../../common-components.module';
+import { IconService } from '../../icon/service/icon.service';
 
 import { ClusterItemComponent } from './cluster-item.component';
 

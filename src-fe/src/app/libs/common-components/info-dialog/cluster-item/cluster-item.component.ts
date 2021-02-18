@@ -1,8 +1,9 @@
-import { Component, HostListener, Input, ViewChild } from '@angular/core';
-import { ComponentTheme } from '../../../../common-components/common/enum/component-theme.enum';
-import { InfoDialogComponent } from '../../../../common-components/info-dialog/info-dialog.component';
-import { RadarDataItem } from '../../../model/radar-data-item';
-import { SectorToColorConverterService } from '../../../service/sector-to-color-converter.service';
+import { EventEmitter } from '@angular/core';
+import { Component, ViewChild, Input, HostListener, Output } from '@angular/core';
+import { RadarDataItem } from '../../../radar-view/model/radar-data-item';
+import { SectorToColorConverterService } from '../../../radar-view/service/sector-to-color-converter.service';
+import { ComponentTheme } from '../../common/enum/component-theme.enum';
+import { InfoDialogComponent } from '../info-dialog.component';
 
 @Component({
 	selector: 'app-cluster-item',
@@ -19,6 +20,9 @@ export class ClusterItemComponent {
 	@Input()
 	public dot: RadarDataItem;
 
+	@Output()
+	public dotClicked: EventEmitter<RadarDataItem> = new EventEmitter<RadarDataItem>();
+
 	public get isDarkTheme(): boolean {
 		return this.theme === ComponentTheme.Dark;
 	}
@@ -27,6 +31,6 @@ export class ClusterItemComponent {
 
 	@HostListener('click')
 	public onClick(): void {
-		this.infoDialog.open(this.dot.id);
+		this.dotClicked.next(this.dot);
 	}
 }

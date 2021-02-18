@@ -4,6 +4,34 @@
 	&__ring-sector-description {
 		display: block;
 		margin-top: $main-grid-unit;
+		margin-bottom: -$gutter-width + $main-grid-unit;
+	}
+
+	&__title {
+		display: flex;
+		align-items: center;
+	}
+
+	&__icon-back {
+		cursor: pointer;
+		color: $panel-border-dark;
+		margin-right: $gutter-width - 2px;
+
+		&:hover,
+		&:focus {
+			outline: 0;
+			color: #000;
+		}
+
+		&--dark-theme {
+			color: #99a6b5;
+
+			&:hover,
+			&:focus {
+				outline: 0;
+				color: #fff;
+			}
+		}
 	}
 
 	&__dot-description {

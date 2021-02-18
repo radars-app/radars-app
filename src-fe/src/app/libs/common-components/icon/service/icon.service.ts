@@ -69,5 +69,9 @@ export class IconService {
 		this.matIconRegistry.addSvgIcon('z-to-a', this.domSanitizer.bypassSecurityTrustResourceUrl('../../../../../assets/svg/z-to-a.svg'));
 		this.matIconRegistry.addSvgIcon('a-to-z', this.domSanitizer.bypassSecurityTrustResourceUrl('../../../../../assets/svg/a-to-z.svg'));
 		this.matIconRegistry.addSvgIcon('plus', this.domSanitizer.bypassSecurityTrustResourceUrl('../../../../../assets/plus.svg'));
+		this.matIconRegistry.addSvgIcon(
+			'arrow-left',
+			this.domSanitizer.bypassSecurityTrustResourceUrl('../../../../../assets/svg/arrow-left-1.svg')
+		);
 	}
 }

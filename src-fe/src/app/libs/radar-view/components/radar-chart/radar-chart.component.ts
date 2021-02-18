@@ -131,16 +131,6 @@ export class RadarChartComponent implements OnInit, AfterViewInit, OnDestroy {
 		});
 
 		this.model.dotClicked$.subscribe((dotAction: DotAction) => {
-			if (!this.isSingleItem(dotAction.items)) {
-				this.tooltipItems = dotAction.items;
-				this.tooltipOptions = {
-					target: dotAction.target as HTMLElement,
-					placement: TooltipPlacement.Bottom,
-					trigger: [TooltipTrigger.OnClick],
-					delay: '0s',
-				};
-				this.tooltipComponent.isTooltipVisible.next(true);
-			}
 			this.dotClicked.emit(dotAction);
 		});
 

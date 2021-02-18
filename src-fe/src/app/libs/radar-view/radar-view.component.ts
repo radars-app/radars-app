@@ -93,13 +93,12 @@ export class RadarViewComponent implements OnInit, OnDestroy {
 	}
 
 	public onDotClicked(event: RadarDataItem[]): void {
-		if (event.length === 1) {
-			this.openInfoDialog(event[0].id);
-		}
+		const itemIds: string[] = event.map((radarDataItem: RadarDataItem) => radarDataItem.id);
+		this.infoDialog.open(itemIds);
 	}
 
-	public openInfoDialog(event: string): void {
-		this.infoDialog.open(event);
+	public openInfoDialogById(id: string): void {
+		this.infoDialog.open([id]);
 	}
 
 	public search(searchString: string): void {

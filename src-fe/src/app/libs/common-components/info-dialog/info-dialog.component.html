@@ -1,24 +1,37 @@
 <app-modal-window	width="540px"
-					[theme]="theme"
-					#modal>
-
+									[theme]="theme"
+									#modal>
+	
 	<div class="modal-window-title">
-		<span>{{selectedRadarDataItem?.number}}. </span>
-		<span>{{selectedRadarDataItem?.name}}</span>
+		<div class="info-dialog__title">
+			<app-icon	*ngIf="isClusterItemOpened"
+								class="info-dialog__icon-back"
+								[class.info-dialog__icon-back--dark-theme]="isDarkTheme"
+								icon="arrow-left"
+								(click)="hideClusterItem()">
+			</app-icon>
+			<span>{{title | async}}</span>
+		</div>
+		
 		<app-ring-sector-description 	class="info-dialog__ring-sector-description"
 																	[theme]="theme"
 																	[horizontal]="true"
-																	[ring]="selectedRadarDataItem?.ring"
-																	[sector]="selectedRadarDataItem?.sector">
+																	[ring]="ring"
+																	[sector]="sector">
 
 		</app-ring-sector-description>
 	</div>
 
 	<div class="modal-window-content">
-		<span class="info-dialog__dot-description" [innerHTML]="selectedRadarDataItemContent"></span>
+		<ng-container *ngIf="isSingleDotToShow">
+			<span class="info-dialog__dot-description" [innerHTML]="selectedContent"></span>
+		</ng-container>
+		<ng-container *ngIf="!isSingleDotToShow">
+			<app-cluster-item *ngFor="let item of selectedItems" [dot]="item" [theme]="theme" (dotClicked)="showClusterItem($event)"></app-cluster-item>
+		</ng-container>
 	</div>
 
-	<div class="modal-window-actions">
+	<div class="modal-window-actions" *ngIf="isSingleDotToShow">
 		<app-button	type="flat"
 					[theme]="theme"
 					(click)="close()">

@@ -10,8 +10,6 @@ import { IconService } from 'src/app/libs/common-components/icon/service/icon.se
 import { HttpClientModule } from '@angular/common/http';
 import { DotTooltipComponent } from '../dot-tooltip/dot-tooltip.component';
 import { ZoomInOutPanelComponent } from '../zoom-in-out-panel/zoom-in-out-panel.component';
-import { ClusterTooltipComponent } from '../cluster-tooltip/cluster-tooltip.component';
-import { ClusterItemComponent } from '../cluster-tooltip/cluster-item/cluster-item.component';
 
 describe('RadarChartComponent', () => {
 	let component: RadarChartComponent;
@@ -19,13 +17,7 @@ describe('RadarChartComponent', () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [
-				RadarChartComponent,
-				ZoomInOutPanelComponent,
-				DotTooltipComponent,
-				ClusterTooltipComponent,
-				ClusterItemComponent,
-			],
+			declarations: [RadarChartComponent, ZoomInOutPanelComponent, DotTooltipComponent],
 			imports: [CommonComponentsModule, HttpClientModule],
 			providers: [
 				{

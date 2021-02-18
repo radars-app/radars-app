@@ -14,8 +14,6 @@ import { EditRadarPageComponent } from './components/edit-radar-page/edit-radar-
 import { RadarEditorModule } from '../radar-editor/radar-editor.module';
 import { CreateRadarPageComponent } from './components/create-radar-page/create-radar-page.component';
 import { DeleteRadarConfirmationDialogComponent } from './components/delete-radar-confirmation-dialog/delete-radar-confirmation-dialog.component';
-import { ClusterTooltipComponent } from './components/cluster-tooltip/cluster-tooltip.component';
-import { ClusterItemComponent } from './components/cluster-tooltip/cluster-item/cluster-item.component';
 
 @NgModule({
 	declarations: [
@@ -28,8 +26,6 @@ import { ClusterItemComponent } from './components/cluster-tooltip/cluster-item/
 		EditRadarPageComponent,
 		CreateRadarPageComponent,
 		DeleteRadarConfirmationDialogComponent,
-		ClusterTooltipComponent,
-		ClusterItemComponent,
 	],
 	imports: [
 		CommonComponentsModule,

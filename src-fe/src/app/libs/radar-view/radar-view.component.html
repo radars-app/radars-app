@@ -15,8 +15,8 @@
 	<div class="radar-view__content-wrapper">
 
 		<app-side-navigation	#sideNavigation
-								class="radar-view__side-navigation"
-								(showRadarDataItemDetails$)="openInfoDialog($event)"></app-side-navigation>
+								          class="radar-view__side-navigation"
+								          (showRadarDataItemDetails$)="openInfoDialogById($event)"></app-side-navigation>
 
 		<app-radar-chart-legend class="radar-view__legend"></app-radar-chart-legend>
 		<app-radar-chart (dotClicked)="onDotClicked($event.items)"></app-radar-chart>
