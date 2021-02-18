@@ -15,7 +15,7 @@ export function radarsGeneralViewReducer(state: GeneralViewState = initialState,
 			return {
 				...state,
 				radarsWithData: {
-					...state.radarsWithData,
+					value: [],
 					status: EntityStatus.Pending,
 				},
 			};
@@ -25,7 +25,6 @@ export function radarsGeneralViewReducer(state: GeneralViewState = initialState,
 			return {
 				...state,
 				radarsWithData: {
-					...state.radarsWithData,
 					value: (action as LoadRadarsWithDataSuccess).payload,
 					status: EntityStatus.Success,
 				},

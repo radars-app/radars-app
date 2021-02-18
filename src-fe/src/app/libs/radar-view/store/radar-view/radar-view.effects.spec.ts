@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
+import { Router } from '@angular/router';
 import { MsalService } from '@azure/msal-angular';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable, of } from 'rxjs';
@@ -38,6 +39,12 @@ describe('RadarViewEffects', () => {
 					useValue: {
 						success: jasmine.createSpy(),
 						error: jasmine.createSpy(),
+					},
+				},
+				{
+					provide: Router,
+					useValue: {
+						navigateByUrl: jasmine.createSpy(),
 					},
 				},
 			],

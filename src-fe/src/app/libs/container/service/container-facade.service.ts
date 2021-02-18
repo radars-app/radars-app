@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { map, pluck } from 'rxjs/operators';
+import { filter, map, pluck } from 'rxjs/operators';
 import { ComponentTheme } from '../../common-components/common/enum/component-theme.enum';
 import { UserRole } from '../enum/user-role';
+import { UserProfile } from '../model/user-profile';
 import { LoadUserProfile, LogIn, LogOut, SetTheme } from '../store/container/container.actions';
 import { selectTheme, selectUserProfile } from '../store/container/container.selectors';
 import { ContainerState } from '../store/container/container.state';
@@ -25,6 +26,7 @@ export class ContainerFacadeService {
 	public get isAdmin$(): Observable<boolean> {
 		return this.store.pipe(
 			select(selectUserProfile),
+			filter((profile: UserProfile) => Boolean(profile)),
 			pluck('role'),
 			map((role: UserRole) => {
 				return role === UserRole.Admin;

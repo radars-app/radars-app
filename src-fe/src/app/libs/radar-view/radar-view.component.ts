@@ -85,7 +85,6 @@ export class RadarViewComponent implements OnInit, OnDestroy {
 
 	public onRemoveConfirmed(): void {
 		this.radarViewFacadeService.removeRadar(this.radarId);
-		this.router.navigateByUrl('/');
 	}
 
 	public onAutoCompleteOptionSelected(option: AutoCompleteOption): void {
@@ -142,6 +141,7 @@ export class RadarViewComponent implements OnInit, OnDestroy {
 			const editButton: IconButtonModel = {
 				label: 'Edit',
 				callback: () => {
+					this.radarViewFacadeService.searchRadarItems('');
 					this.router.navigateByUrl(`/radars/${this.radarId}/edit`);
 				},
 				icon: 'edit_1',

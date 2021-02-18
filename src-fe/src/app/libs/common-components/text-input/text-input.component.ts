@@ -26,6 +26,9 @@ export class TextInputComponent implements AfterViewInit, OnChanges {
 	public preIcon: string;
 
 	@Input()
+	public resetable: boolean;
+
+	@Input()
 	public label: string;
 
 	@Input()
@@ -43,6 +46,9 @@ export class TextInputComponent implements AfterViewInit, OnChanges {
 	@Output()
 	public valueChange: EventEmitter<any> = new EventEmitter<any>();
 
+	@Output()
+	public valueUpdated: EventEmitter<any> = new EventEmitter<any>();
+
 	public inputControl: FormControl = new FormControl();
 
 	public get isDarkTheme(): boolean {
@@ -56,6 +62,8 @@ export class TextInputComponent implements AfterViewInit, OnChanges {
 	public get labeled(): boolean {
 		return Boolean(this.label);
 	}
+
+	constructor() {}
 
 	public selectAutoCompleteOption(event: MatAutocompleteSelectedEvent): void {
 		this.valueChange.next(event.option.value.label);
@@ -83,6 +91,10 @@ export class TextInputComponent implements AfterViewInit, OnChanges {
 	}
 
 	public mapOption(value: AutoCompleteOption): string {
-		return value?.label;
+		if (typeof value === 'string') {
+			return value;
+		} else {
+			return value?.label;
+		}
 	}
 }

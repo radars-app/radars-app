@@ -29,6 +29,7 @@ import { RadarDataItemConverterService } from '../../service/radar-data-item-con
 import { RadarViewFacadeService } from '../../service/radar-view-facade.service';
 import { ToastNotificationService } from 'src/app/libs/common-components/toast-notification/service/toast-notification.service';
 import { DotFilteringServiceService } from '../../service/dot-filtering-service.service';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class RadarViewEffects {
@@ -51,6 +52,7 @@ export class RadarViewEffects {
 		switchMap((action: RemoveRadar) => {
 			return this.radarsRepositoryService.removeRadar(action.radarId).pipe(
 				map(() => {
+					this.router.navigateByUrl('/');
 					return new RemoveRadarSuccess();
 				})
 			);
@@ -194,6 +196,7 @@ export class RadarViewEffects {
 		private radarDataItemsConverterService: RadarDataItemConverterService,
 		private radarViewFacadeService: RadarViewFacadeService,
 		private toastNotificationService: ToastNotificationService,
-		private dotFilteringService: DotFilteringServiceService
+		private dotFilteringService: DotFilteringServiceService,
+		private router: Router
 	) {}
 }

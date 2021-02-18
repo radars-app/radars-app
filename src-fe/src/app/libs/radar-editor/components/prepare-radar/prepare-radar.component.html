@@ -4,11 +4,12 @@
 			<div class="prepare-radar__label">Radar name:</div>
 			<app-text-input label="Add radar name"
 							[value]="config.name"
-							(valueChange)="updateRadarName($event)"
+							(valueUpdated)="updateRadarName($event)"
 							[required]="true"
 							placeholder="Radar for technology"
 							[theme]="theme">
 			</app-text-input>
+			
 		</div>
 		
 		<div class="prepare-radar__property">

@@ -9,10 +9,12 @@
 				matInput
 				type="text"
 				(keyup)="valueChange.next($event.target.value)"
+				(change)="valueUpdated.next($event.target.value)"
 				[placeholder]="placeholder"
 				[matAutocomplete]="auto"
 				[formControl]="inputControl">
-		<app-icon	class="text-input__close-button"
+		<app-icon	*ngIf="resetable"
+					class="text-input__close-button"
 					icon="close"
 					size="xs"
 					(click)="reset()">
