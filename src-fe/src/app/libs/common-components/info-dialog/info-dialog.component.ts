@@ -90,7 +90,7 @@ export class InfoDialogComponent implements OnInit, OnDestroy {
 
 	public showClusterItem(item: RadarDataItem): void {
 		this.isClusterItemOpened = true;
-		this.selectedContent = this.sanitizer.bypassSecurityTrustHtml(this.selectedItems[0].content);
+		this.selectedContent = this.sanitizer.bypassSecurityTrustHtml(item.content);
 		this.title.next(`${item.number}. ${item.name}`);
 	}
 
