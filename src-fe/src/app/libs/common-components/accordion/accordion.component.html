@@ -30,7 +30,7 @@
 
 		<div class="accordion-subitem" *ngFor="let subItem of item.children; index as i"
 			(click)="emitSubItemClick(subItem.id)">
-			<span class="accordion-subitem__index">{{ subItem.number }}</span><span>{{ subItem.title }}</span>
+			<span class="accordion-subitem__index">{{ subItem.number }}</span><span class="accordion-subitem__title">{{ subItem.title }}</span>
 		</div>
 
 	</mat-expansion-panel>

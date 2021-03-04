@@ -21,4 +21,30 @@
 			</div>
 		</div>
 	</div>
+
+	<div class="radar-chart-legend__section">
+		<div class="legend-section__label">Last {{(radar$ | async)?.consideredNewInDays}} days:</div>
+		<div class="legend-section__content">
+			<div class="legend">
+				<div class="legend__icon">
+					<app-icon class="ring-icon" icon="dot-updated" size="s"></app-icon>
+				</div>
+				<div class="legend__label">Updated</div>
+			</div>
+
+			<div class="legend">
+				<div class="legend__icon">
+					<app-icon class="ring-icon" icon="dot-moved" size="s"></app-icon>
+				</div>
+				<div class="legend__label">Moved</div>
+			</div>
+
+			<div class="legend">
+				<div class="legend__icon">
+					<app-icon class="ring-icon" icon="dot-no-change" size="s"></app-icon>
+				</div>
+				<div class="legend__label">No change</div>
+			</div>
+		</div>
+	</div>
 </div>

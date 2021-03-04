@@ -37,6 +37,18 @@ export class IconService {
 		);
 		this.matIconRegistry.addSvgIcon('close', this.domSanitizer.bypassSecurityTrustResourceUrl('../../../../../assets/svg/close.svg'));
 		this.matIconRegistry.addSvgIcon(
+			'dot-moved',
+			this.domSanitizer.bypassSecurityTrustResourceUrl('../../../../../assets/svg/moved.svg')
+		);
+		this.matIconRegistry.addSvgIcon(
+			'dot-updated',
+			this.domSanitizer.bypassSecurityTrustResourceUrl('../../../../../assets/svg/updated.svg')
+		);
+		this.matIconRegistry.addSvgIcon(
+			'dot-no-change',
+			this.domSanitizer.bypassSecurityTrustResourceUrl('../../../../../assets/svg/no-change.svg')
+		);
+		this.matIconRegistry.addSvgIcon(
 			'approved',
 			this.domSanitizer.bypassSecurityTrustResourceUrl('../../../../../assets/svg/approved.svg')
 		);
