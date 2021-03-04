@@ -1,6 +1,6 @@
 import { radarViewReducer, initialState } from './radar-view.reducer';
 import { RadarViewState } from './radar-view.state';
-import { LoadRadars } from './radar-view.actions';
+import { LoadRadar } from './radar-view.actions';
 import { EntityStatus } from 'src/app/libs/container/model/entity-status';
 
 describe('RadarView Reducer', () => {
@@ -16,11 +16,11 @@ describe('RadarView Reducer', () => {
 
 	describe('LoadRadars action', () => {
 		it('should set radars state to pending', () => {
-			const action: LoadRadars = new LoadRadars('1');
+			const action: LoadRadar = new LoadRadar('1');
 
 			const result: RadarViewState = radarViewReducer(initialState, action);
 
-			expect(result.radars.status).toBe(EntityStatus.Pending);
+			expect(result.radar.status).toBe(EntityStatus.Pending);
 		});
 	});
 });

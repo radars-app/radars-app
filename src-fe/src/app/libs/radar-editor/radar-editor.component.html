@@ -1,9 +1,9 @@
-<div class="radar-editor" [class.radar-editor--dark-theme]="isDarkTheme(theme$ | async)" *ngIf="config">
+<div class="radar-editor" [class.radar-editor--dark-theme]="isDarkTheme(theme$ | async)" *ngIf="radar">
 	<app-radar-editor-navigation class="radar-edior__navigation" [theme]="theme$ | async"></app-radar-editor-navigation>
 	<div class="radar-editor__content">
 		<perfect-scrollbar>
 			<div class="radar-editor__padding">
-				<app-prepare-radar id="prepare-radar-section" [theme]="theme$ | async" [(config)]="config"></app-prepare-radar>
+				<app-prepare-radar id="prepare-radar-section" [theme]="theme$ | async" [(radar)]="radar"></app-prepare-radar>
 			</div>
 		</perfect-scrollbar>
 	</div>

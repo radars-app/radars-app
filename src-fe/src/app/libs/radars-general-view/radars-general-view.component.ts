@@ -6,7 +6,7 @@ import { filter, takeUntil } from 'rxjs/operators';
 import { ComponentTheme } from '../common-components/common/enum/component-theme.enum';
 import { DropDownOption } from '../common-components/drop-down/model/drop-down-option';
 import { ContainerFacadeService } from '../container/service/container-facade.service';
-import { RadarWithData } from './model/radar-with-data';
+import { Radar } from '../radar-view/model/radar';
 import { RadarSorterService } from './service/radar-sorter.service';
 import { RadarsGeneralViewFacadeService } from './service/radars-general-view-facade.service';
 
@@ -20,10 +20,10 @@ export class RadarsGeneralViewComponent implements OnInit, OnDestroy {
 
 	public isDarkTheme$: Observable<boolean>;
 
-	public radarsWithData: RadarWithData[];
+	public radars: Radar[];
 
 	public get radarsQuantity(): number {
-		return this.radarsWithData?.length;
+		return this.radars?.length;
 	}
 
 	public sortOptions: DropDownOption[] = [
@@ -31,28 +31,28 @@ export class RadarsGeneralViewComponent implements OnInit, OnDestroy {
 			name: 'Newest to oldest',
 			icon: 'sort-descending',
 			callback: () => {
-				this.radarsWithData = this.radarSorterService.sortByDate(this.radarsWithData, true);
+				this.radars = this.radarSorterService.sortByDate(this.radars, true);
 			},
 		},
 		{
 			name: 'Oldest to newest',
 			icon: 'sort-ascending',
 			callback: () => {
-				this.radarsWithData = this.radarSorterService.sortByDate(this.radarsWithData, false);
+				this.radars = this.radarSorterService.sortByDate(this.radars, false);
 			},
 		},
 		{
 			name: 'Alphabetical A to Z',
 			icon: 'a-to-z',
 			callback: () => {
-				this.radarsWithData = this.radarSorterService.sortAlphabetical(this.radarsWithData, true);
+				this.radars = this.radarSorterService.sortAlphabetical(this.radars, true);
 			},
 		},
 		{
 			name: 'Alphabetical Z to A',
 			icon: 'z-to-a',
 			callback: () => {
-				this.radarsWithData = this.radarSorterService.sortAlphabetical(this.radarsWithData, false);
+				this.radars = this.radarSorterService.sortAlphabetical(this.radars, false);
 			},
 		},
 	];
@@ -70,14 +70,14 @@ export class RadarsGeneralViewComponent implements OnInit, OnDestroy {
 		this.destroy$ = new Subject();
 		this.theme$ = this.containerFacadeService.theme$;
 		this.isDarkTheme$ = this.containerFacadeService.isDarkTheme$;
-		this.radarsGeneralViewFacadeService.loadRadarsWithData();
-		this.radarsGeneralViewFacadeService.radarsWithData$
+		this.radarsGeneralViewFacadeService.loadRadars();
+		this.radarsGeneralViewFacadeService.radars$
 			.pipe(
-				filter((radars: RadarWithData[]) => Boolean(radars)),
+				filter((radars: Radar[]) => Boolean(radars)),
 				takeUntil(this.destroy$)
 			)
-			.subscribe((radarsWithData: RadarWithData[]) => {
-				this.radarsWithData = radarsWithData;
+			.subscribe((radarsWithData: Radar[]) => {
+				this.radars = radarsWithData;
 				this.sortOptions[0].callback();
 			});
 	}

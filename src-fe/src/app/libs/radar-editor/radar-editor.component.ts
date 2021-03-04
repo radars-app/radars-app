@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ComponentTheme } from '../common-components/common/enum/component-theme.enum';
 import { ContainerFacadeService } from '../container/service/container-facade.service';
-import { RadarConfig } from '../radar-view/model/radar-config';
+import { Radar } from '../radar-view/model/radar';
 
 @Component({
 	selector: 'app-radar-editor',
@@ -11,10 +11,10 @@ import { RadarConfig } from '../radar-view/model/radar-config';
 })
 export class RadarEditorComponent implements OnInit {
 	@Input()
-	public config: RadarConfig;
+	public radar: Radar;
 
 	@Output()
-	public configChanged: EventEmitter<RadarConfig> = new EventEmitter<RadarConfig>();
+	public radarChanged: EventEmitter<Radar> = new EventEmitter<Radar>();
 
 	public theme$: Observable<ComponentTheme>;
 

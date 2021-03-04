@@ -1,7 +1,6 @@
-import { RadarConfig } from 'app/model/radar-config';
-import { Body, Controller, Delete, Get, Path, Post, Route, Security } from 'tsoa';
+import { Body, Controller, Delete, Get, Path, Post, Put, Query, Route, Security } from 'tsoa';
 import { Inject } from '../ioc';
-import { RadarEntity } from '../model/radar-entity';
+import { RadarDto } from '../model/radar-entity';
 import { RadarsService } from '../service/radars.service';
 
 @Route('api/radars')
@@ -9,24 +8,30 @@ export class RadarsController extends Controller {
 	@Inject() private radarsService!: RadarsService;
 
 	@Get('')
-	public async getAllLatestRadars(): Promise<RadarEntity[]> {
-		return this.radarsService.getAllLatestRadars();
+	public async getAllLatestRadars(@Query('date') date: string): Promise<RadarDto[]> {
+		return this.radarsService.getAllRadars(new Date(date));
 	}
 
 	@Get('{radarId}')
-	public async getRadar(@Path() radarId: string): Promise<RadarEntity[]> {
-		return this.radarsService.getRadarsById(radarId);
+	public async getRadar(@Path() radarId: string, @Query('date') date: string): Promise<RadarDto> {
+		return this.radarsService.getRadarById(radarId, new Date(date));
 	}
 
-	@Post('{radarId}')
+	@Post('')
 	@Security('admin-access')
-	public async updateRadar(@Path() radarId: string, @Body() config: RadarConfig): Promise<RadarEntity> {
-		return this.radarsService.createRadar(config, radarId);
+	public async createRadar(@Body() dto: RadarDto): Promise<RadarDto> {
+		return this.radarsService.createRadar(dto);
+	}
+
+	@Put('{radarId}')
+	@Security('admin-access')
+	public async updateRadar(@Body() dto: RadarDto): Promise<RadarDto> {
+		return this.radarsService.updateRadar(dto);
 	}
 
 	@Delete('{radarId}')
 	@Security('admin-access')
 	public async deleteRadar(@Path() radarId: string): Promise<void> {
-		return this.radarsService.deleteRadar(radarId);
+		return this.radarsService.removeRadar(radarId);
 	}
 }

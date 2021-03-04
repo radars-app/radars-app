@@ -3,8 +3,7 @@ import { Radar } from '../../model/radar';
 import { RadarDataItem } from '../../model/radar-data-item';
 
 export interface RadarViewState {
-	radars: EntityWrapper<Radar[]>;
-	radarDataItems: EntityWrapper<RadarDataItem[]>;
+	radar: EntityWrapper<Radar>;
 	searchQuery: string;
 	filteredRadarDataItems: RadarDataItem[];
 }

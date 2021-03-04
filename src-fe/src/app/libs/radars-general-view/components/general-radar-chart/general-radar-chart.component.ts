@@ -1,10 +1,14 @@
 import { AfterViewInit, Component, ElementRef, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
 import { RadarChartConfig, RadarChartModel, RadarChartRenderer } from 'radar-chart-project';
+import { RadarDot } from 'radar-chart-project/dist/models/radar-dot';
 import { BehaviorSubject } from 'rxjs';
+import { Radar } from 'src/app/libs/radar-view/model/radar';
+import { RadarDataItem } from 'src/app/libs/radar-view/model/radar-data-item';
+import { Ring } from 'src/app/libs/radar-view/model/ring';
+import { Sector } from 'src/app/libs/radar-view/model/sector';
 import { ComponentTheme } from '../../../common-components/common/enum/component-theme.enum';
 import { ContainerFacadeService } from '../../../container/service/container-facade.service';
-import { SECTOR_COLORS } from '../../../radar-view/model/sector-colors';
-import { RadarWithData } from '../../model/radar-with-data';
+
 @Component({
 	selector: 'app-general-radar-chart',
 	templateUrl: './general-radar-chart.component.html',
@@ -15,7 +19,7 @@ export class GeneralRadarChartComponent implements OnInit, AfterViewInit, OnChan
 	@ViewChild('chartContainer', { static: false }) public chartContainer: ElementRef<HTMLDivElement>;
 
 	@Input()
-	public radarWidthData: RadarWithData;
+	public radar: Radar;
 
 	public config$: BehaviorSubject<RadarChartConfig>;
 	public model: RadarChartModel;
@@ -29,7 +33,7 @@ export class GeneralRadarChartComponent implements OnInit, AfterViewInit, OnChan
 	}
 
 	public ngOnChanges(): void {
-		if (Boolean(this.radarWidthData)) {
+		if (Boolean(this.radar)) {
 			this.initChartModel();
 		}
 	}
@@ -47,15 +51,15 @@ export class GeneralRadarChartComponent implements OnInit, AfterViewInit, OnChan
 	private initChartModel(): void {
 		this.model.isZoomEnabled.next(false);
 
-		this.model.ringNames$.next(this.radarWidthData.rings);
-		const sectors: any[] = this.radarWidthData.sectors.map((sector: string, index: number) => {
+		this.model.ringNames$.next(this.radar.rings.map((ring: Ring) => ring.label));
+		const sectors: any[] = this.radar.sectors.map((sector: Sector) => {
 			return {
-				name: sector,
-				color: SECTOR_COLORS[index],
+				name: sector.label,
+				color: sector.color,
 			};
 		});
 		this.model.sectors$.next(sectors.reverse());
-		this.model.dots$.next(this.radarWidthData.radarDataItems);
+		this.model.dots$.next(this.mapItemsToDots(this.radar.items));
 	}
 
 	private handleThemeChange(): void {
@@ -98,6 +102,19 @@ export class GeneralRadarChartComponent implements OnInit, AfterViewInit, OnChan
 			config.dotsConfig.hasClickAction = false;
 			config.dotsConfig.hasHoverAction = false;
 			config.dotsConfig.isNumberShown = false;
+		});
+	}
+
+	private mapItemsToDots(items: RadarDataItem[]): RadarDot[] {
+		return items.map((item: RadarDataItem) => {
+			return {
+				id: item.name,
+				name: item.name,
+				sector: item.sector.label,
+				ring: item.ring.label,
+				content: item.content,
+				number: item.number,
+			};
 		});
 	}
 }

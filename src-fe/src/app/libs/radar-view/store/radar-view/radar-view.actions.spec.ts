@@ -1,27 +1,20 @@
+import { Radar } from '../../model/radar';
 import * as RadarViewActions from './radar-view.actions';
 
 describe('RadarView', () => {
-	it('should create an instance LoadRadars', () => {
-		expect(new RadarViewActions.LoadRadars('1')).toBeTruthy();
+	it('should create an instance LoadRadar', () => {
+		expect(new RadarViewActions.LoadRadar('1')).toBeTruthy();
 	});
 
-	it('should create an instance LoadRadarsSuccess', () => {
+	it('should create an instance LoadRadarSuccess', () => {
 		expect(
-			new RadarViewActions.LoadRadarsSuccess([
-				{
-					id: '1',
-					name: 'Radar',
-					lastUpdatedDate: new Date('12/1/2020'),
-					rings: [],
-					sectors: [],
-					config: {
-						name: 'RADAR',
-						csv: 'csv',
-						rings: [],
-						sectors: [],
-					},
-				},
-			])
+			new RadarViewActions.LoadRadarSuccess({
+				uid: '1',
+				name: 'Radar',
+				lastUpdatedAt: new Date('12/1/2020'),
+				rings: [],
+				sectors: [],
+			} as Radar)
 		).toBeTruthy();
 	});
 });

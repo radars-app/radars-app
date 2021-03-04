@@ -12,7 +12,6 @@ import { RadarChartLegendComponent } from './components/radar-chart-legend/radar
 import { RadarChartComponent } from './components/radar-chart/radar-chart.component';
 import { ActivatedRoute, convertToParamMap } from '@angular/router';
 import { RadarViewFacadeService } from './service/radar-view-facade.service';
-import { SectorToColorConverterService } from './service/sector-to-color-converter.service';
 import { ZoomInOutPanelComponent } from './components/zoom-in-out-panel/zoom-in-out-panel.component';
 import { DotTooltipComponent } from './components/dot-tooltip/dot-tooltip.component';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -37,12 +36,6 @@ describe('RadarViewComponent', () => {
 			],
 			providers: [
 				{
-					provide: SectorToColorConverterService,
-					useValue: {
-						getColorBySector: jasmine.createSpy().and.returnValue('#123123'),
-					},
-				},
-				{
 					provide: ContainerFacadeService,
 					useValue: {
 						theme$: of(ComponentTheme.Light),
@@ -62,34 +55,33 @@ describe('RadarViewComponent', () => {
 				{
 					provide: RadarViewFacadeService,
 					useValue: {
-						radars$: of([
-							{
-								id: '1',
-								name: 'Radar1',
-								lastUpdatedDate: '12/1/2020',
-								config: {
-									name: 'Radar1',
-									csv: 'string',
-									rings: [],
-									sectors: [],
+						radar$: of({
+							uid: '1',
+							name: 'Radar1',
+							lastUpdatedAt: '12/1/2020',
+							csv: '',
+							sectors: [
+								{ label: 'OS', uid: 'OS', color: '1' },
+								{ label: 'Hardware', uid: 'Hardware', color: '2' },
+								{ label: 'Cloud', uid: 'Cloud', color: '3' },
+							],
+							rings: [
+								{ label: 'Trial', uid: 'Trial' },
+								{ label: 'Hold', uid: 'Hold' },
+								{ label: 'Acceptance', uid: 'Acceptance' },
+							],
+							items: [
+								{
+									name: 'Linux',
+									ring: 'Hold',
+									sector: 'OS',
+									content: `Content 1 <a href="//mysite.com">Test, with comma</a>`,
+									number: 1,
 								},
-								sectors: ['OS', 'Hardware', 'Cloud'],
-								rings: ['Trial', 'Hold', 'Acceptance'],
-							},
-						]),
-						radarDataItems$: of([
-							{
-								id: '3a4dbe90-5a2c-4c81-93ea-22039a921931',
-								name: 'Linux',
-								ring: 'Hold',
-								sector: 'OS',
-								content: `Content 1 <a href="//mysite.com">Test, with comma</a>`,
-								number: 1,
-							},
-						]),
+							],
+						}),
 						filteredRadarDataItems$: of([
 							{
-								id: '3a4dbe90-5a2c-4c81-93ea-22039a921931',
 								name: 'Linux',
 								ring: 'Hold',
 								sector: 'OS',
@@ -98,7 +90,7 @@ describe('RadarViewComponent', () => {
 							},
 						]),
 						searchQuery$: of('Linux'),
-						loadRadars: jasmine.createSpy().and.stub(),
+						loadRadar: jasmine.createSpy().and.stub(),
 					},
 				},
 			],

@@ -9,18 +9,21 @@ describe('RadarView', () => {
 		expect(
 			new RadarViewActions.LoadRadarsWithDataSuccess([
 				{
-					id: '1',
+					uid: '1',
 					name: 'Radar',
-					lastUpdatedDate: new Date('12/1/2020'),
+					lastUpdatedAt: new Date('12/1/2020'),
 					rings: [],
 					sectors: [],
-					config: {
-						name: 'RADAR',
-						csv: 'csv',
-						rings: [],
-						sectors: [],
-					},
-					radarDataItems: [],
+					items: [],
+					linkColumn: '',
+					consideredNewInDays: 2,
+					contentColumn: '',
+					nameColumn: '',
+					sectorColumn: '',
+					ringColumn: '',
+					filterColumnEnabled: false,
+					filterColumnKeywords: [],
+					filterColumnName: '',
 				},
 			])
 		).toBeTruthy();

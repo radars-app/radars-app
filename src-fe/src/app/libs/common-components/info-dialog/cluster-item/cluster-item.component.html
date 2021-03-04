@@ -1,5 +1,5 @@
 <div class="cluster-item" [class.cluster-item--dark-theme]="isDarkTheme">
-	<span class="cluster-item__circle" [style.background]="sectorToColorConverter.getColorBySector(dot.sector)">
+	<span class="cluster-item__circle" [style.background]="dot.sector.color">
 		<span class="cluster-item__number">{{dot.number}}</span>
 	</span>
 	<span class="cluster-item__title">{{dot.name}}</span>

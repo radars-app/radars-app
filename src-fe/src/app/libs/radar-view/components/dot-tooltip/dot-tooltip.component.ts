@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { RadarDataItem } from '../../model/radar-data-item';
 import { ComponentTheme } from '../../../common-components/common/enum/component-theme.enum';
+import { RadarDataItem } from '../../model/radar-data-item';
 
 @Component({
 	selector: 'app-dot-tooltip',
@@ -9,7 +9,7 @@ import { ComponentTheme } from '../../../common-components/common/enum/component
 })
 export class DotTooltipComponent {
 	@Input()
-	public dot: RadarDataItem;
+	public item: RadarDataItem;
 
 	@Input()
 	private theme: ComponentTheme;

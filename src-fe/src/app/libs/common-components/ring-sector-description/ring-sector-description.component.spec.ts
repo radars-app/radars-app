@@ -1,9 +1,10 @@
 import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
+import { Ring } from '../../radar-view/model/ring';
+import { Sector } from '../../radar-view/model/sector';
 import { RadarViewFacadeService } from '../../radar-view/service/radar-view-facade.service';
 import { RingToIconConverterService } from '../../radar-view/service/ring-to-icon-converter.service';
-import { SectorToColorConverterService } from '../../radar-view/service/sector-to-color-converter.service';
 import { CommonComponentsModule } from '../common-components.module';
 import { IconService } from '../icon/service/icon.service';
 
@@ -21,20 +22,14 @@ describe('RingSectorDescriptionComponent', () => {
 				{
 					provide: RadarViewFacadeService,
 					useValue: {
-						radars$: of([{ config: {} }]),
-						loadRadars: jasmine.createSpy(),
+						radar$: of({}),
+						loadRadar: jasmine.createSpy(),
 					},
 				},
 				{
 					provide: RingToIconConverterService,
 					useValue: {
 						getIconClassByRing: jasmine.createSpy().and.returnValue('ring_legend_base'),
-					},
-				},
-				{
-					provide: SectorToColorConverterService,
-					useValue: {
-						getColorBySector: jasmine.createSpy().and.returnValue('#123123'),
 					},
 				},
 			],
@@ -45,6 +40,8 @@ describe('RingSectorDescriptionComponent', () => {
 
 		fixture = TestBed.createComponent(RingSectorDescriptionComponent);
 		component = fixture.componentInstance;
+		component.sector = { label: '1', color: '2' } as Sector;
+		component.ring = { label: '3' } as Ring;
 		fixture.detectChanges();
 	});
 

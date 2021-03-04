@@ -7,16 +7,16 @@ describe('RadarSorterService', () => {
 	let service: RadarSorterService;
 
 	const firstItem: Partial<Radar> = {
-		id: 'id',
+		uid: 'id',
 		name: 'a',
-		lastUpdatedDate: new Date(Date.now()),
+		lastUpdatedAt: new Date(Date.now()),
 	};
 
 	const secondItem: Partial<Radar> = {
-		id: 'id2',
+		uid: 'id2',
 		name: 'z',
 		// tslint:disable-next-line: no-magic-numbers
-		lastUpdatedDate: new Date(Date.now() + 100000),
+		lastUpdatedAt: new Date(Date.now() + 100000),
 	};
 
 	const items: Array<Partial<Radar>> = [secondItem, firstItem];

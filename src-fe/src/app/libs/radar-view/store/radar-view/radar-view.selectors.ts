@@ -7,14 +7,9 @@ import { RadarDataItem } from '../../model/radar-data-item';
 
 export const selectRadarViewState: MemoizedSelector<{}, RadarViewState> = createFeatureSelector<RadarViewState>(radarViewFeatureKey);
 
-export const selectRadars: MemoizedSelector<RadarViewState, Radar[]> = createSelector(
+export const selectRadar: MemoizedSelector<RadarViewState, Radar> = createSelector(
 	selectRadarViewState,
-	(state: RadarViewState) => state.radars.value
-);
-
-export const selectRadarDataItems: MemoizedSelector<RadarViewState, RadarDataItem[]> = createSelector(
-	selectRadarViewState,
-	(state: RadarViewState) => state.radarDataItems.value
+	(state: RadarViewState) => state.radar.value
 );
 
 export const selectSearchQuery: MemoizedSelector<RadarViewState, string> = createSelector(

@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@ang
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
-import { filter, map, switchMap, take, takeUntil } from 'rxjs/operators';
+import { filter, switchMap, take, takeUntil } from 'rxjs/operators';
 import { ButtonType } from 'src/app/libs/common-components/button/models/button-type.enum';
 import { ButtonModel } from 'src/app/libs/common-components/button/models/button.model';
 import { ComponentTheme } from 'src/app/libs/common-components/common/enum/component-theme.enum';
@@ -12,6 +12,7 @@ import { UploadConfigDialogComponent } from 'src/app/libs/common-components/uplo
 import { ContainerFacadeService } from 'src/app/libs/container/service/container-facade.service';
 import { Radar } from '../../model/radar';
 import { RadarConfig } from '../../model/radar-config';
+import { RadarDataItem } from '../../model/radar-data-item';
 import { RadarViewFacadeService } from '../../service/radar-view-facade.service';
 
 @Component({
@@ -26,7 +27,7 @@ export class EditRadarPageComponent implements OnInit, OnDestroy {
 	public theme$: Observable<ComponentTheme>;
 	public buttons: IconButtonModel[];
 	public extraButtons: ButtonModel[];
-	public config: RadarConfig;
+	public radar: Radar;
 	public radarId: string;
 
 	private destroy$: Subject<boolean>;
@@ -47,14 +48,17 @@ export class EditRadarPageComponent implements OnInit, OnDestroy {
 		this.initCommandButtons();
 		this.loadRadars();
 
-		this.radarViewFacadeService.radars$
+		this.radarViewFacadeService.radar$
 			.pipe(
 				takeUntil(this.destroy$),
-				filter((radars: Radar[]) => Boolean(radars)),
-				map((radars: Radar[]) => radars[radars.length - 1])
+				filter((radar: Radar) => Boolean(radar))
 			)
 			.subscribe((radar: Radar) => {
-				this.config = JSON.parse(JSON.stringify(radar.config)) as RadarConfig;
+				this.radar = JSON.parse(JSON.stringify(radar)) as Radar;
+				this.radar.lastUpdatedAt = new Date(this.radar.lastUpdatedAt);
+				this.radar.items.forEach((item: RadarDataItem) => {
+					item.updatedAt = new Date(item.updatedAt);
+				});
 			});
 	}
 
@@ -63,12 +67,13 @@ export class EditRadarPageComponent implements OnInit, OnDestroy {
 		this.destroy$.complete();
 	}
 
-	public updateLocalConfig(config: RadarConfig): void {
-		this.config = config;
+	public updateLocalRadar(radar: Radar): void {
+		this.radar = radar;
+		this.radar.lastUpdatedAt = new Date();
 	}
 
 	public updateRadar(): void {
-		this.radarViewFacadeService.uploadRadar(this.radarId, this.config);
+		this.radarViewFacadeService.uploadRadar(this.radar);
 	}
 
 	public loadRadars(): void {
@@ -79,15 +84,24 @@ export class EditRadarPageComponent implements OnInit, OnDestroy {
 			)
 			.subscribe((radarId: string) => {
 				this.radarId = radarId;
-				this.radarViewFacadeService.loadRadars(radarId);
+				this.radarViewFacadeService.loadRadar(radarId);
 			});
 	}
 
 	public applyConfig(config: RadarConfig): void {
-		this.config = JSON.parse(JSON.stringify(this.config));
-		this.config.name = config.name;
-		this.config.rings = config.rings;
-		this.config.sectors = config.sectors;
+		this.radar = JSON.parse(JSON.stringify(this.radar));
+		this.radar.lastUpdatedAt = new Date(this.radar.lastUpdatedAt);
+		this.radar.name = config.name;
+		this.radar.rings = config.rings;
+		this.radar.sectors = config.sectors;
+		this.radar.filterColumnName = config.filterColumnName;
+		this.radar.filterColumnEnabled = config.filterColumnEnabled;
+		this.radar.filterColumnKeywords = config.filterColumnKeywords;
+		this.radar.nameColumn = config.nameColumn;
+		this.radar.ringColumn = config.ringColumn;
+		this.radar.sectorColumn = config.sectorColumn;
+		this.radar.contentColumn = config.contentColumn;
+		this.radar.linkColumn = config.linkColumn;
 		this.cdRef.markForCheck();
 	}
 
@@ -136,11 +150,23 @@ export class EditRadarPageComponent implements OnInit, OnDestroy {
 	}
 
 	private downloadConfig(): void {
-		this.radarViewFacadeService.radars$.pipe(take(1)).subscribe((radars: Radar[]) => {
-			const latestRadar: Radar = radars[radars.length - 1];
-			if (latestRadar) {
-				const configToDownload: RadarConfig = JSON.parse(JSON.stringify(latestRadar.config));
-				delete configToDownload.csv;
+		this.radarViewFacadeService.radar$.pipe(take(1)).subscribe((radar: Radar) => {
+			if (radar) {
+				const configToDownload: RadarConfig = {
+					name: this.radar.name,
+					rings: this.radar.rings,
+					sectors: this.radar.sectors,
+					filterColumnName: this.radar.filterColumnName,
+					filterColumnEnabled: this.radar.filterColumnEnabled,
+					filterColumnKeywords: this.radar.filterColumnKeywords,
+					nameColumn: this.radar.nameColumn,
+					ringColumn: this.radar.ringColumn,
+					sectorColumn: this.radar.sectorColumn,
+					contentColumn: this.radar.contentColumn,
+					linkColumn: this.radar.linkColumn,
+					consideredNewInDays: this.radar.consideredNewInDays,
+				};
+
 				const configJSON: string = JSON.stringify(configToDownload);
 
 				const blob: Blob = new Blob([configJSON], { type: 'text/json' });
@@ -150,7 +176,7 @@ export class EditRadarPageComponent implements OnInit, OnDestroy {
 				const link: HTMLAnchorElement = document.createElement('a');
 				link.setAttribute('type', 'hidden');
 				link.href = url;
-				const radarConfigFileName: string = latestRadar.name.trim().replace(/\s/g, '_').toLowerCase();
+				const radarConfigFileName: string = radar.name.trim().replace(/\s/g, '_').toLowerCase();
 				link.download = `${radarConfigFileName}.config.json`;
 				document.body.appendChild(link);
 				link.click();

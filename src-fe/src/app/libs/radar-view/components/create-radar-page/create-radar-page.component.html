@@ -5,7 +5,7 @@
 						[extraButtons]="extraButtons">
 	</app-radar-header>
 
-	<app-radar-editor [config]="config" (configChanged)="updateLocalConfig($event)"></app-radar-editor>
+	<app-radar-editor [radar]="radar" (radarChanged)="updateLocalRadar($event)"></app-radar-editor>
 </div>
 
 <app-upload-config-dialog #uploadConfigPopover [theme]="theme$ | async" (configUploaded)="applyConfig($event)"></app-upload-config-dialog>

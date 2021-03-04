@@ -5,8 +5,6 @@ import { AuthResponse } from 'msal';
 import { from, Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { RadarDto } from '../model/radar';
-import { RadarDataItemDto } from '../model/radar-data-item';
-import { RadarConfig } from '../model/radar-config';
 
 @Injectable({
 	providedIn: 'root',
@@ -14,33 +12,36 @@ import { RadarConfig } from '../model/radar-config';
 export class RadarsRepositoryService {
 	constructor(private authService: MsalService, private http: HttpClient) {}
 
-	public loadRadars(radarId: string): Observable<RadarDto[]> {
+	public loadRadar(radarId: string, date: Date): Observable<RadarDto> {
 		return this.loadToken().pipe(
 			switchMap((token: AuthResponse) => {
 				const RADARS_ENDPOINT: string = `/api/radars/${radarId}`;
-				return this.http.get<RadarDto[]>(RADARS_ENDPOINT, {
+				return this.http.get<RadarDto>(RADARS_ENDPOINT, {
+					params: {
+						date: date.toUTCString(),
+					},
 					headers: { Authorization: 'Bearer ' + token.accessToken },
 				});
 			})
 		);
 	}
 
-	public loadRadarDataItems(radarId: string): Observable<RadarDataItemDto[]> {
+	public createRadar(dto: RadarDto): Observable<RadarDto> {
 		return this.loadToken().pipe(
 			switchMap((token: AuthResponse) => {
-				const RADARS_ENDPOINT: string = `/api/radar-data-items/${radarId}`;
-				return this.http.get<RadarDataItemDto[]>(RADARS_ENDPOINT, {
+				const RADARS_ENDPOINT: string = `/api/radars/`;
+				return this.http.post<RadarDto>(RADARS_ENDPOINT, dto, {
 					headers: { Authorization: 'Bearer ' + token.accessToken },
 				});
 			})
 		);
 	}
 
-	public uploadRadar(radarId: string, radarConfig: RadarConfig): Observable<RadarDto> {
+	public updateRadar(dto: RadarDto): Observable<RadarDto> {
 		return this.loadToken().pipe(
 			switchMap((token: AuthResponse) => {
-				const RADARS_ENDPOINT: string = `/api/radars/${radarId}`;
-				return this.http.post<RadarDto>(RADARS_ENDPOINT, radarConfig, {
+				const RADARS_ENDPOINT: string = `/api/radars/${dto.uid}`;
+				return this.http.put<RadarDto>(RADARS_ENDPOINT, dto, {
 					headers: { Authorization: 'Bearer ' + token.accessToken },
 				});
 			})

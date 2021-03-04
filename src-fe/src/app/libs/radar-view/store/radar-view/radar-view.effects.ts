@@ -1,17 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { catchError, map, switchMap, take, withLatestFrom } from 'rxjs/operators';
+import { catchError, filter, map, switchMap, withLatestFrom } from 'rxjs/operators';
 import { NEVER, Observable, of } from 'rxjs';
 import {
 	RadarViewActionTypes,
-	LoadRadarsSuccess,
-	LoadRadars,
-	LoadRadarDataItems,
-	LoadRadarDataItemsSuccess,
+	LoadRadarSuccess,
+	LoadRadar,
 	UploadRadar,
 	RadarViewActions,
 	SetFilteredRadarItems,
-	SetSearchQuery,
 	RemoveRadar,
 	RemoveRadarSuccess,
 	CreateRadar,
@@ -24,8 +21,7 @@ import { Action } from '@ngrx/store';
 import { RadarsRepositoryService } from '../../service/radar-view-repository.service';
 import { Radar, RadarDto } from '../../model/radar';
 import { RadarConverterService } from '../../service/radar-converter.service';
-import { RadarDataItem, RadarDataItemDto } from '../../model/radar-data-item';
-import { RadarDataItemConverterService } from '../../service/radar-data-item-converter.service';
+import { RadarDataItem } from '../../model/radar-data-item';
 import { RadarViewFacadeService } from '../../service/radar-view-facade.service';
 import { ToastNotificationService } from 'src/app/libs/common-components/toast-notification/service/toast-notification.service';
 import { DotFilteringServiceService } from '../../service/dot-filtering-service.service';
@@ -34,13 +30,12 @@ import { Router } from '@angular/router';
 @Injectable()
 export class RadarViewEffects {
 	@Effect()
-	public loadRadars$: Observable<Action> = this.actions$.pipe(
-		ofType(RadarViewActionTypes.LoadRadars),
-		switchMap((action: LoadRadars) => {
-			return this.radarsRepositoryService.loadRadars(action.payload).pipe(
-				map((dto: RadarDto[]) => {
-					const radarEntities: Radar[] = dto.map((radarDto: RadarDto) => this.radarConverterService.fromDto(radarDto));
-					return new LoadRadarsSuccess(radarEntities);
+	public loadRadar$: Observable<Action> = this.actions$.pipe(
+		ofType(RadarViewActionTypes.LoadRadar),
+		switchMap((action: LoadRadar) => {
+			return this.radarsRepositoryService.loadRadar(action.payload, new Date()).pipe(
+				map((dto: RadarDto) => {
+					return new LoadRadarSuccess(this.radarConverterService.fromDto(dto));
 				})
 			);
 		})
@@ -59,54 +54,14 @@ export class RadarViewEffects {
 		})
 	);
 
-	@Effect({ dispatch: false })
-	public loadLatestRadarDataItemsWhenRadarsLoaded$: Observable<void> = this.actions$.pipe(
-		ofType(RadarViewActionTypes.LoadRadarsSuccess),
-		switchMap((action: LoadRadarsSuccess) => {
-			this.radarViewFacadeService.loadRadarDataItems(action.payload[0].id);
-			return NEVER;
-		})
-	);
-
-	@Effect()
-	public loadRadarDataItems$: Observable<Action> = this.actions$.pipe(
-		ofType(RadarViewActionTypes.LoadRadarDataItems),
-		switchMap((action: LoadRadarDataItems) => {
-			return this.radarViewFacadeService.radars$.pipe(
-				take(1),
-				switchMap((radars: Radar[]) => {
-					return this.radarsRepositoryService.loadRadarDataItems(action.radarId).pipe(
-						map((radarDataItemsDto: RadarDataItemDto[]) => {
-							const items: RadarDataItem[] = radarDataItemsDto.map((dto: RadarDataItemDto) =>
-								this.radarDataItemsConverterService.fromDto(dto)
-							);
-							const radar: Radar = radars[radars.length - 1];
-							let number: number = 0;
-							radar.sectors.forEach((sector: string) => {
-								radar.rings.forEach((ring: string) => {
-									const findedRadarItems: RadarDataItem[] = items.filter(
-										(item: RadarDataItem) => item.ring === ring && item.sector === sector
-									);
-									findedRadarItems.forEach((item: RadarDataItem) => {
-										item.number = ++number;
-									});
-								});
-							});
-							return new LoadRadarDataItemsSuccess(items);
-						})
-					);
-				})
-			);
-		})
-	);
-
 	@Effect()
 	public uploadRadar$: Observable<Action> = this.actions$.pipe(
 		ofType(RadarViewActionTypes.UploadRadar),
 		switchMap((action: UploadRadar) => {
-			return this.radarsRepositoryService.uploadRadar(action.payload.radarId, action.payload.radarConfig).pipe(
+			const radar: RadarDto = this.radarConverterService.toDto(action.payload);
+			return this.radarsRepositoryService.updateRadar(radar).pipe(
 				map((radarDto: RadarDto) => {
-					return new UploadRadarSuccess(radarDto.radarId);
+					return new UploadRadarSuccess(radarDto.uid);
 				}),
 				catchError(() => {
 					return of(new UploadRadarError());
@@ -119,9 +74,10 @@ export class RadarViewEffects {
 	public createRadar$: Observable<Action> = this.actions$.pipe(
 		ofType(RadarViewActionTypes.CreateRadar),
 		switchMap((action: CreateRadar) => {
-			return this.radarsRepositoryService.uploadRadar(action.payload.radarId, action.payload.radarConfig).pipe(
+			const dto: RadarDto = this.radarConverterService.toDto(action.payload);
+			return this.radarsRepositoryService.createRadar(dto).pipe(
 				map((radarDto: RadarDto) => {
-					return new CreateRadarSuccess(radarDto.radarId);
+					return new CreateRadarSuccess(radarDto.uid);
 				}),
 				catchError(() => {
 					return of(new CreateRadarError());
@@ -170,19 +126,22 @@ export class RadarViewEffects {
 	public loadDataAfterUpdatingRadar$: Observable<Action> = this.actions$.pipe(
 		ofType(RadarViewActionTypes.CreateRadarSuccess, RadarViewActionTypes.UploadRadarSuccess),
 		map((action: CreateRadarSuccess | UploadRadarSuccess) => {
-			return new LoadRadars(action.radarId);
+			return new LoadRadar(action.radarId);
 		})
 	);
 
 	@Effect()
 	public filterRadarItems$: Observable<any> = this.actions$.pipe(
-		ofType(RadarViewActionTypes.SetSearchQuery, RadarViewActionTypes.LoadRadarDataItemsSuccess),
-		withLatestFrom(this.radarViewFacadeService.radarDataItems$, this.radarViewFacadeService.searchQuery$),
-		map(([_, radarDataItems, searchQuery]: [SetSearchQuery | LoadRadarDataItemsSuccess, RadarDataItem[], string]) => {
-			let filteredDataItems: RadarDataItem[] = radarDataItems;
+		ofType(RadarViewActionTypes.SetSearchQuery, RadarViewActionTypes.LoadRadarSuccess),
+		withLatestFrom(
+			this.radarViewFacadeService.radar$.pipe(filter((radar: Radar) => Boolean(radar))),
+			this.radarViewFacadeService.searchQuery$
+		),
+		map(([_, radar, searchQuery]: [Action, Radar, string]) => {
+			let filteredDataItems: RadarDataItem[] = radar.items;
 
 			if (Boolean(searchQuery)) {
-				filteredDataItems = this.dotFilteringService.filterDotsBySearchQuery(searchQuery, radarDataItems);
+				filteredDataItems = this.dotFilteringService.filterDotsBySearchQuery(searchQuery, radar.items);
 			}
 
 			return new SetFilteredRadarItems(filteredDataItems);
@@ -193,7 +152,6 @@ export class RadarViewEffects {
 		private actions$: Actions<RadarViewActions>,
 		private radarsRepositoryService: RadarsRepositoryService,
 		private radarConverterService: RadarConverterService,
-		private radarDataItemsConverterService: RadarDataItemConverterService,
 		private radarViewFacadeService: RadarViewFacadeService,
 		private toastNotificationService: ToastNotificationService,
 		private dotFilteringService: DotFilteringServiceService,

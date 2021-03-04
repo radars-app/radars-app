@@ -1,13 +1,10 @@
 import { Action } from '@ngrx/store';
 import { Radar } from '../../model/radar';
 import { RadarDataItem } from '../../model/radar-data-item';
-import { RadarConfig } from '../../model/radar-config';
 
 export enum RadarViewActionTypes {
-	LoadRadars = '[RadarView] Load Radars',
-	LoadRadarsSuccess = '[RadarView] Load Radars Success',
-	LoadRadarDataItems = '[RadarView] Load Radar Data Items',
-	LoadRadarDataItemsSuccess = '[RadarView] Load Radar Data Items Success',
+	LoadRadar = '[RadarView] Load Radars',
+	LoadRadarSuccess = '[RadarView] Load Radars Success',
 	UploadRadar = '[RadarView] Upload Radars',
 	UploadRadarSuccess = '[RadarView] Upload Radar Success',
 	UploadRadarError = '[RadarView] Upload Radar Error',
@@ -20,29 +17,19 @@ export enum RadarViewActionTypes {
 	RemoveRadarSuccess = '[RadarView] Remove Radar Success',
 }
 
-export class LoadRadars implements Action {
-	public readonly type: RadarViewActionTypes = RadarViewActionTypes.LoadRadars;
+export class LoadRadar implements Action {
+	public readonly type: RadarViewActionTypes = RadarViewActionTypes.LoadRadar;
 	constructor(public payload: string) {}
 }
 
-export class LoadRadarsSuccess implements Action {
-	public readonly type: RadarViewActionTypes = RadarViewActionTypes.LoadRadarsSuccess;
-	constructor(public payload: Radar[]) {}
-}
-
-export class LoadRadarDataItems implements Action {
-	public readonly type: RadarViewActionTypes = RadarViewActionTypes.LoadRadarDataItems;
-	constructor(public radarId: string) {}
-}
-
-export class LoadRadarDataItemsSuccess implements Action {
-	public readonly type: RadarViewActionTypes = RadarViewActionTypes.LoadRadarDataItemsSuccess;
-	constructor(public payload: RadarDataItem[]) {}
+export class LoadRadarSuccess implements Action {
+	public readonly type: RadarViewActionTypes = RadarViewActionTypes.LoadRadarSuccess;
+	constructor(public payload: Radar) {}
 }
 
 export class UploadRadar implements Action {
 	public readonly type: RadarViewActionTypes = RadarViewActionTypes.UploadRadar;
-	constructor(public payload: { radarId: string; radarConfig: RadarConfig }) {}
+	constructor(public payload: Radar) {}
 }
 
 export class UploadRadarSuccess implements Action {
@@ -57,7 +44,7 @@ export class UploadRadarError implements Action {
 
 export class CreateRadar implements Action {
 	public readonly type: RadarViewActionTypes = RadarViewActionTypes.CreateRadar;
-	constructor(public payload: { radarId: string; radarConfig: RadarConfig }) {}
+	constructor(public payload: Radar) {}
 }
 
 export class CreateRadarSuccess implements Action {
@@ -91,12 +78,15 @@ export class RemoveRadarSuccess implements Action {
 }
 
 export type RadarViewActions =
-	| LoadRadars
-	| LoadRadarsSuccess
-	| LoadRadarDataItems
-	| LoadRadarDataItemsSuccess
+	| LoadRadar
+	| LoadRadarSuccess
 	| UploadRadar
+	| UploadRadarSuccess
+	| UploadRadarError
 	| SetSearchQuery
+	| CreateRadar
+	| CreateRadarSuccess
+	| CreateRadarError
 	| SetFilteredRadarItems
 	| RemoveRadar
 	| RemoveRadarSuccess;

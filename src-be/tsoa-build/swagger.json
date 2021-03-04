@@ -6,114 +6,187 @@
 		"requestBodies": {},
 		"responses": {},
 		"schemas": {
-			"RadarDataItemEntity": {
-				"properties": {
-					"id": {
-						"type": "string"
-					},
-					"radarId": {
-						"type": "string"
-					},
-					"versionId": {
-						"type": "string"
-					},
-					"name": {
-						"type": "string"
-					},
-					"sector": {
-						"type": "string"
-					},
-					"ring": {
-						"type": "string"
-					},
-					"content": {
-						"type": "string"
-					}
-				},
-				"required": [
-					"id",
-					"radarId",
-					"versionId",
-					"name",
-					"sector",
-					"ring",
-					"content"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"RadarConfig": {
-				"properties": {
-					"name": {
-						"type": "string"
-					},
-					"rings": {
-						"items": {
-							"type": "string"
-						},
-						"type": "array"
-					},
-					"sectors": {
-						"items": {
-							"type": "string"
-						},
-						"type": "array"
-					},
-					"csv": {
-						"type": "string"
-					}
-				},
-				"required": [
-					"name",
-					"rings",
-					"sectors",
-					"csv"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"RadarEntity": {
+			"RingDto": {
 				"properties": {
 					"uid": {
 						"type": "string"
 					},
+					"label": {
+						"type": "string"
+					},
+					"keywords": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"uid",
+					"label",
+					"keywords"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"SectorDto": {
+				"properties": {
+					"uid": {
+						"type": "string"
+					},
+					"label": {
+						"type": "string"
+					},
+					"keywords": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"color": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"uid",
+					"label",
+					"keywords",
+					"color"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"RadarDataItemStatus": {
+				"enum": [
+					"moved",
+					"no-changes",
+					"updated"
+				],
+				"type": "string"
+			},
+			"RadarDataItemDto": {
+				"properties": {
 					"radarId": {
+						"type": "string"
+					},
+					"ring": {
+						"$ref": "#/components/schemas/RingDto"
+					},
+					"sector": {
+						"$ref": "#/components/schemas/SectorDto"
+					},
+					"name": {
+						"type": "string"
+					},
+					"content": {
+						"type": "string"
+					},
+					"link": {
+						"type": "string"
+					},
+					"updatedAt": {
+						"type": "string"
+					},
+					"status": {
+						"$ref": "#/components/schemas/RadarDataItemStatus"
+					}
+				},
+				"required": [
+					"radarId",
+					"ring",
+					"sector",
+					"name",
+					"content",
+					"link",
+					"updatedAt",
+					"status"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"RadarDto": {
+				"properties": {
+					"uid": {
 						"type": "string"
 					},
 					"name": {
 						"type": "string"
 					},
-					"lastUpdatedDate": {
-						"type": "string"
-					},
-					"versionId": {
-						"type": "string"
-					},
 					"rings": {
 						"items": {
-							"type": "string"
+							"$ref": "#/components/schemas/RingDto"
 						},
 						"type": "array"
 					},
 					"sectors": {
 						"items": {
+							"$ref": "#/components/schemas/SectorDto"
+						},
+						"type": "array"
+					},
+					"sharepointListUrl": {
+						"type": "string"
+					},
+					"lastUpdatedAt": {
+						"type": "string"
+					},
+					"nameColumn": {
+						"type": "string"
+					},
+					"contentColumn": {
+						"type": "string"
+					},
+					"linkColumn": {
+						"type": "string"
+					},
+					"csv": {
+						"type": "string"
+					},
+					"sectorColumn": {
+						"type": "string"
+					},
+					"ringColumn": {
+						"type": "string"
+					},
+					"consideredNewInDays": {
+						"type": "number",
+						"format": "double"
+					},
+					"filterColumnEnabled": {
+						"type": "boolean"
+					},
+					"filterColumnName": {
+						"type": "string"
+					},
+					"filterColumnKeywords": {
+						"items": {
 							"type": "string"
 						},
 						"type": "array"
 					},
-					"config": {
-						"$ref": "#/components/schemas/RadarConfig"
+					"items": {
+						"items": {
+							"$ref": "#/components/schemas/RadarDataItemDto"
+						},
+						"type": "array"
 					}
 				},
 				"required": [
 					"uid",
-					"radarId",
 					"name",
-					"lastUpdatedDate",
-					"versionId",
 					"rings",
 					"sectors",
-					"config"
+					"lastUpdatedAt",
+					"nameColumn",
+					"contentColumn",
+					"linkColumn",
+					"sectorColumn",
+					"ringColumn",
+					"consideredNewInDays",
+					"filterColumnEnabled",
+					"filterColumnName",
+					"filterColumnKeywords",
+					"items"
 				],
 				"type": "object",
 				"additionalProperties": false
@@ -162,37 +235,6 @@
 	},
 	"openapi": "3.0.0",
 	"paths": {
-		"/api/radar-data-items/{radarId}": {
-			"get": {
-				"operationId": "GetRadar",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"items": {
-										"$ref": "#/components/schemas/RadarDataItemEntity"
-									},
-									"type": "array"
-								}
-							}
-						}
-					}
-				},
-				"security": [],
-				"parameters": [
-					{
-						"in": "path",
-						"name": "radarId",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					}
-				]
-			}
-		},
 		"/api/radars": {
 			"get": {
 				"operationId": "GetAllLatestRadars",
@@ -203,7 +245,7 @@
 							"application/json": {
 								"schema": {
 									"items": {
-										"$ref": "#/components/schemas/RadarEntity"
+										"$ref": "#/components/schemas/RadarDto"
 									},
 									"type": "array"
 								}
@@ -212,7 +254,47 @@
 					}
 				},
 				"security": [],
-				"parameters": []
+				"parameters": [
+					{
+						"in": "query",
+						"name": "date",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			},
+			"post": {
+				"operationId": "CreateRadar",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/RadarDto"
+								}
+							}
+						}
+					}
+				},
+				"security": [
+					{
+						"admin-access": []
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/RadarDto"
+							}
+						}
+					}
+				}
 			}
 		},
 		"/api/radars/{radarId}": {
@@ -224,10 +306,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"items": {
-										"$ref": "#/components/schemas/RadarEntity"
-									},
-									"type": "array"
+									"$ref": "#/components/schemas/RadarDto"
 								}
 							}
 						}
@@ -242,10 +321,18 @@
 						"schema": {
 							"type": "string"
 						}
+					},
+					{
+						"in": "query",
+						"name": "date",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
 					}
 				]
 			},
-			"post": {
+			"put": {
 				"operationId": "UpdateRadar",
 				"responses": {
 					"200": {
@@ -253,7 +340,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/RadarEntity"
+									"$ref": "#/components/schemas/RadarDto"
 								}
 							}
 						}
@@ -264,22 +351,13 @@
 						"admin-access": []
 					}
 				],
-				"parameters": [
-					{
-						"in": "path",
-						"name": "radarId",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					}
-				],
+				"parameters": [],
 				"requestBody": {
 					"required": true,
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/RadarConfig"
+								"$ref": "#/components/schemas/RadarDto"
 							}
 						}
 					}

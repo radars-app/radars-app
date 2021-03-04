@@ -1,5 +1,5 @@
 import { Injectable } from '../ioc';
-import { UserEntity, UserProfileDto } from 'app/model/user-entity';
+import { UserEntity, UserProfileDto } from '../model/user-entity';
 import { UserRole } from '../model/user-role';
 import axios, { AxiosResponse } from 'axios';
 import roleConfig from '../../role-config.json';
@@ -29,14 +29,14 @@ export class UserService {
 		}
 
 		try {
-			const data: AxiosResponse<string> = await axios.get('https://graph.microsoft.com/beta/me/photo/$value', {
+			const data: AxiosResponse<ArrayBuffer> = await axios.get('https://graph.microsoft.com/beta/me/photo/$value', {
 				responseType: 'arraybuffer',
 				headers: {
 					Authorization: onBehalfOfToken,
 				},
 			});
 
-			const photo: string = Buffer.from(data.data, 'binary').toString('base64');
+			const photo: string = this.encodeImageToBase64(data.data, data.headers['content-type']);
 			user.photo = photo;
 		} catch (err) {
 			user.photo = '';
@@ -44,5 +44,10 @@ export class UserService {
 
 		user.role = roleConfig.admin.includes(user.email) ? UserRole.Admin : UserRole.Default;
 		return Promise.resolve(user);
+	}
+
+	private encodeImageToBase64(image: ArrayBuffer, type: string): string {
+		const url: string = Buffer.from(image).toString('base64');
+		return `data:${type};base64,${url}`;
 	}
 }

@@ -5,7 +5,6 @@ import { ComponentTheme } from 'src/app/libs/common-components/common/enum/compo
 import { IconService } from 'src/app/libs/common-components/icon/service/icon.service';
 import { ContainerFacadeService } from 'src/app/libs/container/service/container-facade.service';
 import { RadarViewFacadeService } from '../../service/radar-view-facade.service';
-import { SectorToColorConverterService } from '../../service/sector-to-color-converter.service';
 import { HttpClientModule } from '@angular/common/http';
 
 import { RadarChartLegendComponent } from './radar-chart-legend.component';
@@ -25,28 +24,9 @@ describe('RadarChartLegendComponent', () => {
 					},
 				},
 				{
-					provide: SectorToColorConverterService,
-					useValue: {
-						getColorBySector: jasmine.createSpy().and.returnValue('#123123'),
-					},
-				},
-				{
 					provide: RadarViewFacadeService,
 					useValue: {
-						radars$: of([
-							{
-								id: '1',
-								name: 'radarName',
-								lastUpdatedDate: '12/1/2020',
-								config: {
-									name: 'radarName',
-									csv: 'string',
-								},
-								sectors: [],
-								rings: [],
-							},
-						]),
-						radarDataItems$: of([]),
+						radar$: of({ rings: [], sectors: [] }),
 					},
 				},
 			],

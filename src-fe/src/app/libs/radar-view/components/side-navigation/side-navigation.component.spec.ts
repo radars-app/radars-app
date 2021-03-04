@@ -7,8 +7,6 @@ import { ComponentTheme } from 'src/app/libs/common-components/common/enum/compo
 import { IconService } from 'src/app/libs/common-components/icon/service/icon.service';
 import { ContainerFacadeService } from 'src/app/libs/container/service/container-facade.service';
 import { RadarViewFacadeService } from '../../service/radar-view-facade.service';
-import { SectorToColorConverterService } from '../../service/sector-to-color-converter.service';
-
 import { SideNavigationComponent } from './side-navigation.component';
 
 describe('SideNavigationComponent', () => {
@@ -28,31 +26,31 @@ describe('SideNavigationComponent', () => {
 				{
 					provide: RadarViewFacadeService,
 					useValue: {
-						radars$: of([
-							{
-								id: '1',
-								name: 'Radar1',
-								lastUpdatedDate: new Date(),
-								config: {
-									name: 'Radar1',
-									csv: 'string',
-									rings: [],
-									sectors: [],
+						radar$: of({
+							uid: '1',
+							name: 'Radar1',
+							lastUpdatedSt: new Date(),
+							csv: '',
+							sectors: [
+								{ label: 'OS', uid: 'OS', color: '1' },
+								{ label: 'Hardware', uid: 'Hardware', color: '2' },
+								{ label: 'Cloud', uid: 'Cloud', color: '3' },
+							],
+							rings: [
+								{ label: 'Trial', uid: 'Trial' },
+								{ label: 'Hold', uid: 'Hold' },
+								{ label: 'Acceptance', uid: 'Acceptance' },
+							],
+							items: [
+								{
+									name: 'Linux',
+									ring: 'Hold',
+									sector: 'OS',
+									content: `Content 1 <a href="//mysite.com">Test, with comma</a`,
+									number: 1,
 								},
-								sectors: ['OS', 'Hardware', 'Cloud'],
-								rings: ['Trial', 'Hold', 'Acceptance'],
-							},
-						]),
-						radarDataItems$: of([
-							{
-								id: '3a4dbe90-5a2c-4c81-93ea-22039a921931',
-								name: 'Linux',
-								ring: 'Hold',
-								sector: 'OS',
-								content: `Content 1 <a href="//mysite.com">Test, with comma</a`,
-								number: 1,
-							},
-						]),
+							],
+						}),
 						filteredRadarDataItems$: of([
 							{
 								id: '3a4dbe90-5a2c-4c81-93ea-22039a921931',
@@ -63,12 +61,6 @@ describe('SideNavigationComponent', () => {
 								number: 1,
 							},
 						]),
-					},
-				},
-				{
-					provide: SectorToColorConverterService,
-					useValue: {
-						getColorBySector: jasmine.createSpy().and.returnValue('#123123'),
 					},
 				},
 			],

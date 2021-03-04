@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
 	selector: 'app-radars-user-profile',
@@ -11,8 +12,10 @@ export class UserProfileComponent {
 	public showProfilePopup: boolean;
 
 	public get photoUrl(): string {
-		return Boolean(this.userPhotoURL) ? this.userPhotoURL : '../../../../assets/profile.svg';
+		return Boolean(this.userPhotoURL)
+			? (this.sanitizer.bypassSecurityTrustUrl(this.userPhotoURL) as string)
+			: '../../../../assets/profile.svg';
 	}
 
-	constructor() {}
+	constructor(private sanitizer: DomSanitizer) {}
 }

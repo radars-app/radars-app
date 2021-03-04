@@ -14,12 +14,12 @@
 		<div class="radars-general-view__content-wrapper" #radarList>
 			<app-radar-card
 				class="radars-general-view__radar-card"
-				*ngFor="let radar of radarsWithData; let index=index"
-				(click)="navigateToRadar(radar.id)"
+				*ngFor="let radar of radars; let index=index"
+				(click)="navigateToRadar(radar.uid)"
 				[title]="radar.name"
-				[lastUpdatedDate]="radar.lastUpdatedDate"
+				[lastUpdatedDate]="radar.lastUpdatedAt"
 				[theme]="theme$ | async">
-				<app-general-radar-chart [radarWidthData]="radar"></app-general-radar-chart>
+				<app-general-radar-chart [radar]="radar"></app-general-radar-chart>
 			</app-radar-card>
 		</div>
 

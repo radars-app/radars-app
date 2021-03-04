@@ -8,11 +8,7 @@ describe('Radar-view Selectors', () => {
 	it('should select the feature state', () => {
 		const result: RadarViewState = selectRadarViewState({
 			[radarViewFeatureKey]: {
-				radars: {
-					value: null,
-					status: EntityStatus.Init,
-				},
-				radarDataItems: {
+				radar: {
 					value: null,
 					status: EntityStatus.Init,
 				},
@@ -22,11 +18,7 @@ describe('Radar-view Selectors', () => {
 		});
 
 		expect(result).toEqual({
-			radars: {
-				value: null,
-				status: EntityStatus.Init,
-			},
-			radarDataItems: {
+			radar: {
 				value: null,
 				status: EntityStatus.Init,
 			},

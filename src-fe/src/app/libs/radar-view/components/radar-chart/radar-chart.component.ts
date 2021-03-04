@@ -1,18 +1,20 @@
 import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { DotAction, RadarChartConfig, RadarChartModel, RadarChartRenderer } from 'radar-chart-project';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { debounceTime, filter, map, takeUntil } from 'rxjs/operators';
+import { debounceTime, filter, takeUntil, tap } from 'rxjs/operators';
 import { ComponentTheme } from 'src/app/libs/common-components/common/enum/component-theme.enum';
 import { ContainerFacadeService } from 'src/app/libs/container/service/container-facade.service';
 import { Radar } from '../../model/radar';
 import { RadarDataItem } from '../../model/radar-data-item';
 import { RadarViewFacadeService } from '../../service/radar-view-facade.service';
-import { SectorToColorConverterService } from '../../service/sector-to-color-converter.service';
 import { TooltipOptions } from '../../../common-components/tooltip/models/tooltip-options';
 import { TooltipComponent } from '../../../common-components/tooltip/tooltip.component';
 import { TooltipTrigger } from '../../../common-components/tooltip/models/tooltip-trigger';
 import { TooltipPlacement } from '../../../common-components/tooltip/models/tooltip-placement';
 import { EventEmitter } from '@angular/core';
+import { RadarDot } from 'radar-chart-project/dist/models/radar-dot';
+import { Ring } from '../../model/ring';
+import { Sector } from '../../model/sector';
 
 @Component({
 	selector: 'app-radar-chart',
@@ -26,29 +28,25 @@ export class RadarChartComponent implements OnInit, AfterViewInit, OnDestroy {
 	@Output() public dotClicked: EventEmitter<DotAction> = new EventEmitter<DotAction>();
 
 	public tooltipOptions: TooltipOptions;
-	public tooltipItems: RadarDataItem[];
+	public tooltipItems: RadarDot[];
 
 	public config$: BehaviorSubject<RadarChartConfig>;
 	public radar$: Observable<Radar>;
 	public model: RadarChartModel;
 
 	private destroy$: Subject<void>;
+	private items: RadarDataItem[];
 
 	public get firstTooltipItem(): RadarDataItem {
-		return this.tooltipItems?.['0'];
+		return this.items?.find((item: RadarDataItem) => item.name === this.tooltipItems?.['0'].name);
 	}
 
-	constructor(
-		public containerFacade: ContainerFacadeService,
-		private radarViewFacade: RadarViewFacadeService,
-		private sectorToColorConverter: SectorToColorConverterService
-	) {}
+	constructor(public containerFacade: ContainerFacadeService, private radarViewFacade: RadarViewFacadeService) {}
 
 	public ngOnInit(): void {
 		this.destroy$ = new Subject<void>();
-		this.radar$ = this.radarViewFacade.radars$.pipe(
-			filter((radars: Radar[]) => Boolean(radars)),
-			map((radars: Radar[]) => radars[radars.length - 1]),
+		this.radar$ = this.radarViewFacade.radar$.pipe(
+			filter((radar: Radar) => Boolean(radar)),
 			takeUntil(this.destroy$)
 		);
 		this.handleThemeChange();
@@ -90,7 +88,7 @@ export class RadarChartComponent implements OnInit, AfterViewInit, OnDestroy {
 		this.model.zoomReset();
 	}
 
-	public isSingleItem(items: RadarDataItem[]): boolean {
+	public isSingleItem(items: RadarDot[]): boolean {
 		return items?.length === 1;
 	}
 
@@ -98,11 +96,11 @@ export class RadarChartComponent implements OnInit, AfterViewInit, OnDestroy {
 		this.model = new RadarChartModel();
 
 		this.radar$.pipe(takeUntil(this.destroy$)).subscribe((radar: Radar) => {
-			this.model.ringNames$.next(radar.rings);
-			const sectors: any[] = radar.sectors.map((sector: string) => {
+			this.model.ringNames$.next(radar.rings.map((ring: Ring) => ring.label));
+			const sectors: any[] = radar.sectors.map((sector: Sector) => {
 				return {
-					name: sector,
-					color: this.sectorToColorConverter.getColorBySector(sector),
+					name: sector.label,
+					color: sector.color,
 				};
 			});
 			this.model.sectors$.next(sectors.reverse());
@@ -110,10 +108,16 @@ export class RadarChartComponent implements OnInit, AfterViewInit, OnDestroy {
 
 		const minDotRenderInterval: number = 200;
 		this.radarViewFacade.filteredRadarDataItems$
-			.pipe(takeUntil(this.destroy$), debounceTime(minDotRenderInterval))
+			.pipe(
+				takeUntil(this.destroy$),
+				tap((items: RadarDataItem[]) => {
+					this.items = items;
+				}),
+				debounceTime(minDotRenderInterval)
+			)
 			.subscribe((items: RadarDataItem[]) => {
 				if (Boolean(items)) {
-					this.model.dots$.next(items);
+					this.model.dots$.next(this.mapItemsToDots(items));
 				}
 			});
 
@@ -173,6 +177,19 @@ export class RadarChartComponent implements OnInit, AfterViewInit, OnDestroy {
 			} else {
 				this.config$.next(darkConfig);
 			}
+		});
+	}
+
+	private mapItemsToDots(items: RadarDataItem[]): RadarDot[] {
+		return items.map((item: RadarDataItem) => {
+			return {
+				id: item.name,
+				name: item.name,
+				sector: item.sector.label,
+				ring: item.ring.label,
+				content: item.content,
+				number: item.number,
+			};
 		});
 	}
 }

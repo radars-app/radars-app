@@ -4,9 +4,9 @@
 		<div class="legend-section__content">
 			<div class="legend" *ngFor="let sector of (sectors$ | async)">
 				<div class="legend__icon">
-					<div class="color-rect" [style.background-color]="sectorToColorConverter.getColorBySector(sector)"></div>
+					<div class="color-rect" [style.background-color]="sector.color"></div>
 				</div>
-				<div class="legend__label">{{sector}}</div>
+				<div class="legend__label">{{sector.label}}</div>
 			</div>
 		</div>
 	</div>
@@ -17,7 +17,7 @@
 				<div class="legend__icon">
 					<app-icon class="ring-icon" [icon]="getRingIcon(last)" size="s"></app-icon>
 				</div>
-				<div class="legend__label">{{ring}}</div>
+				<div class="legend__label">{{ring.label}}</div>
 			</div>
 		</div>
 	</div>

@@ -3,7 +3,6 @@ import { of } from 'rxjs';
 import { ComponentTheme } from 'src/app/libs/common-components/common/enum/component-theme.enum';
 import { ContainerFacadeService } from 'src/app/libs/container/service/container-facade.service';
 import { RadarViewFacadeService } from '../../service/radar-view-facade.service';
-import { SectorToColorConverterService } from '../../service/sector-to-color-converter.service';
 import { RadarChartComponent } from './radar-chart.component';
 import { CommonComponentsModule } from '../../../common-components/common-components.module';
 import { IconService } from 'src/app/libs/common-components/icon/service/icon.service';
@@ -29,15 +28,8 @@ describe('RadarChartComponent', () => {
 				{
 					provide: RadarViewFacadeService,
 					useValue: {
-						radars$: of([{ lastUpdatedAt: new Date(), sectors: [], rings: [] }]),
-						radarDataItems$: of([]),
+						radar$: of({ lastUpdatedAt: new Date(), sectors: [], rings: [], items: [] }),
 						filteredRadarDataItems$: of([]),
-					},
-				},
-				{
-					provide: SectorToColorConverterService,
-					useValue: {
-						getColorBySector: jasmine.createSpy().and.returnValue('#123123'),
 					},
 				},
 			],

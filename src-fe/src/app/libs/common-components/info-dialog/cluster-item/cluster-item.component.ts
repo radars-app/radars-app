@@ -1,7 +1,6 @@
 import { EventEmitter } from '@angular/core';
 import { Component, ViewChild, Input, HostListener, Output } from '@angular/core';
 import { RadarDataItem } from '../../../radar-view/model/radar-data-item';
-import { SectorToColorConverterService } from '../../../radar-view/service/sector-to-color-converter.service';
 import { ComponentTheme } from '../../common/enum/component-theme.enum';
 import { InfoDialogComponent } from '../info-dialog.component';
 
@@ -27,7 +26,7 @@ export class ClusterItemComponent {
 		return this.theme === ComponentTheme.Dark;
 	}
 
-	constructor(public sectorToColorConverter: SectorToColorConverterService) {}
+	constructor() {}
 
 	@HostListener('click')
 	public onClick(): void {

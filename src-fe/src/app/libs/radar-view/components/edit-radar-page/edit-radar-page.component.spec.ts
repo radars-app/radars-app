@@ -39,8 +39,8 @@ describe('EditRadarPageComponent', () => {
 				{
 					provide: RadarViewFacadeService,
 					useValue: {
-						radars$: of([{ config: {} }]),
-						loadRadars: jasmine.createSpy(),
+						radar$: of({ items: [] }),
+						loadRadar: jasmine.createSpy(),
 					},
 				},
 			],

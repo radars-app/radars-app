@@ -3,8 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonComponentsModule } from 'src/app/libs/common-components/common-components.module';
 import { IconService } from 'src/app/libs/common-components/icon/service/icon.service';
-import { RadarConfig } from 'src/app/libs/radar-view/model/radar-config';
-
+import { Radar } from 'src/app/libs/radar-view/model/radar';
 import { PrepareRadarComponent } from './prepare-radar.component';
 
 describe('PrepareRadarComponent', () => {
@@ -23,7 +22,7 @@ describe('PrepareRadarComponent', () => {
 		iconService.addIcons();
 		fixture = TestBed.createComponent(PrepareRadarComponent);
 		component = fixture.componentInstance;
-		component.config = {} as RadarConfig;
+		component.radar = {} as Radar;
 		fixture.detectChanges();
 	});
 

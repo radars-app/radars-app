@@ -1,19 +1,26 @@
+import { RadarDataItemStatus } from './radar-data-item-status';
+import { Ring, RingDto } from './ring';
+import { Sector, SectorDto } from './sector';
+
 export interface RadarDataItemDto {
-	id: string;
 	radarId: string;
-	versionId: string;
+	ring: RingDto;
+	sector: SectorDto;
 	name: string;
-	sector: string;
-	ring: string;
 	content: string;
-	number: number;
+	link: string;
+	updatedAt: string;
+	status: RadarDataItemStatus;
 }
 
 export interface RadarDataItem {
-	id: string;
+	radarId: string;
+	ring: Ring;
+	sector: Sector;
 	name: string;
-	sector: string;
-	ring: string;
 	content: string;
+	link: string;
+	updatedAt: Date;
+	status: RadarDataItemStatus;
 	number: number;
 }

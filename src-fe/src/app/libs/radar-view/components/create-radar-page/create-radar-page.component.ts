@@ -13,6 +13,9 @@ import { v4 } from 'uuid';
 import { ComponentTheme } from '../../../common-components/common/enum/component-theme.enum';
 import { Observable } from 'rxjs/internal/Observable';
 import { ContainerFacadeService } from '../../../container/service/container-facade.service';
+import { Radar } from '../../model/radar';
+import { Ring } from '../../model/ring';
+import { Sector } from '../../model/sector';
 
 @Component({
 	selector: 'app-create-radar-page',
@@ -27,7 +30,7 @@ export class CreateRadarPageComponent implements OnInit, OnDestroy {
 	public theme$: Observable<ComponentTheme>;
 	public buttons: IconButtonModel[];
 	public extraButtons: ButtonModel[];
-	public config: RadarConfig;
+	public radar: Radar;
 
 	private destroy$: Subject<boolean>;
 
@@ -44,7 +47,7 @@ export class CreateRadarPageComponent implements OnInit, OnDestroy {
 		this.radarId = v4();
 
 		this.initCommandButtons();
-		this.initRadarConfig();
+		this.initRadar();
 	}
 
 	public ngOnDestroy(): void {
@@ -53,23 +56,46 @@ export class CreateRadarPageComponent implements OnInit, OnDestroy {
 	}
 
 	public applyConfig(config: RadarConfig): void {
-		this.config = JSON.parse(JSON.stringify(this.config));
-		this.config.name = config.name;
-		this.config.rings = config.rings;
-		this.config.sectors = config.sectors;
+		this.radar = JSON.parse(JSON.stringify(this.radar));
+		this.radar.lastUpdatedAt = new Date(this.radar.lastUpdatedAt);
+		this.radar.name = config.name;
+		this.radar.rings = config.rings;
+		this.radar.rings.forEach((ring: Ring) => (ring.uid = v4()));
+		this.radar.sectors = config.sectors;
+		this.radar.sectors.forEach((sector: Sector) => (sector.uid = v4()));
+		this.radar.filterColumnName = config.filterColumnName;
+		this.radar.filterColumnEnabled = config.filterColumnEnabled;
+		this.radar.filterColumnKeywords = config.filterColumnKeywords;
+		this.radar.nameColumn = config.nameColumn;
+		this.radar.ringColumn = config.ringColumn;
+		this.radar.sectorColumn = config.sectorColumn;
+		this.radar.contentColumn = config.contentColumn;
+		this.radar.linkColumn = config.linkColumn;
 		this.cdRef.markForCheck();
 	}
 
-	public updateLocalConfig(config: RadarConfig): void {
-		this.config = config;
+	public updateLocalRadar(radar: Radar): void {
+		this.radar = radar;
 	}
 
-	private initRadarConfig(): void {
-		this.config = {
+	private initRadar(): void {
+		this.radar = {
+			uid: this.radarId,
 			name: '',
 			csv: '',
 			rings: [],
 			sectors: [],
+			lastUpdatedAt: new Date(),
+			consideredNewInDays: 30,
+			linkColumn: '',
+			nameColumn: '',
+			contentColumn: '',
+			sectorColumn: '',
+			ringColumn: '',
+			filterColumnEnabled: false,
+			filterColumnKeywords: [],
+			filterColumnName: '',
+			items: [],
 		};
 	}
 
@@ -116,6 +142,6 @@ export class CreateRadarPageComponent implements OnInit, OnDestroy {
 	}
 
 	private createRadar(): void {
-		this.radarViewFacadeService.createRadar(this.radarId, this.config);
+		this.radarViewFacadeService.createRadar(this.radar);
 	}
 }

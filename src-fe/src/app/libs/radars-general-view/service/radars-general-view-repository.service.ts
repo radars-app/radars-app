@@ -13,12 +13,15 @@ import { RadarDataItemDto } from '../../radar-view/model/radar-data-item';
 export class RadarsGeneralViewRepository {
 	constructor(private authService: MsalService, private http: HttpClient) {}
 
-	public loadAllLatestRadars(): Observable<RadarDto[]> {
+	public loadAllLatestRadars(date: Date): Observable<RadarDto[]> {
 		return this.loadToken().pipe(
 			switchMap((token: AuthResponse) => {
 				const ALL_RADARS_ENDPOINT: string = `/api/radars`;
 
 				return this.http.get<RadarDto[]>(ALL_RADARS_ENDPOINT, {
+					params: {
+						date: date.toUTCString(),
+					},
 					headers: { Authorization: 'Bearer ' + token.accessToken },
 				});
 			})

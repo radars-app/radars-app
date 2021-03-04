@@ -1,9 +1,11 @@
 import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
+import { RadarDataItem } from 'src/app/libs/radar-view/model/radar-data-item';
+import { Ring } from 'src/app/libs/radar-view/model/ring';
+import { Sector } from 'src/app/libs/radar-view/model/sector';
 import { RadarViewFacadeService } from '../../../radar-view/service/radar-view-facade.service';
 import { RingToIconConverterService } from '../../../radar-view/service/ring-to-icon-converter.service';
-import { SectorToColorConverterService } from '../../../radar-view/service/sector-to-color-converter.service';
 import { CommonComponentsModule } from '../../common-components.module';
 import { IconService } from '../../icon/service/icon.service';
 
@@ -19,12 +21,6 @@ describe('ClusterItemComponent', () => {
 			imports: [CommonComponentsModule, HttpClientModule],
 			providers: [
 				{
-					provide: SectorToColorConverterService,
-					useValue: {
-						getColorBySector: jasmine.createSpy().and.returnValue('#123123'),
-					},
-				},
-				{
 					provide: RingToIconConverterService,
 					useValue: {
 						getIconClassByRing: jasmine.createSpy().and.returnValue('ring_legend_base'),
@@ -33,9 +29,8 @@ describe('ClusterItemComponent', () => {
 				{
 					provide: RadarViewFacadeService,
 					useValue: {
-						radars$: of([{ config: {} }]),
-						radarDataItems$: of([]),
-						loadRadars: jasmine.createSpy(),
+						radar$: of({}),
+						loadRadar: jasmine.createSpy(),
 					},
 				},
 			],
@@ -47,13 +42,12 @@ describe('ClusterItemComponent', () => {
 		fixture = TestBed.createComponent(ClusterItemComponent);
 		component = fixture.componentInstance;
 		component.dot = {
-			id: '1',
 			name: 'TEST',
-			sector: 'TEST',
-			ring: '',
+			sector: {} as Sector,
+			ring: {} as Ring,
 			content: '',
 			number: 1,
-		};
+		} as RadarDataItem;
 		fixture.detectChanges();
 	});
 

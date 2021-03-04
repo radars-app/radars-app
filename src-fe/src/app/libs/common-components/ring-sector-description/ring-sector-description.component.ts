@@ -1,7 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { ComponentTheme } from '../common/enum/component-theme.enum';
 import { RingToIconConverterService } from '../../radar-view/service/ring-to-icon-converter.service';
-import { SectorToColorConverterService } from '../../radar-view/service/sector-to-color-converter.service';
+import { Sector } from '../../radar-view/model/sector';
+import { Ring } from '../../radar-view/model/ring';
 
 @Component({
 	selector: 'app-ring-sector-description',
@@ -10,10 +11,10 @@ import { SectorToColorConverterService } from '../../radar-view/service/sector-t
 })
 export class RingSectorDescriptionComponent {
 	@Input()
-	public ring: string;
+	public ring: Ring;
 
 	@Input()
-	public sector: string;
+	public sector: Sector;
 
 	@Input()
 	public horizontal: boolean = false;
@@ -21,7 +22,7 @@ export class RingSectorDescriptionComponent {
 	@Input()
 	private theme: ComponentTheme;
 
-	constructor(public sectorToColorConverter: SectorToColorConverterService, public ringToIconConverter: RingToIconConverterService) {}
+	constructor(public ringToIconConverter: RingToIconConverterService) {}
 
 	public get isDarkTheme(): boolean {
 		return this.theme === ComponentTheme.Dark;

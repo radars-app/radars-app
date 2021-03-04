@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { RadarWithData } from '../model/radar-with-data';
+import { Radar } from '../../radar-view/model/radar';
 
 @Injectable({
 	providedIn: 'root',
@@ -7,10 +7,10 @@ import { RadarWithData } from '../model/radar-with-data';
 export class RadarSorterService {
 	constructor() {}
 
-	public sortByDate(radarWithData: RadarWithData[], isNewestToOldest: boolean): RadarWithData[] {
-		return radarWithData?.slice().sort((a: RadarWithData, b: RadarWithData): number => {
-			const radarDataA: number = +a.lastUpdatedDate;
-			const radarDateB: number = +b.lastUpdatedDate;
+	public sortByDate(radarWithData: Radar[], isNewestToOldest: boolean): Radar[] {
+		return radarWithData?.slice().sort((a: Radar, b: Radar): number => {
+			const radarDataA: number = +a.lastUpdatedAt;
+			const radarDateB: number = +b.lastUpdatedAt;
 			if (isNewestToOldest) {
 				return radarDataA < radarDateB ? 1 : -1;
 			} else {
@@ -19,8 +19,8 @@ export class RadarSorterService {
 		});
 	}
 
-	public sortAlphabetical(radarWithData: RadarWithData[], isAtoZ: boolean): RadarWithData[] {
-		return radarWithData?.slice().sort((a: RadarWithData, b: RadarWithData): number => {
+	public sortAlphabetical(radarWithData: Radar[], isAtoZ: boolean): Radar[] {
+		return radarWithData?.slice().sort((a: Radar, b: Radar): number => {
 			if (isAtoZ) {
 				return a.name > b.name ? 1 : -1;
 			} else {

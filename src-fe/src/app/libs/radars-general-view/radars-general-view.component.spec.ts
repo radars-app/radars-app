@@ -30,15 +30,14 @@ describe('RadarsGeneralViewComponent', () => {
 				{
 					provide: RadarsGeneralViewFacadeService,
 					useValue: {
-						loadRadarsWithData: () => {},
-						radarsWithData$: of(),
+						loadRadars: () => {},
+						radars$: of([]),
 					},
 				},
 				{
 					provide: RadarsGeneralViewRepository,
 					useValue: {
 						loadRadarDataItems: () => [],
-						radars$: of([]),
 					},
 				},
 			],

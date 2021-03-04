@@ -1,21 +1,10 @@
 import { EntityStatus } from 'src/app/libs/container/model/entity-status';
-import {
-	RadarViewActions,
-	RadarViewActionTypes,
-	LoadRadarsSuccess,
-	LoadRadarDataItemsSuccess,
-	SetSearchQuery,
-	SetFilteredRadarItems,
-} from './radar-view.actions';
+import { RadarViewActions, RadarViewActionTypes, LoadRadarSuccess, SetSearchQuery, SetFilteredRadarItems } from './radar-view.actions';
 import { RadarViewState } from './radar-view.state';
 
 export const initialState: RadarViewState = {
-	radars: {
+	radar: {
 		value: null,
-		status: EntityStatus.Init,
-	},
-	radarDataItems: {
-		value: [],
 		status: EntityStatus.Init,
 	},
 	searchQuery: null,
@@ -24,43 +13,22 @@ export const initialState: RadarViewState = {
 
 export function radarViewReducer(state: RadarViewState = initialState, action: RadarViewActions): RadarViewState {
 	switch (action.type) {
-		case RadarViewActionTypes.LoadRadars: {
+		case RadarViewActionTypes.LoadRadar: {
 			return {
 				...state,
-				radars: {
-					...state.radars,
+				radar: {
+					...state.radar,
 					status: EntityStatus.Pending,
 				},
 			};
 		}
 
-		case RadarViewActionTypes.LoadRadarsSuccess: {
+		case RadarViewActionTypes.LoadRadarSuccess: {
 			return {
 				...state,
-				radars: {
-					...state.radars,
-					value: (action as LoadRadarsSuccess).payload,
-					status: EntityStatus.Success,
-				},
-			};
-		}
-
-		case RadarViewActionTypes.LoadRadarDataItems: {
-			return {
-				...state,
-				radarDataItems: {
-					...state.radarDataItems,
-					status: EntityStatus.Pending,
-				},
-			};
-		}
-
-		case RadarViewActionTypes.LoadRadarDataItemsSuccess: {
-			return {
-				...state,
-				radarDataItems: {
-					...state.radarDataItems,
-					value: (action as LoadRadarDataItemsSuccess).payload,
+				radar: {
+					...state.radar,
+					value: (action as LoadRadarSuccess).payload,
 					status: EntityStatus.Success,
 				},
 			};

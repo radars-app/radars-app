@@ -1,9 +1,12 @@
 import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
+import { Radar } from '../../radar-view/model/radar';
+import { RadarDataItem } from '../../radar-view/model/radar-data-item';
+import { Ring } from '../../radar-view/model/ring';
+import { Sector } from '../../radar-view/model/sector';
 import { RadarViewFacadeService } from '../../radar-view/service/radar-view-facade.service';
 import { RingToIconConverterService } from '../../radar-view/service/ring-to-icon-converter.service';
-import { SectorToColorConverterService } from '../../radar-view/service/sector-to-color-converter.service';
 import { CommonComponentsModule } from '../common-components.module';
 import { IconService } from '../icon/service/icon.service';
 
@@ -21,28 +24,23 @@ describe('InfoDialogComponent', () => {
 				{
 					provide: RadarViewFacadeService,
 					useValue: {
-						radarDataItems$: of([
-							{
-								id: '5690b860-f4b8-4c00-9b8d-056181b35ede',
-								name: 'Linux',
-								ring: 'Hold',
-								sector: 'OS',
-								content: `Content 1 <a href='//mysite.com'>Test, with comma</a>`,
-								number: 1,
-							},
-						]),
+						radar$: of({
+							items: [
+								{
+									name: 'Linux',
+									ring: { label: 'Hold' } as Ring,
+									sector: { label: 'OS' } as Sector,
+									content: `Content 1 <a href='//mysite.com'>Test, with comma</a>`,
+									number: 1,
+								} as RadarDataItem,
+							],
+						} as Radar),
 					},
 				},
 				{
 					provide: RingToIconConverterService,
 					useValue: {
 						getIconClassByRing: jasmine.createSpy().and.returnValue('ring_legend_base'),
-					},
-				},
-				{
-					provide: SectorToColorConverterService,
-					useValue: {
-						getColorBySector: jasmine.createSpy().and.returnValue('#123123'),
 					},
 				},
 			],

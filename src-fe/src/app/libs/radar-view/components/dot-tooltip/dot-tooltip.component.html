@@ -1,11 +1,11 @@
 <section 	class="dot-tooltip" 
-					*ngIf="dot"
-					[class.dot-tooltip--dark-theme]="isDarkTheme">
+			*ngIf="item"
+			[class.dot-tooltip--dark-theme]="isDarkTheme">
 
-	<h4 class="dot-tooltip__title">{{dot.number}}. {{dot.name}}</h4>
+	<h4 class="dot-tooltip__title">{{item.number}}. {{item.name}}</h4>
 
 	<app-ring-sector-description 	[theme]="darkTheme" 
-																[ring]="dot.ring"
-																[sector]="dot.sector">
+									[ring]="item.ring"
+									[sector]="item.sector">
 	</app-ring-sector-description>
 </section>

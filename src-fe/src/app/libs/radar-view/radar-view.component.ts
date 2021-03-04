@@ -51,13 +51,13 @@ export class RadarViewComponent implements OnInit, OnDestroy {
 			)
 			.subscribe((radarId: string) => {
 				this.radarId = radarId;
-				this.radarViewFacadeService.loadRadars(radarId);
+				this.radarViewFacadeService.loadRadar(radarId);
 			});
 
-		this.radarName$ = this.radarViewFacadeService.radars$.pipe(
+		this.radarName$ = this.radarViewFacadeService.radar$.pipe(
 			takeUntil(this.destroy$),
-			filter((radars: Radar[]) => Boolean(radars)),
-			map((radars: Radar[]) => radars[radars.length - 1].name)
+			filter((radar: Radar) => Boolean(radar)),
+			map((radar: Radar) => radar.name)
 		);
 
 		combineLatest([this.radarViewFacadeService.filteredRadarDataItems$, this.radarViewFacadeService.searchQuery$])
@@ -93,7 +93,7 @@ export class RadarViewComponent implements OnInit, OnDestroy {
 	}
 
 	public onDotClicked(event: RadarDataItem[]): void {
-		const itemIds: string[] = event.map((radarDataItem: RadarDataItem) => radarDataItem.id);
+		const itemIds: string[] = event.map((radarDataItem: RadarDataItem) => radarDataItem.name);
 		this.infoDialog.open(itemIds);
 	}
 
@@ -119,7 +119,7 @@ export class RadarViewComponent implements OnInit, OnDestroy {
 			if (foundInName || foundInContent) {
 				options.push({
 					label: item.name,
-					value: item.id,
+					value: item.name,
 				});
 			}
 

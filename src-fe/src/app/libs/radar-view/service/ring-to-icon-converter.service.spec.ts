@@ -13,8 +13,7 @@ describe('RingToIconConverterService', () => {
 				{
 					provide: RadarViewFacadeService,
 					useValue: {
-						radars$: of([{ lastUpdatedAt: new Date(), sectors: [], rings: [] }]),
-						radarDataItems$: of([]),
+						radar$: of({ lastUpdatedAt: new Date(), sectors: [], rings: [] }),
 						filteredRadarDataItems$: of([]),
 					},
 				},

@@ -7,11 +7,9 @@ import {
 	ChangeDetectorRef,
 	Output,
 	EventEmitter,
-	SimpleChanges,
-	OnChanges,
 	ChangeDetectionStrategy,
 } from '@angular/core';
-import { RadarConfig } from 'src/app/libs/radar-view/model/radar-config';
+import { Radar } from 'src/app/libs/radar-view/model/radar';
 import { ComponentTheme } from '../../../common-components/common/enum/component-theme.enum';
 import { DropZoneComponent } from '../../../common-components/drop-zone/drop-zone.component';
 import { RadioGroupOption } from '../../../common-components/radio-group/models/radio-group-option';
@@ -23,7 +21,7 @@ import { RadioGroupComponent } from '../../../common-components/radio-group/radi
 	styleUrls: ['./prepare-radar.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PrepareRadarComponent implements OnChanges, AfterViewInit {
+export class PrepareRadarComponent implements AfterViewInit {
 	@Input()
 	public theme: ComponentTheme = ComponentTheme.Light;
 
@@ -31,7 +29,7 @@ export class PrepareRadarComponent implements OnChanges, AfterViewInit {
 	public radioGroupComponent: RadioGroupComponent;
 
 	@Input()
-	public config: RadarConfig;
+	public radar: Radar;
 
 	@ViewChild('dropZoneTemplate')
 	public dropZoneTemplate: TemplateRef<any>;
@@ -43,7 +41,7 @@ export class PrepareRadarComponent implements OnChanges, AfterViewInit {
 	public readonly dropZone: DropZoneComponent;
 
 	@Output()
-	public configChange: EventEmitter<RadarConfig> = new EventEmitter<RadarConfig>();
+	public radarChange: EventEmitter<Radar> = new EventEmitter<Radar>();
 
 	public prepareRadarOptions: RadioGroupOption[];
 
@@ -63,22 +61,13 @@ export class PrepareRadarComponent implements OnChanges, AfterViewInit {
 
 	constructor(private cdRef: ChangeDetectorRef) {}
 
-	public ngOnChanges(changes: SimpleChanges): void {
-		if (Boolean(changes.config) && Boolean(this.config.csv)) {
-			this.csvFile = this.generateCsvFileFromString(this.config.csv);
-		}
-	}
-
 	public ngAfterViewInit(): void {
 		this.initPrepareRadarSection();
-		if (Boolean(this.config.csv)) {
-			this.csvFile = this.generateCsvFileFromString(this.config.csv);
-		}
 	}
 
 	public updateRadarName(name: string): void {
-		this.config.name = name;
-		this.configChange.next(this.config);
+		this.radar.name = name;
+		this.radarChange.next(this.radar);
 	}
 
 	public updateCsv(file: File): void {
@@ -89,15 +78,9 @@ export class PrepareRadarComponent implements OnChanges, AfterViewInit {
 		reader.onload = () => {
 			const csv: string = reader.result as string;
 
-			this.config.csv = csv;
-			this.configChange.next(this.config);
+			this.radar.csv = csv;
+			this.radarChange.next(this.radar);
 		};
-	}
-
-	private generateCsvFileFromString(csv: string): File {
-		const blob: Blob = new Blob([csv], { type: '.csv' });
-		const fileName: string = `${this.config.name.trim().replace(/\s/g, '_').toLowerCase()}.scv`;
-		return new File([blob], fileName);
 	}
 
 	private initPrepareRadarSection(): void {
