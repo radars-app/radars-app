@@ -1,5 +1,6 @@
 import { EventEmitter } from '@angular/core';
 import { Component, ViewChild, Input, HostListener, Output } from '@angular/core';
+import { RadarDataItemStatus } from 'src/app/libs/radar-view/model/radar-data-item-status';
 import { RadarDataItem } from '../../../radar-view/model/radar-data-item';
 import { ComponentTheme } from '../../common/enum/component-theme.enum';
 import { InfoDialogComponent } from '../info-dialog.component';
@@ -31,5 +32,18 @@ export class ClusterItemComponent {
 	@HostListener('click')
 	public onClick(): void {
 		this.dotClicked.next(this.dot);
+	}
+
+	public getIconByItemStatus(status: RadarDataItemStatus): string {
+		switch (status) {
+			case RadarDataItemStatus.Moved:
+				return 'dot-moved';
+			case RadarDataItemStatus.NoChanges:
+				return 'dot-no-change';
+			case RadarDataItemStatus.Updated:
+				return 'dot-updated';
+			default:
+				return 'dot-no-change';
+		}
 	}
 }
