@@ -15,10 +15,16 @@ export enum RadarViewActionTypes {
 	SetFilteredRadarItems = '[RadarView] Set Filtered Radar Items',
 	RemoveRadar = '[RadarView] Remove Radar',
 	RemoveRadarSuccess = '[RadarView] Remove Radar Success',
+	RefreshCsv = '[RadarView] Refresch CSV',
 }
 
 export class LoadRadar implements Action {
 	public readonly type: RadarViewActionTypes = RadarViewActionTypes.LoadRadar;
+	constructor(public payload: string) {}
+}
+
+export class RefreshCsv implements Action {
+	public readonly type: RadarViewActionTypes = RadarViewActionTypes.RefreshCsv;
 	constructor(public payload: string) {}
 }
 
@@ -89,4 +95,5 @@ export type RadarViewActions =
 	| CreateRadarError
 	| SetFilteredRadarItems
 	| RemoveRadar
-	| RemoveRadarSuccess;
+	| RemoveRadarSuccess
+	| RefreshCsv;

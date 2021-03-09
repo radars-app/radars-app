@@ -1,5 +1,12 @@
 import { EntityStatus } from 'src/app/libs/container/model/entity-status';
-import { RadarViewActions, RadarViewActionTypes, LoadRadarSuccess, SetSearchQuery, SetFilteredRadarItems } from './radar-view.actions';
+import {
+	RadarViewActions,
+	RadarViewActionTypes,
+	LoadRadarSuccess,
+	SetSearchQuery,
+	SetFilteredRadarItems,
+	RefreshCsv,
+} from './radar-view.actions';
 import { RadarViewState } from './radar-view.state';
 
 export const initialState: RadarViewState = {
@@ -38,6 +45,19 @@ export function radarViewReducer(state: RadarViewState = initialState, action: R
 			return {
 				...state,
 				searchQuery: (action as SetSearchQuery).payload,
+			};
+		}
+
+		case RadarViewActionTypes.RefreshCsv: {
+			return {
+				...state,
+				radar: {
+					...state.radar,
+					value: {
+						...state.radar.value,
+						csv: (action as RefreshCsv).payload,
+					},
+				},
 			};
 		}
 

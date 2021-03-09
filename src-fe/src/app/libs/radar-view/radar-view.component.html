@@ -30,3 +30,8 @@
 										(removeConfirmed)="onRemoveConfirmed()"
 										#deleteRadarConfirmationDialog>
 </app-delete-radar-confirmation-dialog>
+
+<app-upload-csv-dialog	#refreshCsvDialog
+						[theme]="theme$ | async"
+						(csvUploaded)="refreshCsv($event)">
+</app-upload-csv-dialog>

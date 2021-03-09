@@ -8,6 +8,7 @@ import { IconButtonModel } from '../common-components/icon-button/model/icon-but
 import { IconSize } from '../common-components/icon/models/icon-size.enum';
 import { InfoDialogComponent } from '../common-components/info-dialog/info-dialog.component';
 import { AutoCompleteOption } from '../common-components/text-input/model/auto-complete-option';
+import { UploadCsvDialogComponent } from '../common-components/upload-csv-dialog/upload-csv-dialog.component';
 import { ContainerFacadeService } from '../container/service/container-facade.service';
 import { DeleteRadarConfirmationDialogComponent } from './components/delete-radar-confirmation-dialog/delete-radar-confirmation-dialog.component';
 import { SideNavigationComponent } from './components/side-navigation/side-navigation.component';
@@ -21,10 +22,11 @@ import { RadarViewFacadeService } from './service/radar-view-facade.service';
 	styleUrls: ['./radar-view.component.scss'],
 })
 export class RadarViewComponent implements OnInit, OnDestroy {
-	@ViewChild('infoDialog', { static: true }) public readonly infoDialog: InfoDialogComponent;
+	@ViewChild('infoDialog', { static: true }) public infoDialog: InfoDialogComponent;
+	@ViewChild('refreshCsvDialog', { static: true }) public refreshCsvDialog: UploadCsvDialogComponent;
 	@ViewChild('sideNavigation', { static: true }) public sideNavigation: SideNavigationComponent;
 	@ViewChild('deleteRadarConfirmationDialog', { static: true })
-	public readonly deleteRadarConfirmationDialog: DeleteRadarConfirmationDialogComponent;
+	public deleteRadarConfirmationDialog: DeleteRadarConfirmationDialogComponent;
 
 	public buttons: IconButtonModel[];
 	public theme$: Observable<ComponentTheme> = this.containerFacadeService.theme$;
@@ -101,6 +103,10 @@ export class RadarViewComponent implements OnInit, OnDestroy {
 		this.infoDialog.open([id]);
 	}
 
+	public refreshCsv(csv: string): void {
+		this.radarViewFacadeService.refreshCsv(csv);
+	}
+
 	public search(searchString: string): void {
 		this.radarViewFacadeService.searchRadarItems(searchString);
 	}
@@ -148,6 +154,16 @@ export class RadarViewComponent implements OnInit, OnDestroy {
 				disabled: false,
 			};
 
+			const refreshCsvButton: IconButtonModel = {
+				label: 'Refresh CSV',
+				callback: () => {
+					this.refreshCsvDialog.open();
+				},
+				icon: 'edit_1',
+				iconSize: IconSize.Medium,
+				disabled: false,
+			};
+
 			const removeButton: IconButtonModel = {
 				label: 'Remove',
 				callback: () => {
@@ -162,6 +178,7 @@ export class RadarViewComponent implements OnInit, OnDestroy {
 			buttons.push(printButton);
 
 			if (isAdmin) {
+				buttons.push(refreshCsvButton);
 				buttons.push(editButton);
 				buttons.push(removeButton);
 			}

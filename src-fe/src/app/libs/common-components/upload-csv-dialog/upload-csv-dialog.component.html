@@ -1,0 +1,20 @@
+<app-modal-window [theme]="theme" #popover>
+	<div class="modal-window-title">Refresh CSV</div>
+	<div class="modal-window-content">
+		<div class="upload-csv-dialog__upload-file-section">
+			<div	[class.upload-operation__upload-info--dark-theme]="isDarkTheme"
+					class="upload-operation__upload-info">Do you want to refresh CSV file?</div>
+				<app-drop-zone	[theme]="theme"
+								accept=".csv"
+								#dropZone></app-drop-zone>
+		</div>
+	</div>
+	<div class="modal-window-actions">
+		<app-button type="outlined" [theme]="theme" (click)="close()">
+			Cancel
+		</app-button>
+		<app-button type="flat" [theme]="theme" (click)="submitConfig()">
+			Upload
+		</app-button>
+	</div>
+</app-modal-window>

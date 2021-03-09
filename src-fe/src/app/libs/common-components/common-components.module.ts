@@ -37,6 +37,7 @@ import { ToastNotificationService } from './toast-notification/service/toast-not
 import { RingSectorDescriptionComponent } from './ring-sector-description/ring-sector-description.component';
 import { ClusterItemComponent } from './info-dialog/cluster-item/cluster-item.component';
 import { HighlightTextPipe } from './text-input/pipe/highlight-text.pipe';
+import { UploadCsvDialogComponent } from './upload-csv-dialog/upload-csv-dialog.component';
 
 @NgModule({
 	declarations: [
@@ -61,6 +62,7 @@ import { HighlightTextPipe } from './text-input/pipe/highlight-text.pipe';
 		RingSectorDescriptionComponent,
 		ClusterItemComponent,
 		HighlightTextPipe,
+		UploadCsvDialogComponent,
 	],
 	imports: [
 		MatButtonModule,
@@ -115,6 +117,7 @@ import { HighlightTextPipe } from './text-input/pipe/highlight-text.pipe';
 		UploadConfigDialogComponent,
 		ModalWindowComponent,
 		RingSectorDescriptionComponent,
+		UploadCsvDialogComponent,
 	],
 })
 export class CommonComponentsModule {}

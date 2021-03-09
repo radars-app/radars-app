@@ -3,7 +3,7 @@ import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Radar } from '../model/radar';
 import { RadarDataItem } from '../model/radar-data-item';
-import { CreateRadar, LoadRadar, RemoveRadar, SetSearchQuery, UploadRadar } from '../store/radar-view/radar-view.actions';
+import { CreateRadar, LoadRadar, RefreshCsv, RemoveRadar, SetSearchQuery, UploadRadar } from '../store/radar-view/radar-view.actions';
 import { selectFilteredRadarDataItems, selectRadar, selectSearchQuery } from '../store/radar-view/radar-view.selectors';
 import { RadarViewState } from '../store/radar-view/radar-view.state';
 
@@ -43,5 +43,9 @@ export class RadarViewFacadeService {
 
 	public removeRadar(radarId: string): void {
 		this.store.dispatch(new RemoveRadar(radarId));
+	}
+
+	public refreshCsv(csv: string): void {
+		this.store.dispatch(new RefreshCsv(csv));
 	}
 }

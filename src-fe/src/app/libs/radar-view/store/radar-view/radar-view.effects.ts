@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { catchError, filter, map, switchMap, withLatestFrom } from 'rxjs/operators';
+import { catchError, filter, map, switchMap, take, withLatestFrom } from 'rxjs/operators';
 import { NEVER, Observable, of } from 'rxjs';
 import {
 	RadarViewActionTypes,
@@ -65,6 +65,19 @@ export class RadarViewEffects {
 				}),
 				catchError(() => {
 					return of(new UploadRadarError());
+				})
+			);
+		})
+	);
+
+	@Effect()
+	public uploadRadarAfterCsvRefresh: Observable<Action> = this.actions$.pipe(
+		ofType(RadarViewActionTypes.RefreshCsv),
+		switchMap(() => {
+			return this.radarViewFacadeService.radar$.pipe(
+				take(1),
+				map((radar: Radar) => {
+					return new UploadRadar(radar);
 				})
 			);
 		})
