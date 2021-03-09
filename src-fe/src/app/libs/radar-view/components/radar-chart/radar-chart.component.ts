@@ -189,6 +189,7 @@ export class RadarChartComponent implements OnInit, AfterViewInit, OnDestroy {
 				ring: item.ring.label,
 				content: item.content,
 				number: item.number,
+				status: item.status as any,
 			};
 		});
 	}
