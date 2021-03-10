@@ -1,3 +1,8 @@
 {
-	"admin": ["maksimkantsavy@testcompanyrad.onmicrosoft.com", "usvirydzenka@testcompanyrad.onmicrosoft.com"]
+	"admin": [
+		"maksimkantsavy@testcompanyrad.onmicrosoft.com",
+		"usvirydzenka@testcompanyrad.onmicrosoft.com",
+		"nsergutenko@testcompanyrad.onmicrosoft.com",
+		"mgurevich@testcompanyrad.onmicrosoft.com"
+	]
 }
