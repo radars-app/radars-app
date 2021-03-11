@@ -44,4 +44,42 @@ describe('AccordionComponent', () => {
 
 		expect(component.subItemClicked$.emit).toHaveBeenCalled();
 	});
+
+	describe('when openAccordionByItemId calles', () => {
+		describe('with exisitng item', () => {
+			beforeEach(() => {
+				component.items = [
+					{
+						title: 'title',
+						opened: false,
+						color: '#123123',
+						children: [{ id: 'test', title: 'test', number: 2 }],
+					},
+				];
+				component.openAccordionByItemId('test');
+			});
+
+			it('opens item', () => {
+				expect(component.items[0].opened).toBe(true);
+			});
+		});
+
+		describe('with not exisitng item', () => {
+			beforeEach(() => {
+				component.items = [
+					{
+						title: 'title',
+						opened: false,
+						color: '#123123',
+						children: [{ id: 'test', title: 'test', number: 2 }],
+					},
+				];
+				component.openAccordionByItemId('test_not_exists');
+			});
+
+			it('not opens item', () => {
+				expect(component.items[0].opened).toBe(false);
+			});
+		});
+	});
 });

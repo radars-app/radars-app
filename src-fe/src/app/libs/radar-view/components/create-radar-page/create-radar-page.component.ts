@@ -71,6 +71,7 @@ export class CreateRadarPageComponent implements OnInit, OnDestroy {
 		this.radar.sectorColumn = config.sectorColumn;
 		this.radar.contentColumn = config.contentColumn;
 		this.radar.linkColumn = config.linkColumn;
+		this.radar.consideredNewInDays = config.consideredNewInDays;
 		this.cdRef.markForCheck();
 	}
 

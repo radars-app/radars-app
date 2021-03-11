@@ -32,8 +32,14 @@
 .accordion-subitem {
 	display: flex;
 	cursor: pointer;
+	width: calc(100%);
+	position: relative;
+	left: -$secondary-grid-unit * 5;
 	height: $secondary-grid-unit * 10;
 	margin: 0;
+	padding-left: $secondary-grid-unit * 5;
+	padding-right: $secondary-grid-unit * 5;
+	align-items: center;
 
 	&__index {
 		display: inline-block;
@@ -47,5 +53,14 @@
 		-webkit-box-orient: vertical;
 		max-height: 32px;
 		overflow: hidden;
+	}
+
+	&__content {
+		flex: 1;
+		display: flex;
+	}
+
+	&:hover {
+		background-color: #f1f4f9;
 	}
 }

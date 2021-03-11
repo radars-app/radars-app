@@ -75,21 +75,27 @@ export class RadarsService {
 
 	public async createRadar(dto: RadarDto): Promise<RadarDto> {
 		const rings: RingEntity[] = this.ringConverter.fromDtoBulk(dto.rings);
-		await this.ringRepository.addRingsBulk(rings);
+		if (rings.length) {
+			await this.ringRepository.addRingsBulk(rings);
+		}
 
 		const sectors: SectorEntity[] = this.sectorConverter.fromDtoBulk(dto.sectors);
-		await this.sectorRepository.addSectorsBulk(sectors);
+		if (sectors.length) {
+			await this.sectorRepository.addSectorsBulk(sectors);
+		}
 
-		const itemRecords: CsvRadarDataItemRecord[] = this.csvParser.parseCustomDataScheme(dto.csv as string, dto);
-		const items: RadarDataItemEntity[] = this.csvRecordsConverterService.toRadarDataItemEntityBulk(
-			itemRecords,
-			rings,
-			sectors,
-			dto.uid,
-			dto.filterColumnEnabled,
-			dto.filterColumnKeywords
-		);
-		await this.radarDataItemRepository.addRadarDataItems(items);
+		if (Boolean(dto.csv)) {
+			const itemRecords: CsvRadarDataItemRecord[] = this.csvParser.parseCustomDataScheme(dto.csv as string, dto);
+			const items: RadarDataItemEntity[] = this.csvRecordsConverterService.toRadarDataItemEntityBulk(
+				itemRecords,
+				rings,
+				sectors,
+				dto.uid,
+				dto.filterColumnEnabled,
+				dto.filterColumnKeywords
+			);
+			await this.radarDataItemRepository.addRadarDataItems(items);
+		}
 
 		const radar: RadarEntity = this.radarConverter.fromDto(dto);
 		await this.radarRepository.createRadar(radar);
@@ -160,38 +166,42 @@ export class RadarsService {
 			Boolean(sectorsToAdd.length) ||
 			Boolean(sectorsIdToRemove.length)
 		) {
+			console.log('Radar History Clean Up', dto.uid);
 			await this.radarDataItemRepository.removeRadarDataItemsByRadarId(dto.uid);
 		}
 
-		const itemRecords: CsvRadarDataItemRecord[] = this.csvParser.parseCustomDataScheme(dto.csv as string, dto);
-		const rings: RingEntity[] = this.ringConverter.fromDtoBulk(dto.rings);
-		const sectors: SectorEntity[] = this.sectorConverter.fromDtoBulk(dto.sectors);
-		const items: RadarDataItemEntity[] = this.csvRecordsConverterService.toRadarDataItemEntityBulk(
-			itemRecords,
-			rings,
-			sectors,
-			dto.uid,
-			dto.filterColumnEnabled,
-			dto.filterColumnKeywords
-		);
-		if (Boolean(items.length)) {
-			await this.radarDataItemRepository.addRadarDataItems(items);
-		}
+		if (Boolean(dto.csv)) {
+			const itemRecords: CsvRadarDataItemRecord[] = this.csvParser.parseCustomDataScheme(dto.csv as string, dto);
+			const rings: RingEntity[] = this.ringConverter.fromDtoBulk(dto.rings);
+			const sectors: SectorEntity[] = this.sectorConverter.fromDtoBulk(dto.sectors);
+			const items: RadarDataItemEntity[] = this.csvRecordsConverterService.toRadarDataItemEntityBulk(
+				itemRecords,
+				rings,
+				sectors,
+				dto.uid,
+				dto.filterColumnEnabled,
+				dto.filterColumnKeywords
+			);
 
-		const itemsDtoToRemove: RadarDataItemDto[] = oldRadar.items.filter((oldItem: RadarDataItemDto) => {
-			return !items.find((item: RadarDataItemEntity) => item.name === oldItem.name);
-		});
+			if (Boolean(items.length)) {
+				await this.radarDataItemRepository.addRadarDataItems(items);
+			}
 
-		const itemsToRemove: RadarDataItemEntity[] = itemsDtoToRemove.map((itemDto: RadarDataItemDto) => {
-			const item: RadarDataItemEntity = this.radarDataItemConverter.fromDto(itemDto);
-			item.content = '';
-			item.updatedAt = new Date().toUTCString();
+			const itemsDtoToRemove: RadarDataItemDto[] = oldRadar.items.filter((oldItem: RadarDataItemDto) => {
+				return !items.find((item: RadarDataItemEntity) => item.name === oldItem.name);
+			});
 
-			return item;
-		});
+			const itemsToRemove: RadarDataItemEntity[] = itemsDtoToRemove.map((itemDto: RadarDataItemDto) => {
+				const item: RadarDataItemEntity = this.radarDataItemConverter.fromDto(itemDto);
+				item.content = '';
+				item.updatedAt = new Date().toUTCString();
 
-		if (Boolean(itemsToRemove.length)) {
-			await this.radarDataItemRepository.addRadarDataItems(itemsToRemove);
+				return item;
+			});
+
+			if (Boolean(itemsToRemove.length)) {
+				await this.radarDataItemRepository.addRadarDataItems(itemsToRemove);
+			}
 		}
 
 		const newRadar: RadarEntity = this.radarConverter.fromDto(dto);

@@ -16,5 +16,9 @@
 		"validateIssuer": true,
 		"passReqToCallback": false,
 		"loggingLevel": "info"
+	},
+	"mongo": {
+		"username": "username",
+		"password": "password"
 	}
 }

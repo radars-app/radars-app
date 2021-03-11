@@ -13,26 +13,15 @@
 		</div>
 		
 		<div class="prepare-radar__property">
-			<div class="prepare-radar__label">Select source with data:</div>
-			<app-radio-group [options]="prepareRadarOptions" [theme]="theme" [value]="2"></app-radio-group>
+			<div class="prepare-radar__label">Take data from SharePoint:</div>
+			<app-text-input label="URL in SharePoint"
+							[required]="true"
+							placeholder="Type url here..."
+							[theme]="theme"
+							disabled="true">
+			</app-text-input>
 		</div>
 	
-		<ng-template #dataUrlTemplate>
-			<div class="prepare-radar__radio-content prepare-radar__sharepoint-url-input">
-				<app-text-input label="URL in SharePoint"
-								[required]="true"
-								placeholder="Type url here..."
-								[theme]="theme"
-								[disabled]="!isTextInputEnabled"></app-text-input>
-			</div>
-		</ng-template>
-	
-		<ng-template #dropZoneTemplate>
-			<div class="prepare-radar__radio-content" [class.prepare-radar__radio-content--disabled]="!isDropZoneEnabled">
-				<app-drop-zone [disabled]="!isDropZoneEnabled" [theme]="theme" accept=".csv" (fileLoaded)="updateCsv($event)" [file]="csvFile"></app-drop-zone>
-			</div>
-		</ng-template>
-	
-		<app-button class="prepare-radar__button--submit" type="outlined" [theme]="theme">Get Data</app-button>	
+		<app-button class="prepare-radar__button--submit" type="outlined" [theme]="theme" disabled="true">Get Data</app-button>	
 	</div>
 </app-editor-panel>

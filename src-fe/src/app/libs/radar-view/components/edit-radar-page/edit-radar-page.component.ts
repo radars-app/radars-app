@@ -10,9 +10,12 @@ import { IconButtonModel } from 'src/app/libs/common-components/icon-button/mode
 import { IconSize } from 'src/app/libs/common-components/icon/models/icon-size.enum';
 import { UploadConfigDialogComponent } from 'src/app/libs/common-components/upload-config-dialog/upload-config-dialog.component';
 import { ContainerFacadeService } from 'src/app/libs/container/service/container-facade.service';
+import { v4 } from 'uuid';
 import { Radar } from '../../model/radar';
 import { RadarConfig } from '../../model/radar-config';
 import { RadarDataItem } from '../../model/radar-data-item';
+import { Ring } from '../../model/ring';
+import { Sector } from '../../model/sector';
 import { RadarViewFacadeService } from '../../service/radar-view-facade.service';
 
 @Component({
@@ -92,8 +95,8 @@ export class EditRadarPageComponent implements OnInit, OnDestroy {
 		this.radar = JSON.parse(JSON.stringify(this.radar));
 		this.radar.lastUpdatedAt = new Date(this.radar.lastUpdatedAt);
 		this.radar.name = config.name;
-		this.radar.rings = config.rings;
-		this.radar.sectors = config.sectors;
+		this.radar.rings = this.applyRings(this.radar.rings, config.rings);
+		this.radar.sectors = this.applySectors(this.radar.sectors, config.sectors);
 		this.radar.filterColumnName = config.filterColumnName;
 		this.radar.filterColumnEnabled = config.filterColumnEnabled;
 		this.radar.filterColumnKeywords = config.filterColumnKeywords;
@@ -102,7 +105,34 @@ export class EditRadarPageComponent implements OnInit, OnDestroy {
 		this.radar.sectorColumn = config.sectorColumn;
 		this.radar.contentColumn = config.contentColumn;
 		this.radar.linkColumn = config.linkColumn;
+		this.radar.consideredNewInDays = config.consideredNewInDays;
 		this.cdRef.markForCheck();
+	}
+
+	private applyRings(oldRings: Ring[], newRings: Ring[]): Ring[] {
+		return newRings.map((newRing: Ring) => {
+			const oldRing: Ring = oldRings.find((ring: Ring) => ring.label === newRing.label);
+			if (Boolean(oldRing)) {
+				newRing.uid = oldRing.uid;
+			} else {
+				newRing.uid = v4();
+			}
+
+			return newRing;
+		});
+	}
+
+	private applySectors(oldSectors: Sector[], newSectors: Sector[]): Sector[] {
+		return newSectors.map((newSector: Sector) => {
+			const oldSector: Sector = oldSectors.find((sector: Sector) => sector.label === newSector.label);
+			if (Boolean(oldSector)) {
+				newSector.uid = oldSector.uid;
+			} else {
+				newSector.uid = v4();
+			}
+
+			return newSector;
+		});
 	}
 
 	private initCommandButtons(): void {

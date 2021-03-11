@@ -76,7 +76,7 @@ export class RadarConverterService {
 			filterColumnEnabled: radar.filterColumnEnabled,
 			filterColumnName: radar.filterColumnName,
 			filterColumnKeywords: radar.filterColumnKeywords,
-			items: radar.items.map((item: RadarDataItem) => this.radarDataItemConverter.toDto(item)),
+			items: [],
 		};
 	}
 }

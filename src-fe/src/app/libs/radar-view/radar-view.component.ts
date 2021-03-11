@@ -23,7 +23,7 @@ import { RadarViewFacadeService } from './service/radar-view-facade.service';
 })
 export class RadarViewComponent implements OnInit, OnDestroy {
 	@ViewChild('infoDialog', { static: true }) public infoDialog: InfoDialogComponent;
-	@ViewChild('refreshCsvDialog', { static: true }) public refreshCsvDialog: UploadCsvDialogComponent;
+	@ViewChild('uploadCsvDialog', { static: true }) public uploadCsvDialog: UploadCsvDialogComponent;
 	@ViewChild('sideNavigation', { static: true }) public sideNavigation: SideNavigationComponent;
 	@ViewChild('deleteRadarConfirmationDialog', { static: true })
 	public deleteRadarConfirmationDialog: DeleteRadarConfirmationDialogComponent;
@@ -154,10 +154,10 @@ export class RadarViewComponent implements OnInit, OnDestroy {
 				disabled: false,
 			};
 
-			const refreshCsvButton: IconButtonModel = {
-				label: 'Refresh CSV',
+			const uploadCsvButton: IconButtonModel = {
+				label: 'Upload .CSV',
 				callback: () => {
-					this.refreshCsvDialog.open();
+					this.uploadCsvDialog.open();
 				},
 				icon: 'edit_1',
 				iconSize: IconSize.Medium,
@@ -175,10 +175,14 @@ export class RadarViewComponent implements OnInit, OnDestroy {
 			};
 
 			const buttons: IconButtonModel[] = [];
+
+			if (isAdmin) {
+				buttons.push(uploadCsvButton);
+			}
+
 			buttons.push(printButton);
 
 			if (isAdmin) {
-				buttons.push(refreshCsvButton);
 				buttons.push(editButton);
 				buttons.push(removeButton);
 			}

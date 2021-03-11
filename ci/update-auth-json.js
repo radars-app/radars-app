@@ -1,30 +1,32 @@
-const fs = require("fs");
+const fs = require('fs');
 
 try {
-    console.log("updating file...");
-    const relativePathToFE = "../src-fe/auth-config.json";
-    const relativePathToBE = "../src-be/auth-config.json";
+	console.log('updating file...');
+	const relativePathToFE = '../src-fe/auth-config.json';
+	const relativePathToBE = '../src-be/auth-config.json';
 
-    const fe = require(relativePathToFE);
-    const be = require(relativePathToBE);
+	const fe = require(relativePathToFE);
+	const be = require(relativePathToBE);
 
-    fe["clientId"] = process.env.CLIENT_ID;
-    fe["authority"] = process.env.AUTHORITY;
-    fe["redirectUri"] = process.env.REDIRECT_URI;
+	fe['clientId'] = process.env.CLIENT_ID;
+	fe['authority'] = process.env.AUTHORITY;
+	fe['redirectUri'] = process.env.REDIRECT_URI;
 
-    be["credentials"]["tenantID"] = process.env.TENANT_ID;
-    be["credentials"]["clientID"] = process.env.CLIENT_ID;
-    be["credentials"]["audience"] = process.env.CLIENT_ID;
+	be['credentials']['tenantID'] = process.env.TENANT_ID;
+	be['credentials']['clientID'] = process.env.CLIENT_ID;
+	be['credentials']['audience'] = process.env.CLIENT_ID;
+    be['credentials']['clientSecret'] = process.env.CLIENT_SECRET;
+	be['mongo']['username'] = process.env.MONGO_USERNAME;
+	be['mongo']['password'] = process.env.MONGO_PASSWORD;
 
-    function writeJSON(error) {
-        if (error) return console.log(error);
-        console.log("done");
-    }
+	function writeJSON(error) {
+		if (error) return console.log(error);
+		console.log('done');
+	}
 
-    fs.writeFile(relativePathToFE, JSON.stringify(fe), writeJSON);
+	fs.writeFile(relativePathToFE, JSON.stringify(fe), writeJSON);
 
-    fs.writeFile(relativePathToBE, JSON.stringify(be), writeJSON);
-
+	fs.writeFile(relativePathToBE, JSON.stringify(be), writeJSON);
 } catch (err) {
-    console.log(err);
+	console.log(err);
 }

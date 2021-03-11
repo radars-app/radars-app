@@ -10,6 +10,18 @@
 		&--margin-left {
 			margin-left: 12px;
 		}
+
+		&::placeholder {
+			color: #99a6b5;
+		}
+
+		&:-ms-input-placeholder {
+			color: #99a6b5;
+		}
+
+		&::-ms-input-placeholder {
+			color: #99a6b5;
+		}
 	}
 
 	&.text-input--dark-theme {

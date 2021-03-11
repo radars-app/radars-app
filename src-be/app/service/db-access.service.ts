@@ -1,5 +1,5 @@
 import { Injectable } from '../ioc';
-
+import config from '../../auth-config.json';
 import { Db, MongoClient } from 'mongodb';
 
 @Injectable()
@@ -23,7 +23,7 @@ export class DbAccessService {
 
 	constructor() {
 		this.mongoClient = new MongoClient(
-			'mongodb+srv://admin:u6V8T0EdqKsGBSaD@realmcluster.oprpj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+			`mongodb+srv://${config.mongo.username}:${config.mongo.password}@realmcluster.oprpj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`,
 			{
 				useNewUrlParser: true,
 				useUnifiedTopology: true,

@@ -17,6 +17,10 @@
 	}
 
 	&--dark-theme {
+		.accordion-subitem:hover {
+			background-color: #414954;
+		}
+
 		.mat-expansion-panel {
 			background-color: $panel-bg-dark;
 			color: $color-white;

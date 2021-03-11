@@ -11,11 +11,16 @@ export class RadarDataItemCalculatorService {
 	): RadarDataItemEntityWithStatus[] {
 		const map: Map<string, RadarDataItemEntity[]> = this.sortMapItemsByUpdatedAt(this.mapItemsByName(items));
 		const latestItems: RadarDataItemEntity[] = this.filterRemovedItems(this.getLatestItems(map, selectedDate));
+
+		const consideredNewDate: Date = new Date(selectedDate);
+		const millisecondsInDay: number = 86400000;
+		consideredNewDate.setTime(selectedDate.getTime() - millisecondsInDay * consideredNewInDays);
+
 		const itemsWithStatusList: RadarDataItemEntityWithStatus[] = latestItems.map((latestItem: RadarDataItemEntity) => {
 			const history: RadarDataItemEntity[] = this.prepareHistory(
 				latestItem,
 				map.get(latestItem.name) as RadarDataItemEntity[],
-				consideredNewInDays,
+				consideredNewDate,
 				selectedDate
 			);
 
@@ -38,8 +43,13 @@ export class RadarDataItemCalculatorService {
 				}
 			});
 
+			const itemFullHistory: RadarDataItemEntity[] = map.get(latestItem.name) as RadarDataItemEntity[];
+			const hasHistory: boolean = itemFullHistory.length > 1;
+			const condideredNewDateInMilliseconds: number = consideredNewDate.getTime();
+			const isFreshAdded: boolean = hasHistory && condideredNewDateInMilliseconds < new Date(itemFullHistory[0].updatedAt).getTime();
+
 			const isNoChanges: boolean = changedFields.size === 0;
-			const isUpdated: boolean = changedFields.has('link') || changedFields.has('content') || history.length === 0;
+			const isUpdated: boolean = changedFields.has('link') || changedFields.has('content') || history.length === 0 || isFreshAdded;
 			const isMoved: boolean = changedFields.has('ringId') || changedFields.has('sectorId');
 			let itemStatus: RadarDataItemStatus = RadarDataItemStatus.NoChanges;
 
@@ -105,12 +115,9 @@ export class RadarDataItemCalculatorService {
 	private prepareHistory(
 		latestItem: RadarDataItemEntity,
 		history: RadarDataItemEntity[],
-		consideredNewInDays: number,
+		consideredNewDate: Date,
 		selectedDate: Date
 	): RadarDataItemEntity[] {
-		const consideredNewDate: Date = new Date(selectedDate);
-		consideredNewDate.setDate(selectedDate.getDate() - consideredNewInDays);
-
 		let cleanHistory: RadarDataItemEntity[] = history.filter((historyItem: RadarDataItemEntity) => {
 			const itemNotExists: boolean = new Date(historyItem.updatedAt).getTime() >= selectedDate.getTime();
 			const itenIsOld: boolean = new Date(historyItem.updatedAt).getTime() <= consideredNewDate.getTime();
