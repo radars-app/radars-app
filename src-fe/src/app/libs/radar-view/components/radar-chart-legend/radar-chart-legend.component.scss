@@ -45,7 +45,7 @@
 }
 
 .legend-section__label {
-	@include text-small-medium();
+	@include text-p();
 
 	color: $panel-border-dark;
 }
