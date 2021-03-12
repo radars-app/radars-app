@@ -68,6 +68,36 @@ export function radarViewReducer(state: RadarViewState = initialState, action: R
 			};
 		}
 
+		case RadarViewActionTypes.UploadRadar: {
+			return {
+				...state,
+				radar: {
+					...state.radar,
+					status: EntityStatus.Pending,
+				},
+			};
+		}
+
+		case RadarViewActionTypes.UploadRadarSuccess: {
+			return {
+				...state,
+				radar: {
+					...state.radar,
+					status: EntityStatus.Success,
+				},
+			};
+		}
+
+		case RadarViewActionTypes.UploadRadarError: {
+			return {
+				...state,
+				radar: {
+					...state.radar,
+					status: EntityStatus.Error,
+				},
+			};
+		}
+
 		default:
 			return state;
 	}

@@ -6,4 +6,5 @@ export interface IconButtonModel {
 	icon: string;
 	iconSize: IconSize;
 	disabled: boolean;
+	isLoading?: boolean;
 }

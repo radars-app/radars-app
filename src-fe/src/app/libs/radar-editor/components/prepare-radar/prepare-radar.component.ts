@@ -31,9 +31,6 @@ export class PrepareRadarComponent implements AfterViewInit {
 	@Input()
 	public radar: Radar;
 
-	@ViewChild('dropZoneTemplate')
-	public dropZoneTemplate: TemplateRef<any>;
-
 	@ViewChild('dataUrlTemplate')
 	public dataUrlTemplate: TemplateRef<any>;
 
@@ -94,7 +91,6 @@ export class PrepareRadarComponent implements AfterViewInit {
 			{
 				title: 'Take data by uploading .CSV file',
 				value: 2,
-				template: this.dropZoneTemplate,
 			},
 		];
 		this.cdRef.detectChanges();

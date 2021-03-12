@@ -9,6 +9,7 @@ import { IconSize } from '../common-components/icon/models/icon-size.enum';
 import { InfoDialogComponent } from '../common-components/info-dialog/info-dialog.component';
 import { AutoCompleteOption } from '../common-components/text-input/model/auto-complete-option';
 import { UploadCsvDialogComponent } from '../common-components/upload-csv-dialog/upload-csv-dialog.component';
+import { EntityStatus } from '../container/model/entity-status';
 import { ContainerFacadeService } from '../container/service/container-facade.service';
 import { DeleteRadarConfirmationDialogComponent } from './components/delete-radar-confirmation-dialog/delete-radar-confirmation-dialog.component';
 import { SideNavigationComponent } from './components/side-navigation/side-navigation.component';
@@ -34,6 +35,7 @@ export class RadarViewComponent implements OnInit, OnDestroy {
 	public radarId: string;
 	public autoCompleteOptions: AutoCompleteOption[];
 	public searchQuery$: Subject<string>;
+	public uploadCsvButton: IconButtonModel;
 
 	private destroy$: Subject<boolean> = new Subject<boolean>();
 
@@ -42,7 +44,18 @@ export class RadarViewComponent implements OnInit, OnDestroy {
 		private route: ActivatedRoute,
 		public radarViewFacadeService: RadarViewFacadeService,
 		private router: Router
-	) {}
+	) {
+		this.uploadCsvButton = {
+			label: 'Update',
+			callback: () => {
+				this.uploadCsvDialog.open();
+			},
+			icon: 'sync',
+			iconSize: IconSize.Medium,
+			disabled: false,
+			isLoading: false,
+		};
+	}
 
 	public ngOnInit(): void {
 		this.initCommandButtons();
@@ -61,6 +74,13 @@ export class RadarViewComponent implements OnInit, OnDestroy {
 			filter((radar: Radar) => Boolean(radar)),
 			map((radar: Radar) => radar.name)
 		);
+
+		this.radarViewFacadeService.radarStatus$.pipe(takeUntil(this.destroy$)).subscribe((status: EntityStatus) => {
+			if (status === EntityStatus.Error || status === EntityStatus.Success) {
+				this.uploadCsvButton.isLoading = false;
+				this.uploadCsvButton.disabled = false;
+			}
+		});
 
 		combineLatest([this.radarViewFacadeService.filteredRadarDataItems$, this.radarViewFacadeService.searchQuery$])
 			.pipe(
@@ -105,6 +125,8 @@ export class RadarViewComponent implements OnInit, OnDestroy {
 
 	public refreshCsv(csv: string): void {
 		this.radarViewFacadeService.refreshCsv(csv);
+		this.uploadCsvButton.disabled = true;
+		this.uploadCsvButton.isLoading = true;
 	}
 
 	public search(searchString: string): void {
@@ -154,16 +176,6 @@ export class RadarViewComponent implements OnInit, OnDestroy {
 				disabled: false,
 			};
 
-			const uploadCsvButton: IconButtonModel = {
-				label: 'Upload .CSV',
-				callback: () => {
-					this.uploadCsvDialog.open();
-				},
-				icon: 'edit_1',
-				iconSize: IconSize.Medium,
-				disabled: false,
-			};
-
 			const removeButton: IconButtonModel = {
 				label: 'Remove',
 				callback: () => {
@@ -177,7 +189,7 @@ export class RadarViewComponent implements OnInit, OnDestroy {
 			const buttons: IconButtonModel[] = [];
 
 			if (isAdmin) {
-				buttons.push(uploadCsvButton);
+				buttons.push(this.uploadCsvButton);
 			}
 
 			buttons.push(printButton);

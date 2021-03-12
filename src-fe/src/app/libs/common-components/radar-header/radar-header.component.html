@@ -10,6 +10,7 @@
 							[theme]="theme$ | async"
 							[iconSize]="button.iconSize"
 							[disabled]="button.disabled"
+							[isLoading]="button.isLoading"
 							(click)="button.callback()">{{button.label}}
 		</app-icon-button>
 	</div>

@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { EntityStatus } from '../../container/model/entity-status';
 import { Radar } from '../model/radar';
 import { RadarDataItem } from '../model/radar-data-item';
 import { CreateRadar, LoadRadar, RefreshCsv, RemoveRadar, SetSearchQuery, UploadRadar } from '../store/radar-view/radar-view.actions';
-import { selectFilteredRadarDataItems, selectRadar, selectSearchQuery } from '../store/radar-view/radar-view.selectors';
+import { selectFilteredRadarDataItems, selectRadar, selectRadarStatus, selectSearchQuery } from '../store/radar-view/radar-view.selectors';
 import { RadarViewState } from '../store/radar-view/radar-view.state';
 
 @Injectable({
@@ -15,6 +16,10 @@ export class RadarViewFacadeService {
 
 	public get radar$(): Observable<Radar> {
 		return this.store.pipe(select(selectRadar));
+	}
+
+	public get radarStatus$(): Observable<EntityStatus> {
+		return this.store.pipe(select(selectRadarStatus));
 	}
 
 	public get searchQuery$(): Observable<string> {

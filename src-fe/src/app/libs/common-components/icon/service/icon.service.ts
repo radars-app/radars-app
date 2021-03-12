@@ -48,6 +48,7 @@ export class IconService {
 			'dot-no-change',
 			this.domSanitizer.bypassSecurityTrustResourceUrl('../../../../../assets/svg/no-change.svg')
 		);
+		this.matIconRegistry.addSvgIcon('sync', this.domSanitizer.bypassSecurityTrustResourceUrl('../../../../../assets/svg/sync.svg'));
 		this.matIconRegistry.addSvgIcon(
 			'approved',
 			this.domSanitizer.bypassSecurityTrustResourceUrl('../../../../../assets/svg/approved.svg')

@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSelectModule } from '@angular/material/select';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { SlideToggleComponent } from './slide-toggle/slide-toggle.component';
 import { RadarHeaderComponent } from './radar-header/radar-header.component';
@@ -66,6 +67,7 @@ import { UploadCsvDialogComponent } from './upload-csv-dialog/upload-csv-dialog.
 	],
 	imports: [
 		MatButtonModule,
+		MatProgressSpinnerModule,
 		CommonModule,
 		MatSlideToggleModule,
 		MatIconModule,

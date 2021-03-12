@@ -19,6 +19,9 @@ export class IconButtonComponent {
 	public startIcon: string;
 
 	@Input()
+	public isLoading: boolean;
+
+	@Input()
 	public endIcon: string;
 
 	@Input()

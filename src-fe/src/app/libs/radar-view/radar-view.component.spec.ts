@@ -17,6 +17,7 @@ import { DotTooltipComponent } from './components/dot-tooltip/dot-tooltip.compon
 import { RouterTestingModule } from '@angular/router/testing';
 import { DeleteRadarConfirmationDialogComponent } from './components/delete-radar-confirmation-dialog/delete-radar-confirmation-dialog.component';
 import { RadarHeaderComponent } from '../common-components/radar-header/radar-header.component';
+import { EntityStatus } from '../container/model/entity-status';
 
 describe('RadarViewComponent', () => {
 	let component: RadarViewComponent;
@@ -91,6 +92,7 @@ describe('RadarViewComponent', () => {
 						]),
 						searchQuery$: of('Linux'),
 						loadRadar: jasmine.createSpy().and.stub(),
+						radarStatus$: of(EntityStatus.Success),
 					},
 				},
 			],
@@ -104,6 +106,7 @@ describe('RadarViewComponent', () => {
 		fixture = TestBed.createComponent(RadarViewComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
+		component.ngOnInit();
 	});
 
 	it('should create', () => {
